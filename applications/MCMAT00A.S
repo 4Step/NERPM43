@@ -1,0 +1,62 @@
+; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+RUN PGM=MATRIX PRNFILE="C:\KumarA\NERPM\CUBE\MCMAT00A.PRN" MSG='Build OD Vehicle Trips & PA Transit Trips'
+FILEI MATI[4] = "{OUTDIR}\VTRIP1.MAT"
+FILEI MATI[5] = "{OUTDIR}\EETRIPS.MAT"
+FILEO MATO[2] = "{SCENARIO_DIR}\TRANSITTAB.MAT",
+ MO=31-36,41-46, 
+NAME=AMWLB,AMWEB,AMWRL,AMALB,AMAEB,AMARL,MDWLB,MDWEB,MDWRL,MDALB,MDAEB,MDARL
+FILEO MATO[1] = "{SCENARIO_DIR}\HWYTTAB.MAT",
+MO=21-26, NAME=TRKIEII,SOVIEII,HOVIEII,TRKEE,SOVEE,HOVEE, DEC=6*S
+FILEI MATI[3] = "C:\KumarA\NERPM\CUBE\HTNHB.MAT"
+FILEI MATI[2] = "C:\KumarA\NERPM\CUBE\HTNWORK.MAT"
+FILEI MATI[1] = "C:\KumarA\NERPM\CUBE\HTWORK.MAT"
+
+PAR ZONEMSG=100
+
+; DRIVE ALONE
+MW[1]=(MI.1.2+MI.2.2+MI.3.2+MI.4.4 + MI.1.2.T+MI.2.2.T+MI.3.2.T+MI.4.4.T)*0.5
+; AUTO 2
+MW[2]=(MI.1.4+MI.2.4+MI.3.4 + MI.1.4.T+MI.2.4.T+MI.3.4.T)/2*0.5
+; AUTO 3+ HBW
+MW[3]=(MI.1.5+MI.1.5.T)/{OC3VHBW}*0.5; include this modifier if model is revalidated
+; AUTO 3+ HBO
+MW[4]=(MI.2.5+MI.2.5.T)/{OC3VHBNW}*0.5; include this modifier if model is revalidated
+; AUTO 3+ NHB
+MW[5]=(MI.3.5+MI.3.5.T)/{OC3VNHB}*0.5; include this modifier if model is revalidated
+; HOV IE
+MW[6]=(MI.4.5+MI.4.5.T)*0.5
+; II/IE TRK
+MW[7]=(MI.4.1+MI.4.2+MI.4.3+MI.4.6+MI.4.7 + MI.4.1.T+MI.4.2.T+MI.4.3.T+MI.4.6.T+MI.4.7.T)*0.5
+; EE TRUCK
+MW[8]=(MI.5.3+MI.5.4 + MI.5.3.T+MI.5.4.T)*0.5
+; EE SOV
+MW[9]=(MI.5.1+MI.5.1.T)*0.5
+; EE HOV
+MW[10]=(MI.5.2+MI.5.2.T)*0.5
+
+
+; FINAL TABLE ORDERING FOR HIGHWAY SIDE
+MW[21]=MW[7]                          ; TRKIEII
+MW[22]=MW[1]                          ; SOVIEII
+MW[23]=MW[2]+MW[3]+MW[4]+MW[5]+MW[6]  ; HOVIEII
+MW[24]=MW[8]                          ; TRKEE
+MW[25]=MW[9]                          ; SOVEE
+MW[26]=MW[10]                         ; HOVEE
+
+; AM PEAK TRANSIT
+MW[31]=MI.1.8
+MW[32]=MI.1.10
+MW[33]=MI.1.11
+MW[34]=MI.1.13
+MW[35]=MI.1.15
+MW[36]=MI.1.16
+
+; MD OFF-PEAK TRANSIT
+MW[41]=MI.2.8+MI.3.8
+MW[42]=MI.2.10+MI.3.10
+MW[43]=MI.2.11+MI.3.11
+MW[44]=MI.2.13+MI.3.13
+MW[45]=MI.2.15+MI.3.15
+MW[46]=MI.2.16+MI.3.16
+
+ENDRUN

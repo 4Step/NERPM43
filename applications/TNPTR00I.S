@@ -1,0 +1,42 @@
+; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+RUN PGM=PUBLIC TRANSPORT PRNFILE="{OUTDIR}\TNPTR00G.PRN"
+FILEO REPORTO = "{OUTDIR}\TNPTR00H.PRN"
+FILEI ROUTEI[4] = "{OUTDIR}\TPATHOP4_{Alt}{year}.RTE"
+FILEI ROUTEI[3] = "{OUTDIR}\TPATHOP3_{Alt}{year}.RTE"
+FILEI ROUTEI[2] = "{OUTDIR}\TPATHOP2_{Alt}{year}.RTE"
+FILEI ROUTEI[1] = "{OUTDIR}\TPATHOP1_{Alt}{year}.RTE"
+FILEI NETI = "{OUTDIR}\TransitOP.NET"
+
+FILEO MATO[3] = "{OUTDIR}\SELLINKOP3_TMP.MAT",
+ MO=1,DEC=1*D
+FILEO MATO[1] = "{OUTDIR}\SELLINKOP1_TMP.MAT",
+ MO=1,DEC=1*D
+
+FILEO NETO = "{OUTDIR}\SELLINKOP_TMP.NET"
+
+PARAMETERS NOROUTEMSGS=0, NOROUTEERRS=9999999,USERCLASSES={RunUserClasses},HDWAYPERIOD=2,
+    TRIPSIJ[1]=1,
+    TRIPSIJ[2]=1,
+    TRIPSIJ[3]=1,
+    TRIPSIJ[4]=1
+
+REPORT LINES=T, LINEVOLS=T
+
+PHASE=SKIMIJ
+
+if ({isFutureYearAlternative} = 1)
+
+ if ({iSBRTProjectMode} = 1)
+  READ, FILE = "{OUTDIR}\BRTLINKS.TXT"
+ else
+  MW[1]=SELECTLINK(OPERATOR=5)                ; Commuter rail operator
+ endif
+
+else
+  MW[1] = 0
+
+endif
+
+ENDPHASE
+
+ENDRUN

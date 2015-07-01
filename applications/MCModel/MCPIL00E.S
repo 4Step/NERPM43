@@ -1,0 +1,12 @@
+*echo Date: %date% >"{SCENARIO_DIR}\output\ModelRun_{alt}{year}.prn"
+*echo Time: %time% >>"{SCENARIO_DIR}\output\ModelRun_{alt}{year}.prn"
+*echo FSUMTS Model Run - {SCENARIO_FULLNAME}>>"{SCENARIO_DIR}\output\ModelRun_{alt}{year}.prn"
+*echo Input Directory {SCENARIO_DIR}\input >>"{SCENARIO_DIR}\output\ModelRun_{alt}{year}.prn"
+*echo ======================================================================================>>"{SCENARIO_DIR}\output\ModelRun_{alt}{year}.prn"
+
+*IF EXIST "{SCENARIO_DIR}\output\ModeDebug.TXT" DEL "{SCENARIO_DIR}\output\ModeDebug.TXT"
+*IF EXIST "{SCENARIO_DIR}\output\ModeSum.TXT" DEL "{SCENARIO_DIR}\output\ModeSum.TXT"
+*IF EXIST "{SCENARIO_DIR}\output\CalibSum.TXT" DEL "{SCENARIO_DIR}\output\CalibSum.TXT"
+*IF EXIST "{SCENARIO_DIR}\output\modeshares.csv" DEL "{SCENARIO_DIR}\output\modeshares.csv"
+*IF EXIST "{SCENARIO_DIR}\output\NEW_MCCONSTS.CSV" DEL "{SCENARIO_DIR}\output\NEW_MCCONSTS.CSV"
+*IF EXIST "{SCENARIO_DIR}\output\CBDSHARES.CSV" DEL "{SCENARIO_DIR}\output\CBDSHARES.CSV"

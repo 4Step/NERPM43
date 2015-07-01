@@ -1,0 +1,98 @@
+; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+RUN PGM=MATRIX PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\TTMAT00G.PRN" MSG='Create InternalTrk Period Hwy Veh TT by CLS (LT/MT/HT)/Dir'
+FILEI MATI[1] = "{SCENARIO_DIR}\output\VTRIP1.mat"
+DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
+;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
+
+
+FILEO MATO[4] = "{SCENARIO_DIR}\output\IITrk_NT_TEM.MAT",
+  MO=61-66, NAME= NT_IITRK_LT_P2A, NT_IITRK_MT_P2A, NT_IITRK_HT_P2A,
+                  NT_IITRK_LT_A2P, NT_IITRK_MT_A2P, NT_IITRK_HT_A2P, dec=6*S
+
+FILEO MATO[3] = "{SCENARIO_DIR}\output\IITrk_PM_TEM.MAT",
+  MO=51-56, NAME= PM_IITRK_LT_P2A, PM_IITRK_MT_P2A, PM_IITRK_HT_P2A,
+                  PM_IITRK_LT_A2P, PM_IITRK_MT_A2P, PM_IITRK_HT_A2P, dec=6*S
+
+
+FILEO MATO[2] = "{SCENARIO_DIR}\output\IITrk_MD_TEM.MAT",
+  MO=41-46, NAME= MD_IITRK_LT_P2A, MD_IITRK_MT_P2A, MD_IITRK_HT_P2A,
+                  MD_IITRK_LT_A2P, MD_IITRK_MT_A2P, MD_IITRK_HT_A2P, dec=6*S
+
+FILEO MATO[1] = "{SCENARIO_DIR}\output\IITrk_AM_TEM.MAT",
+  MO=31-36, NAME= AM_IITRK_LT_P2A, AM_IITRK_MT_P2A, AM_IITRK_HT_P2A,
+                  AM_IITRK_LT_A2P, AM_IITRK_MT_A2P, AM_IITRK_HT_A2P, dec=6*S
+
+PAR ZONEMSG=100
+
+FILLMW MW[1]=MI.1.1,2,3               ;1/2/3: IntTrk-LT-4Tire,MT-SU,HT-COMB
+
+FILLMW MW[101]=MI.1.1.T,2.T,3.T       ;101/102/103: IntTrk-LT-4Tire,MT-SU,HT-COMB -Transposed
+
+
+LDTRK_NT_Frac=1-({LDTRK_AM_Frac}+{LDTRK_MD_Frac}+{LDTRK_PM_Frac})
+HDTRK_NT_Frac=1-({HDTRK_AM_Frac}+{HDTRK_MD_Frac}+{HDTRK_PM_Frac})
+
+;AMPK-IITrk: 31=LT_PA, 32=MT_PA, 33=HT_PA, 34=LT_AP, 35=LT_AP, 36=HD_AP
+LOOP K=1,3
+  KK=100+K 
+  _KPA=30+K
+  _KAP=33+K
+  if (_KPA=31,32) MW[_KPA]=MW[K]*{LDTRK_AM_Frac}*0.5
+  if (_KPA=33)    MW[_KPA]=MW[K]*{HDTRK_AM_Frac}*0.5
+  if (_KAP=34,35) MW[_KAP]=MW[KK]*{LDTRK_AM_Frac}*0.5
+  if (_KAP=36)    MW[_KAP]=MW[KK]*{HDTRK_AM_Frac}*0.5
+  JLOOP
+    if (MW[_KPA]<0.0) MW[_KPA]=0.0  
+    if (MW[_KAP]<0.0) MW[_KAP]=0.0
+  ENDJLOOP
+ENDLOOP
+
+;MidDay-IITrk: 41=LT_PA, 42=MT_PA, 43=HT_PA, 44=LT_AP, 45=LT_AP, 46=HD_AP
+LOOP K=1,3
+  KK=100+K 
+  _KPA=40+K
+  _KAP=43+K
+  if (_KPA=41,42) MW[_KPA]=MW[K]*{LDTRK_MD_Frac}*0.5
+  if (_KPA=43)    MW[_KPA]=MW[K]*{HDTRK_MD_Frac}*0.5
+  if (_KAP=44,45) MW[_KAP]=MW[KK]*{LDTRK_MD_Frac}*0.5
+  if (_KAP=46)    MW[_KAP]=MW[KK]*{HDTRK_MD_Frac}*0.5
+  JLOOP
+    if (MW[_KPA]<0.0) MW[_KPA]=0.0  
+    if (MW[_KAP]<0.0) MW[_KAP]=0.0
+  ENDJLOOP
+ENDLOOP
+
+
+;PMPK-IITrk: 51=LT_PA, 52=MT_PA, 53=HT_PA, 54=LT_AP, 55=LT_AP, 56=HD_AP
+LOOP K=1,3
+  KK=100+K 
+  _KPA=50+K
+  _KAP=53+K
+  if (_KPA=51,52) MW[_KPA]=MW[K]*{LDTRK_PM_Frac}*0.5
+  if (_KPA=53)    MW[_KPA]=MW[K]*{HDTRK_PM_Frac}*0.5
+  if (_KAP=54,55) MW[_KAP]=MW[KK]*{LDTRK_PM_Frac}*0.5
+  if (_KAP=56)    MW[_KAP]=MW[KK]*{HDTRK_PM_Frac}*0.5
+  JLOOP
+    if (MW[_KPA]<0.0) MW[_KPA]=0.0  
+    if (MW[_KAP]<0.0) MW[_KAP]=0.0
+  ENDJLOOP
+ENDLOOP
+
+
+;OverNight-IITrk: 61=LT_PA, 62=MT_PA, 63=HT_PA, 64=LT_AP, 65=LT_AP, 66=HD_AP
+LOOP K=1,3
+  KK=100+K 
+  _KPA=60+K
+  _KAP=63+K
+  if (_KPA=61,62) MW[_KPA]=MW[K]*LDTRK_NT_Frac*0.5
+  if (_KPA=63)    MW[_KPA]=MW[K]*HDTRK_NT_Frac*0.5
+  if (_KAP=64,65) MW[_KAP]=MW[KK]*LDTRK_NT_Frac*0.5
+  if (_KAP=66)    MW[_KAP]=MW[KK]*HDTRK_NT_Frac*0.5
+  JLOOP
+    if (MW[_KPA]<0.0) MW[_KPA]=0.0  
+    if (MW[_KAP]<0.0) MW[_KAP]=0.0
+  ENDJLOOP
+ENDLOOP
+
+
+ENDRUN

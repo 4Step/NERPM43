@@ -1,0 +1,279 @@
+   7734   7693   7698 1 -1   ;No LT from US 301 NB to US 301 SB
+   7699   7705   7610 1 -1   ;No RT from US 301 SB to I-10 WB On Ramp
+   7674   7712   7711 1 -1   ;No RT from I-10 EB Off Ramp to US 301 SB
+   8379   8375   8334 1 -1   ;No RT from US 301 to Beaver St WB
+   8395   8375   8379 1 -1   ;No RT from Beaver St to US 301
+   8396   8406   8379 1 -1   ;No LT from Beaver St EB to US 301 On Ramp
+   8396   8406   8395 1 -1   ;No LT from Beaver St EB to Beaver St WB
+  13660  13661  13703 1 -1   ;No RT from Chaffee Rd to I-10 EB On Ramp
+  13704  13661  13663 1 -1   ;No RT from I-10 EB Off Ramp to Chaffee Rd
+  13704  13661  13703 1 -1   ;No LT from I-10 EB Off to On Ramp
+  13659  13662  13703 1 -1   ;No LT from Chaffee Rd to Ramp
+  13704  13663  13661 1 -1   ;No LT from I-10 EB Off Ramp to Chaffee Rd
+  13639  13666  13667 1 -1   ;No LT from I-10 WB Off Ramp to Chaffee Rd
+  13639  13667  13666 1 -1   ;No RT from I-10 WB Off Ramp to Chaffee Rd
+  13669  13668  13649 1 -1   ;No RT from Chaffee Rd to I-10 WB On Ramp
+  13668  13669  13649 1 -1   ;No LT from Chaffee Rd to I-10 WB On Ramp
+  75024  17956  75023 1 -1   ;No LT from Beaver St to Bulls Bay Hwy Triangle
+  19315  19544  19561 1 -1   ;No RT from Normandy Rd EB to I-295 SB On Ramp
+  19581  19569  19648 1 -1   ;No RT from I-295 SB Ramp to US 301
+  20138  19925  19905 1 -1   ;No RT from Normandy Rd WB to I-295 NB On Ramp
+  19951  19934  20004 1 -1   ;No RT from I-295 NB Off Ramp to Normandy Rd EB
+  20175  20206  20101 1 -1   ;No RT from I-295 SB Ramp to Wilson Blvd WB
+  20090  20213  20229 1 -1   ;No RT from Wilson Rd EB to I-295 SB On Ramp
+  20489  20364  20360 1 -1   ;No RT from Wilson Blvd WB to I-295 NB Ramp
+  20386  20373  20421 1 -1   ;No RT from I-295 NB Ramp to Wilson Blvd EB
+  20670  20736  20732 1 -1   ;No RT from 103rd St EB I-295 SB Ramp
+  20756  20737  20671 1 -1   ;No RT from I-295 SB Ramp to 103rd St WB
+  20900  20908  20981 1 -1   ;No RT from I-295 NB Ramp to 103rd St EB
+  20984  20910  20912 1 -1   ;No RT from 103rd St WB I-295 NB Ramp
+  20902  21018  21009 1 -1   ;No RT from Commonwealth Rd EB to I-295 SB On Ramp
+  21046  21022  20985 1 -1   ;No RT from I-295 SB Off Ramp to Commonwealth Rd WB
+  21195  21211  21339 1 -1   ;No RT from I-295 NB Ramp to Commonwealth Ave
+  21445  21222  21267 1 -1   ;No RT from Commonwealth Rd WB to I-295 NB On Ramp
+  21320  21334  21441 1 -1   ;No RT from I-295 NB Ramp to Pritchard Rd
+  21285  21744  21659 1 -1   ;No RT from I-295 SB to Collins Rd
+  21285  21744  21799 1 -1   ;No LT from I-295 SB to Collins Rd
+  21659  21744  23120 1 -1   ;No RT from Collins Rd to I-295 SB
+  21799  21744  23120 1 -1   ;No LT from Collins Rd to I-295 SB
+  21744  21799  21330 1 -1   ;No LT from Collins Rd to I-295 NB
+  21952  21799  21330 1 -1   ;No RT from Collins Rd to I-295 NB
+  23156  21799  21744 1 -1   ;No LT from I-295 NB to Collins Rd
+  23156  21799  21952 1 -1   ;No RT from I-295 NB to Collins Rd
+  22350  22347  22316 1 -1   ;No RT from Lane Ave SB to I-10 WB On Ramp
+  22346  22364  22392 1 -1   ;No LT from Lane Ave SB to Lane Ave NB
+  22389  22369  22350 1 -1   ;No LT from Lane Ave NB to Lane Ave SB
+  22452  22390  22389 1 -1   ;No RT from I-10 WB Off Ramp to Lane Ave NB
+  22934  22950  22767 1 -1   ;No RT from Kings Rd SB to I-295 SB
+  23271  23239  23368 1 -1   ;No RT from Kings Rd NB to I-295 EB
+  23298  23344  23326 1 -1   ;No LT from Kings Rd NB to Kings Rd SB
+  23952  23954  23894 1 -1   ;No RT from Blanding Blvd SB to I-295 WB Ramp
+  23911  23957  23953 1 -1   ;No RT from I-295 EB Off Ramp to Blanding Blvd SB
+  24221  24024  24023 1 -1   ;No RT from I-295 WB Off Ramp to Blanding Blvd NB
+  24028  24026  24116 1 -1   ;No RT from Blanding Blvd NB to I-295 EB Ramp
+  25510  25525  25529 1 -1   ;No RT from I-295 EB Off Ramp to Cassat Rd SB
+  25655  25558  25519 1 -1   ;No LT from Cassat Rd NB to Cassat Rd SB
+  25529  25594  25653 1 -1   ;No LT from Cassat Rd SB to Cassat Rd NB
+  25686  25648  25655 1 -1   ;No RT from I-295 WB Off Ramp to Cassat Rd NB
+  25653  25654  25673 1 -1   ;No RT from Cassat Ave NB to I-10 EB On Ramp
+  25757  25696  25753 1 -1   ;No LT from Dunn Rd WB to Dunn Rd EB
+  26451  26444  26206 1 -1   ;No LT from I-295 SB Off Ramp to Dunn Ave EB
+  26802  27029  27213 1 -1   ;No RT from I-295 NB Off Ramp to Dunn Rd EB
+  27214  27041  27056 1 -1   ;No RT from Dunn Rd WB to I-295 NB On Ramp
+  27195  27117  27186 1 -1   ;No RT from US 17 SB to Blanding Blvd WB
+  27317  27458  27321 1 -1   ;No LT from Park St to Park/US17 Ramp
+  27590  27474  74827 1 -1   ;No LT from Blanding Blvd WB to US 17 NB
+  27398  27588  27399 1 -1   ;No LT from Dunn Rd EB to Dunn Rd WB
+  27590  27677  27591 1 -1   ;No LT from Blanding Blvd EB to US 17 NB
+  29387  29335  29338 1 -1   ;No LT from Roosevelt Blvd NB to Roosevelt Blvd SB
+  29710  29615  29603 1 -1   ;No LT from Roosevelt Blvd NB to Ramp Entrance of SB
+  29951  29615  29541 1 -1   ;No LT from Roosevelt Blvd SB Ramp to Roosevelt Blvd NB
+  29594  29930  29991 1 -1   ;No LT from Roosevelt Blvd Ramp Entrance NB to SB
+  29740  29930  29980 1 -1   ;No LT from Roosevelt Blvd SB to Ramp Entrance of NB
+  32975  33372  33474 1 2.5  ;I-10 EB before I-95 merge
+  35143  35077  75016 1 -1   ;No RT from Duval Rd SB to I-295 WB On Ramp
+  35264  35077  35143 1 -1   ;No RT from I-295 WB Off Ramp to Duval Rd NB
+  35559  35330  35556 1 -1   ;No RT from Bay St WB Ramp to Forsyth St
+  35525  35546  35508 1 -1   ;No RT from Lem Turner SB to I-95 SB On Ramp
+  35593  35563  35544 1 -1   ;No RT from I-95 SB Off Ramp to Lem Turner Rd NB
+  35716  35744  35688 1 -1   ;No direct LT from I95 NB off ramp to Lem Turner Road WB
+  35736  35802  35773 1 -1   ;No LT from Norwood Ave EB to Norwood Ave WB
+  36043  35936  35854 1 -1   ;No RT from I-95 SB Off Ramp to US 17 NB
+  36019  35960  36027 1 -1   ;No RT from US 17 NB to I-95 SB On Ramp
+  36529  36363  36228 1 -1   ;No RT from I-95 NB Off Ramp to US 17 NB
+  36464  36381  36591 1 -1   ;No RT from US 17 NB to I-95 NB On Ramp
+  36826  36844  36642 1 -1   ;No LT from N Broad St to W Bay St
+  37783  37744  37778 1 -1   ;No LT from SR 105 WB to SR 105 EB
+  38057  38122  38140 1 -1   ;No LT to US 1 Ramp from Independence to Main St Ramp
+  38124  38122  38140 1 -1   ;No LT from Main St to US 1 Ramp
+  38397  38474  38476 1 -1   ;No RT from Dunn Ave EB to I-95 SB On Ramp
+  38490  38475  38378 1 -1   ;No RT from I-95 SB Off Ramp to Dunn Ave WB
+  38834  38845  38947 1 -1   ;No RT from I-95 NB Off Ramp to Dunn Ave EB
+  38949  38847  38836 1 -1   ;No RT from Busch/Dunn Rd WB to I-95 NB On Ramp
+  38963  39035  38949 1 -1   ;No LT from Busch/Dunn Rd EB to Busch/Dunn Rd WB
+  39338  39501  39414 1 -1   ;No LT from SR 105 EB to SR 105 WB
+  39804  39828  39704 1 -1   ;No RT from I-95 SB Off Ramp to SR A1A WB
+  39706  39834  39844 1 -1   ;No RT from SR A1A EB to I-95 SB On Ramp
+  39950  39931  40284 1 -1   ;No LT from Main St Ramp to SR 105 EB
+  40284  39931  39727 1 -1   ;No LT from SR 105 Ramp to Main St Ramp
+  40288  40212  40178 1 -1   ;No RT from SR AIA WB to I-95 NB On Ramp
+  40208  40222  40320 1 -1   ;No RT from I-95 NB Off Ramp to SR AIA EB
+  40421  40326  40381 1 -1   ;No LT from Atlantic Ramp to Atlantic Ramp
+  40289  40555  40568 1 -1   ;No RT from I-95 Off Ramp to CD Ramps
+  40298  40555  40534 1 -1   ;No RT from Atlantic Blvd to I-95/Kings Ave Ramp
+  40557  40568  41113 1 -1   ;No RT from Kings Ave/US 1 to I-95 On Ramp
+  41398  41403  41348 1 -1   ;NO U-turn on Duval St at I95
+  41575  41775  41572 1 -1   ;No LT from Duval Rd EB to Duval Rd WB
+  42243  42294  42277 1 -1   ;No direct turn from Matthews expy off-ramp to Haines st expy NB - #3
+  42285  42338  42326 1 -1   ;No LT from Haines St SB to Haines St NB
+  42603  42440  42502 1 -1   ;No RT from SR 9A Ramp to Main St NB
+  42603  42440  42715 1 -1   ;No LT from SR 9 Off to On Ramp
+  42466  42598  42604 1 -1   ;No RT from Pecan Park Rd EB to I-95 SB On Ramp
+  42597  42599  42446 1 -1   ;No RT from I-95 SB Off Ramp to Pecan Park Rd WB
+  42668  42678  42630 1 -1   ;NO U-turn on Main St at I295
+  42899  42678  42753 1 -1   ;NO RT from I295 NB to Main St
+  43003  42847  43288 1 -1   ;No LT from Emerson Rd WB to Emerson Rd EB
+  42979  42975  43101 1 -1   ;No RT from I-95 NB Off Ramp to Pecan Park Rd EB
+  43097  42976  42963 1 -1   ;No RT from Pecan Park Rd WB to I-95 NB On Ramp
+  43101  43140  43119 1 -1   ;No LT from Pecan Park Rd EB to Pecan Park Rd WB
+  43330  43387  43376 1 -1   ;No RT from I-95 SB Off Ramp to Emerson Rd WB
+  43688  43599  43516 1 -1   ;No RT from Emerson Rd WB to I-95 NB On Ramp
+  43695  43616  43701 1 -1   ;No RT from I-95 NB Off Ramp to Emerson Rd WB
+  43670  43620  43421 1 -1   ;No RT from San Jose Blvd SB to I-295 WB On Ramp
+  43476  43661  43675 1 -1   ;No RT from I-295 EB Off Ramp to San Jose Blvd SB
+  44125  44305  44126 1 -1   ;No LT from Emerson Rd EB to Emerson Rd WB
+  46074  46050  46106 1 -1   ;No LT from US 1 Alt SB to US 1 Alt NB
+  46430  46125  46211 1 -1   ;No LT from US 1 Alt SB Off Ramp to Beach Blvd
+  46230  46211  46125 1 -1   ;No LT from Beach Blvd to US 1 Alt SB
+  46374  46321  46375 1 -1   ;No LT from Beach Blvd to US 1 Alt NB
+  46321  46374  46405 1 -1   ;No direct turn from Beach Blvd to US 1 NB ramp - #6
+  46287  46481  46526 1 -1   ;No LT from I-95 SB Off Ramp to University Blvd
+  46614  46526  46481 1 -1   ;No LT from Cloverleaf Ramp to University Blvd
+  46785  46731  46738 1 -1   ;No LT from University Blvd to Cloverleaf Ramp
+  46731  46785  46311 1 -1   ;No LT from University Blvd to I-95 NB On Ramp
+  47655  47973  48006 1 -1   ;No LT from US 90 Alt EB Ramp to University Blvd
+  48026  48006  48318 1 -1   ;No direct Left turn from Univ Blve South to Colcord Ave - allow to use cloverleaf -#2
+  48116  48026  47976 1 -1   ;No LT from Cloverleaf Ramp to Cloverleaf Ramp
+  48116  48026  48006 1 -1   ;No LT from Cloverleaf Ramp to University Blvd SB
+  47971  48073  48120 1 -1   ;No LT from Cloverleaf Ramp to University Blvd NB
+  47971  48073  48150 1 -1   ;No LT from Cloverleaf to Cloverleaf
+  48120  48073  48150 1 -1   ;No LT from University Blvd to Cloverleaf Ramp
+  48168  48106  48098 1 -1   ;No LT from Old St Augustine Rd to I-295 WB On Ramp
+  48503  48120  48073 1 -1   ;No LT from US 90 Alt WB Off Ramp to University Blvd
+  48120  48152  47733 1 -1   ;No LT from University Blvd to US 90 Alt WB On Ramp
+  48317  48168  48192 1 -1   ;No LT from I-295 WB Off Ramp to Old St Augustine Rd
+  48168  48192  48098 1 -1   ;No RT from Old St Augustine Rd to I-295 WB On Ramp
+  48317  48192  48168 1 -1   ;No RT from I-295 WB Off Ramp to Old St Augustine Rd
+  48313  48247  48487 1 -1   ;No LT from US 17 NB to US 17 SB
+  48126  48254  48301 1 -1   ;No RT from I-295 EB Off Ramp to Old St Augustine Rd
+  48301  48254  48439 1 -1   ;No RT from Old St Augustine Rd to I-295 EB On Ramp
+  48126  48301  48254 1 -1   ;No LT from I-295 EB Off Ramp to Old St Augustine Rd
+  48301  48372  48439 1 -1   ;No LT from Old St Augustine Rd to I-295 EB On Ramp
+  48523  48532  48567 1 -1   ;No LT from University Blvd SB to University Blvd NB
+  48643  48599  48602 1 -1   ;No RT from SR 228 WB Off Ramp to University Blvd NB
+  48611  48621  48585 1 -1   ;No LT from University Blvd NB to University Blvd SB
+  48867  49031  75017 1 -1   ;No RT from US 17 SB to SR A1A WB
+  49252  49134  49417 1 -1   ;No RT from US 17 NB to SR AIA EB
+  49224  49291  49252 1 -1   ;No LT from US 17 SB to US 17 NB
+  50285  50195  50073 1 -1
+  74930  50195  74579 1 -1
+  50654  50934  50861 1 -1
+  52456  52459  52476 1 -1   ;No LT from Alta Dr SB to Alta Dr NB
+  52471  52467  52491 1 -1   ;No LT from Alta Dr SB to SR 9A EB On Ramp
+  52374  52471  52467 1 -1   ;No RT from SR 9A EB to Alta Dr SB
+  52467  52491  52495 1 -1   ;No LT from Alta Dr SB to Alta Dr NB
+  52491  52495  52552 1 -1   ;No RT from Alta Dr NB to SR 9A EB On Ramp
+  52493  52519  52520 1 -1   ;No LT from Thru to Alta Dr SB
+  52519  52520  52498 1 -1   ;No direct LT from ALTA DR NB to SR 14 WB
+  52630  52520  52525 1 -1   ;No RT from SR 9A WB Off Ramp to Alta Dr NB
+  52525  52530  52498 1 -1   ;No LT from Alta Dr NB to Alta Dr SB
+  53358  53403  53328 1 -1   ;No RT from I-95 SB Off Ramp to Bay Meadows Dr WB
+  53353  53413  53432 1 -1   ;No RT from Bay Meadows Dr to I-95 SB On Ramp
+  53720  53610  53585 1 -1   ;No RT from Bay Meadows WB to I-95 NB On Ramp
+  53657  53622  53685 1 -1   ;No RT from I-95 NB Off Ramp to Bay Meadows Dr EB
+  54226  54375  54369 1 -1   ;No RT from Heckscher Dr to SR 9A SB
+  54368  54378  54224 1 -1   ;No RT from SR 9A SB to Heckscher Dr
+  54512  54516  54652 1 -1   ;No RT from SR 9A NB to Heckscher Dr
+  54644  54521  54519 1 -1   ;No RT from Heckscher Dr to SR 9A NB
+  54723  54692  54700 1 -1   ;No LT from Philips Hwy NB to Philips Hwy SB
+  54919  54880  54804 1 -1   ;No RT from I-95 SB to Philips Hwy NB
+  54969  54997  54994 1 -1   ;No direct LT from Beach Blvd EB to Southside Blvd NB - #11
+  54994  54997  55010 1 -1   ;No direct LT from Southside Blvd SB to Beach Blvd EB - #11
+  54998  54997  54969 1 -1   ;No direct LT from Southside Blvd NB to Beach Blvd WB - #11
+  55010  54997  54998 1 -1   ;No direct LT from Beach Blvd WB to Southside Blvd SB - #11
+  55275  55202  55130 1 -1   ;No RT from I-95 NB to Philips Hwy NB
+  55280  55245  55267 1 -1   ;No RT from Philips Hwy NB to I-95 NB
+  55351  55401  55408 1 -1   ;No RT from Merrill Rd to SR 9A SB On Ramp
+  55411  55436  55407 1 -1   ;No LT from Philips Hwy SB to Philips Hwy NB
+  55425  55447  55398 1 -1   ;No RT from SR 9A SB Off Ramp to Merrill Rd WB
+  55634  55637  55561 1 -1   ;No RT from SR 9A NB Off Ramp to Merrill Rd WB
+  55743  55669  75022 1 -1   ;No RT from Southside Blvd to Philips Hwy
+  55803  55669  55743 1 -1   ;No RT from Philips Hwy to Southside Blvd
+  55700  55732  55751 1 -1   ;No LT from Southside Blvd SB to Southside Blvd NB
+  55669  55803  55743 1 -1   ;No LT from Philips Hwy to Southside Blvd
+  55864  55811  55849 1 -1   ;No LT from Philips Hwy NB toPhilips Hwy SB
+  74997  56370  74998 1 -1   ;No RT from I-95 SB Off Ramp to St Augustine Rd
+  75000  56728  74999 1 -1   ;No LT from Old St Augustine Rd to I-95 NB On Ramp
+  57529  57560  57513 1 -1   ;No RT from SR 9A SB Off Ramp to Atlantic Blvd WB
+  57514  57564  57568 1 -1   ;No RT from Atlantic EB to SR 9A SB On Ramp
+  57630  57606  57589 1 -1   ;No RT from Atlantic Blvd WB to SR 9A NB On Ramp
+  57640  57612  57629 1 -1   ;No RT from SR 9A NB Off Ramp to Atlantic Blvd EB
+  75008  58493  75009 1 -1   ;No Thru from SR 9A SB Off to On Ramp
+  75008  58493  75011 1 -1   ;No LT from SR 9A SB Off Ramp to Gate Parkway
+  75011  58493  75009 1 -1   ;No LT from Gate Parkway to SR 9A SB On Ramp
+  75002  58498  75003 1 -1   ;No Thru SR 9A NB Off Ramp to On Ramp
+  75002  58498  75004 1 -1   ;No LT from SR 9A SB Off Ramp to Bay Meadows Dr
+  75004  58498  75003 1 -1   ;No LT from Bay Meadows Dr to SR 9A SB On Ramp
+  75010  58688  58670 1 -1   ;No Thru SR 9A SB Off Ramp to On Ramp
+  75010  58688  75012 1 -1   ;No LT from SR 9A NB Off Ramp to Gate Parkway
+  75012  58688  58670 1 -1   ;No LT from Gate Parkway to SR 9A NB On Ramp
+  75006  58708  75005 1 -1   ;No LT from Bay Meadows Dr to SR 9A NB On Ramp
+  75007  58708  75005 1 -1   ;No Thru from SR 9A SB Off to On Ramp
+  75007  58708  75006 1 -1   ;No LT from SR 9A NB Off Ramp to Bay Meadows Dr
+  61635  61668  61562 1 -1   ;No RT from I-95 SB Off Ramp to International Golf Pkwy WB
+  61615  61677  61711 1 -1   ;No RT from International Golf Pkwy EB to I-95 SB On Ramp
+  65457  65481  65480 1 -1   ;No RT from SR 16 EB to I-95 SB On Ramp
+  65489  65483  65437 1 -1   ;No RT from I-95 NB Off Ramp to International Golf Pkwy EB
+  65657  65660  65692 1 -1   ;No RT from I-95 SB Off Ramp to SR 16 EB
+  65729  65663  65670 1 -1   ;No RT from SR 16 WB to I-95 NB On Ramp
+  67149  68191  68279 1 10.5 ;TCARD 12, Palm Valley Rd NB South of Roscoe Blvd
+  68279  68191  67149 1 10.5 ;TCARD 12, Palm Valley Rd SB South of Roscoe Blvd
+  69599  69639  69651 1 -1   ;No RT from SR 206 to I-95 SB On Ramp
+  69633  69639  69599 1 -1   ;No RT from I-95 SB Off Ramp to SR 206
+  69709  69697  69733 1 -1   ;No RT from I-95 NB Off Ramp to SR 206
+  69733  69697  69687 1 -1   ;No RT from SR 206 to I-95 NB On Ramp
+  75018  70797  75019 1 -1   ;No RT from I-95 SB Off Ramp to SR 16 WB
+  70827  70835  70843 1 -1   ;No RT from Ponce De Leon Blvd to San Marco Ave
+  74997  74998  56370 1 -1   ;No LT from I-95 SB Off Ramp to St Augustine Rd
+  56728  75000  74999 1 -1   ;No RT from St Augustine Rd to I-95 NB On Ramp
+  58498  75004  75003 1 -1   ;No RT from Gate Parkway to SR 9A SB On Ramp
+  75002  75004  58498 1 -1   ;No RT from SR 9A SB Off Ramp to Bay Meadows Dr
+  75002  75004  75003 1 -1   ;No Thru from SR 9A SB Off to On Ramp
+  58708  75006  75005 1 -1   ;No RT from Bay Meadows to SR 9A NB On Ramp
+  75007  75006  58708 1 -1   ;No RT from SR 9A NB Off Ramp to Bay Meadows Dr
+  75007  75006  75005 1 -1   ;No Thru from SR 9A NB Off to On Ramp
+  58493  75011  75009 1 -1   ;No RT from Gate Parkway to SR 9A SB On Ramp
+  75008  75011  58493 1 -1   ;No RT from SR 9A SB Off Ramp to Gate Parkway
+  75008  75011  75009 1 -1   ;No Thru from SR 9A SB Off to On Ramp
+  58688  75012  58670 1 -1   ;No RT from Gate Parkway to SR 9A NB On Ramp
+  75010  75012  58670 1 -1   ;No Thru from SR 9A NB Off to On Ramp
+  75010  75012  58688 1 -1   ;No RT from SR 9A NB Off Ramp to Gate Parkway
+  70797  75018  75019 1 -1   ;No LT from SR 207 to Ponce De Leon SB
+  55743  75022  55669 1 -1   ;No LT from Southside Blvd to Philips Hwy
+  17956  75023  75024 1 -1   ;No LT from Bulls Bay to Beaver St Alley
+  33163  75029  32740 1 0.01 ;I-10 WB ramp from Stockton St
+  75030  75032  22346 1 -1   ;No RT from I-10 EB Off Ramp to Lane Ave SB
+  22392  75033  75031 1 -1   ;No RT from Lane Ave to I-10 WB On Ramp
+  88008  88007  88150 1 -1   ;No LT from I-10 EB Off Ramp to CR 229
+  88020  88009  88054 1 -1   ;No LT from CR 229 to I-10 EB On Ramp
+  88009  88020  88054 1 -1   ;No RT from CR 229 to I-10 WB On Ramp
+  88814  88056  88145 1 -1   ;No RT from I-10 WB Off Ramp to CR 229
+  88402  88060  88324 1 -1   ;No RT from I-10 EB Off Ramp to US 90
+  88202  88061  88231 1 -1   ;No LT from I-10 WB Off Ramp to US 90
+  88151  88076  88772 1 -1   ;No LT from CR 229 to I-10 WB On Ramp
+  88318  88088  88321 1 -1   ;No LT from 6th to 5th
+  88321  88088  88318 1 -1   ;No LT from 5th to 6th
+  88814  88145  88056 1 -1   ;No LT from I-10 WB Off Ramp to CR 229
+  88008  88150  88007 1 -1   ;No RT from I-10 EB Off Ramp to CR 229
+  88076  88151  88772 1 -1   ;No RT from CR 229 to I-10 WB On Ramp
+  88202  88231  88061 1 -1   ;No RT from I-10 WB Off Ramp to US 90
+  88302  88266  88269 1 -1   ;No RT from US 90 to I-10 WB On Ramp
+  88279  88278  88316 1 -1   ;No LT from US 90 to I-10 EB On Ramp
+  88278  88279  88316 1 -1   ;No RT from US 90 to I-10 EB On Ramp
+  88266  88302  88269 1 -1   ;No LT from US 90 to I-10 WB On Ramp
+  88402  88324  88060 1 -1   ;No LT from I-10 EB Off Ramp to US 90
+  88815  88328  88951 1 -1   ;No RT from SR 121 to I-10 WB On Ramp
+  89040  88329  89041 1 -1   ;No LT from SR 121 to I-10 EB On Ramp
+  88328  88815  88951 1 -1   ;No LT from SR 121 to I-10 WB On Ramp
+  88973  88957  88959 1 -1   ;No RT from I-10 WB Off Ramp to SR 121
+  88953  88958  88954 1 -1   ;No LT from US 17 SB to US 17 NB
+  88973  88959  88957 1 -1   ;No LT from I-10 WB Off Ramp to SR 121
+  88965  88960  88967 1 -1   ;No LT from SR 19 SB to SR 19 NB
+  88966  89027  89028 1 -1   ;No LT from I-10 EB Off Ramp to SR 121
+  88966  89028  89027 1 -1   ;No RT from I-10 EB Off Ramp to SR 121
+  88329  89040  89041 1 -1   ;No RT from SR 1210 to I-10 EB On Ramp
+  88433  89050  89057 1 -1   ;No LT from SR 100 SB to US 17
+  38365  38422  38405 1 3
+  38486  38510  38392 1 3 
+  38567  38588  38477 1 3
+  38640  38661  38558 1 3

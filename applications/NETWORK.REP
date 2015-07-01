@@ -1,0 +1,13 @@
+-------------------------
+CHECKING APPLICATION GROUP 'Network'
+C:\NERPM43\applications\NETWORK.APP
+CHECKING EXECUTION ORDER
+CHECKING FILE EXISTENCE
+-------------------------
+APPLICATION GROUP: 'Network' (C:\NERPM43\applications\NETWORK.APP)
+PROGRAM: NETWORK
+EXEC ORDER: 6
+THE 'Trn Spd Curves' EXISTS, BUT IS EMPTY
+{Scenario_Dir}\input\TSPDS.CSV
+(='C:\NERPM43\Base2010\input\TSPDS.CSV' for Scenario 'Base2010')
+

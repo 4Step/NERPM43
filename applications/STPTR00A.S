@@ -1,0 +1,12 @@
+; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\STPTR00A.PRN" MSG='knr-bus stop to stop file'
+FILEI ROUTEI[5] = "{SCENARIO_DIR}\output\TPATHPK5_{Alt}{year}.RTE"
+FILEO REPORTO = "{SCENARIO_DIR}\output\STPTR00B.PRN"
+FILEO STOP2STOPO[1] = "{SCENARIO_DIR}\output\ST2STPK5_{alt}{year}.DBF",
+     ACCUMULATE=firstlast, MODES=21,23, N={ZONESA1}-99999
+FILEI NETI = "{SCENARIO_DIR}\output\TransitPK.NET"
+
+PARAMETERS NOROUTEERRS=9999999, NOROUTEMSGS=0,USERCLASSES=5,HDWAYPERIOD=1,
+           TRIPSIJ[5]=10
+
+ENDRUN

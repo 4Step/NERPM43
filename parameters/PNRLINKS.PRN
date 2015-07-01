@@ -1,0 +1,130 @@
+     87001     80005       100  59 59 59 11 11 11        2.0       0.5 Terminal Skyway PNR-Station Access Link
+     87001     35753       100  59 59 59 11 11 11        2.0       0.5 Terminal Skyway PNR-Stop Access Link
+     87001     35792       100  59 59 59 11 11 11        2.0       0.5 Terminal Skyway PNR-Stop Access Link
+     87001     35649       100  49 49 49 11 11 11          0         0 Terminal Skyway Driveway Links
+     87002     80004       100  59 59 59 11 11 11        2.0       0.5 Jefferson Skyway PNR-Station Access Link
+     87002     36642       100  59 59 59 11 11 11        2.0       0.5 Jefferson Skyway PNR-Stop Access Link
+     87002     36674       100  59 59 59 11 11 11        2.0       0.5 Jefferson Skyway PNR-Stop Access Link
+     87002     36405       100  49 49 49 11 11 11          0         0 Jefferson Skyway Driveway Link
+     87004     80006       100  59 59 59 11 11 11        2.0       0.5 San Marco Skyway PNR-Stop Access Link
+     87004     37705       100  59 59 59 11 11 11        2.0       0.5 San Marco Skyway PNR-Stop Access Link
+     87004     37663       100  49 49 49 11 11 11          0         0 San Marco Skyway Drive-Access Link
+     87003     38942       100  59 59 59 11 11 11        2.0       0.5 Kings Ave Skyway PNR-Stop Access Link
+     87003     80008       100  59 59 59 11 11 11        2.0       0.5 Kings Ave Skyway PNR-Stop Access Link
+     88002     64893       100  59 59 59 31 31 31        2.0       0.5 Mayport-Wonderwood PNR-Stop Access Link
+     88002     64859       100  49 49 49 31 31 31          0         0 Mayport-Wonderwood Drive-Access Link_1
+     64919     79006       100  49 49 49 31 31 31          0         0 Mayport-Wonderwood Drive-Access Link_2
+     88002     79006       100  49 49 49 31 31 31          0         0 Mayport-Wonderwood Drive-Access Link_2
+     88003     58551       100  59 59 59 31 31 31        2.0       0.5 Monument Rd PNR-Stop Access Link
+     88003     79008       100  49 49 49 31 31 31          0         0 Monument Rd Drive-Access Link
+     58221     79008       100  49 49 49 31 31 31          0         0 Monument Rd Drive-Access Link
+     88001     79003       100  59 59 59 23 23 23        2.0       0.5 Marbon Rd PNR-Stop Access Link
+     88001     79004       100  49 49 49 23 23 23          0         0 Marbon Rd Drive-Access Link
+     79004     42870       100  49 49 49 23 23 23          0         0 Marbon Rd Drive-Access Link
+     79003     79004       100  49 49 49 23 23 23          0         0 Marbon Rd Drive-Access Link
+     88004     79001       100  59 59 59 31 31 31        2.0       0.5 PHILIPS HWY & JTB PNR-Stop Access Link
+     48494     79005       100  49 49 49 31 31 31          0         0 PHILIPS HWY & JTB Drive-Access Link
+     88004     79005       100  49 49 49 31 31 31          0         0 PHILIPS HWY & JTB Drive-Access Link
+     79001     79005       100  49 49 49 31 31 31          0         0 PHILIPS HWY & JTB Drive-Access Link
+     88005     40897       100  49 49 49 21 21 21          0         0 St.Andrews/Fairgrounds Drive-Access Link_1
+     40641     79007       100  49 49 49 21 21 21          0         0 St.Andrews/Fairgrounds Drive-Access Link_2
+     88005     79007       100  49 49 49 21 21 21          0         0 St.Andrews/Fairgrounds Drive-Access Link_2
+     80025     79007       100  49 49 49 21 21 21          0         0 St.Andrews/Fairgrounds Drive-Access Link_2
+     88005     80025       100  59 59 59 21 21 21        2.0       0.5 St.Andrews/Fairgrounds PNR-Stop Access Link
+     80005     87001       100  59 59 59 11 11 11        2.0       0.5 Terminal Skyway PNR-Station Access Link
+     35753     87001       100  59 59 59 11 11 11        2.0       0.5 Terminal Skyway PNR-Stop Access Link
+     35792     87001       100  59 59 59 11 11 11        2.0       0.5 Terminal Skyway PNR-Stop Access Link
+     35649     87001       100  49 49 49 11 11 11          0         0 Terminal Skyway Driveway Links
+     80004     87002       100  59 59 59 11 11 11        2.0       0.5 Jefferson Skyway PNR-Station Access Link
+     36642     87002       100  59 59 59 11 11 11        2.0       0.5 Jefferson Skyway PNR-Stop Access Link
+     36674     87002       100  59 59 59 11 11 11        2.0       0.5 Jefferson Skyway PNR-Stop Access Link
+     36405     87002       100  49 49 49 11 11 11          0         0 Jefferson Skyway Driveway Link
+     80006     87004       100  59 59 59 11 11 11        2.0       0.5 San Marco Skyway PNR-Stop Access Link
+     37705     87004       100  59 59 59 11 11 11        2.0       0.5 San Marco Skyway PNR-Stop Access Link
+     37663     87004       100  49 49 49 11 11 11          0         0 San Marco Skyway Drive-Access Link
+     38942     87003       100  59 59 59 11 11 11        2.0       0.5 Kings Ave Skyway PNR-Stop Access Link
+     80008     87003       100  59 59 59 11 11 11        2.0       0.5 Kings Ave Skyway PNR-Stop Access Link
+     64893     88002       100  59 59 59 31 31 31        2.0       0.5 Mayport-Wonderwood PNR-Stop Access Link
+     64859     88002       100  49 49 49 31 31 31          0         0 Mayport-Wonderwood Drive-Access Link_1
+     79006     64919       100  49 49 49 31 31 31          0         0 Mayport-Wonderwood Drive-Access Link_2
+     79006     88002       100  49 49 49 31 31 31          0         0 Mayport-Wonderwood Drive-Access Link_2
+     58551     88003       100  59 59 59 31 31 31        2.0       0.5 Monument Rd PNR-Stop Access Link
+     79008     88003       100  49 49 49 31 31 31          0         0 Monument Rd Drive-Access Link
+     79008     58221       100  49 49 49 31 31 31          0         0 Monument Rd Drive-Access Link
+     79003     88001       100  59 59 59 23 23 23        2.0       0.5 Marbon Rd PNR-Stop Access Link
+     79004     88001       100  49 49 49 23 23 23          0         0 Marbon Rd Drive-Access Link
+     42870     79004       100  49 49 49 23 23 23          0         0 Marbon Rd Drive-Access Link
+     79004     79003       100  49 49 49 23 23 23          0         0 Marbon Rd Drive-Access Link
+     79001     88004       100  59 59 59 31 31 31        2.0       0.5 PHILIPS HWY & JTB PNR-Stop Access Link
+     79005     48494       100  49 49 49 31 31 31          0         0 PHILIPS HWY & JTB Drive-Access Link
+     79005     88004       100  49 49 49 31 31 31          0         0 PHILIPS HWY & JTB Drive-Access Link
+     79005     79001       100  49 49 49 31 31 31          0         0 PHILIPS HWY & JTB Drive-Access Link
+     40897     88005       100  49 49 49 21 21 21          0         0 St.Andrews/Fairgrounds Drive-Access Link_1
+     79007     40641       100  49 49 49 21 21 21          0         0 St.Andrews/Fairgrounds Drive-Access Link_2
+     79007     88005       100  49 49 49 21 21 21          0         0 St.Andrews/Fairgrounds Drive-Access Link_2
+     79007     80025       100  49 49 49 21 21 21          0         0 St.Andrews/Fairgrounds Drive-Access Link_2
+     80025     88005       100  59 59 59 21 21 21        2.0       0.5 St.Andrews/Fairgrounds PNR-Stop Access Link
+     26401     79010       100   0  0 49 21 21 21          0         0 San Jaun BRT Drive-Access link
+     79010     80016       100   0  0 49 21 21 21          0         0 San Jaun BRT Drive-Access link
+     79010     88010       100   0  0 49 21 21 21          0         0 San Jaun BRT Drive-Access link
+     88010     80016       100   0  0 59 21 21 21        2.0       0.5 San Jaun BRT PNR-Stop Access Link
+     29924     79011       100   0  0 49 21 21 21          0         0 College St BRT Drive-Access Link
+     79011     88011       100   0  0 49 21 21 21          0         0 College St BRT Drive-Access Link
+     79011     80019       100   0  0 49 21 21 21          0         0 College St BRT Drive-Access Link
+     88011     80019       100   0  0 59 21 21 21        2.0       0.5 College St BRT PNR-Stop Access Link
+     32941     79012       100   0  0 49 21 21 21          0         0 Stockton St BRT Drive-Access Link
+     79012     88012       100   0  0 49 21 21 21          0         0 Stockton St BRT Drive-Access Link
+     79012     80020       100   0  0 49 21 21 21          0         0 Stockton St BRT Drive-Access Link
+     88012     80020       100   0  0 59 21 21 21        2.0       0.5 Stockton St BRT PNR-Stop Access Link
+     48152     88013       100   0  0 49 21 21 21          0         0 Unviersity Blvd BRT Drive-Access Link
+     88013     80026       100   0  0 59 21 21 21        2.0       0.5 Unviersity Blvd BRT PNR-Stop Access Link
+     53389     88014       100   0  0 49 21 21 21          0         0 Arlington Central BRT Drive-Access Link
+     88014     80027       100   0  0 59 21 21 21        2.0       0.5 Arlington Central BRT PNR-Stop Access Link
+     55419     79013       100   0  0 49 21 21 21          0         0 Regency Sq BRT Drive-Access Link
+     79013     80028       100   0  0 49 21 21 21          0         0 Regency Sq BRT Drive-Access Link
+     79013     88015       100   0  0 49 21 21 21          0         0 Regency Sq BRT Drive-Access Link
+     88015     80028       100   0  0 59 21 21 21        2.0       0.5 Regency Sq BRT PNR-Stop Access Link
+     31936     79014       100   0  0 49 21 21 21          0         0 Dunn Av BRT Drive-Access Link
+     79014     80051       100   0  0 49 21 21 21          0         0 Dunn Av BRT Drive-Access Link
+     79014     88016       100   0  0 49 21 21 21          0         0 Dunn Av BRT Drive-Access Link
+     88016     80051       100   0  0 59 21 21 21        2.0       0.5 Dunn Av BRT PNR-Stop Access Link
+     33359     79015       100   0  0 49 21 21 21          0         0 Sountel Dr BRT Drive-Access Link
+     79015     80052       100   0  0 49 21 21 21          0         0 Sountel Dr BRT Drive-Access Link
+     79015     88017       100   0  0 49 21 21 21          0         0 Sountel Dr BRT Drive-Access Link
+     88017     80052       100   0  0 59 21 21 21        2.0       0.5 Sountel Dr BRT PNR-Stop Access Link
+     34817     79016       100   0  0 49 21 21 21          0         0 Edgewood St BRT Drive-Access Link
+     79016     80053       100   0  0 49 21 21 21          0         0 Edgewood St BRT Drive-Access Link
+     79016     88018       100   0  0 49 21 21 21          0         0 Edgewood St BRT Drive-Access Link
+     88018     80053       100   0  0 59 21 21 21        2.0       0.5 Edgewood St BRT PNR-Stop Access Link
+     79010     26401       100   0  0 49 21 21 21          0         0 San Jaun BRT Drive-Access link
+     80016     79010       100   0  0 49 21 21 21          0         0 San Jaun BRT Drive-Access link
+     88010     79010       100   0  0 49 21 21 21          0         0 San Jaun BRT Drive-Access link
+     80016     88010       100   0  0 59 21 21 21        2.0       0.5 San Jaun BRT PNR-Stop Access Link
+     79011     29924       100   0  0 49 21 21 21          0         0 College St BRT Drive-Access Link
+     88011     79011       100   0  0 49 21 21 21          0         0 College St BRT Drive-Access Link
+     80019     79011       100   0  0 49 21 21 21          0         0 College St BRT Drive-Access Link
+     80019     88011       100   0  0 59 21 21 21        2.0       0.5 College St BRT PNR-Stop Access Link
+     79012     32941       100   0  0 49 21 21 21          0         0 Stockton St BRT Drive-Access Link
+     88012     79012       100   0  0 49 21 21 21          0         0 Stockton St BRT Drive-Access Link
+     80020     79012       100   0  0 49 21 21 21          0         0 Stockton St BRT Drive-Access Link
+     80020     88012       100   0  0 59 21 21 21        2.0       0.5 Stockton St BRT PNR-Stop Access Link
+     88013     48152       100   0  0 49 21 21 21          0         0 Unviersity Blvd BRT Drive-Access Link
+     80026     88013       100   0  0 59 21 21 21        2.0       0.5 Unviersity Blvd BRT PNR-Stop Access Link
+     88014     53389       100   0  0 49 21 21 21          0         0 Arlington Central BRT Drive-Access Link
+     80027     88014       100   0  0 59 21 21 21        2.0       0.5 Arlington Central BRT PNR-Stop Access Link
+     79013     55419       100   0  0 49 21 21 21          0         0 Regency Sq BRT Drive-Access Link
+     80028     79013       100   0  0 49 21 21 21          0         0 Regency Sq BRT Drive-Access Link
+     88015     79013       100   0  0 49 21 21 21          0         0 Regency Sq BRT Drive-Access Link
+     80028     88015       100   0  0 59 21 21 21        2.0       0.5 Regency Sq BRT PNR-Stop Access Link
+     79014     31936       100   0  0 49 21 21 21          0         0 Dunn Av BRT Drive-Access Link
+     80051     79014       100   0  0 49 21 21 21          0         0 Dunn Av BRT Drive-Access Link
+     88016     79014       100   0  0 49 21 21 21          0         0 Dunn Av BRT Drive-Access Link
+     80051     88016       100   0  0 59 21 21 21        2.0       0.5 Dunn Av BRT PNR-Stop Access Link
+     79015     33359       100   0  0 49 21 21 21          0         0 Sountel Dr BRT Drive-Access Link
+     80052     79015       100   0  0 49 21 21 21          0         0 Sountel Dr BRT Drive-Access Link
+     88017     79015       100   0  0 49 21 21 21          0         0 Sountel Dr BRT Drive-Access Link
+     80052     88017       100   0  0 59 21 21 21        2.0       0.5 Sountel Dr BRT PNR-Stop Access Link
+     79016     34817       100   0  0 49 21 21 21          0         0 Edgewood St BRT Drive-Access Link
+     80053     79016       100   0  0 49 21 21 21          0         0 Edgewood St BRT Drive-Access Link
+     88018     79016       100   0  0 49 21 21 21        2.0       0.5 Edgewood St BRT Drive-Access Link
+     80053     88018       100   0  0 59 21 21 21          0         0 Edgewood St BRT PNR-Stop Access Link

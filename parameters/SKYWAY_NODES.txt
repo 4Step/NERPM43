@@ -1,0 +1,8 @@
+80001     448340    2181700   FCCJ Skyway
+80002     447950    2180310   Hemming Plaza Skyway
+80003     447170    2179490   Central Station Skyway
+80004     445625    2179650   Jefferson Skyway
+80005     444060    2180175   Convention Center Skyway
+80006     447700    2176090   San Macro Skyway
+80007     448900    2176080   Riverplace Skyway
+80008     450040    2175200   Kings Ave Skyway

@@ -1,0 +1,164 @@
+ 
+MATRIX (v.03/22/2010 [5.1.2 Pre])  Thu Sep 01 10:04:43 2011
+
+FILEI MATI[2] = "C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\Base2005\INT2010\output\PORT_TRK_24H_10.MAT"
+FILEI MATI[1] = "C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\APPLICATIONS\HOMAT00A.MAT"
+FILEO MATO[1] = "C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\APPLICATIONS\HOMAT00B.MAT",
+ MO=1-8,NAME=SOV,CARPOOL,IEEITRK,EETRUCKS,EESOV,EEHOV,PortTrk,24_Tot, DEC=8*d
+
+PAR ZONEMSG=100
+
+pahbwpkfac = 1;0.45299*10   ; 2000 HH survey
+pahbnwpkfac= 1;0.25757*10   ; 2000 HH survey
+panhbpkfac = 1;0.036640*10  ; 2000 HH survey
+aphbwpkfac = 1;0.02367 *10  ; 2000 HH survey
+aphbnwpkfac= 1;0.03536 *10  ; 2000 HH survey
+apnhbpkfac = 1;0.036640*10  ; 2000 HH survey
+iepkfac    = 1;0.1537  *10  ; from FDOT_BC353_08rpt.pdf - Time of day modeling procedure in FSUTMS
+eepkfac    = 1;0.136   *10 ; from FDOT_BC353_08rpt.pdf - Time of day modeling procedure in FSUTMS
+trkpkfac   = 1;0.20    *10 ; from FDOT_BC353_08rpt.pdf - Time of day modeling procedure in FSUTMS
+
+
+
+;SOV & SOVIE
+MW[01]=(pahbwpkfac * MI.1.1 + aphbwpkfac * MI.1.1.T) * 0.5 +
+       (pahbnwpkfac * MI.1.2 + aphbnwpkfac * MI.1.2.T) * 0.5 +
+       (panhbpkfac * MI.1.3 + apnhbpkfac * MI.1.3.T) * 0.5 +
+       (iepkfac * MI.1.4 + iepkfac * MI.1.4.T) * 0.5
+;CARPOOL
+MW[02]=(pahbwpkfac * MI.1.5 + aphbwpkfac * MI.1.5.T) * 0.5 /2 +
+       (pahbnwpkfac * MI.1.6 + aphbnwpkfac * MI.1.6.T) * 0.5 /2 +
+       (panhbpkfac * MI.1.7 + apnhbpkfac * MI.1.7.T) * 0.5 /2 +
+       (pahbwpkfac * MI.1.8 + aphbwpkfac * MI.1.8.T) * 0.5 /3.37 +
+       (pahbnwpkfac * MI.1.9 + aphbnwpkfac * MI.1.9.T) * 0.5 /3.48 +
+       (panhbpkfac * MI.1.10 + apnhbpkfac * MI.1.10.T) * 0.5 /3.59 +
+       (iepkfac * MI.1.12 + iepkfac * MI.1.12.T) * 0.5
+;IE/EE TRUCK
+MW[03]=(trkpkfac * MI.1.14 + trkpkfac * MI.1.14.T) * 0.5
+
+;EETRUCKS
+MW[04]=(trkpkfac * MI.1.15 + trkpkfac * MI.1.15.T) * 0.5
+;EESOV
+MW[05]=(eepkfac * MI.1.11 + eepkfac * MI.1.11.T) * 0.5
+;EEHOV
+MW[06]=(eepkfac * MI.1.13 + eepkfac * MI.1.13.T) * 0.5
+
+;Jax Port Trucks
+MW[07]=MI.2.1
+
+;Total Trips
+MW[8]=MW[1]+MW[2]+MW[3]+MW[4]+MW[5]+MW[6]+MW[7]
+
+Page 626  (VOYAGER MATRIX) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+
+MATRIX Stack Size = 2256 bytes.
+................................................................................
+
+
+MATI[2] TPP C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\Base2005\INT2010\output\PORT_TRK_24H_10.MAT Opened
+MAT PGM=MATRIX (v.03/22/2010 [5.1.2 Pre])  DATE=Thu Sep 01 09:03:01 2011 
+ID=
+PAR Zones=2578 M=3
+  PortTrk_N42_10  PortTrk_SWM_base  PortTrk_SWM_Future
+
+MATI[1] TPP HOMAT00A.MAT Opened
+MAT PGM=MATRIX (v.03/22/2010 [5.1.2 Pre])  DATE=Thu Sep 01 10:04:30 2011 
+ID=
+PAR Zones=2578 M=15
+  AUTO1HBW  AUTO1HBNW  AUTO1NHB  AUTO1SOVIE  AUTO2HBW  AUTO2HBNW  AUTO2NHB  AUTO3HBW  AUTO3HBO
+  AUTO3NHB  EESO  IEHO  EEHO  IIIETK  EETK
+
+M(718): 3,829MB RAM available, 167MB used in Transposing.Page 627  (VOYAGER MATRIX) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+
+Totals from Transpose:
+
+	MI.01.001.T: 774,395.7   @J=I:   5,537.4
+	MI.01.002.T: 783,347.1   @J=I:  27,275.1
+	MI.01.003.T: 489,552.8   @J=I:  25,554.1
+	MI.01.004.T:  87,789.8
+	MI.01.005.T: 154,430.7   @J=I:   1,118.8
+	MI.01.006.T: 758,409.8   @J=I:  21,761.6
+	MI.01.007.T: 324,163.3   @J=I:  13,749.7
+	MI.01.008.T:  67,360.9   @J=I:     562  
+	MI.01.009.T: 556,217.6   @J=I:  16,815.6
+	MI.01.010.T: 256,216.4   @J=I:  11,541.9
+	MI.01.012.T:  58,261.4
+	MI.01.014.T: 483,917.6   @J=I:  31,021.5
+	MI.01.015.T:   8,442.2
+	MI.01.011.T:  27,216.9
+	MI.01.013.T:  18,174  
+
+M(660): Transpose Disk Usage (bytes): Data=89,881,031, Index=51,560.Page 628  (VOYAGER MATRIX) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+
+Totals after Iteration 1 I loop:
+
+	MI.02.001  :     3,659.2
+	MI.01.001  :   774,395.7   @J=I:     5,537.4
+	MI.01.002  :   783,347.1   @J=I:    27,275.1
+	MI.01.003  :   489,552.8   @J=I:    25,554.1
+	MI.01.004  :    87,789.8
+	MI.01.005  :   154,430.7   @J=I:     1,118.8
+	MI.01.006  :   758,409.8   @J=I:    21,761.6
+	MI.01.007  :   324,163.3   @J=I:    13,749.7
+	MI.01.008  :    67,360.9   @J=I:       562  
+	MI.01.009  :   556,217.6   @J=I:    16,815.6
+	MI.01.010  :   256,216.4   @J=I:    11,541.9
+	MI.01.011  :    27,216.9
+	MI.01.012  :    58,261.4
+	MI.01.013  :    18,174  
+	MI.01.014  :   483,917.6   @J=I:    31,021.5
+	MI.01.015  :     8,442.2
+	MI.01.001.T:   774,395.7   @J=I:     5,537.4
+	MI.01.002.T:   783,347.1   @J=I:    27,275.1
+	MI.01.003.T:   489,552.8   @J=I:    25,554.1
+	MI.01.004.T:    87,789.8
+	MI.01.005.T:   154,430.7   @J=I:     1,118.8
+	MI.01.006.T:   758,409.8   @J=I:    21,761.6
+	MI.01.007.T:   324,163.3   @J=I:    13,749.7
+	MI.01.008.T:    67,360.9   @J=I:       562  
+	MI.01.009.T:   556,217.6   @J=I:    16,815.6
+	MI.01.010.T:   256,216.4   @J=I:    11,541.9
+	MI.01.012.T:    58,261.4
+	MI.01.014.T:   483,917.6   @J=I:    31,021.5
+	MI.01.015.T:     8,442.2
+	MI.01.011.T:    27,216.9
+	MI.01.013.T:    18,174  
+	MW[1]      : 2,135,085.5   @J=I:    58,366.6
+	MW[2]      :   927,953.8   @J=I:    26,528.9
+	MW[3]      :   483,917.6   @J=I:    31,021.5
+	MW[4]      :     8,442.2
+	MW[5]      :    27,216.9
+	MW[6]      :    18,174  
+	MW[7]      :     3,659.2
+	MW[8]      : 3,604,449.2   @J=I:   115,916.9
+	MO.01.001  : 2,135,085.5
+	MO.01.002  :   927,953.8
+	MO.01.003  :   483,917.6
+	MO.01.004  :     8,442.2
+	MO.01.005  :    27,216.9
+	MO.01.006  :    18,174  
+	MO.01.007  :     3,659.2
+	MO.01.008  : 3,604,449.2
+
+Variable Values at end of Iteration 1 I loop:
+
+    PAHBWPKFAC :  1Page 629  (VOYAGER MATRIX) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+    PAHBNWPKFAC:  1
+    PANHBPKFAC :  1
+    APHBWPKFAC :  1
+    APHBNWPKFAC:  1
+    APNHBPKFAC :  1
+    IEPKFAC    :  1
+    EEPKFAC    :  1
+    TRKPKFAC   :  1
+
+MATRIX   ReturnCode = 0  Elapsed Time = 00:00:45
+################################################################################

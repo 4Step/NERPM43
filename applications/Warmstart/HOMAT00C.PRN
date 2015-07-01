@@ -1,0 +1,77 @@
+ 
+MATRIX (v.03/22/2010 [5.1.2 Pre])  Thu Sep 01 08:59:58 2011
+
+FILEO MATO[1] = "C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\Base2005\INT2010\\input\HWYFACTOR_A10.mat",
+MO=11-17  dec=7*d
+FILEI MATI[2] = "C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\\parameters\HWYTTAB_A10.mat"
+FILEI MATI[1] = "C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\APPLICATIONS\HOMAT00B.MAT"
+
+
+jloop
+if (mi.1.1>0) mw[11]=(mi.2.1/mi.1.1)*10000
+if (mi.1.2>0) mw[12]=(mi.2.2/mi.1.2)*10000
+
+if (mi.1.3>0) mw[13]=(mi.2.3/mi.1.3)*10000
+
+if (mi.1.4>0) mw[14]=(mi.2.4/mi.1.4)*10000
+
+if (mi.1.5>0) mw[15]=(mi.2.5/mi.1.5)*10000
+
+if (mi.1.6>0) mw[16]=(mi.2.6/mi.1.6)*10000
+
+if (mi.1.7>0) mw[17]=(mi.2.7/mi.1.7)*10000
+
+
+endjloop
+
+MATRIX Stack Size = 1344 bytes.
+................................................................................
+
+
+MATI[2] TPP C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\parameters\HWYTTAB_A10.mat Opened
+MAT PGM=MATRIX (v.03/22/2010 [5.1.2 Pre])  DATE=Wed Aug 31 13:19:30 2011 
+ID=
+PAR Zones=2578 M=8
+  DA_IEII  SR_IEII  TRK_IEII  TRK_EE  DA_EE  SR_EE  PortTrk  24H_Total
+
+MATI[1] TPP HOMAT00B.MAT Opened
+MAT PGM=MATRIX (v.03/22/2010 [5.1.2 Pre])  DATE=Thu Sep 01 08:58:50 2011 
+ID=
+PAR Zones=2578 M=8
+  SOV  CARPOOL  IEEITRK  EETRUCKS  EESOV  EEHOV  PortTrk  24_TotPage 2  (VOYAGER MATRIX) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+
+Totals after Iteration 1 I loop:
+
+	MI.02.001:      2,090,043.6   @J=I:         62,609.5
+	MI.02.002:        965,775     @J=I:         28,169.1
+	MI.02.003:        483,917.6   @J=I:         31,021.5
+	MI.02.004:          8,442.2
+	MI.02.005:         27,216.9
+	MI.02.006:         18,174  
+	MI.02.007:          3,659.2
+	MI.01.001:      2,135,085.5   @J=I:         58,366.6
+	MI.01.002:        927,953.8   @J=I:         26,528.9
+	MI.01.003:        483,917.6   @J=I:         31,021.5
+	MI.01.004:          8,442.2
+	MI.01.005:         27,216.9
+	MI.01.006:         18,174  
+	MI.01.007:          3,659.2
+	MW[11]   : 14,789,422,730.4   @J=I:     17,359,291.3
+	MW[12]   : 17,359,153,925.8   @J=I:     15,269,758  
+	MW[13]   : 34,469,069,998.9   @J=I:     18,370,000  
+	MW[14]   :      3,640,000  
+	MW[15]   :      3,640,000  
+	MW[16]   :      3,640,000  
+	MW[17]   :     29,739,999.8
+	MO.01.001: 14,789,422,730.4
+	MO.01.002: 17,359,153,925.8
+	MO.01.003: 34,469,069,998.9
+	MO.01.004:      3,640,000  
+	MO.01.005:      3,640,000  
+	MO.01.006:      3,640,000  
+	MO.01.007:     29,739,999.8
+
+MATRIX   ReturnCode = 0  Elapsed Time = 00:00:14
+################################################################################

@@ -1,0 +1,117 @@
+   1 87001   700   3.0   900   164   164   2.0   0.5  2 TERMINAL STATION PNR
+   2 87002   726   3.0   100   258   258   2.0   0.5  0 JEFFERSON STATION PNR
+   3 87003   767   3.0  1900   138   138   2.0   0.5  2 KINGS AVE PNR
+   4 87004   766   3.0   224   154   154   2.0   0.5  2 SAN MARCO BLVD PNR
+   5 88001   545   3.0   200     0     0   2.0   0.5  1 MARBON RD PNR
+   6 88002   243   3.0   200     0     0   2.0   0.5  1 MAYPORT-WONDERWOOD PNR
+   7 88003    96   3.0   200     0     0   2.0   0.5  1 MONUMENT ROAD PNR
+   8 88004   470   3.0   100     0     0   2.0   0.5  1 PHILIPS HWY & JTB PNR
+   9 88005   716   3.0   200     0     0   2.0   0.5  2 ST ANDREWS/FAIRGROUNDS
+  10 40458   100   3.0     1     0     0   2.0   0.5  6 San Jose/University (informal)
+  11 55718   100   3.0     1     0     0   2.0   0.5  6 Baymeadows/Southside (informal)
+  12 23981   100   3.0     1     0     0   2.0   0.5  6 Orange Park Mall  (informal)
+  13 38041   100   3.0     1     0     0   2.0   0.5  4 FCCJ Downtown (KNR only)
+  14 46281   100   3.0     1     0     0   2.0   0.5  6 San Jose/Baymeadows  (informal)
+  15 66285   100   3.0     1     0     0   2.0   0.5  6 Penman/Beach  (informal)
+  16 27395   100   3.0     1     0     0   2.0   0.5  6 FCCJ Kent  (informal)
+  17 28469   100   3.0     1     0     0   2.0   0.5  6 Moncrief/Cleveland  (informal)
+  18 37148   100   3.0     1     0     0   2.0   0.5  6 Gateway Mall  (informal)
+  19 19503   100   3.0     1     0     0   2.0   0.5  6 Hillman/103rd  (informal)
+  20 20242   100   3.0     1     0     0   2.0   0.5  6 Normandy/Memorial Park  (informal)
+  21 64152   100   3.0     1     0     0   2.0   0.5  0 Davis Parkway/San Pablo  (informal)
+  22 55419   100   3.0     1     0     0   2.0   0.5  6 Regency Square Mall  (informal)
+  24 59392   100   3.0     1     0     0   2.0   0.5  6 FCCJ South  (informal)
+  26 68036   100   3.0     1     0     0   2.0   0.5  6 12th/Beach  (informal)
+  27 22789   100   3.0     1     0     0   2.0   0.5  0 Kingsley/Blanding  (informal)
+  28 37144   100   3.0     1     0     0   2.0   0.5  4 Pearl/Water (KNR only)
+  29 37203   100   3.0     1     0     0   2.0   0.5  4 Pearl/Bay (KNR only)
+  30 37231   100   3.0     1     0     0   2.0   0.5  4 Pearl/Forsyth (KNR only)
+  22 44979   454   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  23 37854   749   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  24 39303   750   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  25 26226  1031   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  26 27007  1004   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  27 29149   946   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  28 36836   611   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  29 37043   631   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  30 37462   660   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  31 43003   425   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  32 37530   769   3.0    15     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  33 35792   677   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  34 36771   697   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  35 50149   286   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  36 56106   276   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  37 37148   843   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  38 37086   680   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  39 38328   765   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  40 37332   770   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  41 50398   477   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  42 51958   504   3.0    50     0     0   2.0   0.5  0 ADDED FROM PREV STATDATA
+  43 80011  1454   3.0     0     0     0   2.0   0.5  0 BRT E-SW Kingsley Av
+  44 80012  1416   3.0   100     0     0   2.0   0.5  0 BRT E-SW Orange Park Mall
+  45 80013  1097   3.0     0     0     0   2.0   0.5  0 BRT E-SW Townsend Blvd
+  46 80014  1411   3.0    50     0     0   2.0   0.5  0 BRT E-SW 103rd St
+  47 80015   895   3.0    50     0     0   2.0   0.5  0 BRT E-SW Wilson Blvd
+  48 80016  1031   3.0    50     0     0   2.0   0.5  0 BRT E-SW San Juan
+  59 80017  1443   3.0     0     0     0   2.0   0.5  0 BRT E-SW FCCJ Kent Campus
+  50 80018   944   3.0     0     0     0   2.0   0.5  0 BRT E-SW Edgewood Av
+  51 80019  1511   3.0    50     0     0   2.0   0.5  0 BRT E-SW College St
+  52 80020   914   3.0    50     0     0   2.0   0.5  0 BRT E-SW Stockton St
+  53 80021   677   3.0    50     0     0   2.0   0.5  0 BRT E-SW Intermodal Center
+  54 80022   665   3.0     0     0     0   2.0   0.5  0 BRT - FCCJ Transit Station
+  55 80023   706   3.0     0     0     0   2.0   0.5  0 BRT - Hemmingway Station
+  56 80024   753   3.0     0     0     0   2.0   0.5  0 BRT E-SW Maxwell House
+  57 80025   725   3.0    50     0     0   2.0   0.5  0 BRT E-SW Veterans Memorial
+  58 80026   292   3.0    50     0     0   2.0   0.5  0 BRT E-SW University Blvd Station
+  59 80027    98   3.0    50     0     0   2.0   0.5  0 BRT E-SW Arlington Central Station
+  60 80028   298   3.0    50     0     0   2.0   0.5  0 BRT E-SW Regency Square Mall
+  61 80029   321   3.0     0     0     0   2.0   0.5  0 BRT E-SW Ivey Rd Station
+  62 80030  1593   3.0    50     0     0   2.0   0.5  0 BRT E-SW Southside Blvd Station
+  63 80031   471   3.0    50     0     0   2.0   0.5  0 BRT E-SW Touchton Rd Station
+  64 80032  1592   3.0     0     0     0   2.0   0.5  0 BRT E-SW Touchton Homes Station
+  65 80033  1607   3.0     0     0     0   2.0   0.5  0 BRT E-SW Gate Parkway Station
+  66 80034   481   3.0     0     0     0   2.0   0.5  0 BRT E-SW BCBS Station
+  67 80035  1608   3.0     0     0     0   2.0   0.5  0 BRT E-SW Deerwood Office Park Station
+  68 80036   490   3.0     0     0     0   2.0   0.5  0 BRT E-SW Downshire Station
+  69 80037   490   3.0     0     0     0   2.0   0.5  0 BRT E-SW Burnt Mill Rd Station
+  70 80038   575   3.0    50     0     0   2.0   0.5  0 BRT E-SW 9A Station
+  71 80039   329   3.0    50     0     0   2.0   0.5  0 BRT E-SW FCCJ South
+  72 80040   335   3.0    50     0     0   2.0   0.5  0 BRT E-SW Kernan Blvd
+  73 80041   323   3.0    50     0     0   2.0   0.5  0 BRT E-SW Hodges Blvd
+  74 80042   437   3.0    50     0     0   2.0   0.5  6 BRT E-SW San Pablo Rd
+  75 80043   390   3.0    50     0     0   2.0   0.5  0 BRT E-SW Beaches Station
+  76 80044   362   3.0    50     0     0   2.0   0.5  6 BRT E-SW Penman Rd
+  77 80045   363   3.0     0     0     0   2.0   0.5  0 BRT E-SW A1A Station
+  78 80046   375   3.0     0     0     0   2.0   0.5  0 BRT E-SW Seagate Station
+  79 80047   397   3.0     0     0     0   2.0   0.5  0 BRT E-SW 18th Av Station
+  80 80048   400   3.0    50     0     0   2.0   0.5  0 BRT E-SW Sand Castle Station
+  81 80049  1145   3.0     0     0     0   2.0   0.5  0 BRT E-SW Solano Station
+  82 80050  1149   3.0    50     0     0   2.0   0.5  0 BRT E-SW Tournament Player's Club
+  83 80051   131   3.0    50     0     0   2.0   0.5  0 BRT N-SE Dunn Av Station
+  84 80052   785   3.0    50     0     0   2.0   0.5  0 BRT N-SE Sountel Dr
+  85 80053   961   3.0    50     0     0   2.0   0.5  0 BRT N-SE Edgewood Av
+  86 80054   831   3.0    50     0     0   2.0   0.5  0 BRT N-SE Lem Turner Rd
+  87 80055   176   3.0    50     0     0   2.0   0.5  0 BRT N-SE Busch Dr Station
+  88 80056   861   3.0    50     0     0   2.0   0.5  0 BRT N-SE Gateway Mall
+  89 80057   611   3.0     0     0     0   2.0   0.5  0 BRT N-SE MLK Parkway
+  90 80058   631   3.0    50     0     0   2.0   0.5  0 BRT N-SE Shands Hospital
+  91 80059  1219   3.0     0     0     0   2.0   0.5  0 BRT N-SE Jefferson at 1st
+  92 80060   733   3.0     0     0     0   2.0   0.5  0 BRT N-SE Central Station Skyway
+  93 80061   726   3.0     0     0     0   2.0   0.5  0 BRT N-SE Jefferson Station Skyway
+  94 80062   766   3.0     0     0     0   2.0   0.5  0 BRT N-SE San Marco Skyway
+  95 80063   768   3.0    50     0     0   2.0   0.5  0 BRT N-SE Kings Av Skyway
+  96 80064   425   3.0    50     0     0   2.0   0.5  0 BRT N-SE Emerson St
+  97 80065   572   3.0    50     0     0   2.0   0.5  0 BRT N-SE University Blvd
+  98 80066   572   3.0    50     0     0   2.0   0.5  0 BRT N-SE Bowden Rd
+  99 80067   405   3.0    50     0     0   2.0   0.5  0 BRT N-SE JTB Blvd
+ 100 80068  1352   3.0    50     0     0   2.0   0.5  0 BRT N-SE Baymeadows Rd
+ 101 80069   517   3.0    50     0     0   2.0   0.5  0 BRT N-SE The Avenues Mall
+  48 88010  1031   3.0    50     0     0   2.0   0.5  1 BRT E-SW San Juan
+  51 88011  1511   3.0    50     0     0   2.0   0.5  1 BRT E-SW College St
+  52 88012   914   3.0    50     0     0   2.0   0.5  1 BRT E-SW Stockton St
+  58 88013   292   3.0    50     0     0   2.0   0.5  1 BRT E-SW University Blvd Station
+  59 88014    98   3.0    50     0     0   2.0   0.5  1 BRT E-SW Arlington Central Station
+  60 88015   298   3.0    50     0     0   2.0   0.5  1 BRT E-SW Regency Square Mall
+  83 88016   131   3.0    50     0     0   2.0   0.5  1 BRT N-SE Dunn Av Station
+  84 88017   785   3.0    50     0     0   2.0   0.5  1 BRT N-SE Sountel Dr
+  85 88018   961   3.0    50     0     0   2.0   0.5  1 BRT N-SE Edgewood Av

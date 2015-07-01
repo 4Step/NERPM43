@@ -1,0 +1,54 @@
+
+DESCRIPTION                  Enhanced Validation Run with 2010 Transit
+ZONESA                       2578
+
+; AutoCon-Related Files
+; Input
+StatDataFile                 C:\NERPM43\Base2010\output\STATDATA_A10.DAT
+XtraAutoFileAM               C:\NERPM43\Base2010\input\XTRAAUTO_10A.DAT
+XtraAutoFileMD               C:\NERPM43\Base2010\input\XTRAAUTO_10A.DAT
+AutoDelFileAM                C:\NERPM43\Base2010\input\AUTDELPK_10A.DAT
+AUTODELFILEMD                C:\NERPM43\Base2010\input\AUTDELOP_10A.DAT
+NodesFile                    C:\NERPM43\Base2010\output\XY_A10.DAT
+TransitLineFile              C:\NERPM43\Base2010\output\troute_modified.lin
+RHSKIMS                      C:\NERPM43\Base2010\output\RHSKIMS1.A10
+FHSKIMS                      C:\NERPM43\Base2010\output\FHSKIMS1.A10
+; Output
+AUTOCONRPT                   C:\NERPM43\Base2010\output\AUTOCON.OUT
+PNRAUTOAM                    C:\NERPM43\Base2010\output\NTLEG2PK_A10.NTL
+PNRAUTOMD                    C:\NERPM43\Base2010\output\NTLEG2OP_A10.NTL
+KNRAUTOAM                    C:\NERPM43\Base2010\output\NTLEG2PK_KNRA10.NTL
+KNRAUTOMD                    C:\NERPM43\Base2010\output\NTLEG2OP_KNRA10.NTL
+; AutoCon Parameters
+AUTOCONVERSION               2
+ZONESI                       2494
+CBDZONE                      730
+TERM                         2.00
+DEF                          2.00
+NOPT                         1
+BACK                         1
+BACKD                        4.0
+BACKPC                       0.30
+UNITS                        5280
+MAXMODE                      27
+MODENUM (not used)            21 22 23 24 25 26 27
+PREMIUMFLAG                    0  1  0  1  1  1  1
+MODEPRIORITY                   7  5  7  2  1  4  3
+VOTAM                         6.00
+VOTMD                         3.00
+OVTRATIOAM                    2.00
+OVTRATIOMD                    2.00
+AATRATIOAM                    1.50
+AATRATIOMD                    1.50
+AUTOCCPNR                    1.2
+AUTOCCKNR                    1.2
+AOC                          9.5
+InflTransitFare              0.9487
+InflAOC                      1
+InflParkingCost              1.1976
+AUTODATAM                    C:\NERPM43\Base2010\output\NTLDA2PK_A10.TIM
+AUTODATMD                    C:\NERPM43\Base2010\output\NTLDA2OP_A10.TIM
+ACONLISTAM                   C:\NERPM43\Base2010\output\NTLEG2PK_A10.PRN
+ACONLISTMD                   C:\NERPM43\Base2010\output\NTLEG2OP_A10.PRN
+
+

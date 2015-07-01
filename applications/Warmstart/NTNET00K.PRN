@@ -1,0 +1,363 @@
+ 
+NETWORK (v.11/02/2010 [5.1.2])  Mon Nov 22 10:57:59 2010
+
+FILEO PRINTO[1] = "E:\NERPM42\ClassCounts.prn"
+FILEI LINKI[1] = "E:\NERPM42\parameters\MicroCodedHnet42.net"
+FILEO NETO = "E:\NERPM42\ClsCountsNets_tem.net",
+include=A,B,FTYPE_05A,ATYPE_05A,CLSCNT_NO,CLSCNTDESCRP,CLSCNTYEAR,
+                  CLS_AM_ALLVEH,CLS_MD_ALLVEH,CLS_PM_ALLVEH,CLS_NT_ALLVEH,CLS_24H_ALLVEH,
+                  CLS_AM_LRGVEH,CLS_MD_LRGVEH,CLS_PM_LRGVEH,CLS_NT_LRGVEH,CLS_24H_LRGVEH,
+                  CLS_AM_MEDVEH,CLS_MD_MEDVEH,CLS_PM_MEDVEH,CLS_NT_MEDVEH,CLS_24H_MEDVEH
+
+
+
+PROCESS  PHASE=INPUT
+;Use this phase to modify data as it is read, such as recoding node numbers.
+
+
+ENDPROCESS
+
+
+PROCESS  PHASE=NODEMERGE
+; Use this phase to make computations and selections of any data on the NODEI files.
+
+
+ENDPROCESS
+
+
+PROCESS  PHASE=LINKMERGE
+; Use this phase to make computations and selections of any data on the LINKI files.
+
+ IF (CLSCNT_NO<1) DELETE
+
+ FACILITY_TYPE=FTYPE_05A
+
+ IF (FACILITY_TYPE=0) DELETE
+
+
+;if (_CTR=0) print list='CTOLL = '(8.0C),CTOLL(5.3) PRINTO=1
+
+;     if(_k=1) LIST="TD","LENGTH","FTC2","PTIME","TDSECFFS","AM_SPEED","PM_SPEED","OP_SPEED","OBS_AM_SPD,"OBS_PM_SPD","OBS_OP_SPD","AM_DIFF","%_AM_DIFF","PM_DIFF","%_PM_DIFF","OP_DIFF","%_OP_DIFF","\n",  PRINTO=3
+       if (_k=0)
+            PRINT CSV=T LIST="CLSCNT_NO","A","B","DISTANCE","FTYPE_05A","ATYPE_05A","CLSCNTDESCRP_C50","CLSCNTYEAR",
+                                 "CLS_AM_ALLVEH","CLS_MD_ALLVEH","CLS_PM_ALLVEH","CLS_NT_ALLVEH","CLS_24H_ALLVEH",Page 2  (VOYAGER NETWORK) 
+Corradino Group
+--------------------------
+                                 "CLS_AM_LRGVEH","CLS_MD_LRGVEH","CLS_PM_LRGVEH","CLS_NT_LRGVEH","CLS_24H_LRGVEH",
+                                 "CLS_AM_MEDVEH","CLS_MD_MEDVEH","CLS_PM_MEDVEH","CLS_NT_MEDVEH","CLS_24H_MEDVEH","CTR", PRINTO=1
+
+       endif
+
+       if (A>0) _k=_k+1
+
+       if (CLSCNT_NO>0)
+          _CTR=_CTR+1
+
+
+
+
+ PRINT CSV=T LIST=CLSCNT_NO(5.0),A(5.0),B(5.0),DISTANCE(10.2),FTYPE_05A(5.0),ATYPE_05A(5.0),CLSCNTDESCRP(50.0L),CLSCNTYEAR(5.0),
+                  CLS_AM_ALLVEH(5.0),CLS_MD_ALLVEH(5.0),CLS_PM_ALLVEH(5.0),CLS_NT_ALLVEH(5.0),CLS_24H_ALLVEH(5.0),
+                  CLS_AM_LRGVEH(5.0),CLS_MD_LRGVEH(5.0),CLS_PM_LRGVEH(5.0),CLS_NT_LRGVEH(5.0),CLS_24H_LRGVEH(5.0),
+                  CLS_AM_MEDVEH(5.0),CLS_MD_MEDVEH(5.0),CLS_PM_MEDVEH(5.0),CLS_NT_MEDVEH(5.0),CLS_24H_MEDVEH(5.0),_CTR(5.0) PRINTO=1
+
+
+      ;       PRINT CSV=T list=_K(6.0),TDSECLEN[_k](6.2),FTCODE[_k],_PTIME[_K],_TDSECFFS[_k](6.2),_TDSECAMS[_k](6.2),_TDSECPMS[_k](6.2),_TDSECOPS[_k](6.2), _OBSAMSPD(6.2),_OBSPMSPD(6.2),_OBSOPSPD(6.2),_TDIFFAM[_k](6.2),_PDIFFAM[_k](6.2),_TDIFFPM[_k](6.2),_PDIFFPM[_k](6.2),_TDIFFOP[_k](6.2),_PDIFFOP[_k](6.2) PRINTO=2
+       endif
+
+
+
+
+
+
+ENDPROCESS
+
+
+PROCESS  PHASE=SUMMARY
+; Use this phase for combining and reporting of working variables.
+
+
+ENDPROCESS
+
+
+NETWORK Stack Size = 2366 bytes.
+................................................................................
+
+
+
+
+E:\NERPM42\parameters\MicroCodedHnet42.net   (VOYAGER):
+
+NET PGM=CUBE   DATE=Wed Oct 20 08:28:13 2010
+ID= 
+PAR Zones=2578  Nodes=89191 Links=177945 NodeRecs=73315 
+NVR 50    N    X    Y    TSNAME=30    TSSTATION_00A    STATZONE
+    TSRANGE_00A    TSPARKSPACE_00A    TSCOSTAM_00A    TSCOSTMD_00A
+    TSTYPE_00A    FAREZONE_00A    TSSTATION_05A    TSSTATION_30A    TSRANGE_30A
+    TSPARKSPACE_30A    TSCOSTAM_30A    TSCOSTMD_30A    TSTYPE_30A
+    FAREZONE_30A    TAZNEW    COUNTY    TSSTATION_35A    TSRANGE_35A
+    TSPARKSPACE_35A    TSCOSTAM_35A    TSCOSTMD_35A    TSTYPE_35APage 3  (VOYAGER NETWORK) 
+Corradino Group
+--------------------------
+    FAREZONE_35A    SPGEN    TSSTATION_35N    TSRANGE_35N    TSPARKSPACE_35N
+    TSCOSTAM_35N    TSCOSTMD_35N    TSTYPE_35N    FAREZONE_35N    TSRANGE_05A
+    TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
+    FAREZONE_05A    TSSTATION_35X    TSRANGE_35X    TSPARKSPACE_35X
+    TSCOSTAM_35X    TSCOSTMD_35X    TSTYPE_35X    FAREZONE_35X
+LVR 130    A    B    DISTANCE    NAME=32    ALT_NAME=27    COFIPS    COUNTY
+    DISTRICT    SCREENLINE    FTYPE_00A    ATYPE_00A    LANES_00A
+    IMPROV_00A=1    AGENCY_00A=8    DESC_00A=16    FTYPE_15A    ATYPE_15A
+    LANES_15A    IMPROV_15A=1    AGENCY_15A=4    DESC_15A=21    FTYPE_25A
+    ATYPE_25A    LANES_25A    IMPROV_25A=1    AGENCY_25A=1    DESC_25A=21
+    PSCF_YR00=5    CNT_SRC_YR00=14    STN_ID_YR00=6    FTYPE_10A    ATYPE_10A
+    LANES_10A    IMPROV_10A=1    AGENCY_10A=8    DESC_10A=26    FTYPE_30N
+    ATYPE_30N    LANES_30N    IMPROV_30N=1    AGENCY_30N=1    DESC_30N=25
+    PROJ_30N    FTYPE_30A    ATYPE_30A    LANES_30A    IMPROV_30A=1
+    AGENCY_30A=1    DESC_30A=25    CONSTR_00A    ROADDIR=2    LEVEL    TMODE
+    TTIME    EECODE    TOLLID    CARTOLL    IDLINK=11    COUNT2000    TCARD
+    TC    TV    VC    TWOWAY_00A    TWOWAY_10A    TWOWAY_15A    TWOWAY_25A
+    TWOWAY_30N    TWOWAY_30A    PNRTERMTIME    KNRTERMTIME    TBSDIST
+    TBSTIME    TFGDIST    TFGTIME    TFGMODE    TFGNAME=30    CENNEW
+    FLGADDCNT    STN_ID    AADT_YR05    CNTYR    YRADJUST    COUNT_YR05
+    PSCF_YR05    MOCF_YR05    COUNTDESC=51    CNTSRC_YR05=5    FTYPE_35A
+    ATYPE_35A    LANES_35A    DESC_35A=16    ECUPD35    TWOWAY_35A    REMCRBCUT
+    FIX2WFDOT    SELPOSTEDSPD    SELSPDADJ    INISPEED_R59    CLSCNTDESCRP=32
+    CLSCNTYEAR    CLS_AM_ALLVEH    CLS_MD_ALLVEH    CLS_PM_ALLVEH
+    CLS_NT_ALLVEH    CLS_24H_ALLVEH    CLS_AM_LRGVEH    CLS_MD_LRGVEH
+    CLS_PM_LRGVEH    CLS_NT_LRGVEH    CLS_24H_LRGVEH    CLSCNT_NO
+    CLS_AM_MEDVEH    CLS_MD_MEDVEH    CLS_PM_MEDVEH    CLS_NT_MEDVEH
+    CLS_24H_MEDVEH    FTYPE_05A    ATYPE_05A    LANES_05A    IMPROV_05A=1
+    AGENCY_05A=16    DESC_05A=20    TWOWAY_05A    HOT    FTYPE_35X    ATYPE_35X
+    LANES_35X    TWOWAY_35X    DESC_35X=16
+
+
+
+Begin PROCESS PHASE NODEMERGE
+      73,315 records merged from NODEI[1]: E:\NERPM42\parameters\MicroCodedHnet42.net
+      73,315 data base records.Page 4  (VOYAGER NETWORK) 
+Corradino Group
+--------------------------
+
+Variable          Obs<>0               Total           Ave           Min           Max           RMS  
+--------          ------               -----           ---           ---           ---           ---  
+N                 73,315                  --            --          1        89,191               --
+X                 73,315   32,969,313,037.96    449,693.96    190,006.11    588,266.75    453,391.73
+Y                 73,315  157,262,759,632.11  2,145,028.43  1,826,931.76  2,360,954     2,146,603.43
+TSNAME               141                                    (12th/Bea)  (TERMINAL)
+TSSTATION_00A          9               45             5             1             9             5.63
+STATZONE             118           70,917           600.99         96         1,608           731.3 
+TSRANGE_00A            9               27             3             3             3             3   
+TSPARKSPACE_00A        9            4,024           447.11        100         1,900           718.81
+TSCOSTAM_00A           4              714           178.5         138           258           184.54
+TSCOSTMD_00A           4              714           178.5         138           258           184.54
+TSTYPE_00A             9               14             1.56          1             2             1.63
+TSSTATION_05A         30              465            15.5           1            30            17.75
+TSSTATION_30A        116            5,890            50.78          1           101            58.17
+TSRANGE_30A          116              348             3             3             3             3   
+TSPARKSPACE_30A       93            7,308            78.58          1         1,900           227.61
+TSCOSTAM_30A           4              714           178.5         138           258           184.54
+TSCOSTMD_30A           4              714           178.5         138           258           184.54
+TSTYPE_30A            36              127             3.53          1             6             4.19
+TAZNEW               244              244             1             1             1             1   
+COUNTY            69,943          169,871             2.43          1             6             2.6 
+TSSTATION_35A         30              465            15.5           1            30            17.75
+TSRANGE_35A           30               90             3             3             3             3   
+TSPARKSPACE_35A       30            4,045           134.83          1         1,900           393.71
+TSCOSTAM_35A           4              714           178.5         138           258           184.54
+TSCOSTMD_35A           4              714           178.5         138           258           184.54
+TSTYPE_35A            27              118             4.37          1             6             4.81
+SPGEN                  9               20             2.22          1             3             2.31
+TSSTATION_35N         30              465            15.5           1            30            17.75
+TSRANGE_35N           30               90             3             3             3             3   
+TSPARKSPACE_35N       30            4,045           134.83          1         1,900           393.71
+TSCOSTAM_35N           4              714           178.5         138           258           184.54
+TSCOSTMD_35N           4              714           178.5         138           258           184.54
+TSTYPE_35N            27              118             4.37          1             6             4.81
+TSRANGE_05A           30               90             3             3             3             3   
+TSPARKSPACE_05A       30            4,045           134.83          1         1,900           393.71
+TSCOSTAM_05A           4              714           178.5         138           258           184.54
+TSCOSTMD_05A           4              714           178.5         138           258           184.54
+TSTYPE_05A            27              118             4.37          1             6             4.81
+TSSTATION_35X         30              465            15.5           1            30            17.75
+TSRANGE_35X           30               90             3             3             3             3   
+TSPARKSPACE_35X       30            4,045           134.83          1         1,900           393.71
+TSCOSTAM_35X           4              714           178.5         138           258           184.54
+TSCOSTMD_35X           4              714           178.5         138           258           184.54
+TSTYPE_35X            27              118             4.37          1             6             4.81
+
+      Obs = 0:  FAREZONE_00A  FAREZONE_30A  FAREZONE_35A  FAREZONE_35N
+      Obs = 0:  FAREZONE_05A  FAREZONE_35X
+Page 5  (VOYAGER NETWORK) 
+Corradino Group
+--------------------------
+_Variables with values:
+
+_ZONES            2,578      
+
+End   PROCESS PHASE NODEMERGE
+
+
+Begin PROCESS PHASE LINKMERGE
+     177,945 records merged from NETI[1]: E:\NERPM42\parameters\MicroCodedHnet42.net
+          20 data base records.Page 6  (VOYAGER NETWORK) 
+Corradino Group
+--------------------------
+
+Variable        Obs<>0         Total         Ave         Min         Max         RMS  
+--------        ------         -----         ---         ---         ---         ---  
+A                   20            --          --    9,447      74,248             --
+B                   20            --          --    9,447      74,250             --
+DISTANCE            20     40,574.72    2,028.74      122.67   12,027.25    4,032.78
+NAME                20                            (I-295   )  (US 301  )
+ALT_NAME            12                            (HAINES S)  (US 1    )
+COFIPS              20        852          42.6        31          89          48.51
+COUNTY              20         36           1.8         1           2           1.84
+DISTRICT            20        173           8.65        2          14           9.34
+SCREENLINE          20      1,980          99          99          99          99   
+FTYPE_00A           18        342          19          11          35          21.14
+ATYPE_00A           18        590          32.78       21          52          33.65
+LANES_00A           18         32           1.78        1           2           1.83
+IMPROV_00A          20                            (N       )  (N       )
+FTYPE_15A           20        338          16.9        11          35          18.39
+ATYPE_15A           20        652          32.6        21          52          33.39
+LANES_15A           20         40           2           1           3           2.05
+IMPROV_15A          20                            (N       )  (Y       )
+DESC_15A             2                            (Widen to)  (Widen to)
+FTYPE_25A           20        338          16.9        11          35          18.39
+ATYPE_25A           20        652          32.6        21          52          33.39
+LANES_25A           20         44           2.2         1           3           2.28
+IMPROV_25A          20                            (N       )  (Y       )
+DESC_25A             6                            (Widen to)  (Widen to)
+PSCF_YR00           20                            (1.02    )  (1.05    )
+CNT_SRC_YR00         4                            (FCMPO   )  (FDOT    )
+STN_ID_YR00         20                            (0       )  (196     )
+FTYPE_10A           20        366          18.3        11          35          20.41
+ATYPE_10A           20        652          32.6        21          52          33.39
+LANES_10A           20         38           1.9         1           3           1.97
+IMPROV_10A          20                            (N       )  (Y       )
+AGENCY_10A           4                            (FDOT    )  (FDOT    )
+DESC_10A             4                            (New 4 La)  (Widen to)
+FTYPE_30N           20        338          16.9        11          35          18.39
+ATYPE_30N           20        652          32.6        21          52          33.39
+LANES_30N           20         49           2.45        1           3           2.54
+IMPROV_30N          20                            (N       )  (Y       )
+DESC_30N            13                            (Include )  (Widen to)
+PROJ_30N            14      2,560         182.86      114         265         192.22
+FTYPE_30A           20        338          16.9        11          35          18.39
+ATYPE_30A           20        652          32.6        21          52          33.39
+LANES_30A           20         47           2.35        1           3           2.44
+IMPROV_30A          20                            (N       )  (Y       )
+DESC_30A             9                            (Widen to)  (Widen to)
+ROADDIR             20                            (EB      )  (WB      )
+LEVEL                2          4           2           2           2           2   
+IDLINK              20                            (20448-20)  (9573-944)
+COUNT2000            4    108,120      27,030      21,420      32,640      27,606.03
+TCARD                2         30          15          15          15          15   
+TWOWAY_00A           6          6           1           1           1           1   
+TWOWAY_10A           4          4           1           1           1           1   
+TWOWAY_15A           4          4           1           1           1           1   Page 7  (VOYAGER NETWORK) 
+Corradino Group
+--------------------------
+TWOWAY_25A           4          4           1           1           1           1   
+TWOWAY_30N           4          4           1           1           1           1   
+TWOWAY_30A           4          4           1           1           1           1   
+FLGADDCNT            6          6           1           1           1           1   
+STN_ID               6  4,329,672     721,612     720,192     723,914     721,613.87
+AADT_YR05            6    123,000      20,500       8,500      33,500      22,911.06
+CNTYR                6     12,032       2,005.33    2,005       2,006       2,005.33
+YRADJUST             6          6           1           1           1           1   
+MOCF_YR05           20         19.08        0.95        0.93        0.96        0.95
+COUNTDESC            6                            (SR 115 A)  (SR 9A SB)
+CNTSRC_YR05          6                            (FDOT    )  (FDOT    )
+FTYPE_35A           20        366          18.3        11          35          20.41
+ATYPE_35A           20        652          32.6        21          52          33.39
+LANES_35A           20         38           1.9         1           3           1.97
+TWOWAY_35A           4          4           1           1           1           1   
+CLSCNTDESCRP        20                            (1. I-95 )  (9. SR9A )
+CLSCNTYEAR          20     40,200       2,010       2,010       2,010       2,010   
+CLS_AM_ALLVEH       20     69,704       3,485.2       258       8,524       4,008.79
+CLS_MD_ALLVEH       20    154,782       7,739.1       753      13,930       8,626.97
+CLS_PM_ALLVEH       20    103,500       5,175         436      10,459       5,814.68
+CLS_NT_ALLVEH       20    126,085       6,304.25      543      11,234       7,104.7 
+CLS_24H_ALLVEH      20    454,070      22,703.5     2,007      42,458      25,406.72
+CLS_AM_LRGVEH       20      3,790         189.5        17         664         260.06
+CLS_MD_LRGVEH       20     10,416         520.8        34       1,791         727.24
+CLS_PM_LRGVEH       20      4,438         221.9        15         961         330.28
+CLS_NT_LRGVEH       20      8,493         424.65       12       1,758         675.25
+CLS_24H_LRGVEH      20     27,144       1,357.2        79       5,174       1,975.82
+CLSCNT_NO           20        110           5.5         1          10           6.2 
+CLS_AM_MEDVEH       20     11,417         570.85       59       2,589         850.35
+CLS_MD_MEDVEH       20     26,343       1,317.15      115       6,883       2,104.01
+CLS_PM_MEDVEH       20     16,386         819.3        69       4,729       1,373.27
+CLS_NT_MEDVEH       20     22,196       1,109.8        62       6,148       1,878.22
+CLS_24H_MEDVEH      20     76,342       3,817.1       329      20,349       6,172.77
+FTYPE_05A           20        366          18.3        11          35          20.41
+ATYPE_05A           20        652          32.6        21          52          33.39
+LANES_05A           20         38           1.9         1           3           1.97
+IMPROV_05A          20                            (N       )  (Y       )
+AGENCY_05A           4                            (FDOT    )  (FDOT    )
+DESC_05A             4                            (New 4 La)  (Widen to)
+TWOWAY_05A           4          4           1           1           1           1   
+FTYPE_35X           20        366          18.3        11          35          20.41
+ATYPE_35X           20        652          32.6        21          52          33.39
+LANES_35X           20         38           1.9         1           3           1.97
+TWOWAY_35X           4          4           1           1           1           1   
+FACILITY_TYPE       20        366          18.3        11          35          20.41
+
+      Obs = 0:  AGENCY_00A  DESC_00A  AGENCY_15A  AGENCY_25A  AGENCY_30N
+      Obs = 0:  AGENCY_30A  CONSTR_00A  TMODE  TTIME  EECODE  TOLLID
+      Obs = 0:  CARTOLL  TC  TV  VC  PNRTERMTIME  KNRTERMTIME  TBSDIST
+      Obs = 0:  TBSTIME  TFGDIST  TFGTIME  TFGMODE  TFGNAME  CENNEW
+      Obs = 0:  COUNT_YR05  PSCF_YR05  DESC_35A  ECUPD35  REMCRBCUT
+      Obs = 0:  FIX2WFDOT  SELPOSTEDSPD  SELSPDADJ  INISPEED_R59  HOT
+      Obs = 0:  DESC_35X
+Page 8  (VOYAGER NETWORK) 
+Corradino Group
+--------------------------
+_Variables with values:
+
+_ZONES            2,578      
+_K                   20      
+_CTR                 20      
+
+End   PROCESS PHASE LINKMERGE
+
+M(664): Unconnected Zones:  1-2578<->
+
+
+Begin PROCESS PHASE SUMMARY
+
+_Variables with values:
+
+_ZONES            2,578      
+_K                   20      
+_CTR                 20      
+
+End   PROCESS PHASE SUMMARY
+
+FILEO NETO=E:\NERPM42\ClsCountsNets_tem.net
+
+NET PGM=NETWORK (v.11/02/2010 [5.1.2]) DATE=Mon Nov 22 10:57:59 2010
+ID= 
+PAR Zones=2578 Nodes=89191 Links=20 NodeRecs=73315 
+NVR 50    N    X    Y    TSNAME=030    TSSTATION_00A    STATZONE
+    TSRANGE_00A    TSPARKSPACE_00A    TSCOSTAM_00A    TSCOSTMD_00A
+    TSTYPE_00A    FAREZONE_00A    TSSTATION_05A    TSSTATION_30A    TSRANGE_30A
+    TSPARKSPACE_30A    TSCOSTAM_30A    TSCOSTMD_30A    TSTYPE_30A
+    FAREZONE_30A    TAZNEW    COUNTY    TSSTATION_35A    TSRANGE_35A
+    TSPARKSPACE_35A    TSCOSTAM_35A    TSCOSTMD_35A    TSTYPE_35A
+    FAREZONE_35A    SPGEN    TSSTATION_35N    TSRANGE_35N    TSPARKSPACE_35N
+    TSCOSTAM_35N    TSCOSTMD_35N    TSTYPE_35N    FAREZONE_35N    TSRANGE_05A
+    TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
+    FAREZONE_05A    TSSTATION_35X    TSRANGE_35X    TSPARKSPACE_35X
+    TSCOSTAM_35X    TSCOSTMD_35X    TSTYPE_35X    FAREZONE_35X
+LVR 23    A    B    CLSCNTDESCRP=032    CLSCNTYEAR    CLS_AM_ALLVEH
+    CLS_MD_ALLVEH    CLS_PM_ALLVEH    CLS_NT_ALLVEH    CLS_24H_ALLVEH
+    CLS_AM_LRGVEH    CLS_MD_LRGVEH    CLS_PM_LRGVEH    CLS_NT_LRGVEH
+    CLS_24H_LRGVEH    CLSCNT_NO    CLS_AM_MEDVEH    CLS_MD_MEDVEH
+    CLS_PM_MEDVEH    CLS_NT_MEDVEH    CLS_24H_MEDVEH    FTYPE_05A    ATYPE_05A
+    FACILITY_TYPE
+
+
+NETWORK  ReturnCode = 0  Elapsed Time = 00:00:03
+################################################################################

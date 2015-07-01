@@ -1,0 +1,316 @@
+ 
+NETWORK (v.12/19/2007 [4.2.2])  Mon Jan 14 18:01:08 2008
+
+FILEI LINKI[1] = "D:\JTA RTS Model\parameters\starting_network.net"
+
+FILEI LINKI[3] = "D:\JTA RTS Model\PARAMETERS\PNRLINKS.PRN",
+VAR=A,BEG=1,LEN=10,
+VAR=B,BEG=11,LEN=10,
+VAR=DISTANCE,BEG=21,LEN=10,
+VAR=FTYPE_00A,BEG=33,LEN=2,
+VAR=FTYPE_05A,BEG=36,LEN=2,
+VAR=FTYPE_30A,BEG=39,LEN=2,
+VAR=ATYPE_00A,BEG=42,LEN=2,
+VAR=ATYPE_05A,BEG=45,LEN=2,
+VAR=ATYPE_30A,BEG=48,LEN=2,
+VAR=PNRTERMTIME,BEG=51,LEN=10,
+VAR=KNRTERMTIME,BEG=61,LEN=10,
+VAR=NAME,BEG=71,LEN=30,TYP=a
+
+FILEI LINKI[2] = "D:\JTA RTS Model\parameters\ADDLINKS2000.TXT",
+VAR=A,BEG=1,LEN=10,
+VAR=B,BEG=11,LEN=10,
+VAR=TBSDIST,BEG=21,LEN=10,
+VAR=TBSTIME,BEG=31,LEN=10,
+VAR=TFGDIST,BEG=41,LEN=10,
+VAR=TFGTIME,BEG=51,LEN=10,
+VAR=TFGMODE,BEG=61,LEN=10,
+VAR=ATYPE_00A,BEG=71,LEN=10,
+VAR=ATYPE_05A,BEG=71,LEN=10,
+VAR=ATYPE_30A,BEG=71,LEN=10,
+VAR=FTYPE_00A,BEG=81,LEN=2,
+VAR=FTYPE_05A,BEG=84,LEN=2,
+VAR=FTYPE_30A,BEG=87,LEN=2,
+VAR=TFGNAME,BEG=120,LEN=30,TYP=a
+
+FILEI NODEI[7] = "D:\JTA RTS Model\PARAMETERS\PNRNODES.PRN",
+VAR=N,BEG=1,LEN=5,
+VAR=X,BEG=11,LEN=6,
+VAR=Y,BEG=21,LEN=7,
+VAR=TSNAME,BEG=31,LEN=30,TYP=a
+
+FILEI NODEI[6] = "D:\JTA RTS Model\parameters\BRT_NODES.TXT",
+VAR=N,BEG=1,LEN=5,Page 2  (VOYAGER NETWORK) 
+AECOM Consult, Inc.
+--------------------------
+VAR=X,BEG=11,LEN=6,
+VAR=Y,BEG=21,LEN=7,
+VAR=TSNAME,BEG=31,LEN=30,TYP=a
+
+FILEI NODEI[5] = "D:\JTA RTS Model\parameters\SKYWAY_NODES.TXT",
+VAR=N,BEG=1,LEN=5,
+VAR=X,BEG=11,LEN=6,
+VAR=Y,BEG=21,LEN=7,
+VAR=TSNAME,BEG=31,LEN=30,TYP=a
+
+FILEI NODEI[2] = "D:\JTA RTS Model\parameters\STATDATA.00A",
+VAR=TSSTATION_00A, BEG=1,LEN=4,
+VAR=N,BEG=6,LEN=5,
+VAR=STATZONE,BEG=13,LEN=4,
+VAR=TSRANGE_00A,BEG=19,LEN=4,
+VAR=TSPARKSPACE_00A,BEG=24,LEN=5,
+VAR=TSCOSTAM_00A,BEG=29,LEN=6,
+VAR=TSCOSTMD_00A,BEG=35,LEN=6,
+VAR=TSTYPE_00A,BEG=54,LEN=2,
+VAR=FAREZONE_00A,BEG=87,LEN=2,
+VAR=TSNAME,BEG=57,LEN=30,typ=a
+
+FILEI NODEI[3] = "D:\JTA RTS Model\parameters\STATDATA.05A",
+VAR=TSSTATION_05A, BEG=1,LEN=4,
+VAR=N,BEG=6,LEN=5,
+VAR=STATZONE,BEG=13,LEN=4,
+VAR=TSRANGE_05A,BEG=19,LEN=4,
+VAR=TSPARKSPACE_05A,BEG=24,LEN=5,
+VAR=TSCOSTAM_05A,BEG=29,LEN=6,
+VAR=TSCOSTMD_05A,BEG=35,LEN=6,
+VAR=TSTYPE_05A,BEG=54,LEN=2,
+VAR=FAREZONE_05A,BEG=87,LEN=2,
+VAR=TSNAME,BEG=57,LEN=30,typ=a
+
+FILEI NODEI[4] = "D:\JTA RTS Model\parameters\STATDATA.30A",
+VAR=TSSTATION_30A, BEG=1,LEN=4,
+VAR=N,BEG=6,LEN=5,
+VAR=STATZONE,BEG=13,LEN=4,
+VAR=TSRANGE_30A,BEG=19,LEN=4,
+VAR=TSPARKSPACE_30A,BEG=24,LEN=5,
+VAR=TSCOSTAM_30A,BEG=29,LEN=6,
+VAR=TSCOSTMD_30A,BEG=35,LEN=6,
+VAR=TSTYPE_30A,BEG=54,LEN=2,
+VAR=FAREZONE_30A,BEG=87,LEN=2,
+VAR=TSNAME,BEG=57,LEN=30,typ=a
+
+FILEO NETO = "D:\JTA RTS Model\parameters\MicrocodedHnet.NET"
+
+
+NETWORK Stack Size = 4022 bytes.
+................................................................................
+Page 3  (VOYAGER NETWORK) 
+AECOM Consult, Inc.
+--------------------------
+
+
+
+D:\JTA RTS Model\parameters\starting_network.net   (VOYAGER):
+
+NET PGM=NETWORK (v.12/19/2007 [4.2.2]) DATE=Tue Jan 08 15:27:01 2008
+ID=Model Run
+PAR Zones=2042 Nodes=75076 Links=172777 NodeRecs=71119 
+NVR 3    N    X    Y
+LVR 76    A    B    DISTANCE    NAME=032    ALT_NAME=027    COFIPS
+    COUNTY    DISTRICT    SCREENLINE    FTYPE_00A    ATYPE_00A    LANES_00A
+    IMPROV_00A=001    AGENCY_00A=008    DESC_00A=016    FTYPE_15A    ATYPE_15A
+    LANES_15A    IMPROV_15A=001    AGENCY_15A=004    DESC_15A=021    FTYPE_25A
+    ATYPE_25A    LANES_25A    IMPROV_25A=001    AGENCY_25A=001    DESC_25A=021
+    PSCF=005    CNT_SRCE=014    STATION_ID=006    FTYPE_10A    ATYPE_10A
+    LANES_10A    IMPROV_10A=001    AGENCY_10A=008    DESC_10A=026    FTYPE_30N
+    ATYPE_30N    LANES_30N    IMPROV_30N=001    AGENCY_30N=001    DESC_30N=025
+    PROJ_30N    FTYPE_30A    ATYPE_30A    LANES_30A    IMPROV_30A=001
+    AGENCY_30A=001    DESC_30A=025    FTYPE_05A    ATYPE_05A    LANES_05A
+    IMPROV_05A=001    AGENCY_05A=016    DESC_05A=020    CONSTR_00A
+    ROADDIR=002    LEVEL    TMODE    TTIME    EECODE    TOLLID    CARTOLL
+    IDLINK=011    COUNT    TCARD    TC    TV    VC    TWOWAY_00A    TWOWAY_05A
+    TWOWAY_10A    TWOWAY_15A    TWOWAY_25A    TWOWAY_30N    TWOWAY_30A
+
+
+
+Begin PROCESS PHASE INPUT
+        9 records read from NODEI[2]: D:\JTA RTS Model\parameters\STATDATA.00A
+       46 records read from NODEI[3]: D:\JTA RTS Model\parameters\STATDATA.05A
+      117 records read from NODEI[4]: D:\JTA RTS Model\parameters\STATDATA.30A
+        1 links had duplicate records
+        1 duplicate records deleted.
+        8 records read from NODEI[5]: D:\JTA RTS Model\parameters\SKYWAY_NODES.TXT
+       59 records read from NODEI[6]: D:\JTA RTS Model\parameters\BRT_NODES.TXT
+       33 records read from NODEI[7]: D:\JTA RTS Model\PARAMETERS\PNRNODES.PRN
+      308 records read from LINKI[2]: D:\JTA RTS Model\parameters\ADDLINKS2000.TXT
+      130 records read from LINKI[3]: D:\JTA RTS Model\PARAMETERS\PNRLINKS.PRN
+End   PROCESS PHASE INPUT
+
+
+Begin PROCESS PHASE NODEMERGE
+      71,119 records merged from NODEI[1]: D:\JTA RTS Model\parameters\starting_network.net
+           9 records merged from NODEI[2]: C:\DOCUME~1\schmittd\LOCALS~1\Temp\TMPN2a02132
+          30 records merged from NODEI[3]: C:\DOCUME~1\schmittd\LOCALS~1\Temp\TMPN3a02132
+         116 records merged from NODEI[4]: C:\DOCUME~1\schmittd\LOCALS~1\Temp\TMPN4a02132
+           8 records merged from NODEI[5]: C:\DOCUME~1\schmittd\LOCALS~1\Temp\TMPN5a02132
+          59 records merged from NODEI[6]: C:\DOCUME~1\schmittd\LOCALS~1\Temp\TMPN6a02132
+          33 records merged from NODEI[7]: C:\DOCUME~1\schmittd\LOCALS~1\Temp\TMPN7a02132
+      71,219 data base records.Page 4  (VOYAGER NETWORK) 
+AECOM Consult, Inc.
+--------------------------
+
+Variable          Obs<>0               Total           Ave           Min         Max           RMS  
+--------          ------               -----           ---           ---         ---           ---  
+N                 71,219                  --            --          1         88,018            --
+X                 71,219   32,167,760,936.88    451,673.86    319,668        588,947    455,001.39
+Y                 71,219  153,025,948,164.5   2,148,667.46  1,922,990.38   2,360,954  2,150,055.8 
+TSNAME               141                                    (12th/Bea)  (TERMINAL)
+TSSTATION_00A          9               45             5             1              9          5.63
+STATZONE             118           70,917           600.99         96          1,608        731.3 
+TSRANGE_00A            9               27             3             3              3          3   
+TSPARKSPACE_00A        9            4,024           447.11        100          1,900        718.81
+TSCOSTAM_00A           4              714           178.5         138            258        184.54
+TSCOSTMD_00A           4              714           178.5         138            258        184.54
+TSTYPE_00A             9               14             1.56          1              2          1.63
+TSSTATION_05A         30              465            15.5           1             30         17.75
+TSRANGE_05A           30               90             3             3              3          3   
+TSPARKSPACE_05A       30            4,045           134.83          1          1,900        393.71
+TSCOSTAM_05A           4              714           178.5         138            258        184.54
+TSCOSTMD_05A           4              714           178.5         138            258        184.54
+TSTYPE_05A            27              118             4.37          1              6          4.81
+TSSTATION_30A        116            5,890            50.78          1            101         58.17
+TSRANGE_30A          116              348             3             3              3          3   
+TSPARKSPACE_30A       93            7,308            78.58          1          1,900        227.61
+TSCOSTAM_30A           4              714           178.5         138            258        184.54
+TSCOSTMD_30A           4              714           178.5         138            258        184.54
+TSTYPE_30A            36              127             3.53          1              6          4.19
+
+      Obs = 0:  FAREZONE_00A  FAREZONE_05A  FAREZONE_30A
+
+_Variables with values:
+
+_ZONES            2,042      
+
+End   PROCESS PHASE NODEMERGE
+
+
+Begin PROCESS PHASE LINKMERGE
+     173,215 data base records.Page 5  (VOYAGER NETWORK) 
+AECOM Consult, Inc.
+--------------------------
+
+Variable       Obs<>0           Total        Ave    Min        Max        RMS  
+--------       ------           -----        ---    ---        ---        ---  
+A             173,215              --         --   1     88,018            --
+B             173,215              --         --   1     88,018            --
+DISTANCE      167,659  111,862,774.75     667.2    1.24  30,435.15   1,159.45
+NAME          131,901                             ( Arlingt)  (ZORAYDA )
+ALT_NAME       16,240                             (104TH ST)  (a       )
+COFIPS        165,071    7,176,571         43.48  19        109         52.8 
+COUNTY        165,075      390,753          2.37   1          4          2.51
+DISTRICT      164,992    2,222,058         13.47   1         32         15.7 
+SCREENLINE    172,777   17,067,554         98.78   1         99         98.87
+FTYPE_00A      54,320    2,187,300         40.27  11         79         42.06
+ATYPE_00A     171,626    5,767,305         33.6   11         55         34.85
+LANES_00A     171,129      186,696          1.09   1          6          1.14
+IMPROV_00A    163,570                             (N       )  (Y       )
+AGENCY_00A        276                             (COJ     )  (FDOT    )
+DESC_00A          276                             (Add Aux.)  (Widen to)
+FTYPE_15A      54,698    2,180,215         39.86   6        464         41.83
+ATYPE_15A     171,775    5,776,766         33.63  11         55         34.87
+LANES_15A     172,123      191,283          1.11   1          6          1.17
+IMPROV_15A    165,063                             (N       )  (Y       )
+AGENCY_15A         18                             (FDOT    )  (FDOT    )
+DESC_15A        1,155                             (Build CD)  (Widen to)
+FTYPE_25A      54,898    2,192,613         39.94  11        466         41.97
+ATYPE_25A     171,963    5,784,539         33.64  11         55         34.88
+LANES_25A     172,160      191,886          1.11   1          6          1.18
+IMPROV_25A    165,048                             (N       )  (Y       )
+DESC_25A        1,589                             (Build CD)  (Widen to)
+PSCF          165,037                             ( 1.02   )  (1.06    )
+CNT_SRCE        2,055                             (0       )  (St. John)
+STATION_ID    163,917                             (0       )  (C-55    )
+FTYPE_10A      54,573    2,181,710         39.98   6        464         41.88
+ATYPE_10A     171,400    5,763,061         33.62  11         55         34.86
+LANES_10A     172,063      190,506          1.11   1          6          1.17
+IMPROV_10A    163,932                             (0       )  (Y       )
+AGENCY_10A      4,201                             (BJP-COJ )  (St Johns)
+DESC_10A        4,471                             ( New 4 L)  (Widen to)
+FTYPE_30N      55,155    2,212,911         40.12  11        464         42.4 
+ATYPE_30N     172,727    5,800,183         33.58  11         55         34.82
+LANES_30N     172,776      197,117          1.14   1          7          1.23
+IMPROV_30N    165,042                             (N       )  (Y       )
+DESC_30N        7,838                             (Build CD)  (Widen to)
+PROJ_30N        7,669    1,095,506        142.85   1        280        160.22
+FTYPE_30A      55,514    2,225,754         40.09   6        464         42.14
+ATYPE_30A     172,561    5,802,231         33.62  11         55         34.87
+LANES_30A     172,262      192,599          1.12   1          6          1.19
+IMPROV_30A    165,056                             (N       )  (Y       )
+DESC_30A        2,329                             (Build CD)  (Widen to)
+FTYPE_05A      54,443    2,187,715         40.18  11         79         42   
+ATYPE_05A     171,813    5,773,527         33.6   11         55         34.84
+LANES_05A     171,317      188,081          1.1    1          6          1.15
+IMPROV_05A    165,059                             (N       )  (Y       )
+AGENCY_05A      1,037                             (BJP-COJ )  (Widen to)Page 6  (VOYAGER NETWORK) 
+AECOM Consult, Inc.
+--------------------------
+DESC_05A        1,459                             ( New 4 L)  (Widen to)
+CONSTR_00A          2           92         46     46         46         46   
+ROADDIR       172,777                             (EB      )  (WB      )
+LEVEL           1,080        2,676          2.48   1          4          2.53
+EECODE            543          543          1      1          1          1   
+TOLLID             12           78          6.5    1         12          7.36
+CARTOLL            12            6.8        0.57   0.25       0.95       0.63
+IDLINK        172,777                             (1-64102 )  (9999-995)
+COUNT           2,029   20,307,451     10,008.6   65     78,538     15,146.88
+TCARD             104        1,200         11.54   1         23         13.27
+TWOWAY_00A    163,003      163,003          1      1          1          1   
+TWOWAY_05A    162,911      162,911          1      1          1          1   
+TWOWAY_10A    162,972      162,972          1      1          1          1   
+TWOWAY_15A    162,945      162,945          1      1          1          1   
+TWOWAY_25A    162,768      162,768          1      1          1          1   
+TWOWAY_30N    162,167      162,167          1      1          1          1   
+TWOWAY_30A    162,603      162,603          1      1          1          1   
+PNRTERMTIME        48           96          2      2          2          2   
+KNRTERMTIME        48           24          0.5    0.5        0.5        0.5 
+TBSDIST           308      147,868        480.09   0.1      999        692.5 
+TBSTIME           308      148,012        480.56   1        999        692.5 
+TFGDIST           308       20,120.12      65.33   0.1      999        254.57
+TFGTIME           308       20,443.17      66.37   0.99     999        254.58
+TFGMODE           308        4,810         15.62  11         23         16.55
+TFGNAME           308                             (BRT Conn)  (Skyway L)
+
+      Obs = 0:  AGENCY_25A  AGENCY_30N  AGENCY_30A  TMODE  TTIME  TC  TV
+      Obs = 0:  VC
+
+_Variables with values:
+
+_ZONES            2,042      
+
+End   PROCESS PHASE LINKMERGE
+
+M(664): Unconnected Zones:  1610<->  1620-2019<->
+
+FILEO NETO=D:\JTA RTS Model\parameters\MicrocodedHnet.NET
+
+NET PGM=NETWORK (v.12/19/2007 [4.2.2]) DATE=Mon Jan 14 18:01:08 2008
+ID= 
+PAR Zones=2042 Nodes=88018 Links=173215 NodeRecs=71219 
+NVR 26    N    X    Y    TSNAME=030    TSSTATION_00A    STATZONE
+    TSRANGE_00A    TSPARKSPACE_00A    TSCOSTAM_00A    TSCOSTMD_00A
+    TSTYPE_00A    FAREZONE_00A    TSSTATION_05A    TSRANGE_05A
+    TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
+    FAREZONE_05A    TSSTATION_30A    TSRANGE_30A    TSPARKSPACE_30A
+    TSCOSTAM_30A    TSCOSTMD_30A    TSTYPE_30A    FAREZONE_30A
+LVR 84    A    B    DISTANCE    NAME=032    ALT_NAME=027    COFIPS
+    COUNTY    DISTRICT    SCREENLINE    FTYPE_00A    ATYPE_00A    LANES_00A
+    IMPROV_00A=001    AGENCY_00A=008    DESC_00A=016    FTYPE_15A    ATYPE_15A
+    LANES_15A    IMPROV_15A=001    AGENCY_15A=004    DESC_15A=021    FTYPE_25A
+    ATYPE_25A    LANES_25A    IMPROV_25A=001    AGENCY_25A=001    DESC_25A=021
+    PSCF=005    CNT_SRCE=014    STATION_ID=006    FTYPE_10A    ATYPE_10APage 7  (VOYAGER NETWORK) 
+AECOM Consult, Inc.
+--------------------------
+    LANES_10A    IMPROV_10A=001    AGENCY_10A=008    DESC_10A=026    FTYPE_30N
+    ATYPE_30N    LANES_30N    IMPROV_30N=001    AGENCY_30N=001    DESC_30N=025
+    PROJ_30N    FTYPE_30A    ATYPE_30A    LANES_30A    IMPROV_30A=001
+    AGENCY_30A=001    DESC_30A=025    FTYPE_05A    ATYPE_05A    LANES_05A
+    IMPROV_05A=001    AGENCY_05A=016    DESC_05A=020    CONSTR_00A
+    ROADDIR=002    LEVEL    TMODE    TTIME    EECODE    TOLLID    CARTOLL
+    IDLINK=011    COUNT    TCARD    TC    TV    VC    TWOWAY_00A    TWOWAY_05A
+    TWOWAY_10A    TWOWAY_15A    TWOWAY_25A    TWOWAY_30N    TWOWAY_30A
+    PNRTERMTIME    KNRTERMTIME    TBSDIST    TBSTIME    TFGDIST    TFGTIME
+    TFGMODE    TFGNAME=030
+
+
+NETWORK  ReturnCode = 0  Elapsed Time = 00:00:07
+################################################################################

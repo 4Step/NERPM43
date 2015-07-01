@@ -1,0 +1,14 @@
+; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+RUN PGM=PUBLIC TRANSPORT PRNFILE="C:\KumarA\NERPM\CUBE\ASPTR00B.PRN" MSG='Load AM Drive to Transit Network'
+FILEO REPORTO = "C:\KumarA\NERPM\CUBE\ASPTR00G.PRN"
+FILEO NETO = "{SCENARIO_DIR}\TLOADAMAU.NET"
+
+PARAMETERS NOROUTEMSGS=0, NOROUTEERRS=9999999,
+    TRIPSIJ[1]=MI.1.4,
+    TRIPSIJ[2]=MI.1.5,
+    TRIPSIJ[3]=MI.1.6
+
+REPORT LINES=T, LINEVOLS=T
+
+
+ENDRUN

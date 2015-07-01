@@ -1,0 +1,333 @@
+ 
+NETWORK (v.03/22/2010 [5.1.2 Pre])  Thu Sep 01 10:44:14 2011
+
+FILEI LINKI[1] = "C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\Base2005\INT2010\output\HWYLOADEDA10.NET"
+FILEO NETO = "C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\Base2005\INT2010\Output\HWYLOADED.NET",
+EXCLUDE=    V_1    TIME_1,     VC_1,
+    CSPD_1    VDT_1    VHT_1    V1_1    V2_1    V3_1    V4_1    V5_1    V6_1     V7_1,
+    VT_1    V1T_1    V2T_1    V3T_1    V4T_1    V5T_1    V6T_1    V7T_1,
+    V8_1    V9_1    V10_1    V11_1    V12_1    V13_1    V14_1,
+    V8T_1    V9T_1    V10T_1    V11T_1    V12T_1    V13T_1    V14T_1
+
+VOLTOT_HO_10A=V_1                      ;Total
+VOLSOV_HO_10A=V1_1+V5_1                ;DA-II&IE+EE
+VOLHOV_HO_10A=V2_1+V6_1                ;SR-II&IE+EE
+VOLTRK_HO_10A=V3_1+V4_1+V7_1           ;Truck-II&IE+EE+Port
+VOLPTRK_HO_10A=V7_1                    ;Port-Truck
+VOLEXT_HO_10A=V4_1+V5_1+V6_1           ;EXT-TRK+DA+SR (Does not include ext-ext of Port Truck)
+
+
+SEL_VTOT_HO_10A=V8_1+V9_1+V10_1+V11_1+V12_1+V13_1+V14_1   ;Selected Total
+SEL_VSOV_HO_10A=V8_1+V12_1                                ;Selected DA-II&IE+EE
+SEL_VHOV_HO_10A=V9_1+V13_1                                ;Selected SR-II&IE+EE
+SEL_VTRK_HO_10A=V10_1+V11_1+V14_1                         ;Selected Truck-II&IE+EE+Port
+SEL_VOLPTRK_HO_10A=V14_1                                  ;Selected Port-Truck
+
+W(707): A name (SEL_VOLPTRK_HO_10A) exceeds 15 characters.
+SEL_VOLEXT_HO_10A=V11_1+V12_1+V13_1                       ;EXT-TRK+DA+SR (Does not include ext-ext of Port Truck)
+
+W(707): A name (SEL_VOLEXT_HO_10A) exceeds 15 characters.
+
+CGSPEED_HO_10A=CSPD_1
+VMT_HO_10A=VDT_1
+VHT_HO_10A=VHT_1
+
+;CGTIME{YEAR}{ALT}=60*DISTANCE/CGSPEED{YEAR}{ALT}
+
+;sks -8/22/08 - Remove computation errors for ZERO congested speed and Flag the link.
+if (CGSPEED_HO_10A>0)
+   CGTIME_HO_10A=60*(DISTANCEFT/5280)/CGSPEED_HO_10A
+ else
+   CGTIME_HO_10A=60*(DISTANCEFT/5280)/(CGSPEED_HO_10A+0.01)
+   FlgCGSPDZero_HO=1
+endif
+
+;sks -8/22/08 - For link with year 2005 traffic counts.
+if ('10'='05')
+   if (Li.1.Count>0)
+      VOLCNTRTO_HO= V_1/LI.1.COUNT
+     else
+      VOLCNTRTO_HO=0.0
+   endif
+endif
+Page 670  (VOYAGER NETWORK) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+if (LI.1.CAPACITY>0 & LI.1.NUM_LANES>0)
+  VOLCAPRTO_HO=(V_1*LI.1.CONFAC)/(LI.1.CAPACITY*LI.1.NUM_LANES)
+ else
+  VOLCAPRTO_HO=9999.0
+endif
+
+
+
+
+NETWORK Stack Size = 3180 bytes.
+................................................................................
+
+
+
+
+C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\Base2005\INT2010\output\HWYLOADEDA10.NET   (VOYAGER):
+
+NET PGM=HIGHWAY (v.03/22/2010 [5.1.2 Pre]) DATE=Thu Sep 01 10:06:09 2011
+ID= 
+PAR Zones=2578 Nodes=91030 Links=58778 NodeRecs=28918 
+NVR 53    N    TIMESUSED    X    Y    TSNAME=045    STATZONE
+    TSSTATION_05A    TAZNEW    COUNTY    SPGEN    TSRANGE_05A
+    TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
+    FAREZONE_05A    TSSTATION_16A    TSRANGE_16A    TSPARKSPACE_16A
+    TSCOSTAM_16A    TSCOSTMD_16A    TSTYPE_16A    FAREZONE_16A    TSTYPE_35T
+    TSSTATION_35T    TSRANGE_35T    TSPARKSPACE_35T    TSCOSTAM_35T
+    TSCOSTMD_35T    FAREZONE_35T    TSTYPE_25T    TSSTATION_25T    TSRANGE_25T
+    TSPARKSPACE_25T    TSCOSTAM_25T    TSCOSTMD_25T    FAREZONE_25T
+    TSSTATION_15A    TSRANGE_15A    TSPARKSPACE_15A    TSCOSTAM_15A
+    TSCOSTMD_15A    TSTYPE_15A    FAREZONE_15A    TSSTATION_10A    TSRANGE_10A
+    TSPARKSPACE_10A    TSCOSTAM_10A    TSCOSTMD_10A    TSTYPE_10A
+    FAREZONE_10A    _TOLL_ACC    _TOLL_DEC
+LVR 113    A    B    TOLL    TOLLTYPE    PLAZADESC=1    PLZALNSMIN
+    PLZALNSMAX    CARTOLL    SVCMINUTES    SVCSECONDS    DECELCODE    ACCELCODE
+    EXACTCHGLNS    AVILANES    PCTTRUCKS    DISTANCE    NAME=32    ALT_NAME=27
+    COFIPS    COUNTY    DISTRICT    SCREENLINE    PSCF_YR00=4
+    CNT_SRC_YR00=14    STN_ID_YR00=6    CONSTR_00A    ROADDIR=2    LEVEL
+    TMODE    TTIME    EECODE    TOLLID    IDLINK=11    TCARD    TC    TV    VC
+    PNRTERMTIME    KNRTERMTIME    TBSDIST    TBSTIME    TFGDIST    TFGTIME
+    TFGMODE    STN_ID    AADT_YR05    CNTYR    YRADJUST    COUNT_YR05
+    PSCF_YR05    MOCF_YR05    COUNTDESC=51    CNTSRC_YR05=5    SELSPDADJ    HOT
+    TWOWAY_10A    COUNT_YR00    DISTANCEFT    FACILITY_TYPE    AREA_TYPE
+    NUM_LANES    UROADFACTOR    CONFAC    BPRCOEFFICIENT    BPREXPONENT
+    CAPACITY    SPEED    TIME    TIME2    WALKTIME    COUNT    LINKCNT
+    CONFACAMP    CONFACMDP    CONFACPMP    CONFACNTP    TOLL_ACC    TOLL_DEC
+    V_1    TIME_1    VC_1    CSPD_1    VDT_1    VHT_1    V1_1    V2_1    V3_1
+    V4_1    V5_1    V6_1    V7_1    V8_1    V9_1    V10_1    V11_1    V12_1
+    V13_1    V14_1    VT_1    V1T_1    V2T_1    V3T_1    V4T_1    V5T_1
+    V6T_1    V7T_1    V8T_1    V9T_1    V10T_1    V11T_1    V12T_1    V13T_1
+    V14T_1
+
+
+
+Begin PROCESS PHASE NODEMERGEPage 671  (VOYAGER NETWORK) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+      28,918 records merged from NODEI[1]: C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\Base2005\INT2010\output\HWYLOADEDA10.NET
+      28,918 data base records.
+
+Variable          Obs<>0              Total           Ave           Min           Max           RMS  
+--------          ------              -----           ---           ---           ---           ---  
+N                 28,918                 --            --          1        91,030               --
+TIMESUSED         28,918         117,556             4.07          1           170             4.86
+X                 28,918  12,943,242,550.89    447,584.29    190,006.11    588,266.75    451,230.47
+Y                 28,918  62,102,597,111.53  2,147,541.22  1,826,931.76  2,356,088.57  2,149,208.4 
+TSNAME               134                                   (0       )  (TERMINAL)
+STATZONE             131         118,748           906.47        100         2,285         1,105.93
+TSSTATION_05A         27             424            15.7           1            30            18.1 
+TAZNEW               244             244             1             1             1             1   
+COUNTY            27,270          65,435             2.4           1             6             2.6 
+SPGEN                  9              20             2.22          1             3             2.31
+TSRANGE_05A           29              87             3             3             3             3   
+TSPARKSPACE_05A       30           4,045           134.83          1         1,900           393.71
+TSCOSTAM_05A           4             714           178.5         138           258           184.54
+TSCOSTMD_05A           4             714           178.5         138           258           184.54
+TSTYPE_05A            27             118             4.37          1             6             4.81
+TSSTATION_16A         80           3,910            48.88          1           113            61.47
+TSRANGE_16A           48             169             3.52          3            10             3.92
+TSPARKSPACE_16A       48           6,032           125.67          1         1,900           316.85
+TSCOSTAM_16A           4             714           178.5         138           258           184.54
+TSCOSTMD_16A           4             714           178.5         138           258           184.54
+TSTYPE_16A            46             158             3.43          1             6             4.13
+TSTYPE_35T            46             158             3.43          1             6             4.13
+TSSTATION_35T         80           3,910            48.88          1           113            61.47
+TSRANGE_35T           48             169             3.52          3            10             3.92
+TSPARKSPACE_35T       48           6,032           125.67          1         1,900           316.85
+TSCOSTAM_35T           4             714           178.5         138           258           184.54
+TSCOSTMD_35T           4             714           178.5         138           258           184.54
+TSTYPE_25T            46             158             3.43          1             6             4.13
+TSSTATION_25T         80           3,910            48.88          1           113            61.47
+TSRANGE_25T           48             169             3.52          3            10             3.92
+TSPARKSPACE_25T       48           6,032           125.67          1         1,900           316.85
+TSCOSTAM_25T           4             714           178.5         138           258           184.54
+TSCOSTMD_25T           4             714           178.5         138           258           184.54
+TSSTATION_15A         80           3,910            48.88          1           113            61.47
+TSRANGE_15A           48             169             3.52          3            10             3.92
+TSPARKSPACE_15A       48           6,032           125.67          1         1,900           316.85
+TSCOSTAM_15A           4             714           178.5         138           258           184.54
+TSCOSTMD_15A           4             714           178.5         138           258           184.54
+TSTYPE_15A            46             158             3.43          1             6             4.13
+TSSTATION_10A         80           3,910            48.88          1           113            61.47
+TSRANGE_10A           48             169             3.52          3            10             3.92
+TSPARKSPACE_10A       48           6,032           125.67          1         1,900           316.85
+TSCOSTAM_10A           4             714           178.5         138           258           184.54
+TSCOSTMD_10A           4             714           178.5         138           258           184.54
+TSTYPE_10A            46             158             3.43          1             6             4.13
+
+      Obs = 0:  FAREZONE_05A  FAREZONE_16A  FAREZONE_35T  FAREZONE_25T
+      Obs = 0:  FAREZONE_15A  FAREZONE_10A  _TOLL_ACC  _TOLL_DEC
+Page 672  (VOYAGER NETWORK) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+_Variables with values:
+
+_ZONES            2,578      
+
+End   PROCESS PHASE NODEMERGE
+
+
+Begin PROCESS PHASE LINKMERGE
+      58,778 records merged from NETI[1]: C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\Base2005\INT2010\output\HWYLOADEDA10.NET
+      58,778 data base records.Page 673  (VOYAGER NETWORK) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+
+Variable         Obs<>0             Total         Ave     Min         Max         RMS  
+--------         ------             -----         ---     ---         ---         ---  
+A                58,778                --          --    1      91,030             --
+B                58,778                --          --    1      91,030             --
+PLZALNSMAX           10             12           1.2     1           2           1.26
+CARTOLL              10              5.8         0.58    0.3         0.8         0.61
+SVCSECONDS           10              0           0       0           0           0   
+DISTANCE         58,778         11,065.78        0.19    0           6.94        0.4 
+NAME             46,038                                ( Dunn Av)  (wlk conn)
+ALT_NAME         16,205                                (104TH ST)  (ZAPH ST )
+COFIPS           58,686      2,576,578          43.9     3         109          53.35
+COUNTY           58,694        143,448           2.44    1           6           2.67
+DISTRICT         58,686        802,646          13.68    1          45          16.13
+SCREENLINE       58,504      5,752,415          98.33    1          99          98.6 
+PSCF_YR00        46,313                                (1.02    )  (1.06    )
+CNT_SRC_YR00      2,029                                (0       )  (St. John)
+STN_ID_YR00      46,206                                (0       )  (C-55    )
+CONSTR_00A            2             92          46      46          46          46   
+ROADDIR          58,546                                (EB      )  (WB      )
+LEVEL             1,057          2,614           2.47    1           4           2.53
+EECODE              471            471           1       1           1           1   
+TOLLID               10            175          17.5    13          22          17.73
+IDLINK           55,186                                (0       )  (9992-990)
+TCARD                92          1,104          12       1          23          13.71
+PNRTERMTIME          38             76           2       2           2           2   
+KNRTERMTIME          38             19           0.5     0.5         0.5         0.5 
+TBSDIST              66         41,960.4       635.76    0.1       999         796.93
+TBSTIME              66         41,982         636.09    1         999         796.93
+TFGDIST              66             15.5         0.23    0.1         1.32        0.4 
+TFGTIME              66             91.35        1.38    1           4.1         1.59
+TFGMODE              66            938          14.21   11          23          15.15
+STN_ID            2,844  1,233,543,153     433,735.29    1     790,280     558,582.51
+AADT_YR05         2,816     39,362,890      13,978.3    60      88,250      18,754.09
+CNTYR             2,854      5,719,235       2,003.94  237       2,205       2,004.49
+YRADJUST          2,861          2,860.3         1       0.82        1.13        1   
+COUNT_YR05        2,816     29,827,150.07   10,592.03   29.69   91,927.09   15,872.5 
+PSCF_YR05        58,778         61,309.14        1.04    1           1.11        1.04
+MOCF_YR05        58,694         56,274.39        0.96    0.9         1           0.96
+COUNTDESC         2,857                                (0       )  (old Midd)
+CNTSRC_YR05       2,854                                (0       )  (PBS&J   )
+SELSPDADJ           104            135           1.3    -7.5         5           3.53
+TWOWAY_10A       48,801         48,801           1       1           1           1   
+COUNT_YR00        2,006     20,443,371      10,191.11   65      78,538      15,223.31
+DISTANCEFT       58,778     58,428,097         994.05    1      36,663       2,096.62
+FACILITY_TYPE    58,778      2,408,952          40.98   11          79          42.72
+AREA_TYPE        58,778      1,915,041          32.58   11          55          34.13
+NUM_LANES        58,732         77,105           1.31    1           6           1.43
+UROADFACTOR      58,778         58,778           1       1           1           1   
+CONFAC           58,778          6,139.42        0.1     0.1         0.11        0.1 
+BPRCOEFFICIENT   58,778         25,413.44        0.43    0.1         0.53        0.46
+BPREXPONENT      58,778        206,243           3.51    2.5         6.75        3.63
+CAPACITY         58,534    140,384,549       2,398.34  100      10,000       4,192.64
+SPEED            58,534      2,227,286.14       38.05    1          72          39.42Page 674  (VOYAGER NETWORK) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+TIME             58,778         23,856           0.41    0.01      191.09        2.17
+TIME2            58,778         23,856           0.41    0.01      191.09        2.17
+WALKTIME         58,776        265,581.76        4.52    0.01      166.65        9.53
+COUNT             2,816     29,827,150.07   10,592.03   29.69   91,927.09   15,872.5 
+LINKCNT          58,778         58,778           1       1           1           1   
+CONFACAMP        58,778         25,744.76        0.44    0.44        0.44        0.44
+CONFACMDP        58,778         10,856.3         0.18    0.18        0.18        0.18
+CONFACPMP        58,778         21,077.79        0.36    0.36        0.36        0.36
+CONFACNTP        58,778         11,596.9         0.2     0.2         0.2         0.2 
+V_1              54,652    384,351,414.26    7,032.71  3e-036  120,900.32   12,978.98
+TIME_1           58,778         25,539.62        0.43    0.01      191.09        2.2 
+VC_1             54,652         24,675.89        0.45  4e-041        3.48        0.61
+CSPD_1           58,778      2,693,265.08       45.82    0.49   22,193.6       368.01
+VDT_1            54,652     52,337,272.23      957.65  4e-038  244,053.78    3,777.25
+VHT_1            54,652      1,606,438.3        29.39  1e-039    4,841.24       99.61
+V1_1             54,599    219,710,330.28    4,024.07  1e-036   71,870.94    7,436.59
+V2_1             54,603    104,813,294.08    1,919.55  9e-037   34,536.64    3,573.53
+V3_1             54,591     42,429,605.6       777.23  3e-037   14,492.74    1,430.75
+V4_1              6,715      2,694,474.52      401.26    0.1     3,106.48      741.15
+V5_1              6,715      8,289,147.55    1,234.42    0.58    9,064.7     2,099.14
+V6_1              6,715      5,679,083.63      845.73    0.32    6,348.83    1,483.2 
+V7_1             18,856        735,478.34       39.01    0.01    1,609.34      122.06
+VT_1             54,879    562,474,278.12   10,249.35  3e-036  120,900.32   16,264.55
+V1T_1            54,826    322,757,032.48    5,886.93  1e-036   71,870.94    9,389.97
+V2T_1            54,830    152,981,311.64    2,790.1   9e-037   34,536.64    4,453.35
+V3T_1            54,817     62,090,301.84    1,132.68  3e-037   14,492.74    1,805.16
+V4T_1             7,003      3,770,414.48      538.4     0.19    3,106.48      927.62
+V5T_1             7,003     11,892,824.07    1,698.25    1.09    9,229.3     2,716.4 
+V6T_1             7,003      8,064,772.09    1,151.62    0.64    6,348.83    1,884.68
+V7T_1            20,300        917,621.8        45.2     0.01    1,817.92      139.81
+VOLTOT_HO_10A    54,652    384,351,414.26    7,032.71  3e-036  120,900.32   12,978.98
+VOLSOV_HO_10A    54,616    227,999,477.82    4,174.59  1e-036   71,870.94    7,683.7 
+VOLHOV_HO_10A    54,620    110,492,377.71    2,022.93  9e-037   34,536.64    3,775.23
+VOLTRK_HO_10A    54,640     45,859,558.47      839.3   3e-037   14,492.74    1,570.32
+VOLPTRK_HO_10A   18,856        735,478.34       39.01    0.01    1,609.34      122.06
+VOLEXT_HO_10A     6,715     16,662,705.7     2,481.42    1      18,520.01    4,319.26
+CGSPEED_HO_10A   58,778      2,693,265.08       45.82    0.49   22,193.6       368.01
+VMT_HO_10A       54,652     52,337,272.23      957.65  4e-038  244,053.78    3,777.25
+VHT_HO_10A       54,652      1,606,438.3        29.39  1e-039    4,841.24       99.61
+CGTIME_HO_10A    58,778         25,539.93        0.43    0.01      191.09        2.2 
+VOLCAPRTO_HO     54,896      2,464,431.89       44.89  4e-041    9,999         666.62
+
+      Obs = 0:  TOLL  TOLLTYPE  PLAZADESC  PLZALNSMIN  SVCMINUTES
+      Obs = 0:  DECELCODE  ACCELCODE  EXACTCHGLNS  AVILANES  PCTTRUCKS
+      Obs = 0:  TMODE  TTIME  TC  TV  VC  HOT  TOLL_ACC  TOLL_DEC  V8_1
+      Obs = 0:  V9_1  V10_1  V11_1  V12_1  V13_1  V14_1  V8T_1  V9T_1
+      Obs = 0:  V10T_1  V11T_1  V12T_1  V13T_1  V14T_1  SEL_VTOT_HO_10A
+      Obs = 0:  SEL_VSOV_HO_10A  SEL_VHOV_HO_10A  SEL_VTRK_HO_10A
+      Obs = 0:  SEL_VOLPTRK_HO_  SEL_VOLEXT_HO_1  FLGCGSPDZERO_HO
+      Obs = 0:  VOLCNTRTO_HO
+Page 675  (VOYAGER NETWORK) 
+Post, Buckley, Schuh & Jernigan, Inc. (PBS&J)
+---------------------------------------------
+_Variables with values:
+
+_ZONES            2,578      
+
+End   PROCESS PHASE LINKMERGE
+
+FILEO NETO=C:\FSUTMS\D2\NERPM42_08_30_2011\NERPM42\Base2005\INT2010\Output\HWYLOADED.NET
+
+NET PGM=NETWORK (v.03/22/2010 [5.1.2 Pre]) DATE=Thu Sep 01 10:44:14 2011
+ID= 
+PAR Zones=2578 Nodes=91030 Links=58778 NodeRecs=28918 
+NVR 53    N    TIMESUSED    X    Y    TSNAME=045    STATZONE
+    TSSTATION_05A    TAZNEW    COUNTY    SPGEN    TSRANGE_05A
+    TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
+    FAREZONE_05A    TSSTATION_16A    TSRANGE_16A    TSPARKSPACE_16A
+    TSCOSTAM_16A    TSCOSTMD_16A    TSTYPE_16A    FAREZONE_16A    TSTYPE_35T
+    TSSTATION_35T    TSRANGE_35T    TSPARKSPACE_35T    TSCOSTAM_35T
+    TSCOSTMD_35T    FAREZONE_35T    TSTYPE_25T    TSSTATION_25T    TSRANGE_25T
+    TSPARKSPACE_25T    TSCOSTAM_25T    TSCOSTMD_25T    FAREZONE_25T
+    TSSTATION_15A    TSRANGE_15A    TSPARKSPACE_15A    TSCOSTAM_15A
+    TSCOSTMD_15A    TSTYPE_15A    FAREZONE_15A    TSSTATION_10A    TSRANGE_10A
+    TSPARKSPACE_10A    TSCOSTAM_10A    TSCOSTMD_10A    TSTYPE_10A
+    FAREZONE_10A    _TOLL_ACC    _TOLL_DEC
+LVR 97    A    B    TOLL    TOLLTYPE    PLAZADESC=001    PLZALNSMIN
+    PLZALNSMAX    CARTOLL    SVCMINUTES    SVCSECONDS    DECELCODE    ACCELCODE
+    EXACTCHGLNS    AVILANES    PCTTRUCKS    DISTANCE    NAME=032
+    ALT_NAME=027    COFIPS    COUNTY    DISTRICT    SCREENLINE    PSCF_YR00=004
+    CNT_SRC_YR00=014    STN_ID_YR00=006    CONSTR_00A    ROADDIR=002    LEVEL
+    TMODE    TTIME    EECODE    TOLLID    IDLINK=011    TCARD    TC    TV    VC
+    PNRTERMTIME    KNRTERMTIME    TBSDIST    TBSTIME    TFGDIST    TFGTIME
+    TFGMODE    STN_ID    AADT_YR05    CNTYR    YRADJUST    COUNT_YR05
+    PSCF_YR05    MOCF_YR05    COUNTDESC=051    CNTSRC_YR05=005    SELSPDADJ
+    HOT    TWOWAY_10A    COUNT_YR00    DISTANCEFT    FACILITY_TYPE    AREA_TYPE
+    NUM_LANES    UROADFACTOR    CONFAC    BPRCOEFFICIENT    BPREXPONENT
+    CAPACITY    SPEED    TIME    TIME2    WALKTIME    COUNT    LINKCNT
+    CONFACAMP    CONFACMDP    CONFACPMP    CONFACNTP    TOLL_ACC    TOLL_DEC
+    VOLTOT_HO_10A    VOLSOV_HO_10A    VOLHOV_HO_10A    VOLTRK_HO_10A
+    VOLPTRK_HO_10A    VOLEXT_HO_10A    SEL_VTOT_HO_10A    SEL_VSOV_HO_10A
+    SEL_VHOV_HO_10A    SEL_VTRK_HO_10A    SEL_VOLPTRK_HO_    SEL_VOLEXT_HO_1
+    CGSPEED_HO_10A    VMT_HO_10A    VHT_HO_10A    CGTIME_HO_10A
+    FLGCGSPDZERO_HO    VOLCNTRTO_HO    VOLCAPRTO_HO
+
+
+NETWORK  ReturnCode = 1  Elapsed Time = 00:00:02
+################################################################################

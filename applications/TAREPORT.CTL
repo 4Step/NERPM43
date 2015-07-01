@@ -1,0 +1,4 @@
+; TAREPORT program files
+a    10A
+p    C:\NERPM42\Base2005\INT2010\output\TLOADPK_A10.DBF
+o    C:\NERPM42\Base2005\INT2010\output\TLOADOP_A10.DBF

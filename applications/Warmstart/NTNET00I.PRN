@@ -1,0 +1,291 @@
+ 
+NETWORK (v.07/26/2012 [6.0.2])  Tue May 27 08:15:52 2014
+
+FILEI LINKI[1] = "C:\NERPM43\Base2005\INT2010\output\UNLOADEDpre.NET"
+FILEO NETO = "C:\NERPM43\Base2005\INT2010\output\UNLOADED.NET"
+
+PROCESS PHASE=LINKMERGE
+
+;sks-12/18/2008 - Incorporate few corridor level speed adjustment usin field (SELSPDADJ)
+;                 This was done by comparing model initial speed with posted speed limit of FHD
+
+ if (SELSPDADJ<>0)
+  SPEED=SPEED+(SELSPDADJ)  ;Selected corridor level speed adjustment
+ endif
+
+;; adjust number of lanes on I-95 (based on Google Earth - AECOM / 09/07/2007)
+
+;Corradino(8/21/08): Comment out the SB & NB I-95 lane modification after confirming that with the original input/master network.
+;                    Note this script specific modification may not hold for future alternative scenarios.
+
+;Start comment on I-95 lane modification:
+
+;End comment on I-95 lane modification:
+
+; adjust speeds
+ if (SPEED!=0)
+  SPEED=(SPEED + 0.00001)  ; AECOMS global addition was 5 MPH
+ else
+  SPEED=0
+ endif
+
+;Start comment on AECOM's changes (since they were brought in SPDCAP and VFACTORS:
+
+;End comment on AECOM's changes (since they were brought in SPDCAP and VFACTORS:
+
+  IF (SPEED!=0)
+    TIME=60*(DISTANCEFT/5280)/SPEED
+    TIME2=60*(DISTANCEFT/5280)/SPEED
+  ENDIF
+
+; SECTION ADDED BY SKS following I-95 (SERPM65) Corridor Study Logic
+; HOT= (any negative value) means that the link, for whatever reason, should not be in the network
+; Thus it is deleted here.
+; Possible reasons are that it has not yet been buit, or it is a ramp left over from HOV analysis, etc.
+If (HOT <0) FACILITY_TYPE=69 ; in-active HOT links:MAKE TRANSIT ONLY - not available for highway, but buses are allowed.
+
+;sks-11/3/08 (comment out round off action on TIME and TIME2)
+;  TIME=ROUND(TIME*100)/100
+;  TIME2=ROUND(TIME2*100)/100
+
+  if (time<0.01) time=0.01
+  if (time2<0.01) time2=0.01
+Page 28  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+---------------------------
+ENDPROCESS
+
+
+NETWORK Stack Size = 1358 bytes.
+................................................................................
+
+
+
+
+C:\NERPM43\Base2005\INT2010\output\UNLOADEDpre.NET   (VOYAGER):
+
+NET PGM=NETWORK (v.07/26/2012 [6.0.2]) DATE=Tue May 27 08:15:47 2014
+ID= 
+PAR Zones=2578 Nodes=91243 Links=59078 NodeRecs=29139 
+NVR 62    N    TIMESUSED    X    Y    TSNAME=040    STATZONE
+    TSSTATION_05A    TAZNEW    COUNTY    SPGEN    TSRANGE_05A
+    TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
+    FAREZONE_05A    TSSTATION_16A    TSRANGE_16A    TSPARKSPACE_16A
+    TSCOSTAM_16A    TSCOSTMD_16A    TSTYPE_16A    FAREZONE_16A    TSTYPE_35T
+    TSSTATION_35T    TSRANGE_35T    TSPARKSPACE_35T    TSCOSTAM_35T
+    TSCOSTMD_35T    FAREZONE_35T    TSTYPE_25T    TSSTATION_25T    TSRANGE_25T
+    TSPARKSPACE_25T    TSCOSTAM_25T    TSCOSTMD_25T    FAREZONE_25T
+    TSSTATION_15A    TSRANGE_15A    TSPARKSPACE_15A    TSCOSTAM_15A
+    TSCOSTMD_15A    TSTYPE_15A    FAREZONE_15A    TSSTATION_10A    TSRANGE_10A
+    TSPARKSPACE_10A    TSCOSTAM_10A    TSCOSTMD_10A    TSTYPE_10A
+    FAREZONE_10A    SUB_TYPE    OLD_NODE    TSTYPE_18A    TSSTATION_18A
+    TSRANGE_18A    TSPARKSPACE_18A    TSCOSTAM_18A    FAREZONE_18A
+    TSCOSTMD_18A    _TOLL_ACC    _TOLL_DEC
+LVR 79    A    B    TOLL    TOLLTYPE    PLAZADESC=001    PLZALNSMIN
+    PLZALNSMAX    CARTOLL    SVCMINUTES    SVCSECONDS    DECELCODE    ACCELCODE
+    EXACTCHGLNS    AVILANES    PCTTRUCKS    DISTANCE    NAME=032
+    ALT_NAME=027    COFIPS    COUNTY    DISTRICT    SCREENLINE    PSCF_YR00=004
+    CNT_SRC_YR00=014    CONSTR_00A    ROADDIR=002    TMODE    TTIME    EECODE
+    TOLLID    IDLINK=011    TCARD    TC    TV    VC    TBSDIST    TBSTIME
+    TFGDIST    TFGTIME    TFGMODE    STN_ID    AADT_YR05    CNTYR    YRADJUST
+    COUNT_YR05    PSCF_YR05    MOCF_YR05    COUNTDESC=051    SELSPDADJ    HOT
+    TWOWAY_10A    AADT10    LEVEL    STN_ID_YR00    COUNT_YR00    DISTANCEFT
+    FACILITY_TYPE    AREA_TYPE    NUM_LANES    UROADFACTOR    CONFAC
+    BPRCOEFFICIENT    BPREXPONENT    CAPACITY    SPEED    TIME    TIME2
+    WALKTIME    PNRTERMTIME    KNRTERMTIME    CNTSRC_YR05    COUNT    LINKCNT
+    CONFACAMP    CONFACMDP    CONFACPMP    CONFACNTP    TOLL_ACC    TOLL_DEC
+
+
+
+Begin PROCESS PHASE NODEMERGE
+      29,139 records merged from NODEI[1]: C:\NERPM43\Base2005\INT2010\output\UNLOADEDpre.NET
+      29,139 data base records.Page 29  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+---------------------------
+
+Variable          Obs<>0              Total           Ave           Min           Max           RMS  
+--------          ------              -----           ---           ---           ---           ---  
+N                 29,139                 --            --          1        91,243               --
+TIMESUSED         29,139         118,156             4.05          1           170             4.85
+X                 29,139  13,047,322,362.3     447,761.5     190,006.11    588,266.75    451,372.01
+Y                 29,139  62,571,591,758.46  2,147,348.63  1,826,931.76  2,356,088.57  2,149,008.56
+TSNAME               125                                   (0       )  (TERMINAL)
+STATZONE             124         111,176           896.58        100         2,285         1,096.67
+TSSTATION_05A         27             424            15.7           1            30            18.1 
+TAZNEW               258             258             1             1             1             1   
+COUNTY            27,291          65,475             2.4           1             6             2.59
+SPGEN                  9              20             2.22          1             3             2.31
+TSRANGE_05A           29              87             3             3             3             3   
+TSPARKSPACE_05A       30           4,045           134.83          1         1,900           393.71
+TSCOSTAM_05A           4             714           178.5         138           258           184.54
+TSCOSTMD_05A           4             714           178.5         138           258           184.54
+TSTYPE_05A            27             118             4.37          1             6             4.81
+TSSTATION_16A         76           3,868            50.89          3           113            62.99
+TSRANGE_16A           47             166             3.53          3            10             3.94
+TSPARKSPACE_16A       47           5,982           127.28          1         1,900           320.12
+TSCOSTAM_16A           4             714           178.5         138           258           184.54
+TSCOSTMD_16A           4             714           178.5         138           258           184.54
+TSTYPE_16A            45             152             3.38          1             6             4.08
+TSTYPE_35T            45             152             3.38          1             6             4.08
+TSSTATION_35T         76           3,868            50.89          3           113            62.99
+TSRANGE_35T           47             166             3.53          3            10             3.94
+TSPARKSPACE_35T       47           5,982           127.28          1         1,900           320.12
+TSCOSTAM_35T           4             714           178.5         138           258           184.54
+TSCOSTMD_35T           4             714           178.5         138           258           184.54
+TSTYPE_25T            45             152             3.38          1             6             4.08
+TSSTATION_25T         76           3,868            50.89          3           113            62.99
+TSRANGE_25T           47             166             3.53          3            10             3.94
+TSPARKSPACE_25T       47           5,982           127.28          1         1,900           320.12
+TSCOSTAM_25T           4             714           178.5         138           258           184.54
+TSCOSTMD_25T           4             714           178.5         138           258           184.54
+TSSTATION_15A         76           3,868            50.89          3           113            62.99
+TSRANGE_15A           47             166             3.53          3            10             3.94
+TSPARKSPACE_15A       47           5,982           127.28          1         1,900           320.12
+TSCOSTAM_15A           4             714           178.5         138           258           184.54
+TSCOSTMD_15A           4             714           178.5         138           258           184.54
+TSTYPE_15A            45             152             3.38          1             6             4.08
+TSSTATION_10A         76           3,868            50.89          3           113            62.99
+TSRANGE_10A           47             156             3.32          3            10             3.51
+TSPARKSPACE_10A       47           5,982           127.28          1         1,900           320.12
+TSCOSTAM_10A           4             714           178.5         138           258           184.54
+TSCOSTMD_10A           4             714           178.5         138           258           184.54
+TSTYPE_10A            45             152             3.38          1             6             4.08
+SUB_TYPE           2,592           2,592             1             1             1             1   
+OLD_NODE          29,070   1,163,082,454        40,009.72          1        91,159        46,577.19
+TSTYPE_18A            45             152             3.38          1             6             4.08
+TSSTATION_18A         76           3,868            50.89          3           113            62.99
+TSRANGE_18A           47             156             3.32          3            10             3.51
+TSPARKSPACE_18A       47           5,982           127.28          1         1,900           320.12Page 30  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+---------------------------
+TSCOSTAM_18A           4             714           178.5         138           258           184.54
+TSCOSTMD_18A           4             714           178.5         138           258           184.54
+
+      Obs = 0:  FAREZONE_05A  FAREZONE_16A  FAREZONE_35T  FAREZONE_25T
+      Obs = 0:  FAREZONE_15A  FAREZONE_10A  FAREZONE_18A  _TOLL_ACC
+      Obs = 0:  _TOLL_DEC
+
+_Variables with values:
+
+_ZONES            2,578      
+
+End   PROCESS PHASE NODEMERGE
+
+
+Begin PROCESS PHASE LINKMERGE
+      59,078 records merged from NETI[1]: C:\NERPM43\Base2005\INT2010\output\UNLOADEDpre.NET
+      59,078 data base records.Page 31  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+---------------------------
+
+Variable         Obs<>0             Total         Ave     Min         Max         RMS  
+--------         ------             -----         ---     ---         ---         ---  
+A                59,078                --          --    1      91,243             --
+B                59,078                --          --    1      91,243             --
+PLZALNSMAX           10             12           1.2     1           2           1.26
+CARTOLL              10              5.8         0.58    0.3         0.8         0.61
+SVCSECONDS           10              0           0       0           0           0   
+DISTANCE         59,078         10,841.4         0.18    0           6.71        0.38
+NAME             46,420                                ( Dunn Av)  (wlk conn)
+ALT_NAME         16,207                                (104TH ST)  (on ramp )
+COFIPS           59,056      2,596,284          43.96    3         109          53.43
+COUNTY           59,072        144,448           2.45    1           6           2.67
+DISTRICT         59,056        808,189          13.69    1          45          16.13
+SCREENLINE       58,930      5,793,303          98.31    1          99          98.59
+PSCF_YR00        46,714                                (1.02    )  (1.2     )
+CNT_SRC_YR00      2,040                                (0       )  (St. John)
+CONSTR_00A            2             92          46      46          46          46   
+ROADDIR          58,980                                (EB      )  (WB      )
+EECODE              471            471           1       1           1           1   
+TOLLID               10            175          17.5    13          22          17.73
+IDLINK           55,625                                (0       )  (9992-990)
+TCARD                93          1,105          11.88    1          23          13.64
+TBSDIST              44         31,969.2       726.57    0.1       999         851.95
+TBSTIME              44         31,980         726.82    1         999         851.95
+TFGDIST              44             10.86        0.25    0.1         1.32        0.39
+TFGTIME              44             64.55        1.47    1           4.1         1.67
+TFGMODE              44            674          15.32   11          23          16.35
+STN_ID            2,890  1,253,469,369     433,726.43    1     790,280     558,635.04
+AADT_YR05         2,846     39,785,036      13,979.28   60      88,250      18,774.57
+CNTYR             2,884      5,779,391       2,003.95  237       2,205       2,004.49
+YRADJUST          2,891          2,890.26        1       0.82        1.13        1   
+COUNT_YR05        2,846     30,271,676.11   10,636.57   29.69   91,927.09   15,964.99
+PSCF_YR05        59,078         61,625.23        1.04    1           1.11        1.04
+MOCF_YR05        59,067         56,631.95        0.96    0.9         1           0.96
+COUNTDESC         2,891                                (0       )  (old Midd)
+SELSPDADJ           104            135           1.3    -7.5         5           3.53
+TWOWAY_10A       49,031         49,031           1       1           1           1   
+AADT10            1,650     19,778,025      11,986.68   70      69,500      16,854.9 
+LEVEL             1,065          2,632           2.47    1           4           2.53
+COUNT_YR00        2,017     20,654,866      10,240.39   65      78,538      15,323.34
+DISTANCEFT       59,078     57,243,138         968.94    1      35,409       2,014.94
+FACILITY_TYPE    59,078      2,406,731          40.74   11          79          42.49
+AREA_TYPE        59,070      1,912,763          32.38   11         311          33.86
+NUM_LANES        59,032         77,581           1.31    1           6           1.43
+UROADFACTOR      59,078         59,078           1       1           1           1   
+CONFAC           59,078          6,170.84        0.1     0.1         0.11        0.1 
+BPRCOEFFICIENT   59,078         25,589.07        0.43    0.1         0.53        0.46
+BPREXPONENT      59,078        207,740.4         3.52    2.5         6.75        3.63
+CAPACITY         59,026    141,305,405       2,393.95  100      10,000       4,183.44
+SPEED            59,026      2,258,521.09       38.26    1          71.5        39.66
+TIME             59,078         23,523.69        0.4     0.01      184.55        2.1 
+TIME2            59,078         23,523.69        0.4     0.01      184.55        2.1 
+WALKTIME         59,076        260,195.77        4.4     0.01      160.95        9.16Page 32  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+---------------------------
+COUNT             2,846     30,271,676.11   10,636.57   29.69   91,927.09   15,964.99
+LINKCNT          59,078         59,078           1       1           1           1   
+CONFACAMP        59,078         25,876.16        0.44    0.44        0.44        0.44
+CONFACMDP        59,078         10,911.71        0.18    0.18        0.18        0.18
+CONFACPMP        59,078         21,185.37        0.36    0.36        0.36        0.36
+CONFACNTP        59,078         11,656.09        0.2     0.2         0.2         0.2 
+
+      Obs = 0:  TOLL  TOLLTYPE  PLAZADESC  PLZALNSMIN  SVCMINUTES
+      Obs = 0:  DECELCODE  ACCELCODE  EXACTCHGLNS  AVILANES  PCTTRUCKS
+      Obs = 0:  TMODE  TTIME  TC  TV  VC  HOT  STN_ID_YR00  PNRTERMTIME
+      Obs = 0:  KNRTERMTIME  CNTSRC_YR05  TOLL_ACC  TOLL_DEC
+
+_Variables with values:
+
+_ZONES            2,578      
+
+End   PROCESS PHASE LINKMERGE
+
+M(664): Unconnected Zones:  31->
+
+FILEO NETO=C:\NERPM43\Base2005\INT2010\output\UNLOADED.NET
+
+NET PGM=NETWORK (v.07/26/2012 [6.0.2]) DATE=Tue May 27 08:15:52 2014
+ID= 
+PAR Zones=2578 Nodes=91243 Links=59078 NodeRecs=29139 
+NVR 62    N    TIMESUSED    X    Y    TSNAME=040    STATZONE
+    TSSTATION_05A    TAZNEW    COUNTY    SPGEN    TSRANGE_05A
+    TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
+    FAREZONE_05A    TSSTATION_16A    TSRANGE_16A    TSPARKSPACE_16A
+    TSCOSTAM_16A    TSCOSTMD_16A    TSTYPE_16A    FAREZONE_16A    TSTYPE_35T
+    TSSTATION_35T    TSRANGE_35T    TSPARKSPACE_35T    TSCOSTAM_35T
+    TSCOSTMD_35T    FAREZONE_35T    TSTYPE_25T    TSSTATION_25T    TSRANGE_25T
+    TSPARKSPACE_25T    TSCOSTAM_25T    TSCOSTMD_25T    FAREZONE_25T
+    TSSTATION_15A    TSRANGE_15A    TSPARKSPACE_15A    TSCOSTAM_15A
+    TSCOSTMD_15A    TSTYPE_15A    FAREZONE_15A    TSSTATION_10A    TSRANGE_10A
+    TSPARKSPACE_10A    TSCOSTAM_10A    TSCOSTMD_10A    TSTYPE_10A
+    FAREZONE_10A    SUB_TYPE    OLD_NODE    TSTYPE_18A    TSSTATION_18A
+    TSRANGE_18A    TSPARKSPACE_18A    TSCOSTAM_18A    FAREZONE_18A
+    TSCOSTMD_18A    _TOLL_ACC    _TOLL_DEC
+LVR 79    A    B    TOLL    TOLLTYPE    PLAZADESC=001    PLZALNSMIN
+    PLZALNSMAX    CARTOLL    SVCMINUTES    SVCSECONDS    DECELCODE    ACCELCODE
+    EXACTCHGLNS    AVILANES    PCTTRUCKS    DISTANCE    NAME=032
+    ALT_NAME=027    COFIPS    COUNTY    DISTRICT    SCREENLINE    PSCF_YR00=004
+    CNT_SRC_YR00=014    CONSTR_00A    ROADDIR=002    TMODE    TTIME    EECODE
+    TOLLID    IDLINK=011    TCARD    TC    TV    VC    TBSDIST    TBSTIME
+    TFGDIST    TFGTIME    TFGMODE    STN_ID    AADT_YR05    CNTYR    YRADJUST
+    COUNT_YR05    PSCF_YR05    MOCF_YR05    COUNTDESC=051    SELSPDADJ    HOT
+    TWOWAY_10A    AADT10    LEVEL    STN_ID_YR00    COUNT_YR00    DISTANCEFT
+    FACILITY_TYPE    AREA_TYPE    NUM_LANES    UROADFACTOR    CONFAC
+    BPRCOEFFICIENT    BPREXPONENT    CAPACITY    SPEED    TIME    TIME2
+    WALKTIME    PNRTERMTIME    KNRTERMTIME    CNTSRC_YR05    COUNT    LINKCNT
+    CONFACAMP    CONFACMDP    CONFACPMP    CONFACNTP    TOLL_ACC    TOLL_DEC
+
+
+NETWORK  ReturnCode = 0  Elapsed Time = 00:00:01
+################################################################################

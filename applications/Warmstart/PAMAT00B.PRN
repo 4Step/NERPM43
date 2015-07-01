@@ -1,0 +1,84 @@
+ 
+MATRIX (v.08/05/2014 [6.1.1])  Sun Sep 14 11:17:31 2014
+
+FILEI MATI[2] = "C:\NERPM43\APPLICATIONS\WARMSTART\PORT_TRK_24H_10.MAT"
+FILEI MATI[1] = "C:\NERPM43\APPLICATIONS\WARMSTART\PKPRELOAD1.MAT"
+FILEO MATO[1] = "C:\NERPM43\APPLICATIONS\WARMSTART\PKPRELOAD.MAT",
+ MO=1-8,NAME=SOV,CARPOOL,IEEITRK,EETRUCKS,EESOV,EEHOV,PRTTRK,TotAM2HR, DEC=8*S
+
+PAR ZONEMSG=100
+
+pahbwpkfac = 0.45299   ; 2000 HH survey
+pahbnwpkfac= 0.25757   ; 2000 HH survey
+panhbpkfac = 0.036640  ; 2000 HH survey
+aphbwpkfac = 0.02367   ; 2000 HH survey
+aphbnwpkfac= 0.03536   ; 2000 HH survey
+apnhbpkfac = 0.036640  ; 2000 HH survey
+iepkfac    = 0.1537    ; from FDOT_BC353_08rpt.pdf - Time of day modeling procedure in FSUTMS
+eepkfac    = 0.136     ; from FDOT_BC353_08rpt.pdf - Time of day modeling procedure in FSUTMS
+trkpkfac   = 0.20      ; from FDOT_BC353_08rpt.pdf - Time of day modeling procedure in FSUTMS
+prttrkfac  = 0.05431*2
+
+
+;SOV & SOVIE
+MW[01]=(pahbwpkfac * MI.1.1 + aphbwpkfac * MI.1.1.T) * 0.5 +
+       (pahbnwpkfac * MI.1.2 + aphbnwpkfac * MI.1.2.T) * 0.5 +
+       (panhbpkfac * MI.1.3 + apnhbpkfac * MI.1.3.T) * 0.5 +
+       (iepkfac * MI.1.4 + iepkfac * MI.1.4.T) * 0.5
+;CARPOOL
+MW[02]=(pahbwpkfac * MI.1.5 + aphbwpkfac * MI.1.5.T) * 0.5 /2 +
+       (pahbnwpkfac * MI.1.6 + aphbnwpkfac * MI.1.6.T) * 0.5 /2 +
+       (panhbpkfac * MI.1.7 + apnhbpkfac * MI.1.7.T) * 0.5 /2 +
+       (pahbwpkfac * MI.1.8 + aphbwpkfac * MI.1.8.T) * 0.5 /3.37 +
+       (pahbnwpkfac * MI.1.9 + aphbnwpkfac * MI.1.9.T) * 0.5 /3.48 +
+       (panhbpkfac * MI.1.10 + apnhbpkfac * MI.1.10.T) * 0.5 /3.59 +
+       (iepkfac * MI.1.12 + iepkfac * MI.1.12.T) * 0.5
+
+;IE/EE TRUCK
+MW[03]=(trkpkfac * MI.1.14 + trkpkfac * MI.1.14.T) * 0.5
+
+;EETRUCKS
+MW[04]=(trkpkfac * MI.1.15 + trkpkfac * MI.1.15.T) * 0.5
+;EESOV
+MW[05]=(eepkfac * MI.1.11 + eepkfac * MI.1.11.T) * 0.5
+;EEHOV
+MW[06]=(eepkfac * MI.1.13 + eepkfac * MI.1.13.T) * 0.5
+
+;Jax Port Trucks
+MW[07]=MI.2.1*prttrkfac
+
+;Total Trips
+MW[8]=MW[1]+MW[2]+MW[3]+MW[4]+MW[5]+MW[6]+MW[7]
+
+Page 4  (VOYAGER MATRIX) 
+Parsons Brinckerhoff
+-------------------------
+
+MATRIX Stack Size = 2304 bytes.
+................................................................................
+
+
+F(806): MATI[2] WARMSTART\PORT_TRK_24H_10.MAT failed to open, error: The system cannot find the file specified.
+
+F(602): FILEI MATI[2]=WARMSTART\PORT_TRK_24H_10.MAT does not open (or is invalid format).
+F(602): OS reports: The system cannot find the file specified.
+
+W(602): FILEI MATI[2]=C:\NERPM43\APPLICATIONS\WARMSTART\PORT_TRK_24H_10.MAT does not open (or is invalid format).
+W(602): OS reports: The system cannot find the file specified.
+
+MATI[1] TPP WARMSTART\PKPRELOAD1.MAT Opened
+MAT PGM=MATRIX (v.08/05/2014 [6.1.1])  DATE=Sun Sep 14 11:17:22 2014 
+ID=
+PAR Zones=2578 M=15
+  AUTO1HBW  AUTO1HBNW  AUTO1NHB  AUTO1SOVIE  AUTO2HBW  AUTO2HBNW  AUTO2NHB  AUTO3HBW  AUTO3HBO
+  AUTO3NHB  EESO  IEHO  EEHO  IIIETK  EETK
+
+
+F(629): Listing of statements with errors during initial analysis.
+
+COMP  : MW[07]=MI.2.1*prttrkfac
+               ******
+F(161): MI.2.1 is unrecognized variable name
+
+MATRIX   ReturnCode = 2  Elapsed Time = 00:00:02
+################################################################################

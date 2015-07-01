@@ -1,0 +1,860 @@
+&PROJFIL
+EXP0 1 1Link/Net. 2    C:\NERPM43\APPLICATIONS\WARMSTART\TOLLLINK_10A.DBF          
+EXP0 2 1Lookup File 1  C:\NERPM43\APPLICATIONS\WARMSTART\VFACTORS_10A.csv          
+EXP0 3 1Lookup File 2  C:\NERPM43\APPLICATIONS\WARMSTART\SPDCAP.CSV                
+EXP0 4 1Turn Penalties C:\NERPM43\APPLICATIONS\WARMSTART\TCARDS_10A.PEN            
+EXP0 0 0Network File   C:\NERPM43\APPLICATIONS\WARMSTART\UNLOADED_{ALT}{Year}.NET  
+EXP0 1 0Matrix File 1  C:\NERPM43\APPLICATIONS\WARMSTART\CONGSKIM_{ALT}{Year}_AM.MAT
+EXP0 3 0Matrix File 1  C:\NERPM43\APPLICATIONS\WARMSTART\CONGSKIM_{ALT}{Year}_MD.MAT
+EXP1 0 1Line File 1    C:\NERPM43\applications\Warmstart\TROUTE_10A.LIN            
+EXP1 1 1System File 1  C:\NERPM43\applications\Warmstart\SYSTEM.PTS                
+EXP1 3 1Link/Net. 1    C:\NERPM43\applications\Warmstart\PreAssign_AM.NET          
+EXP1 1 0Print Data 4   {SCENARIO_DIR}\output\NTLEG11PK_{alt}{year}.NTL             
+EXP1 2 0Print Data 5   {SCENARIO_DIR}\output\NTLEG12PK_{alt}{year}.NTL             
+EXP1 3 0Print Data 6   {SCENARIO_DIR}\output\NTLEG4PK_{alt}{year}.NTL              
+EXP1 4 0Print Data 4   {SCENARIO_DIR}\output\NTLEG11OP_{alt}{year}.NTL             
+EXP1 5 0Print Data 5   {SCENARIO_DIR}\output\NTLEG12OP_{alt}{year}.NTL             
+EXP1 7 0Network File   {SCENARIO_DIR}\output\HwyLoad2_MD_{alt}{year}.net           
+EXP1 8 0Network File   {SCENARIO_DIR}\output\HWYLOAD2_AM_{Alt}{Year}.NET           
+EXP1 9 0Record File 1  {SCENARIO_DIR}\output\STATDATA_{alt}{year}.DBF              
+EXP1 100NTLegs File    {SCENARIO_DIR}\OUTPUT\NTLEG2PK_{ALT}{Year}.NTL              
+EXP1 110Print Data 1   {SCENARIO_DIR}\output\NTLEG1PK_{alt}{year}.NTL              
+EXP1 120Print Data 1   {SCENARIO_DIR}\output\NTLEG1OP_{alt}{year}.NTL              
+EXP1 130NTLegs File    {SCENARIO_DIR}\OUTPUT\NTLEG2OP_{ALT}{Year}.NTL              
+EXP2 1 1Line File 1    C:\NERPM43\applications\Warmstart\TROUTE_10A.LIN            
+EXP2 2 1System File 1  C:\NERPM43\applications\Warmstart\SYSTEM.PTS                
+EXP2 7 1Fares File     C:\NERPM43\applications\Warmstart\TFARES_10A.FAR            
+EXP2 0 0Matrix File 1  {SCENARIO_DIR}\output\TSKIMPK3.{alt}{year}                  
+EXP2 2 0Matrix File 1  {SCENARIO_DIR}\output\TSKIMPK1.{alt}{year}                  
+11
+0
+0
+NETWORKS
+NW
+00
+
+
+Tue Jun 24 11:40:14 2014
+
+C:\NERPM43\APPLICATIONS\WARMSTART.APP
+C:\NERPM43\APPLICATIONS\WARMSTART\NETWOR00.APP
+VOYAGER
+
+
+1
+Highway Network 
+490,-222,0,0,Arial Black,12,900,0,0,5066061
+1
+Transit Network
+2187,-166,0,0,Arial Black,12,900,0,0,5066061
+&End_TextAnnotation
+English
+#PROGRAM0
+7
+1
+1
+
+C:\NERPM43\APPLICATIONS\WARMSTART\HIGHWA00.APP
+HIGHWAY NETWORK
+
+0
+1
+0
+
+
+999999
+564
+-579
+965
+-699
+0
+0
+0
+#INFIL0
+Link/Net. 1
+Highway Network
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\MicroCodedHnet42.net
+1
+0001
+      
+999999
+209
+-489
+551
+-546
+-1
+-1
+0
+#INFIL1
+Link/Net. 2
+Toll Links
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\TOLLLINK_10A.DBF
+1
+0002
+      
+999999
+209
+-550
+551
+-607
+-1
+-9
+1
+#INFIL2
+Lookup File 1
+VFactors File
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\VFACTORS_10A.csv
+1
+0021
+      
+999999
+209
+-611
+551
+-668
+-1
+-9
+1
+#INFIL3
+Lookup File 2
+SPDCAP File
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\SPDCAP.CSV
+1
+0022
+      
+999999
+209
+-672
+551
+-729
+-1
+-9
+1
+#INFIL4
+Turn Penalties
+Turn Penalties: PK
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\TCARDS_10A.PEN
+1
+0424
+      
+999999
+209
+-733
+551
+-790
+-1
+-9
+1
+#OUTFIL0
+Network File
+Unloaded Network
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\UNLOADED_{ALT}{Year}.NET
+1
+0301
+      
+999999
+984
+-489
+1320
+-546
+1
+#OUTFIL1
+Matrix File 1
+AM Hway Skims
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\CONGSKIM_{ALT}{Year}_AM.MAT
+1
+0401
+      
+999999
+984
+-550
+1320
+-607
+1
+#OUTFIL2
+Matrix File 1
+PK CongTran Skims
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\RHSKIMTT.{ALT}{Year}
+1
+0501
+      
+999999
+984
+-611
+1320
+-668
+0
+#OUTFIL3
+Matrix File 1
+MD Hway Skims
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\CONGSKIM_{ALT}{Year}_MD.MAT
+1
+0601
+      
+999999
+984
+-672
+1320
+-729
+1
+#OUTFIL4
+Matrix File 1
+OP CongTran Skims
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\FHSKIMTT.{ALT}{Year}
+1
+0701
+      
+999999
+984
+-733
+1320
+-790
+0
+#PROGRAM1
+8
+1
+2
+
+C:\NERPM43\APPLICATIONS\WARMSTART\TNETPR00.APP
+Transit Prep
+
+0
+1
+0
+
+
+999999
+2314
+-663
+2715
+-783
+0
+0
+0
+#INFIL0
+Line File 1
+Transit Line File
+0
+0
+*
+C:\NERPM43\applications\Warmstart\TROUTE_10A.LIN
+1
+0104
+      
+999999
+1959
+-543
+2301
+-600
+-1
+-9
+1
+#INFIL1
+System File 1
+
+0
+0
+*
+C:\NERPM43\applications\Warmstart\SYSTEM.PTS
+1
+0111
+      
+999999
+1959
+-604
+2301
+-661
+-1
+-9
+1
+#INFIL2
+Lookup File 1
+
+0
+0
+*
+{CATALOG_DIR}\parameters\TRN_COEFFICIENTS.DBF
+1
+0832
+      
+999999
+1959
+-665
+2301
+-722
+-1
+-1
+0
+#INFIL3
+Link/Net. 1
+Loaded Net - AM
+0
+0
+*
+C:\NERPM43\applications\Warmstart\PreAssign_AM.NET
+1
+1201
+      
+999999
+1959
+-726
+2301
+-783
+-1
+-9
+1
+#INFIL4
+Matrix File 1
+PK Skims
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\RHSKIMTT.{ALT}{Year}
+1
+2001
+      
+999999
+1959
+-787
+2301
+-844
+0
+2
+0
+#INFIL5
+Matrix File 2
+OP Skim Tranplan
+0
+0
+*
+C:\NERPM43\APPLICATIONS\WARMSTART\FHSKIMTT.{ALT}{Year}
+1
+2002
+      
+999999
+1959
+-848
+2301
+-905
+0
+4
+0
+#OUTFIL0
+Print Data 1
+Zones AT
+0
+0
+*
+{SCENARIO_DIR}\output\ZONESAT.DAT
+1
+0004
+      
+999999
+2734
+-303
+3070
+-360
+0
+#OUTFIL1
+Print Data 4
+NT LEG11 PK
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG11PK_{alt}{year}.NTL
+1
+0234
+      
+999999
+2734
+-364
+3070
+-421
+1
+#OUTFIL2
+Print Data 5
+NT LEG12 PK
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG12PK_{alt}{year}.NTL
+1
+0235
+      
+999999
+2734
+-425
+3070
+-482
+1
+#OUTFIL3
+Print Data 6
+NT LEG4 PK
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG4PK_{alt}{year}.NTL
+1
+0236
+      
+999999
+2734
+-486
+3070
+-543
+1
+#OUTFIL4
+Print Data 4
+NT LEG11 OP
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG11OP_{alt}{year}.NTL
+1
+1034
+      
+999999
+2734
+-547
+3070
+-604
+1
+#OUTFIL5
+Print Data 5
+NT LEG12 OP
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG12OP_{alt}{year}.NTL
+1
+1035
+      
+999999
+2734
+-608
+3070
+-665
+1
+#OUTFIL6
+Print Data 6
+NT LEG4 OP
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG4OP_{alt}{year}.NTL
+1
+1036
+      
+999999
+2734
+-669
+3070
+-726
+0
+#OUTFIL7
+Network File
+ModifiedLoad-MD
+0
+0
+*
+{SCENARIO_DIR}\output\HwyLoad2_MD_{alt}{year}.net
+1
+1101
+      
+999999
+2734
+-730
+3070
+-787
+1
+#OUTFIL8
+Network File
+ModifiedLoad-AM
+0
+0
+*
+{SCENARIO_DIR}\output\HWYLOAD2_AM_{Alt}{Year}.NET
+1
+1201
+      
+999999
+2734
+-791
+3070
+-848
+1
+#OUTFIL9
+Record File 1
+STATDATA
+0
+0
+*
+{SCENARIO_DIR}\output\STATDATA_{alt}{year}.DBF
+1
+1321
+      
+999999
+2734
+-852
+3070
+-909
+1
+#OUTFIL10
+NTLegs File
+NTLEG2 PK
+0
+0
+*
+{SCENARIO_DIR}\OUTPUT\NTLEG2PK_{ALT}{Year}.NTL
+1
+1707
+      
+999999
+2734
+-913
+3070
+-970
+1
+#OUTFIL11
+Print Data 1
+NTLEG1 PK
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG1PK_{alt}{year}.NTL
+1
+1800
+      
+999999
+2734
+-974
+3070
+-1031
+1
+#OUTFIL12
+Print Data 1
+NTLEG1 OP
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG1OP_{alt}{year}.NTL
+1
+1801
+      
+999999
+2734
+-1035
+3070
+-1092
+1
+#OUTFIL13
+NTLegs File
+NTLEG2 OP
+0
+0
+*
+{SCENARIO_DIR}\OUTPUT\NTLEG2OP_{ALT}{Year}.NTL
+1
+1907
+      
+999999
+2734
+-1096
+3070
+-1153
+1
+#PROGRAM2
+1
+1
+3
+
+C:\NERPM43\APPLICATIONS\WARMSTART\TNETPRESKIM.APP
+TransitPreSkims
+
+0
+1
+0
+
+
+999999
+2314
+-1567
+2715
+-1687
+0
+0
+0
+#INFIL0
+Network File
+ModifiedLoad-AM
+0
+0
+*
+{SCENARIO_DIR}\output\HWYLOAD2_AM_{Alt}{Year}.NET
+1
+0001
+      
+999999
+1959
+-1327
+2301
+-1384
+1
+8
+0
+#INFIL1
+Line File 1
+
+0
+0
+*
+C:\NERPM43\applications\Warmstart\TROUTE_10A.LIN
+1
+0002
+      
+999999
+1959
+-1388
+2301
+-1445
+-1
+-9
+1
+#INFIL2
+System File 1
+
+0
+0
+*
+C:\NERPM43\applications\Warmstart\SYSTEM.PTS
+1
+0017
+      
+999999
+1959
+-1449
+2301
+-1506
+-1
+-9
+1
+#INFIL3
+NTLegs File 1
+
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG1PK_{alt}{year}.NTL
+1
+0018
+      
+999999
+1959
+-1510
+2301
+-1567
+1
+11
+0
+#INFIL4
+NTLegs File 2
+
+0
+0
+*
+{SCENARIO_DIR}\OUTPUT\NTLEG2PK_{ALT}{Year}.NTL
+1
+0019
+      
+999999
+1959
+-1571
+2301
+-1628
+1
+10
+0
+#INFIL5
+NTLegs File 3
+
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG11PK_{alt}{year}.NTL
+1
+0020
+      
+999999
+1959
+-1632
+2301
+-1689
+1
+1
+0
+#INFIL6
+NTLegs File 4
+
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG12PK_{alt}{year}.NTL
+1
+0021
+      
+999999
+1959
+-1693
+2301
+-1750
+1
+2
+0
+#INFIL7
+Fares File
+
+0
+0
+*
+C:\NERPM43\applications\Warmstart\TFARES_10A.FAR
+1
+0023
+      
+999999
+1959
+-1754
+2301
+-1811
+-1
+-9
+1
+#INFIL8
+Network File
+ModifiedLoad-MD
+0
+0
+*
+{SCENARIO_DIR}\output\HwyLoad2_MD_{alt}{year}.net
+1
+0501
+      
+999999
+1959
+-1815
+2301
+-1872
+1
+7
+0
+#INFIL9
+NTLegs File 1
+
+0
+0
+*
+{SCENARIO_DIR}\output\NTLEG4PK_{alt}{year}.NTL
+1
+0518
+      
+999999
+1959
+-1876
+2301
+-1933
+1
+3
+0
+#OUTFIL0
+Matrix File 1
+
+0
+0
+*
+{SCENARIO_DIR}\output\TSKIMPK3.{alt}{year}
+1
+0801
+      
+999999
+2734
+-1507
+3070
+-1564
+1
+#OUTFIL1
+Matrix File 2
+
+0
+0
+*
+{SCENARIO_DIR}\output\TSKIMPK4.{alt}{year}
+1
+0802
+      
+999999
+2734
+-1568
+3070
+-1625
+0
+#OUTFIL2
+Matrix File 1
+
+0
+0
+*
+{SCENARIO_DIR}\output\TSKIMPK1.{alt}{year}
+1
+0901
+      
+999999
+2734
+-1629
+3070
+-1686
+1
+#OUTFIL3
+Matrix File 2
+
+0
+0
+*
+{SCENARIO_DIR}\output\TSKIMPK2.{alt}{year}
+1
+0902
+      
+999999
+2734
+-1690
+3070
+-1747
+0

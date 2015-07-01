@@ -1,0 +1,14 @@
+; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+RUN PGM=PUBLIC TRANSPORT PRNFILE="C:\KUMARA\NERPM\CUBE\STPTR00I.PRN" MSG='auto-prj stop to stop file'
+FILEO REPORTO = "C:\KUMARA\NERPM\CUBE\STPTR00J.PRN"
+FILEO STOP2STOPO = "C:\KUMARA\NERPM\CUBE\STPTR00D.DBF",
+     ACCUMULATE=firstlastbymode, MODES=27, N={ZONESA}-99999
+
+PARAMETERS NOROUTEERRS=9999999, NOROUTEMSGS=0,USERCLASSES=4,
+           TRIPSIJ[1]=0,
+           TRIPSIJ[2]=0,
+           TRIPSIJ[3]=0,
+           TRIPSIJ[4]=10
+
+
+ENDRUN

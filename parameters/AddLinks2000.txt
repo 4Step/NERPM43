@@ -1,0 +1,308 @@
+38041     80001     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+37797     80002     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+37401     80003     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+36642     80004     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+35753     80005     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+37705     80006     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+38313     80007     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+38942     80008     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+80001     38041     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+80002     37797     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+80003     37401     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+80004     36642     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+80005     35753     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+80006     37705     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+80007     38313     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+80008     38942     999.0     999.0     0.10      1.00      11        11        59 59 59                               Skyway Connector - Street to Platform
+80006     80062     999.0     999.0     0.10      1.00      11        11         0  0 59                               BRT Station - Skyway Station Connector - San Marco
+80008     80063     999.0     999.0     0.10      1.00      11        11         0  0 59                               BRT Station - Skyway Station Connector - Kings Ave
+80062     80006     999.0     999.0     0.10      1.00      11        11         0  0 59                               BRT Station - Skyway Station Connector - San Marco
+80063     80008     999.0     999.0     0.10      1.00      11        11         0  0 59                               BRT Station - Skyway Station Connector - Kings Ave
+80011     22809     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+80011     22789     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+80012     24051     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+80012     23998     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+80013     24478     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80013     24460     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80014     23571     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80015     24641     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80017     27277     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80018     28555     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80021     35753     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80021     35792     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80022     38041     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80023     37797     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80023     38053     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80024     39768     0.10      1.00      0.10      1.00      11        21         0  0 49                               BRT Connector - Street to Platform
+80026     74535     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80026     74537     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80027     53396     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80027     53385     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80027     53384     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80027     53364     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80029     55159     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80030     55076     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+80030     55077     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+80031     55061     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80032     55228     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80033     56122     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+80034     56676     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+80035     56914     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80036     57080     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80037     58083     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80038     58969     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80039     58991     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80039     58992     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80040     60551     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80040     60554     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80041     62349     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80041     62350     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80042     64141     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80042     64139     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80043     67879     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80043     67846     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80044     65945     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80044     65943     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80045     67107     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80046     67472     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80046     67438     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80047     68139     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80047     68103     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80048     68220     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80048     68194     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80049     68399     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80049     68369     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80050     68676     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80050     68659     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+80054     35802     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80055     39035     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80056     36508     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80057     36593     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80057     36403     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80057     36417     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80058     37043     0.10      1.00      0.10      1.00      11        21         0  0 49                               BRT Connector - Street to Platform
+80059     37095     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80060     37401     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80060     37445     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80061     36642     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80061     36674     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80062     37705     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80063     38942     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+80064     42809     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80065     45594     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80065     45528     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+80066     46549     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+80067     50462     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+80067     50436     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+80067     50157     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+80068     53622     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+80068     53610     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+80069     55436     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+22809     80011     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+22789     80011     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+24051     80012     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+23998     80012     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+24478     80013     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+24460     80013     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+23571     80014     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+24641     80015     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+27277     80017     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+28555     80018     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+35753     80021     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+35792     80021     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+38041     80022     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+37797     80023     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+38053     80023     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+39768     80024     0.10      1.00      0.10      1.00      11        21         0  0 49                               BRT Connector - Street to Platform
+74535     80026     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+74537     80026     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+53396     80027     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+53385     80027     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+53384     80027     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+53364     80027     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+55159     80029     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+55076     80030     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+55077     80030     0.10      1.00      0.10      1.00      11        42         0  0 49                               BRT Connector - Street to Platform
+55061     80031     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+55228     80032     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+56122     80033     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+56676     80034     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+56914     80035     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+57080     80036     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+58083     80037     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+58969     80038     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+58991     80039     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+58992     80039     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+60551     80040     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+60554     80040     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+62349     80041     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+62350     80041     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+64141     80042     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+64139     80042     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+67879     80043     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+67846     80043     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+65945     80044     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+65943     80044     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+67107     80045     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+67472     80046     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+67438     80046     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+68139     80047     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+68103     80047     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+68220     80048     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+68194     80048     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+68399     80049     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+68369     80049     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+68676     80050     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+68659     80050     0.10      1.00      0.10      1.00      11        43         0  0 49                               BRT Connector - Street to Platform
+35802     80054     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+39035     80055     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+36508     80056     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+36593     80057     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+36403     80057     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+36417     80057     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+37043     80058     0.10      1.00      0.10      1.00      11        21         0  0 49                               BRT Connector - Street to Platform
+37095     80059     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+37401     80060     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+37445     80060     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+36642     80061     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+36674     80061     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+37705     80062     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+38942     80063     0.10      1.00      0.10      1.00      11        11         0  0 49                               BRT Connector - Street to Platform
+42809     80064     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+45594     80065     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+45528     80065     0.10      1.00      0.10      1.00      11        23         0  0 49                               BRT Connector - Street to Platform
+46549     80066     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+50462     80067     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+50436     80067     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+50157     80067     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+53622     80068     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+53610     80068     0.10      1.00      0.10      1.00      11        41         0  0 49                               BRT Connector - Street to Platform
+55436     80069     0.10      1.00      0.10      1.00      11        31         0  0 49                               BRT Connector - Street to Platform
+80001     80002     999.0     999.0     0.28      1.88      23        11        69 69 69                               Skyway Link - FCCJ-Hemmingway
+80002     80003     999.0     999.0     0.26      2.02      23        11        69 69 69                               Skyway Link - Hemmingway-Central
+80003     80004     999.0     999.0     0.31      1.93      23        11        69 69 69                               Skyway Link - Central-Jefferson
+80004     80005     999.0     999.0     0.30      2.03      23        11        69 69 69                               Skyway Link - Jefferson-Terminal
+80003     80006     999.0     999.0     1.00      4.10      23        11        69 69 69                               Skyway Link - Central-SanMarco
+80006     80007     999.0     999.0     0.25      1.47      23        11        69 69 69                               Skyway Link - SanMarco-Riverplace
+80007     80008     999.0     999.0     0.31      1.77      23        11        69 69 69                               Skyway Link - Riverplace-KingsAv
+80008     80007     999.0     999.0     0.31      1.48      23        11        69 69 69                               Skyway Link - Rev Riverplace-KingsAv
+80007     80006     999.0     999.0     0.25      1.33      23        11        69 69 69                               Skyway Link - Rev SanMarco-Riverplace
+80006     80003     999.0     999.0     1.00      3.78      23        11        69 69 69                               Skyway Link - Rev Central-SanMarco
+80005     80004     999.0     999.0     0.30      1.98      23        11        69 69 69                               Skyway Link - Rev Jefferson-Terminal
+80004     80003     999.0     999.0     0.31      1.93      23        11        69 69 69                               Skyway Link - Rev Central-Jefferson
+80003     80002     999.0     999.0     0.26      2.07      23        11        69 69 69                               Skyway Link - Rev Hemmingway-Central
+80002     80001     999.0     999.0     0.28      1.98      23        11        69 69 69                               Skyway Link - Rev FCCJ-Hemmingway
+80011     80012     999.0     999.0     1.87      4.13      22        42         0  0 69                               BRT Link - Kingsley-Orange
+80012     80013     999.0     999.0     2.06      4.65      22        42         0  0 69                               BRT Link - Orange-Townsend
+80013     80014     999.0     999.0     2.07      3.98      22        23         0  0 69                               BRT Link - Townsend-103rd
+80014     80015     999.0     999.0     1.60      3.77      22        23         0  0 69                               BRT Link - 103rd-Wilson
+80015     80016     999.0     999.0     1.02      3.34      22        23         0  0 69                               BRT Link - Wilson-San Juan
+80016     80017     999.0     999.0     1.45      3.03      22        31         0  0 69                               BRT Link - San Juan-FCCJ South
+80017     80018     999.0     999.0     0.72      1.80      22        31         0  0 69                               BRT Link - FCCJ South-Edgewood
+80018     80019     999.0     999.0     0.82      2.34      22        31         0  0 69                               BRT Link - Edgewood-College
+80019     80020     999.0     999.0     0.74      2.23      22        31         0  0 69                               BRT Link - College-Stockton
+80020     80021     999.0     999.0     1.42      3.85      22        31         0  0 69                               BRT Link - Stockton-Intermodal
+80021     80061     999.0     999.0     0.37      1.32      22        11         0  0 69                               BRT Link - Intermodal-Acosta
+80060     80024     999.0     999.0     1.00      2.86      22        11         0  0 69                               BRT Link - Central-Maxwell
+80024     80025     999.0     999.0     0.30      1.32      22        21         0  0 69                               BRT Link - Maxwell-Veterans
+80025     80026     999.0     999.0     2.50      3.55      22        11         0  0 69                               BRT Link - Veterans-UnivBlvd
+80026     80027     999.0     999.0     0.80      1.62      22        23         0  0 69                               BRT Link - UnivBlvd-Arlington
+80027     80028     999.0     999.0     1.14      2.03      22        23         0  0 69                               BRT Link - Arlington-Regency
+80028     80029     999.0     999.0     1.78      3.46      22        42         0  0 69                               BRT Link - Regency-Ivey
+80029     80030     999.0     999.0     0.96      1.98      22        31         0  0 69                               BRT Link - Ivey-Southisde
+80030     80031     999.0     999.0     1.14      2.76      22        42         0  0 69                               BRT Link - Southside-Touchton
+80031     80032     999.0     999.0     0.43      1.40      22        31         0  0 69                               BRT Link - Touchton-TouchtonHomes
+80032     80033     999.0     999.0     0.52      1.55      22        31         0  0 69                               BRT Link - TouchtonHomes-GatePrkwy
+80033     80034     999.0     999.0     0.55      1.60      22        41         0  0 69                               BRT Link - GatePrkwy-BCBS
+80034     80035     999.0     999.0     0.90      2.45      22        41         0  0 69                               BRT Link - BCBS-Deerwood
+80035     80036     999.0     999.0     0.99      2.22      22        31         0  0 69                               BRT Link - Deerwood-Downshire
+80036     80037     999.0     999.0     0.56      1.59      22        31         0  0 69                               BRT Link - Downshire-BurntMill
+80037     80038     999.0     999.0     0.80      2.28      22        31         0  0 69                               BRT Link - BurntMill-9A
+80030     80039     999.0     999.0     2.91      5.50      22        31         0  0 69                               BRT Link - Southside-FCCJSouth
+80039     80040     999.0     999.0     1.32      3.40      22        23         0  0 69                               BRT Link - FCCJSouth-Kernan
+80040     80041     999.0     999.0     1.78      2.92      22        31         0  0 69                               BRT Link - Kernan-Hodges
+80041     80042     999.0     999.0     1.28      2.82      22        23         0  0 69                               BRT Link - Hodges-SanPablo
+80042     80043     999.0     999.0     2.78      5.78      22        31         0  0 69                               BRT Link - SanPablo-Beaches
+80044     80045     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Penman-A1A
+80045     80046     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - A1A-Seagate
+80046     80043     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Seagate-Beaches
+80043     80047     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Beaches-18th
+80047     80048     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - 18th-SandCastle
+80048     80049     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - SandCastle-Solano
+80049     80050     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Solano-TournamentClub
+80051     80052     999.0     999.0     999.0     999.0     22        31         0  0 69                               BRT Link - DunnAv-Sountel
+80052     80053     999.0     999.0     999.0     999.0     22        23         0  0 69                               BRT Link - Sountel-Edgewood
+80053     80054     999.0     999.0     999.0     999.0     22        31         0  0 69                               BRT Link - Edgewood-LemTurner
+80055     80054     999.0     999.0     3.79      4.72      22        31         0  0 69                               BRT Link - BuschDr-LemTurner
+80054     80056     999.0     999.0     1.10      2.15      22        31         0  0 69                               BRT Link - LemTurner-Gateway
+80056     80057     999.0     999.0     0.69      1.50      22        31         0  0 69                               BRT Link - Gateway-MLK
+80057     80058     999.0     999.0     1.15      2.55      22        31         0  0 69                               BRT Link - MLK-Shands
+80058     80059     999.0     999.0     0.70      2.03      22        21         0  0 69                               BRT Link - Shands-Jefferson
+80059     80022     999.0     999.0     0.34      1.77      22        11         0  0 69                               BRT Link - Jefferson-FCCJ
+80022     80023     999.0     999.0     0.25      1.08      22        11         0  0 69                               BRT Link - FCCJ-Hemmingway
+80023     80060     999.0     999.0     0.20      0.99      22        11         0  0 69                               BRT Link - Hemmingway-Central
+80060     80061     999.0     999.0     0.25      1.10      22        11         0  0 69                               BRT Link - Central-Jefferson
+80062     80063     999.0     999.0     0.45      1.51      22        11         0  0 69                               BRT Link - SanMarco-KingsAv
+80063     80064     999.0     999.0     2.25      5.03      22        11         0  0 69                               BRT Link - KingsAv-Emerson
+80064     80065     999.0     999.0     1.56      3.32      22        23         0  0 69                               BRT Link - Emerson-UniversityBlvd
+80065     80066     999.0     999.0     0.49      1.71      22        23         0  0 69                               BRT Link - UniversityBlvd-BowdenRd
+80066     80067     999.0     999.0     1.37      2.72      22        41         0  0 69                               BRT Link - BowdenRd-JTB
+80067     80068     999.0     999.0     2.23      3.13      22        41         0  0 69                               BRT Link - JTB-Baymeadows
+80068     80069     999.0     999.0     2.95      3.87      22        41         0  0 69                               BRT Link - Baymeadows-Avenues
+80012     80011     999.0     999.0     1.87      4.13      22        42         0  0 69                               BRT Link - Rev Kingsley-Orange
+80013     80012     999.0     999.0     2.06      4.65      22        42         0  0 69                               BRT Link - Rev Orange-Townsend
+80014     80013     999.0     999.0     2.07      3.98      22        23         0  0 69                               BRT Link - Rev Townsend-103rd
+80015     80014     999.0     999.0     1.60      3.77      22        23         0  0 69                               BRT Link - Rev 103rd-Wilson
+80016     80015     999.0     999.0     1.02      3.34      22        23         0  0 69                               BRT Link - Rev Wilson-San Juan
+80017     80016     999.0     999.0     1.45      3.03      22        31         0  0 69                               BRT Link - Rev San Juan-FCCJ South
+80018     80017     999.0     999.0     0.72      1.80      22        31         0  0 69                               BRT Link - Rev FCCJ South-Edgewood
+80019     80018     999.0     999.0     0.82      2.34      22        31         0  0 69                               BRT Link - Rev Edgewood-College
+80020     80019     999.0     999.0     0.74      2.23      22        31         0  0 69                               BRT Link - Rev College-Stockton
+80021     80020     999.0     999.0     1.42      3.85      22        31         0  0 69                               BRT Link - Rev Stockton-Intermodal
+80061     80021     999.0     999.0     0.37      1.32      22        11         0  0 69                               BRT Link - Rev Intermodal-Acosta
+80024     80060     999.0     999.0     1.00      2.86      22        11         0  0 69                               BRT Link - Rev Central-Maxwell
+80025     80024     999.0     999.0     0.30      1.32      22        21         0  0 69                               BRT Link - Rev Maxwell-Veterans
+80026     80025     999.0     999.0     2.50      3.55      22        11         0  0 69                               BRT Link - Rev Veterans-UnivBlvd
+80027     80026     999.0     999.0     0.80      1.62      22        23         0  0 69                               BRT Link - Rev UnivBlvd-Arlington
+80028     80027     999.0     999.0     1.14      2.03      22        23         0  0 69                               BRT Link - Rev Arlington-Regency
+80029     80028     999.0     999.0     1.78      3.46      22        42         0  0 69                               BRT Link - Rev Regency-Ivey
+80030     80029     999.0     999.0     0.96      1.98      22        31         0  0 69                               BRT Link - Rev Ivey-Southisde
+80031     80030     999.0     999.0     1.14      2.76      22        42         0  0 69                               BRT Link - Rev Southside-Touchton
+80032     80031     999.0     999.0     0.43      1.40      22        31         0  0 69                               BRT Link - Rev Touchton-TouchtonHomes
+80033     80032     999.0     999.0     0.52      1.55      22        31         0  0 69                               BRT Link - Rev TouchtonHomes-GatePrkwy
+80034     80033     999.0     999.0     0.55      1.60      22        41         0  0 69                               BRT Link - Rev GatePrkwy-BCBS
+80035     80034     999.0     999.0     0.90      2.45      22        41         0  0 69                               BRT Link - Rev BCBS-Deerwood
+80036     80035     999.0     999.0     0.99      2.22      22        31         0  0 69                               BRT Link - Rev Deerwood-Downshire
+80037     80036     999.0     999.0     0.56      1.59      22        31         0  0 69                               BRT Link - Rev Downshire-BurntMill
+80038     80037     999.0     999.0     0.80      2.28      22        31         0  0 69                               BRT Link - Rev BurntMill-9A
+80039     80030     999.0     999.0     2.91      5.50      22        31         0  0 69                               BRT Link - Rev Southside-FCCJSouth
+80040     80039     999.0     999.0     1.32      3.40      22        23         0  0 69                               BRT Link - Rev FCCJSouth-Kernan
+80041     80040     999.0     999.0     1.78      2.92      22        31         0  0 69                               BRT Link - Rev Kernan-Hodges
+80042     80041     999.0     999.0     1.28      2.82      22        23         0  0 69                               BRT Link - Rev Hodges-SanPablo
+80043     80042     999.0     999.0     2.78      5.78      22        31         0  0 69                               BRT Link - Rev SanPablo-Beaches
+80045     80044     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Rev Penman-A1A
+80046     80045     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Rev A1A-Seagate
+80043     80046     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Rev Seagate-Beaches
+80047     80043     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Rev Beaches-18th
+80048     80047     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Rev 18th-SandCastle
+80049     80048     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Rev SandCastle-Solano
+80050     80049     999.0     999.0     999.0     999.0     22        43         0  0 69                               BRT Link - Rev Solano-TournamentClub
+80052     80051     999.0     999.0     999.0     999.0     22        31         0  0 69                               BRT Link - Rev DunnAv-Sountel
+80053     80052     999.0     999.0     999.0     999.0     22        23         0  0 69                               BRT Link - Rev Sountel-Edgewood
+80054     80053     999.0     999.0     999.0     999.0     22        31         0  0 69                               BRT Link - Rev Edgewood-LemTurner
+80054     80055     999.0     999.0     3.79      4.72      22        31         0  0 69                               BRT Link - Rev BuschDr-LemTurner
+80056     80054     999.0     999.0     1.10      2.15      22        31         0  0 69                               BRT Link - Rev LemTurner-Gateway
+80057     80056     999.0     999.0     0.69      1.50      22        31         0  0 69                               BRT Link - Rev Gateway-MLK
+80058     80057     999.0     999.0     1.15      2.55      22        31         0  0 69                               BRT Link - Rev MLK-Shands
+80059     80058     999.0     999.0     0.70      2.03      22        21         0  0 69                               BRT Link - Rev Shands-Jefferson
+80022     80059     999.0     999.0     0.34      1.77      22        11         0  0 69                               BRT Link - Rev Jefferson-FCCJ
+80023     80022     999.0     999.0     0.25      1.08      22        11         0  0 69                               BRT Link - Rev FCCJ-Hemmingway
+80060     80023     999.0     999.0     0.20      0.99      22        11         0  0 69                               BRT Link - Rev Hemmingway-Central
+80061     80060     999.0     999.0     0.25      1.10      22        11         0  0 69                               BRT Link - Rev Central-Jefferson
+80063     80062     999.0     999.0     0.45      1.51      22        11         0  0 69                               BRT Link - Rev SanMarco-KingsAv
+80064     80063     999.0     999.0     2.25      5.03      22        11         0  0 69                               BRT Link - Rev KingsAv-Emerson
+80065     80064     999.0     999.0     1.56      3.32      22        23         0  0 69                               BRT Link - Rev Emerson-UniversityBlvd
+80066     80065     999.0     999.0     0.49      1.71      22        23         0  0 69                               BRT Link - Rev UniversityBlvd-BowdenRd
+80067     80066     999.0     999.0     1.37      2.72      22        41         0  0 69                               BRT Link - Rev BowdenRd-JTB
+80068     80067     999.0     999.0     2.23      3.13      22        41         0  0 69                               BRT Link - Rev JTB-Baymeadows
+80069     80068     999.0     999.0     2.95      3.87      22        41         0  0 69                               BRT Link - Rev Baymeadows-Avenues

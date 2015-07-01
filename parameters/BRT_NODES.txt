@@ -1,0 +1,59 @@
+80011     420008    2120485   BRT E-SW Kingsley Av
+80012     422682    2128627   BRT E-SW Orange Park Mall
+80013     423558    2140322   BRT E-SW Townsend Blvd
+80014     421495    2151182   BRT E-SW 103rd St
+80015     423902    2159019   BRT E-SW Wilson Blvd
+80016     426879    2163193   BRT E-SW San Juan
+80017     428702    2169799   BRT E-SW FCCJ Kent Campus
+80018     431157    2172634   BRT E-SW Edgewood Av
+80019     433696    2174211   BRT E-SW College St
+80020     438282    2177768   BRT E-SW Stockton St
+80021     444528    2180130   BRT E-SW Intermodal Center
+80022     448314    2181708   BRT - FCCJ Transit Station
+80023     448057    2180310   BRT - Hemmingway Station
+80024     451392    2178546   BRT E-SW Maxwell House
+80025     452952    2179198   BRT E-SW Veterans Memorial
+80026     465506    2179520   BRT E-SW University Blvd Station
+80027     475420    2179539   BRT E-SW Arlington Central Station
+80028     480671    2177312   BRT E-SW Regency Square Mall
+80029     480055    2169565   BRT E-SW Ivey Rd Station
+80030     479870    2164586   BRT E-SW Southside Blvd Station
+80031     479924    2158489   BRT E-SW Touchton Rd Station
+80032     482470    2157289   BRT E-SW Touchton Homes Station
+80033     482725    2155133   BRT E-SW Gate Parkway Station
+80034     485288    2153040   BRT E-SW BCBS Station
+80035     486952    2150041   BRT E-SW Deerwood Office Park Station
+80036     490759    2150688   BRT E-SW Downshire Station
+80037     491979    2148235   BRT E-SW Burnt Mill Rd Station
+80038     494673    2145978   BRT E-SW 9A Station
+80039     495234    2164837   BRT E-SW FCCJ South
+80040     502652    2164927   BRT E-SW Kernan Blvd
+80041     511429    2164989   BRT E-SW Hodges Blvd
+80042     518170    2165090   BRT E-SW San Pablo Rd
+80043     532351    2165092   BRT E-SW Beaches Station
+80044     527148    2178238   BRT E-SW Penman Rd
+80045     530546    2178249   BRT E-SW A1A Station
+80046     531204    2172090   BRT E-SW Seagate Station
+80047     533562    2159129   BRT E-SW 18th Av Station
+80048     533605    2154029   BRT E-SW Sand Castle Station
+80049     534532    2144334   BRT E-SW Solano Station
+80050     536043    2137038   BRT E-SW Tournament Player's Club
+80051     436806    2219868   BRT N-SE Dunn Av Station
+80052     439586    2209724   BRT N-SE Sountel Dr
+80053     442072    2202843   BRT N-SE Edgewood Av
+80054     444507    2199365   BRT N-SE Lem Turner Rd
+80055     450100    2217248   BRT N-SE Busch Dr Station
+80056     445725    2193275   BRT N-SE Gateway Mall
+80057     445572    2190345   BRT N-SE MLK Parkway
+80058     446664    2186471   BRT N-SE Shands Hospital
+80059     446511    2183419   BRT N-SE Jefferson at 1st
+80060     447627    2179609   BRT N-SE Central Station Skyway
+80061     446044    2179726   BRT N-SE Jefferson Station Skyway
+80062     447822    2176137   BRT N-SE San Marco Skyway
+80063     449930    2175216   BRT N-SE Kings Av Skyway
+80064     456359    2165084   BRT N-SE Emerson St
+80065     461028    2157499   BRT N-SE University Blvd
+80066     462881    2156869   BRT N-SE Bowden Rd
+80067     469215    2151305   BRT N-SE JTB Blvd
+80068     476020    2140977   BRT N-SE Baymeadows Rd
+80069     480700    2126841   BRT N-SE The Avenues Mall

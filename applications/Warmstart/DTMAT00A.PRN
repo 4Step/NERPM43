@@ -1,0 +1,86 @@
+ 
+MATRIX (v.07/26/2012 [6.0.2])  Tue May 27 19:43:15 2014
+
+FILEI ZDATI[1] = "C:\NERPM43\media\NERPM4_TAZ_W05ZONALDATA.DBF",
+ Z=TAZ
+FILEO RECO[1] = "C:\NERPM43\parameters\CTPPDistricts.dbf",
+ form=10.0, FIELDS=zt,CTPPDISTN3,COUNTY
+
+
+PAR ZONES=2494
+
+COUNTY=ZI.1.COUNTY
+
+CTPPDISTN3=ZI.1.CTPP_DIST
+
+zt=Z
+
+WRITE RECO=1
+
+;External Zones
+if (z=2494)
+  loop jj=2494+1,2578
+    zt=jj
+
+    if (zt>=2550 & zt<=2553)         ;Nassau Co Externals
+      CTPPDISTN3=11
+      COUNTY=7
+    endif
+
+    if (zt>=2554 & zt<=2563)         ;Baker Co Externals
+      CTPPDISTN3=11
+      COUNTY=7
+    endif
+
+    if (zt>=2564 & zt<=2568)         ;Clay Co Externals
+      CTPPDISTN3=11
+      COUNTY=7
+    endif
+
+    if (zt>=2569 & zt<=2575)         ;Putnam Co Externals
+      CTPPDISTN3=11
+      COUNTY=7
+    endif
+
+    if (zt>=2576 & zt<=2578)         ;St. Johns Co Externals
+      CTPPDISTN3=11
+      COUNTY=7
+    endif
+
+    WRITE RECO=1
+
+  endloop
+endifPage 446  (VOYAGER MATRIX) 
+Parsons Brinckerhoff
+---------------------------
+
+
+
+MATRIX Stack Size = 1412 bytes.
+................................................................................
+
+
+FILEI ZDATI=C:\NERPM43\media\NERPM4_TAZ_W05ZONALDATA.DBF Opened: 1862 data records  48 Fields:
+ID(N)           AREA(N)         ID1(N)          ID11(N)         COUNTY(N)      
+NERPM_TAZ(N)    DISTRICT(N)     NEW_TAZ(N)      ORIG_TAZ(N)     AREA1(N)       
+NAME(N)         SORTKEY(N)      TAZ(N)          CNTYNAME(C)     SFDU(N)        
+SFSEAS(N)       SFVAC(N)        SFPOP(N)        SF0CAR(N)       SF1CAR(N)      
+SF2CAR(N)       SF3CAR(N)       MFDU(N)         MFSEAS(N)       MFVAC(N)       
+MFPOP(N)        MF0CAR(N)       MF1CAR(N)       MF2CAR(N)       MF3CAR(N)      
+HMUNITS(N)      HMPCTOCC(N)     HMPOP(N)        TOTAL_DWEL(N)   TOTAL_POP(N)   
+EMPMFG(N)       EMPIND(N)       EMPCOM(N)       EMPSVC(N)       EMPTOT(N)      
+SCHENR(N)       STPKCST(N)      LTPKCST(N)      RTS05TAZ(N)     NERPM00TAZ(N)  
+ATTRDIST(N)     CTPP_DIST(N)    DIST_RTS(N)    
+
+
+Variable Values at end of Iteration 1 I loop:
+
+    COUNTY    :     7
+    CTPPDISTN3:    11
+    ZT        : 2,578
+    JJ        : 2,579
+
+M(751): 2,578 records written to RECO[1]=C:\NERPM43\parameters\CTPPDistricts.dbf.
+
+MATRIX   ReturnCode = 0  Elapsed Time = 00:00:01
+################################################################################

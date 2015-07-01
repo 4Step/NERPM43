@@ -370,6 +370,9 @@ array LM=500, HM=500, LF=500, HF=500, LA=500, HA=500, SR=500
      ENDIF
 
      IF (TFGTIME>0 & TFGMODE=23) M23TIMEPK=TFGTIME     ; skyway times
+     IF (TFGTIME>0 & TFGMODE=26) M26TIMEPK=TFGTIME     ; CR Times
+
+     
      IF (TFGTIME>0&TFGMODE=22)
       M22TIMEPK=TFGTIME     ; Premium buses coded as a local bus mode
       M24TIMEPK=TFGTIME     ; BRT times
@@ -515,7 +518,10 @@ array LM=500, HM=500, LF=500, HF=500, LA=500, HA=500, SR=500
         M26TIMEOP=999
      ENDIF
      
-     IF (TFGTIME>0 & TFGMODE=23) M23TIMEPK=TFGTIME     ; skyway times
+     IF (TFGTIME>0 & TFGMODE=23) M23TIMEOP=TFGTIME     ; skyway times
+      
+     IF (TFGTIME>0 & TFGMODE=26) M26TIMEOP=TFGTIME     ; CR times
+     
      IF (TFGTIME>0&TFGMODE=22)
       M22TIMEOP=TFGTIME     ; Premium buses coded as a local bus mode
       M24TIMEOP=TFGTIME     ; BRT times
@@ -857,75 +863,25 @@ WRITE RECO=1
 ENDRUN
 
 
-; Script for program NETWORK in file "C:\NERPM43\APPLICATIONS\CNNET00G.S"
-;;<<Default Template>><<NETWORK>><<Default>>;;
+; Script for program NETWORK in file "C:\NERPM43\applications\ACNET00G.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=NETWORK MSG='Peak rename fields for AUOTCON'
+RUN PGM=NETWORK PRNFILE="{SCENARIO_DIR}\output\ACNET01G.PRN" MSG='Peak add PNR Lot data to Station Node'
 FILEI LINKI[1] = "{SCENARIO_DIR}\output\PRELOAD_PT.NET"
+FILEI NODEI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DAT",
+var=STANUM,N,STAZ,MAXD,SPACE,STACOST_AM,STACOST_MD,STAW_PNR,STAW_KNR,TSTYPE,STA_NAME(C)
 FILEO NETO = "{SCENARIO_DIR}\output\PRELOAD_PT_TEMP.NET"
 
-PROCESS  PHASE=INPUT,filei=NI.1
-ENDPROCESS
-
-PROCESS PHASE = NODEMERGE
-      COMP STAZ   = STATZONE
-      COMP STANUM = TSSTATION_{year}{alt}
-      COMP TSTYPE = TSTYPE_{year}{alt}
-      COMP MAXD   = TSRANGE_{year}{alt}
-      COMP SPACE  = TSPARKSPACE_{year}{alt}
-      COMP STACOST_AM = TSCOSTAM_{year}{alt}
-      COMP STACOST_MD = TSCOSTMD_{year}{alt}
-ENDPROCESS
-
-
-PROCESS  PHASE=LINKMERGE  
-; Use this phase to make computations and selections of any data on the LINKI files.
-
-
-ENDPROCESS
-
-
-PROCESS  PHASE=SUMMARY   
-; Use this phase for combining and reporting of working variables.
-
-
-ENDPROCESS
 ENDRUN
 
 
-; Script for program NETWORK in file "C:\NERPM43\APPLICATIONS\CNNET00H.S"
-;;<<Default Template>><<NETWORK>><<Default>>;;
+; Script for program NETWORK in file "C:\NERPM43\applications\ACNET00H.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=NETWORK MSG='OffPeak rename fields for AUOTCON'
+RUN PGM=NETWORK PRNFILE="{SCENARIO_DIR}\output\ACNET01H.PRN" MSG='Off-Peak add PNR Lot data to Station Node'
 FILEI LINKI[1] = "{SCENARIO_DIR}\output\UNLOADED_PT.NET"
+FILEI NODEI[2] = "{SCENARIO_DIR}\OUTPUT\STATDATA_{alt}{Year}.DAT" ,
+var=STANUM,N,STAZ,MAXD,SPACE,STACOST_AM,STACOST_MD,STAW_PNR,STAW_KNR,TSTYPE,STA_NAME(C)
 FILEO NETO = "{SCENARIO_DIR}\output\UNLOADED_PT_TEMP.NET"
 
-PROCESS  PHASE=INPUT,filei=NI.1
-ENDPROCESS
-
-PROCESS PHASE = NODEMERGE
-      COMP STAZ   = STATZONE
-      COMP STANUM = TSSTATION_{year}{alt}
-      COMP TSTYPE = TSTYPE_{year}{alt}
-      COMP MAXD   = TSRANGE_{year}{alt}
-      COMP SPACE  = TSPARKSPACE_{year}{alt}
-      COMP STACOST_AM = TSCOSTAM_{year}{alt}
-      COMP STACOST_MD = TSCOSTMD_{year}{alt}
-ENDPROCESS
-
-
-PROCESS  PHASE=LINKMERGE  
-; Use this phase to make computations and selections of any data on the LINKI files.
-
-
-ENDPROCESS
-
-
-PROCESS  PHASE=SUMMARY   
-; Use this phase for combining and reporting of working variables.
-
-
-ENDPROCESS
 ENDRUN
 
 
@@ -933,7 +889,7 @@ ENDRUN
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\CNPTR00A.PRN" MSG='Peak period connectors'
 FILEO PRINTO[2] = "{SCENARIO_DIR}\output\PT_AUTOCON_PK.OUT"
-FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG2PK_10A.PRN"
+FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG2PK_{Year}{alt}.PRN"
 FILEI FACTORI[2] = "{SCENARIO_DIR}\output\PNRCOMRAIL.FAC"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\PRELSKIMS.MAT"
 
@@ -958,8 +914,8 @@ PARAMETERS USERCLASSES=1,FARE=N, MAPSCALE=5280, HDWAYPERIOD=1,
            TRANTIME[21]=LI.M21TIMEPK,
            TRANTIME[22]=LI.M22TIMEPK,
            TRANTIME[23]=LI.M23TIMEPK,
-           TRANTIME[24]=LI.M24TIMEPK
-           TRANTIME[25]=LI.M25TIMEPK
+           TRANTIME[24]=LI.M24TIMEPK,
+           TRANTIME[25]=LI.M25TIMEPK,
            TRANTIME[26]=LI.M26TIMEPK
 REPORT LINES=T
 
@@ -1007,10 +963,13 @@ PROCESS PHASE=DATAPREP
        MAXBACKDIST=4.0,
        MAXBACKFACTOR=0.30,
        DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=528,
        
-       PREMIUMMODE=0,1,0,1,1,1,1,  
-       MODEPRIORITY=7,5,7,2,1,4,3,
-       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY =7,7,7,2,2,1,
+
        VOT=6,3,
        OVTRATIO=2,2,
        AATRATIO=1.5,1.5,
@@ -1025,12 +984,52 @@ PROCESS PHASE=DATAPREP
        
        CONNREPORT=1,
        GENREPORT=2,
-       TIMEMAT=MI.1.4,
-       DISTMAT=MI.1.2,
-       AUTOMATCH=T      ; T=original logic, F=Enhanced logic
+       TIMEMAT=MI.1.4*100,
+       DISTMAT=MI.1.2*100,
+       AUTOMATCH=T     ; T=original logic, F=Enhanced logic
+
+     GENERATE, 
+       KNR=T,
+       PERIOD=1,
+       
+       PNRMODE=2,
+       KNRMODE=3,
+       INTERNALZONES=1-2494,
+       
+       CBDZONE=730,
+       ORIGINTERMTIME=2.0,
+       DEFDRIVETIME=20.0,
+       CHECKRELEVANCE=1,
+       CHECKBACKTRACK=1,
+       MAXBACKDIST=4.0,
+       MAXBACKFACTOR=0.30,
+       DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=528,
+       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY =7,7,7,2,2,1,
+
+       VOT=6,3,
+       OVTRATIO=2,2,
+       AATRATIO=1.5,1.5,
+       AUTOCCPNR=1.2,
+       AUTOCCKNR=1.2,
+       AOC=9.5,
+       INFLTRANSITFARE=0.9487,
+       INFLAOC=1,
+       INFLPARKINGCOST=1.1976,
+       MAXCHECK = 10,
+       MAXCONN = 5,
+       
+       CONNREPORT=1,
+       GENREPORT=2,
+       TIMEMAT=MI.1.4*100,
+       DISTMAT=MI.1.2*100,
+       AUTOMATCH=F     ; T=original logic, F=Enhanced logic
 
   ENDPROCESS
-
 ENDRUN
 
 
@@ -1038,7 +1037,7 @@ ENDRUN
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=PUBLIC TRANSPORT PRNFILE="C:\NERPM43\APPLICATIONS\CNPTR00E.PRN" MSG='OffPeak period connectors'
 FILEO PRINTO[2] = "{Scenario_Dir}\output\PT_AUTOCON_PK.OUT"
-FILEO PRINTO[1] = "{Scenario_Dir}\output\NTLEG2OP_10A.PRN"
+FILEO PRINTO[1] = "{Scenario_Dir}\output\NTLEG2OP_{Year}{alt}.PRN"
 FILEI FACTORI[2] = "{SCENARIO_DIR}\output\PNRCOMRAIL.FAC"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\FHSKIMS.MAT"
 
@@ -1084,7 +1083,7 @@ PROCESS PHASE=DATAPREP
 
   ; 11 - Fixed-guideway to bus
   GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,INCLUDELINK=(LI.FACILITY_TYPE=59),
-            NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=1,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
+            NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=2,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
   ;11 - station to nearby stop (transfer connectors)
   READ, FILE = "{SCENARIO_DIR}\OUTPUT\STATXFER_TMP.DAT"
 
@@ -1110,9 +1109,13 @@ PROCESS PHASE=DATAPREP
        MAXBACKDIST=4.0,
        MAXBACKFACTOR=0.30,
        DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=5,
        
-       PREMIUMMODE=0,1,0,1,1,1,1,  
-       MODEPRIORITY=7,5,7,2,1,4,3,
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY=7,7,7,2,2,1,
+
        
        VOT=6,3,
        OVTRATIO=2,2,
@@ -1131,9 +1134,51 @@ PROCESS PHASE=DATAPREP
        TIMEMAT=MI.1.4,
        DISTMAT=MI.1.2,
        AUTOMATCH=T      ; T=original logic, F=Enhanced logic
+ 
+  
+   GENERATE, 
+       KNR=T,
+       PERIOD=1,
+       
+       PNRMODE=2,
+       KNRMODE=3,
+       INTERNALZONES=1-2494,
+       
+       CBDZONE=730,
+       ORIGINTERMTIME=2.0,
+       DEFDRIVETIME=20.0,
+       CHECKRELEVANCE=1,
+       CHECKBACKTRACK=1,
+       MAXBACKDIST=4.0,
+       MAXBACKFACTOR=0.30,
+       DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=5,
+       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY=7,7,7,2,2,1,
+
+       
+       VOT=6,3,
+       OVTRATIO=2,2,
+       AATRATIO=1.5,1.5,
+       AUTOCCPNR=1.2,
+       AUTOCCKNR=1.2,
+       AOC=9.5,
+       INFLTRANSITFARE=0.9487,
+       INFLAOC=1,
+       INFLPARKINGCOST=1.1976,
+       MAXCHECK = 10,
+       MAXCONN = 5,
+       
+       CONNREPORT=1,
+       GENREPORT=2,
+       TIMEMAT=MI.1.4*100,
+       DISTMAT=MI.1.2*100,
+       AUTOMATCH=F      ; T=original logic, F=Enhanced logic
 
   ENDPROCESS
-
 ENDRUN
 
 
@@ -1148,8 +1193,8 @@ FILEI RECI = "{SCENARIO_DIR}\output\NTLEGPK_{YEAR}{ALT}.NTL"
 FILEO PRINTO[3] = "{SCENARIO_DIR}\output\NTLEG3PK_{alt}{year}.NTL"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\output\NTLEG2PK_{alt}{year}.NTL"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG1PK_TEM.NTL"
-FILEO PRINTO[4] = "{SCENARIO_DIR}\output\NTLEG11PK_{alt}{year}.NTL"
-FILEO PRINTO[5] = "{SCENARIO_DIR}\output\NTLEG12PK_{alt}{year}.NTL"
+FILEO PRINTO[4] = "{Scenario_Dir}\output\NTLEG11PK_{alt}{year}.NTL"
+FILEO PRINTO[5] = "{Scenario_Dir}\output\NTLEG12PK_{alt}{year}.NTL"
 
 ; print all removed NTLEGS
 s1=strpos('NT',reci)
@@ -2111,8 +2156,9 @@ ENDIF
 
 ; Script for program PUBLIC TRANSPORT in file "C:\NERPM43\APPLICATIONS\TNPTR00W.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11.PRN" MSG='Peak transit paths and skims'
-FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B.PRN"
+RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11_@period@_@access_NAME@.PRN" MSG='Peak transit paths and skims'
+FILEI NTLEGI[1] = "{SCENARIO_DIR}\output\NTLEG1@Period@_{alt}{year}.NTL"
+FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B_@period@_@access_NAME@.PRN"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\trnskim_@period@_@access_NAME@.rpt"
 
  ; OUTPUT files
@@ -2150,11 +2196,10 @@ FILEI FACTORI[2] = "{SCENARIO_DIR}\output\@ACCESS_NAME@LOCAL.FAC"
 FILEI FACTORI[3] = "{SCENARIO_DIR}\output\@ACCESS_NAME@EXPRESS.FAC"
 FILEI FACTORI[4] = "{SCENARIO_DIR}\output\@ACCESS_NAME@BRTLRT.FAC"
 FILEI FACTORI[5] = "{SCENARIO_DIR}\output\@ACCESS_NAME@COMRAIL.FAC"
-FILEI NTLEGI[1] = "{SCENARIO_DIR}\output\NTLEG1PK_{alt}{year}.NTL"
-FILEI NTLEGI[2] = "{SCENARIO_DIR}\output\NTLEG2PK_{alt}{year}.NTL"
-FILEI NTLEGI[3] = "{Scenario_Dir}\output\NTLEG3PK_{alt}{year}.NTL"
-FILEI NTLEGI[4] = "{SCENARIO_DIR}\output\NTLEG11PK_{alt}{year}.NTL"
-FILEI NTLEGI[5] = "{Scenario_Dir}\output\NTLEG12PK_{alt}{year}.NTL"
+FILEI NTLEGI[2] = "{SCENARIO_DIR}\output\NTLEG2@Period@_{alt}{year}.NTL"
+FILEI NTLEGI[3] = "{SCENARIO_DIR}\output\NTLEG3@Period@_{alt}{year}.NTL"
+FILEI NTLEGI[4] = "{SCENARIO_DIR}\output\NTLEG11@Period@_{alt}{year}.NTL"
+FILEI NTLEGI[5] = "{SCENARIO_DIR}\output\NTLEG12@Period@_{alt}{year}.NTL"
 FILEI NETI = "{SCENARIO_DIR}\output\@HWYNET@_Temp.NET"
 
 zonemsg=50
@@ -2244,7 +2289,7 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=TIMEA(0,27)                                       ; Project mode time       
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -2284,7 +2329,7 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=TIMEA(0,27)                                      ; Project mode time
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -2325,7 +2370,8 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=0
+       ;       MW[9]=TIMEA(0,27)                                       ; Project mode time
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -2432,15 +2478,18 @@ LOOP per = 1, 2, 1
     EndIF
    
     
-    ; End of PILOT Script
+    
+; End of PILOT Script
 
 ; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\TRMAT00A.S"
 ;;<<Default Template>><<MATRIX>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX PRNFILE="{SCENARIO_DIR}\output\createDriveToSkywaySkims.PRN"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\DriveToSkyway.dat"
-FILEO MATO[2] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY_ZONES.MAT",MO=11,Name= PNRZONE
-FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY.MAT",MO=1-10,Name= Toll,Distance,WtTime,WlkTime,SkyTime,Xfers,IWait,Xwait,Fare,TotalTime
+FILEO MATO[2] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY_ZONES.MAT",
+MO=11,Name= PNRZONE
+FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY.MAT",
+MO=1-10,Name= Toll,Distance,WtTime,WlkTime,SkyTime,Xfers,IWait,Xwait,Fare,TotalTime
 FILEI MATI[2] = "{SCENARIO_DIR}\output\TSKIM_@todToken@_SKYWAY_Walk_{Alt}{year}.MAT"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\@hwySkim@"
     

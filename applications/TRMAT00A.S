@@ -79,11 +79,11 @@ FILEI MATI[1] = "{SCENARIO_DIR}\output\@hwySkim@"
     
       
       ; Trace for selected I-J pair (I= 1, J = 767)
-      IF (I== 1 & J == 1) print form =15.4,list=  'I'(6),'J'(6),'Lot'(4),'pnr'(4),'PT1'(12),'PT2'(12),'PT3'(12),'PT4'(12),'PT5'(12),'PT6'(12), FILE = "C:\NERPM43_Delivered\APPLICATIONS\DRIVETOSKYWAY.DAT"
+      IF (I== 1 & J == 1) print form =15.4,list=  'I'(6),'J'(6),'Lot'(4),'pnr'(4),'PT1'(12),'PT2'(12),'PT3'(12),'PT4'(12),'PT5'(12),'PT6'(12), FILE = "C:\NERPM43\APPLICATIONS\DRIVETOSKYWAY.DAT"
       IF (I== 767 & J == 688) print form =15.4,list= I(6), J(6), chosenPnr(4), pnr[chosenPnr](4), 
                                                    pathTime[1](12.4), pathTime[2](12.4), pathTime[3](12.4), 
                                                    pathTime[4](12.4), pathTime[5](12.4), pathTime[6](12.4), 
- FILE = "C:\NERPM43_Delivered\APPLICATIONS\DRIVETOSKYWAY.DAT"
+ FILE = "C:\NERPM43\APPLICATIONS\DRIVETOSKYWAY.DAT"
     
     ENDJLOOP
     

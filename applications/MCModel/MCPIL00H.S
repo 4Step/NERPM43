@@ -1,4 +1,0 @@
-
-
-*if exist "{SCENARIO_DIR}\output\MODESHARES.CSV" del "{SCENARIO_DIR}\output\MODESHARES.CSV"
-*if exist "{SCENARIO_DIR}\output\CBDSHARES.CSV" del "{SCENARIO_DIR}\output\CBDSHARES.CSV"

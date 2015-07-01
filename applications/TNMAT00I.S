@@ -14,12 +14,6 @@ FILEO MATO[1] = "{SCENARIO_DIR}\output\TSKIMOP1_{Alt}{year}.MAT",
  MO=151-165,DEC=15*2, NAME=WalkTime,AutoTime,XferTime,BusTime,PremBusTime,CircTime,RailTime,CRailTime,OtherTime,ProjTime,NumXfers,InitWait,XferWait,Fare,TotalTime
 FILEI LOOKUPI[1] = "{CATALOG_DIR}\parameters\TRN_COEFFICIENTS.DBF"
 FILEI MATI[7] = "{SCENARIO_DIR}\output\AllWalk_{alt}{year}.MAT"
-FILEI MATI[6] = "{SCENARIO_DIR}\output\TSKIMOP6_TEM.MAT"
-FILEI MATI[5] = "{SCENARIO_DIR}\output\TSKIMOP5_TEM.MAT"
-FILEI MATI[4] = "{SCENARIO_DIR}\output\TSKIMOP4_TEM.MAT"
-FILEI MATI[3] = "{SCENARIO_DIR}\output\TSKIMOP3_TEM.MAT"
-FILEI MATI[2] = "{SCENARIO_DIR}\output\TSKIMOP2_TEM.MAT"
-FILEI MATI[1] = "{SCENARIO_DIR}\output\TSKIMOP1_TEM.MAT"
 
 zonemsg=100
 

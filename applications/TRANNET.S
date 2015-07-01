@@ -18,7 +18,7 @@ ENDIF
 
 ; End of PILOT Script
 
-  LOOP ACCESS = 1, 3, 1
+  LOOP ACCESS = 1, 2, 1
 
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
@@ -35,8 +35,9 @@ ENDIF
 
 ; Script for program PUBLIC TRANSPORT in file "C:\NERPM43\APPLICATIONS\TNPTR00W.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11.PRN" MSG='Peak transit paths and skims'
-FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B.PRN"
+RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11_@period@_@access_NAME@.PRN" MSG='Peak transit paths and skims'
+FILEI NTLEGI[1] = "{SCENARIO_DIR}\output\NTLEG1@Period@_{alt}{year}.NTL"
+FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B_@period@_@access_NAME@.PRN"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\trnskim_@period@_@access_NAME@.rpt"
 
  ; OUTPUT files
@@ -74,11 +75,10 @@ FILEI FACTORI[2] = "{SCENARIO_DIR}\output\@ACCESS_NAME@LOCAL.FAC"
 FILEI FACTORI[3] = "{SCENARIO_DIR}\output\@ACCESS_NAME@EXPRESS.FAC"
 FILEI FACTORI[4] = "{SCENARIO_DIR}\output\@ACCESS_NAME@BRTLRT.FAC"
 FILEI FACTORI[5] = "{SCENARIO_DIR}\output\@ACCESS_NAME@COMRAIL.FAC"
-FILEI NTLEGI[1] = "{SCENARIO_DIR}\output\NTLEG1PK_{alt}{year}.NTL"
-FILEI NTLEGI[2] = "{SCENARIO_DIR}\output\NTLEG2PK_{alt}{year}.NTL"
-FILEI NTLEGI[3] = "{Scenario_Dir}\output\NTLEG3PK_{alt}{year}.NTL"
-FILEI NTLEGI[4] = "{SCENARIO_DIR}\output\NTLEG11PK_{alt}{year}.NTL"
-FILEI NTLEGI[5] = "{Scenario_Dir}\output\NTLEG12PK_{alt}{year}.NTL"
+FILEI NTLEGI[2] = "{SCENARIO_DIR}\output\NTLEG2@Period@_{alt}{year}.NTL"
+FILEI NTLEGI[3] = "{SCENARIO_DIR}\output\NTLEG3@Period@_{alt}{year}.NTL"
+FILEI NTLEGI[4] = "{SCENARIO_DIR}\output\NTLEG11@Period@_{alt}{year}.NTL"
+FILEI NTLEGI[5] = "{SCENARIO_DIR}\output\NTLEG12@Period@_{alt}{year}.NTL"
 FILEI NETI = "{SCENARIO_DIR}\output\@HWYNET@_Temp.NET"
 
 zonemsg=50
@@ -168,7 +168,7 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=TIMEA(0,27)                                       ; Project mode time       
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -208,7 +208,7 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=TIMEA(0,27)                                      ; Project mode time
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -249,7 +249,8 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=0
+       ;       MW[9]=TIMEA(0,27)                                       ; Project mode time
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers

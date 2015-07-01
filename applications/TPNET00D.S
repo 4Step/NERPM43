@@ -93,7 +93,10 @@ array LM=500, HM=500, LF=500, HF=500, LA=500, HA=500, SR=500
         M26TIMEOP=999
      ENDIF
      
-     IF (TFGTIME>0 & TFGMODE=23) M23TIMEPK=TFGTIME     ; skyway times
+     IF (TFGTIME>0 & TFGMODE=23) M23TIMEOP=TFGTIME     ; skyway times
+      
+     IF (TFGTIME>0 & TFGMODE=26) M26TIMEOP=TFGTIME     ; CR times
+     
      IF (TFGTIME>0&TFGMODE=22)
       M22TIMEOP=TFGTIME     ; Premium buses coded as a local bus mode
       M24TIMEOP=TFGTIME     ; BRT times

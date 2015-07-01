@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=NETWORK PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\WARMSTART\PreAssignXtabsmry.PRN" MSG='Prepare for HEVAL for All Area'
+RUN PGM=NETWORK PRNFILE="C:\NERPM43\APPLICATIONS\WARMSTART\PreAssignXtabsmry.PRN" MSG='Prepare for HEVAL for All Area'
 FILEI LINKI[1] = "{SCENARIO_DIR}\output\PreAssignLOADED_HEVAL.NET"
 FILEO PRINTO[2] = "{Scenario_Dir}\output\PreAssignPROFILE_NERPM4.TXT"
 FILEO LINKO = "{Scenario_Dir}\output\PreAssignLinksCnt0.DBF",

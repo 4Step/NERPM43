@@ -2529,6 +2529,9 @@ array LM=500, HM=500, LF=500, HF=500, LA=500, HA=500, SR=500
      ENDIF
 
      IF (TFGTIME>0 & TFGMODE=23) M23TIMEPK=TFGTIME     ; skyway times
+     IF (TFGTIME>0 & TFGMODE=26) M26TIMEPK=TFGTIME     ; CR Times
+
+     
      IF (TFGTIME>0&TFGMODE=22)
       M22TIMEPK=TFGTIME     ; Premium buses coded as a local bus mode
       M24TIMEPK=TFGTIME     ; BRT times
@@ -2674,7 +2677,10 @@ array LM=500, HM=500, LF=500, HF=500, LA=500, HA=500, SR=500
         M26TIMEOP=999
      ENDIF
      
-     IF (TFGTIME>0 & TFGMODE=23) M23TIMEPK=TFGTIME     ; skyway times
+     IF (TFGTIME>0 & TFGMODE=23) M23TIMEOP=TFGTIME     ; skyway times
+      
+     IF (TFGTIME>0 & TFGMODE=26) M26TIMEOP=TFGTIME     ; CR times
+     
      IF (TFGTIME>0&TFGMODE=22)
       M22TIMEOP=TFGTIME     ; Premium buses coded as a local bus mode
       M24TIMEOP=TFGTIME     ; BRT times
@@ -3016,75 +3022,25 @@ WRITE RECO=1
 ENDRUN
 
 
-; Script for program NETWORK in file "C:\NERPM43\APPLICATIONS\CNNET00G.S"
-;;<<Default Template>><<NETWORK>><<Default>>;;
+; Script for program NETWORK in file "C:\NERPM43\applications\ACNET00G.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=NETWORK MSG='Peak rename fields for AUOTCON'
+RUN PGM=NETWORK PRNFILE="{SCENARIO_DIR}\output\ACNET01G.PRN" MSG='Peak add PNR Lot data to Station Node'
 FILEI LINKI[1] = "{SCENARIO_DIR}\output\PRELOAD_PT.NET"
+FILEI NODEI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DAT",
+var=STANUM,N,STAZ,MAXD,SPACE,STACOST_AM,STACOST_MD,STAW_PNR,STAW_KNR,TSTYPE,STA_NAME(C)
 FILEO NETO = "{SCENARIO_DIR}\output\PRELOAD_PT_TEMP.NET"
 
-PROCESS  PHASE=INPUT,filei=NI.1
-ENDPROCESS
-
-PROCESS PHASE = NODEMERGE
-      COMP STAZ   = STATZONE
-      COMP STANUM = TSSTATION_{year}{alt}
-      COMP TSTYPE = TSTYPE_{year}{alt}
-      COMP MAXD   = TSRANGE_{year}{alt}
-      COMP SPACE  = TSPARKSPACE_{year}{alt}
-      COMP STACOST_AM = TSCOSTAM_{year}{alt}
-      COMP STACOST_MD = TSCOSTMD_{year}{alt}
-ENDPROCESS
-
-
-PROCESS  PHASE=LINKMERGE  
-; Use this phase to make computations and selections of any data on the LINKI files.
-
-
-ENDPROCESS
-
-
-PROCESS  PHASE=SUMMARY   
-; Use this phase for combining and reporting of working variables.
-
-
-ENDPROCESS
 ENDRUN
 
 
-; Script for program NETWORK in file "C:\NERPM43\APPLICATIONS\CNNET00H.S"
-;;<<Default Template>><<NETWORK>><<Default>>;;
+; Script for program NETWORK in file "C:\NERPM43\applications\ACNET00H.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=NETWORK MSG='OffPeak rename fields for AUOTCON'
+RUN PGM=NETWORK PRNFILE="{SCENARIO_DIR}\output\ACNET01H.PRN" MSG='Off-Peak add PNR Lot data to Station Node'
 FILEI LINKI[1] = "{SCENARIO_DIR}\output\UNLOADED_PT.NET"
+FILEI NODEI[2] = "{SCENARIO_DIR}\OUTPUT\STATDATA_{alt}{Year}.DAT" ,
+var=STANUM,N,STAZ,MAXD,SPACE,STACOST_AM,STACOST_MD,STAW_PNR,STAW_KNR,TSTYPE,STA_NAME(C)
 FILEO NETO = "{SCENARIO_DIR}\output\UNLOADED_PT_TEMP.NET"
 
-PROCESS  PHASE=INPUT,filei=NI.1
-ENDPROCESS
-
-PROCESS PHASE = NODEMERGE
-      COMP STAZ   = STATZONE
-      COMP STANUM = TSSTATION_{year}{alt}
-      COMP TSTYPE = TSTYPE_{year}{alt}
-      COMP MAXD   = TSRANGE_{year}{alt}
-      COMP SPACE  = TSPARKSPACE_{year}{alt}
-      COMP STACOST_AM = TSCOSTAM_{year}{alt}
-      COMP STACOST_MD = TSCOSTMD_{year}{alt}
-ENDPROCESS
-
-
-PROCESS  PHASE=LINKMERGE  
-; Use this phase to make computations and selections of any data on the LINKI files.
-
-
-ENDPROCESS
-
-
-PROCESS  PHASE=SUMMARY   
-; Use this phase for combining and reporting of working variables.
-
-
-ENDPROCESS
 ENDRUN
 
 
@@ -3092,7 +3048,7 @@ ENDRUN
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\CNPTR00A.PRN" MSG='Peak period connectors'
 FILEO PRINTO[2] = "{SCENARIO_DIR}\output\PT_AUTOCON_PK.OUT"
-FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG2PK_10A.PRN"
+FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG2PK_{Year}{alt}.PRN"
 FILEI FACTORI[2] = "{SCENARIO_DIR}\output\PNRCOMRAIL.FAC"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\PRELSKIMS.MAT"
 
@@ -3117,8 +3073,8 @@ PARAMETERS USERCLASSES=1,FARE=N, MAPSCALE=5280, HDWAYPERIOD=1,
            TRANTIME[21]=LI.M21TIMEPK,
            TRANTIME[22]=LI.M22TIMEPK,
            TRANTIME[23]=LI.M23TIMEPK,
-           TRANTIME[24]=LI.M24TIMEPK
-           TRANTIME[25]=LI.M25TIMEPK
+           TRANTIME[24]=LI.M24TIMEPK,
+           TRANTIME[25]=LI.M25TIMEPK,
            TRANTIME[26]=LI.M26TIMEPK
 REPORT LINES=T
 
@@ -3166,10 +3122,13 @@ PROCESS PHASE=DATAPREP
        MAXBACKDIST=4.0,
        MAXBACKFACTOR=0.30,
        DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=528,
        
-       PREMIUMMODE=0,1,0,1,1,1,1,  
-       MODEPRIORITY=7,5,7,2,1,4,3,
-       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY =7,7,7,2,2,1,
+
        VOT=6,3,
        OVTRATIO=2,2,
        AATRATIO=1.5,1.5,
@@ -3184,12 +3143,54 @@ PROCESS PHASE=DATAPREP
        
        CONNREPORT=1,
        GENREPORT=2,
-       TIMEMAT=MI.1.4,
-       DISTMAT=MI.1.2,
-       AUTOMATCH=T      ; T=original logic, F=Enhanced logic
+       TIMEMAT=MI.1.4*100,
+       DISTMAT=MI.1.2*100,
+       AUTOMATCH=T     ; T=original logic, F=Enhanced logic
 
   ENDPROCESS
 
+     GENERATE, 
+       KNR=T,
+       PERIOD=1,
+       
+       PNRMODE=2,
+       KNRMODE=3,
+       INTERNALZONES=1-2494,
+       
+       CBDZONE=730,
+       ORIGINTERMTIME=2.0,
+       DEFDRIVETIME=20.0,
+       CHECKRELEVANCE=1,
+       CHECKBACKTRACK=1,
+       MAXBACKDIST=4.0,
+       MAXBACKFACTOR=0.30,
+       DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=528,
+       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY =7,7,7,2,2,1,
+
+       VOT=6,3,
+       OVTRATIO=2,2,
+       AATRATIO=1.5,1.5,
+       AUTOCCPNR=1.2,
+       AUTOCCKNR=1.2,
+       AOC=9.5,
+       INFLTRANSITFARE=0.9487,
+       INFLAOC=1,
+       INFLPARKINGCOST=1.1976,
+       MAXCHECK = 10,
+       MAXCONN = 5,
+       
+       CONNREPORT=1,
+       GENREPORT=2,
+       TIMEMAT=MI.1.4*100,
+       DISTMAT=MI.1.2*100,
+       AUTOMATCH=F     ; T=original logic, F=Enhanced logic
+
+  ENDPROCESS
 ENDRUN
 
 
@@ -3197,7 +3198,7 @@ ENDRUN
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=PUBLIC TRANSPORT PRNFILE="C:\NERPM43\APPLICATIONS\CNPTR00E.PRN" MSG='OffPeak period connectors'
 FILEO PRINTO[2] = "{Scenario_Dir}\output\PT_AUTOCON_PK.OUT"
-FILEO PRINTO[1] = "{Scenario_Dir}\output\NTLEG2OP_10A.PRN"
+FILEO PRINTO[1] = "{Scenario_Dir}\output\NTLEG2OP_{Year}{alt}.PRN"
 FILEI FACTORI[2] = "{SCENARIO_DIR}\output\PNRCOMRAIL.FAC"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\FHSKIMS.MAT"
 
@@ -3243,7 +3244,7 @@ PROCESS PHASE=DATAPREP
 
   ; 11 - Fixed-guideway to bus
   GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,INCLUDELINK=(LI.FACILITY_TYPE=59),
-            NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=1,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
+            NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=2,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
   ;11 - station to nearby stop (transfer connectors)
   READ, FILE = "{SCENARIO_DIR}\OUTPUT\STATXFER_TMP.DAT"
 
@@ -3269,9 +3270,13 @@ PROCESS PHASE=DATAPREP
        MAXBACKDIST=4.0,
        MAXBACKFACTOR=0.30,
        DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=5,
        
-       PREMIUMMODE=0,1,0,1,1,1,1,  
-       MODEPRIORITY=7,5,7,2,1,4,3,
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY=7,7,7,2,2,1,
+
        
        VOT=6,3,
        OVTRATIO=2,2,
@@ -3292,7 +3297,51 @@ PROCESS PHASE=DATAPREP
        AUTOMATCH=T      ; T=original logic, F=Enhanced logic
 
   ENDPROCESS
+  
+  
+   GENERATE, 
+       KNR=T,
+       PERIOD=1,
+       
+       PNRMODE=2,
+       KNRMODE=3,
+       INTERNALZONES=1-2494,
+       
+       CBDZONE=730,
+       ORIGINTERMTIME=2.0,
+       DEFDRIVETIME=20.0,
+       CHECKRELEVANCE=1,
+       CHECKBACKTRACK=1,
+       MAXBACKDIST=4.0,
+       MAXBACKFACTOR=0.30,
+       DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=5,
+       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY=7,7,7,2,2,1,
 
+       
+       VOT=6,3,
+       OVTRATIO=2,2,
+       AATRATIO=1.5,1.5,
+       AUTOCCPNR=1.2,
+       AUTOCCKNR=1.2,
+       AOC=9.5,
+       INFLTRANSITFARE=0.9487,
+       INFLAOC=1,
+       INFLPARKINGCOST=1.1976,
+       MAXCHECK = 10,
+       MAXCONN = 5,
+       
+       CONNREPORT=1,
+       GENREPORT=2,
+       TIMEMAT=MI.1.4*100,
+       DISTMAT=MI.1.2*100,
+       AUTOMATCH=F      ; T=original logic, F=Enhanced logic
+
+  ENDPROCESS
 ENDRUN
 
 
@@ -3307,8 +3356,8 @@ FILEI RECI = "{SCENARIO_DIR}\output\NTLEGPK_{YEAR}{ALT}.NTL"
 FILEO PRINTO[3] = "{SCENARIO_DIR}\output\NTLEG3PK_{alt}{year}.NTL"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\output\NTLEG2PK_{alt}{year}.NTL"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG1PK_TEM.NTL"
-FILEO PRINTO[4] = "{SCENARIO_DIR}\output\NTLEG11PK_{alt}{year}.NTL"
-FILEO PRINTO[5] = "{SCENARIO_DIR}\output\NTLEG12PK_{alt}{year}.NTL"
+FILEO PRINTO[4] = "{Scenario_Dir}\output\NTLEG11PK_{alt}{year}.NTL"
+FILEO PRINTO[5] = "{Scenario_Dir}\output\NTLEG12PK_{alt}{year}.NTL"
 
 ; print all removed NTLEGS
 s1=strpos('NT',reci)
@@ -4270,9 +4319,9 @@ ENDIF
 
 ; Script for program PUBLIC TRANSPORT in file "C:\NERPM43\APPLICATIONS\TNPTR00W.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11.PRN" MSG='Peak transit paths and skims'
+RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11_@period@_@access_NAME@.PRN" MSG='Peak transit paths and skims'
 FILEI NTLEGI[1] = "{SCENARIO_DIR}\output\NTLEG1@Period@_{alt}{year}.NTL"
-FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B.PRN"
+FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B_@period@_@access_NAME@.PRN"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\trnskim_@period@_@access_NAME@.rpt"
 
  ; OUTPUT files
@@ -4403,7 +4452,7 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=TIMEA(0,27)                                       ; Project mode time       
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -4443,7 +4492,7 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=TIMEA(0,27)                                      ; Project mode time
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -4484,7 +4533,8 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=0
+       ;       MW[9]=TIMEA(0,27)                                       ; Project mode time
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -4591,15 +4641,18 @@ LOOP per = 1, 2, 1
     EndIF
    
     
-    ; End of PILOT Script
+    
+; End of PILOT Script
 
 ; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\TRMAT00A.S"
 ;;<<Default Template>><<MATRIX>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX PRNFILE="{SCENARIO_DIR}\output\createDriveToSkywaySkims.PRN"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\DriveToSkyway.dat"
-FILEO MATO[2] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY_ZONES.MAT",MO=11,Name= PNRZONE
-FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY.MAT",MO=1-10,Name= Toll,Distance,WtTime,WlkTime,SkyTime,Xfers,IWait,Xwait,Fare,TotalTime
+FILEO MATO[2] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY_ZONES.MAT",
+MO=11,Name= PNRZONE
+FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY.MAT",
+MO=1-10,Name= Toll,Distance,WtTime,WlkTime,SkyTime,Xfers,IWait,Xwait,Fare,TotalTime
 FILEI MATI[2] = "{SCENARIO_DIR}\output\TSKIM_@todToken@_SKYWAY_Walk_{Alt}{year}.MAT"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\@hwySkim@"
     
@@ -5345,7 +5398,7 @@ ENDRUN
 RUN PGM=NETWORK PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGNET00A.PRN" MSG='Floating Zone Mixed Density'
 FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\MixedDensity.csv"
 FILEI LINKI[1] = "{SCENARIO_DIR}\OUTPUT\UNLOADED.NET"
-FILEI NODEI[2] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_10A.dbf",
+FILEI NODEI[2] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf",
  RENAME=Zone-N
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv"
 
@@ -5557,7 +5610,7 @@ RUN PGM=MATRIX PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGMAT00K.PRN" MSG='Auto Avail
 FILEI LOOKUPI[3] = "{SCENARIO_DIR}\Input\TRIPGEN\nftpo_incomebytaz2.dbf"
 FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\COEFF_AUTOOWN.csv"
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\OUTPUT\HHClass.DBF"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_10A.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
 FILEI ZDATI[5] = "{Scenario_Dir}\OUTPUT\WalkTranAcc.dbf"
 FILEI ZDATI[3] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv",
     Z=#1,TotHhlds=#2,TotEmp=#3,FloatHhld=#4,FloatEmp=#5,MixedDen=#6,CentX=#7,CentY=#8
@@ -5939,7 +5992,7 @@ FILEI LOOKUPI[6] = "{Scenario_Dir}\Input\TRIPGEN\OBO_ARates.csv"
 ; header #1 Purpose, #2 PurposeNo, #3 Retail Trade, #4 Arts, Entertainment, and Recreation, #5 Accommodation and Food Services, #6 Educational Services, #7	Health Care and Social Assistance, #8	enrlsc - enrollment pk-12, #9	enrluniv - university, #10 TotalHH
 
 FILEI LOOKUPI[7] = "{Scenario_Dir}\Input\TRIPGEN\school_enroll.dbf"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_10A.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\OUTPUT\TG_REPORT.TXT"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\TRIPGEN_DEBUG.TXT"
 
@@ -6844,7 +6897,7 @@ SLEEP TIME = 5
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 
-*Cluster NERPM 1-16 Start Exit
+*Cluster NERPM 1-12 Start Exit
 
 ; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Start Exit
 ; End of PILOT Script
@@ -7145,7 +7198,7 @@ FILEO MATO[8] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_XCHOICE_{Alt}{year}.M
             
         ; Zone and station data
 FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
-FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_A10.DBF"
+FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
@@ -8125,19 +8178,19 @@ FILEO MATO[1] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MC1.MAT",
             NAME=DA,SR2,SR3,DRVSKY,WALKSKY,WALKLOC,WALKEXP,WALKBRT,WALKCOM,PNREXP,PNRBRT,PNRCOM,KNRLOC,KNREXP,KNRBRT,KNRCOM,WALK,BIKE,PNRLOC
       
        ; Logsums by auto sufficiency (averaged across all access markets)
-FILEO MATO[2] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_A10.MAT",
+FILEO MATO[2] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_{alt}{Year}.MAT",
        MO=571,DEC=1*D,NAME=LSUM_M1 
        
         ; Exp(AutoUtility) for user benefits
 FILEO MATO[3] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_expautoutil.mat",
         MO=561,DEC=1*D,NAME=EXPA_M1 
        
-FILEO MATO[4] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_XCHOICE_A10.MAT",
+FILEO MATO[4] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_XCHOICE_{alt}{Year}.MAT",
        MO=528,DEC=1*D,NAME=LSUM_M1
             
         ; Zone and station data
 FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
-FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_A10.DBF"
+FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
@@ -9020,9 +9073,10 @@ ENDLOOP
    NERPM13.script.end, NERPM14.script.end, NERPM15.script.end,                              
    NERPM16.script.end,                                                
 printfiles=MERGE, checkReturnCode=T   
-*Cluster NERPM 1-16 Close Exit
+*Cluster NERPM 1-12 Close Exit
 
-; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Close Exit; End of PILOT Script
+; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Close Exit
+; End of PILOT Script
 
 ; PILOT Script
 
@@ -9617,7 +9671,7 @@ ENDRUN
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 
-*Cluster NERPM 1-16 Start Exit
+*Cluster NERPM 1-12 Start Exit
 
 ; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Start Exit
 ; End of PILOT Script
@@ -9916,7 +9970,7 @@ FILEO MATO[8] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_XCHOICE_{ALT}{YEAR}.M
 
                ; Zone and station data
 FILEI ZDATI[1] = "{SCENARIO_DIR}\INPUT\ZDATA_{YEAR}{ALT}.DBF"
-FILEI ZDATI[2] = "{SCENARIO_DIR}\OUTPUT\STATDATA_A10.DBF"
+FILEI ZDATI[2] = "{SCENARIO_DIR}\OUTPUT\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\INPUT\@PERIOD@_MC_CONSTANTS.CSV"
@@ -10911,7 +10965,7 @@ FILEO MATO[4] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_XCHOICE_{Alt}{year}.M
             
         ; Zone and station data
 FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
-FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_A10.DBF"
+FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
@@ -11794,9 +11848,10 @@ ENDLOOP
    NERPM13.script.end, NERPM14.script.end, NERPM15.script.end,                              
    NERPM16.script.end,                                                
 printfiles=MERGE, checkReturnCode=T   
-*Cluster NERPM 1-16 Close Exit
+*Cluster NERPM 1-12 Close Exit
 
-; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Close Exit; End of PILOT Script
+; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Close Exit
+; End of PILOT Script
 
 LOOP per = 1, 2, 1
 
@@ -11828,7 +11883,8 @@ LOOP per = 1, 2, 1
     ElseIf (pur==4)
        purposeToken = 'HBSR'
        mkt = 5        
-    Endif; End of PILOT Script
+    Endif
+; End of PILOT Script
 
 ; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\CNMAT00F.S"
 ;;<<Default Template>><<MATRIX>><<Default>>;;
@@ -11889,13 +11945,16 @@ FILEI MATI[3] = "{SCENARIO_DIR}\output\HBSH@todToken@_MCALL.mat"
 FILEI MATI[2] = "{SCENARIO_DIR}\output\HBO@todToken@_MCALL.mat"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\HBW@todToken@_MCALL.mat"
 
-FILEO MATO[3] = "{SCENARIO_DIR}\output\tload_@todToken@_KNR.mat",mo =20,13-16, DEC=5*D,
+FILEO MATO[3] = "{SCENARIO_DIR}\output\tload_@todToken@_KNR.mat",
+mo =20,13-16, DEC=5*D,
              NAME= KNRSKY,KNRLOC,KNREXP,KNRBRT,KNRCOM
 
-FILEO MATO[2] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_PNR.mat",  mo = 4,19,10-12, DEC=5*D,
+FILEO MATO[2] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_PNR.mat",
+  mo = 4,19,10-12, DEC=5*D,
              NAME= PNRSKY,PNRLOC,PNREXP,PNRBRT,PNRCOM
              
-FILEO MATO[1] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_Walk.mat", mo = 5-9, DEC=5*D,
+FILEO MATO[1] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_Walk.mat",
+ mo = 5-9, DEC=5*D,
              NAME= WALKSKY,WALKLOC,WALKEXP,WALKBRT,WALKCOM
              
  
@@ -11944,7 +12003,8 @@ ENDLOOP
 ;;<<Default Template>><<MATRIX>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX MSG='Combine HBW PK & OP'
-FILEO MATO[1] = "{SCENARIO_DIR}\output\HBW_{alt}{year}.MAT",mo = 1-12, NAME = DA, SR2, SR3P  
+FILEO MATO[1] = "{SCENARIO_DIR}\output\HBW_{alt}{year}.MAT",
+mo = 1-12, NAME = DA, SR2, SR3P  
   
 FILEI MATI[2] = "{SCENARIO_DIR}\output\HBWOP_MCALL.mat"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\HBWPK_MCALL.mat"
@@ -11991,7 +12051,8 @@ FILEI MATI[3] = "{SCENARIO_DIR}\output\NHBOPK_MC1.mat"
 FILEI MATI[2] = "{SCENARIO_DIR}\output\NHBWOP_MC1.mat"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\NHBWPK_MC1.mat"
 
-FILEO MATO[1] = "{SCENARIO_DIR}\output\NHB_{alt}{year}.mat", mo = 1-12, NAME = DA, SR2, SR3P  
+FILEO MATO[1] = "{SCENARIO_DIR}\output\NHB_{alt}{year}.mat",
+ mo = 1-12, NAME = DA, SR2, SR3P  
    MW[1] = Mi.1.1 + mi.2.1 + Mi.3.1 + mi.4.1
    MW[2] = Mi.1.2 + mi.2.2 + Mi.3.2 + mi.4.2   
    MW[3] = Mi.1.3 + mi.2.3 + Mi.3.3 + mi.4.3  
@@ -12009,7 +12070,8 @@ LOOP per = 1, 2, 1
      todToken = 'PK'
     Else
      todToken = 'OP'
-    EndIF; End of PILOT Script
+    EndIF
+; End of PILOT Script
 
 ; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\DRMAT00A.S"
 ;;<<Default Template>><<MATRIX>><<Default>>;;
@@ -12039,8 +12101,10 @@ ENDRUN
 ;;<<Default Template>><<MATRIX>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX
-FILEO RECO[1] = "{SCENARIO_DIR}\output\temp_drive-to-skyway.DBF",FIELDS=I,J,Trips
-FILEI DBI[1] = "{SCENARIO_DIR}\output\drive-to-skyway.csv", DELIMITER=',' IZONE =1, JZONE = 2, PZONE =3, TRIPS = 4, SORT=PZONE, JZONE
+FILEO RECO[1] = "{SCENARIO_DIR}\output\temp_drive-to-skyway.DBF",
+FIELDS=I,J,Trips
+FILEI DBI[1] = "{SCENARIO_DIR}\output\drive-to-skyway.csv",
+ DELIMITER=',' IZONE =1, JZONE = 2, PZONE =3, TRIPS = 4, SORT=PZONE, JZONE
 
 ZONES=1                  
        LOOP K=2,DBI.1.NUMRECORDS
@@ -12061,8 +12125,10 @@ ENDRUN
 ;;<<Default Template>><<MATRIX>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX
-FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_rebuild_drive_to_skyway.MAT", MO=1, DEC= 1*d
-FILEI MATI[1] = "{SCENARIO_DIR}\output\temp_drive-to-skyway.dbf", PATTERN=I:JV, FIELDS= I,J,Trips
+FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_rebuild_drive_to_skyway.MAT",
+ MO=1, DEC= 1*d
+FILEI MATI[1] = "{SCENARIO_DIR}\output\temp_drive-to-skyway.dbf",
+ PATTERN=I:JV, FIELDS= I,J,Trips
 
       zones=2578
         mw[1] = mi.1.1
@@ -12079,9 +12145,11 @@ FILEI MATI[3] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_PNR.mat"
 FILEI MATI[2] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_Walk.mat"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\@todToken@_rebuild_drive_to_skyway.MAT"
 
-FILEO MATO[2] = "{SCENARIO_DIR}\output\tload_@todToken@_PNR.mat",mo = 6-10, DEC=5*D,
+FILEO MATO[2] = "{SCENARIO_DIR}\output\tload_@todToken@_PNR.mat",
+mo = 6-10, DEC=5*D,
                  NAME= PNRSKY,PNRLOC,PNREXP,PNRBRT,PNRCOM
-FILEO MATO[1] = "{SCENARIO_DIR}\output\tload_@todToken@_Walk.mat",mo = 1-5, DEC=5*D,
+FILEO MATO[1] = "{SCENARIO_DIR}\output\tload_@todToken@_Walk.mat",
+mo = 1-5, DEC=5*D,
                  NAME= WALKSKY,WALKLOC,WALKEXP,WALKBRT,WALKCOM
     
 
@@ -12123,19 +12191,26 @@ FILLMW MW[81] = MI.5.1,2,3,4,5                    ; EE Trips (SOV,HOV,LT,HT,Tot)
 
 
 ; DRIVE ALONE
- MW[101]=(MW[1] + MW[21] + MW[41] + MW[64] + MI.1.1.T + MI.2.1.T + MI.3.1.T + MI.4.4.T )*0.5
-
+; MW[101]=(MW[1] + MW[21] + MW[41] + MW[64] + MI.1.1.T + MI.2.1.T + MI.3.1.T + MI.4.4.T )*0.5
+ 
+ ; Drive Alone - Add 20% of NHB trips (under reporting)
+ MW[101]=(MW[1] + MW[21] + (MW[41] * 1.2) + MW[64] + MI.1.1.T + MI.2.1.T + (MI.3.1.T * 1.2) + MI.4.4.T )*0.5
+ 
 ; AUTO 2
 ;===Mistake to include MW[12] instead of MW[22]==>MW[102]=(MW[2] + MW[12] + MW[42] + MW[92] + MI.1.2.T + MI.2.2.T + MI.3.2.T + MI.6.2.T)/2*0.5
- MW[102]=(MW[2] + MW[22] + MW[42] + MI.1.2.T + MI.2.2.T + MI.3.2.T )/2*0.5
-
+; MW[102]=(MW[2] + MW[22] + MW[42] + MI.1.2.T + MI.2.2.T + MI.3.2.T )/2*0.5
+ MW[102]=(MW[2] + MW[22] + (MW[42] * 1.2) + MI.1.2.T + MI.2.2.T + (MI.3.2.T * 1.2) )/2*0.5
 ; AUTO 3+ HBW
-MW[103]=(MW[3] + MI.1.3.T)/{OC3VHBW}*0.5   ; include this modifier if model is revalidated
+; MW[103]=(MW[3] + MI.1.3.T)/{OC3VHBW}*0.5   ; include this modifier if model is revalidated
+MW[103]=((MW[3] + MI.1.3.T)* 1.2)/{OC3VHBW}*0.5   ; include this modifier if model is revalidated
 ; AUTO 3+ HBO
-MW[104]=(MW[23] + MI.2.3.T)/{OC3VHBNW}*0.5  ; include this modifier if model is revalidated
+; MW[104]=(MW[23] + MI.2.3.T)/{OC3VHBNW}*0.5  ; include this modifier if model is revalidated
+MW[104]=((MW[23] + MI.2.3.T)*1.2) /{OC3VHBNW}*0.5  ; include this modifier if model is revalidated
 ; AUTO 3+ NHB
-;===Another Mistake to include MW[3] instead of MW[43] ==> MW[105]=(MW[3] + MI.3.3.T)/{OC3VNHB}*0.5   ;  include this modifier if model is revalidated
-MW[105]=(MW[43] + MI.3.3.T)/{OC3VNHB}*0.5   ;  include this modifier if model is revalidated
+;===Another Mistake to include MW[3] instead of MW[43] ==> MW[105]=(MW[3] + MI.3.3.T)/{OC3VNHB}*0.5   
+;  include this modifier if model is revalidated
+; MW[105]=(MW[43] + MI.3.3.T)/{OC3VNHB}*0.5   ;  include this modifier if model is revalidated
+MW[105]=((MW[43] + MI.3.3.T)*1.2)/{OC3VNHB} *0.5   ;  include this modifier if model is revalidated
 ; HOV IE
 MW[106]=(MW[65] + MI.4.5.T)*0.5
 ; II/IE TRK
@@ -13804,49 +13879,49 @@ FILEO NETO = "{SCENARIO_DIR}\output\LOADED_24H.NET",
     V8_1    V9_1    V10_1    V11_1    V12_1    V13_1    V14_1,
     V8T_1    V9T_1    V10T_1    V11T_1    V12T_1    V13T_1    V14T_1 
 
-AD_VL_TOT_{YEAR}{ALT}=V_1                  ;Total
-AD_VL_SOV_{YEAR}{ALT}=V1_1+V5_1            ;DA-II&IE+EE 
-AD_VL_HOV_{YEAR}{ALT}=V2_1+V6_1            ;SR-II&IE+EE
-AD_VL_Trk_{YEAR}{ALT}=V3_1+V4_1+V7_1       ;Truck-II&IE+EE+Port 
-AD_VL_PrtTk_{YEAR}{ALT}=V7_1               ;Port-Truck 
-AD_VL_EXT_{YEAR}{ALT}=V4_1+V5_1+V6_1       ;EXT-TRK+DA+SR (Does not include ext-ext of Port Truck) 
+AL_VL_TOT_{YEAR}{ALT}=V_1                  ;Total
+AL_VL_SOV_{YEAR}{ALT}=V1_1+V5_1            ;DA-II&IE+EE 
+AL_VL_HOV_{YEAR}{ALT}=V2_1+V6_1            ;SR-II&IE+EE
+AL_VL_Trk_{YEAR}{ALT}=V3_1+V4_1+V7_1       ;Truck-II&IE+EE+Port 
+AL_VL_PrtTk_{YEAR}{ALT}=V7_1               ;Port-Truck 
+AL_VL_EXT_{YEAR}{ALT}=V4_1+V5_1+V6_1       ;EXT-TRK+DA+SR (Does not include ext-ext of Port Truck) 
  
 
-AD_SVL_TOT_{YEAR}{ALT}=V8_1+V9_1+V10_1+V11_1+V12_1+V13_1+V14_1   ;Selected Total
-AD_SVL_SOV_{YEAR}{ALT}=V8_1+V12_1                                ;Selected DA-II&IE+EE
-AD_SVL_HOV_{YEAR}{ALT}=V9_1+V13_1                                ;Selected SR-II&IE+EE
-AD_SVL_Trk_{YEAR}{ALT}=V10_1+V11_1+V14_1                         ;Selected Truck-II&IE+EE+Port
-AD_SVL_PrTk_{YEAR}{ALT}=V14_1                                    ;Selected Port-Truck
-AD_SVL_EXT_{YEAR}{ALT}=V11_1+V12_1+V13_1                         ;EXT-TRK+DA+SR (Does not include ext-ext of Port Truck) 
+AL_SVL_TOT_{YEAR}{ALT}=V8_1+V9_1+V10_1+V11_1+V12_1+V13_1+V14_1   ;Selected Total
+AL_SVL_SOV_{YEAR}{ALT}=V8_1+V12_1                                ;Selected DA-II&IE+EE
+AL_SVL_HOV_{YEAR}{ALT}=V9_1+V13_1                                ;Selected SR-II&IE+EE
+AL_SVL_Trk_{YEAR}{ALT}=V10_1+V11_1+V14_1                         ;Selected Truck-II&IE+EE+Port
+AL_SVL_PrTk_{YEAR}{ALT}=V14_1                                    ;Selected Port-Truck
+AL_SVL_EXT_{YEAR}{ALT}=V11_1+V12_1+V13_1                         ;EXT-TRK+DA+SR (Does not include ext-ext of Port Truck) 
 
 
-AD_CGSPEED_{YEAR}{ALT}=CSPD_1
-AD_VMT_{YEAR}{ALT}=VDT_1
-AD_VHT_{YEAR}{ALT}=VHT_1
+AL_CGSPEED_{YEAR}{ALT}=CSPD_1
+AL_VMT_{YEAR}{ALT}=VDT_1
+AL_VHT_{YEAR}{ALT}=VHT_1
 
 ;CGTIME{YEAR}{ALT}=60*DISTANCE/CGSPEED{YEAR}{ALT}
 
 ;sks -8/22/08 - Remove computation errors for ZERO congested speed and Flag the link.
-if (AD_CGSPEED_{YEAR}{ALT}>0)
-   AD_CGTIME_{YEAR}{ALT}=60*(DISTANCEFT/5280)/AD_CGSPEED_{YEAR}{ALT}
+if (AL_CGSPEED_{YEAR}{ALT}>0)
+   AL_CGTIME_{YEAR}{ALT}=60*(DISTANCEFT/5280)/AL_CGSPEED_{YEAR}{ALT}
  else 
-   AD_CGTIME_{YEAR}{ALT}=60*(DISTANCEFT/5280)/(AD_CGSPEED_{YEAR}{ALT}+0.01)
-   AD_FlgCGSPDZero=1
+   AL_CGTIME_{YEAR}{ALT}=60*(DISTANCEFT/5280)/(AL_CGSPEED_{YEAR}{ALT}+0.01)
+   AL_FlgCGSPDZero=1
 endif
 
 ;sks -8/22/08 - For link with year 2005 traffic counts.
 if ('{Year}'='05')
    if (Li.1.Count>0)
-      AD_VOLCNTRTO= V_1/LI.1.COUNT
+      AL_VOLCNTRTO= V_1/LI.1.COUNT
      else
-      AD_VOLCNTRTO=0.0
+      AL_VOLCNTRTO=0.0
    endif 
 endif
 
 if (LI.1.CAPACITY>0 & LI.1.NUM_LANES>0)
-  AD_VCapRTO=(V_1*LI.1.CONFAC)/(LI.1.CAPACITY*LI.1.NUM_LANES)
+  AL_VCapRTO=(V_1*LI.1.CONFAC)/(LI.1.CAPACITY*LI.1.NUM_LANES)
  else
-  AD_VCapRTO=9999.0
+  AL_VCapRTO=9999.0
 endif
 
 
@@ -13867,813 +13942,12 @@ endif           ;All Day (24-Hour) Highway Model
 if({TOD_HwyMdl}=1)   ;Time of Day (4 periods) Highway Model
 ; End of PILOT Script
 
-; Script for program HIGHWAY in file "C:\NERPM43\APPLICATIONS\HTHWY00A.S"
-; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=HIGHWAY PRNFILE="{SCENARIO_DIR}\output\HTHWY00A.PRN" MSG='AM Period Hwy Assignment'
-FILEI MATI[2] = "{SCENARIO_DIR}\Output\HWYTTBP_AM_A10.MAT"
-FILEI NETI = "{SCENARIO_DIR}\output\UNLOADED.NET"
-FILEI MATI[1] = "{SCENARIO_DIR}\Output\HWYTTAB_AM_A10.MAT"
-DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
-;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
-
-FILEI LOOKUPI[2] = "{CATALOG_DIR}\parameters\HOT_TOLL.dbf"
-FILEI LOOKUPI[1] = "{CATALOG_DIR}\parameters\TCHOICE_AM.dbf"
-
-FILEI TURNPENI = "{SCENARIO_DIR}\input\tcards_{Year}{alt}.pen"
-FILEO TURNVOLO[1] = "{SCENARIO_DIR}\output\TURNS_AM.BIN"
-FILEO PRINTO[1] = "{SCENARIO_DIR}\output\AMPeriod_TollReport.PRN"
-FILEO NETO = "{SCENARIO_DIR}\output\FINAL_ASGN_AM.NET"
-
-PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS={iter} RAAD=0.00000 AAD=0.000000 RMSE=0.000000 GAP=0.00025; RELATIVEGAP=0.001
-;PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS={iter} GAP=0.0005 RAAD=0.00000 AAD=0.000000 RMSE=0.000000 ;
-;PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS=7 GAP=0.0005 RAAD=0.00000 AAD=0.000000 RMSE=0.000000 ;
-
-;TURNS N=1-999999
-TURNS N=39782,40555,40265,40258,40241,40568
-
-;Per-KDK
-LOOKUP LOOKUPI=1,
-       NAME=KON,
-       LOOKUP[1]=REC, RESULT=CT,
-       LOOKUP[2]=REC, RESULT=CC,
-       LOOKUP[3]=REC, RESULT=TFK,
-       FAIL[1]=0,FAIL[2]=0,FAIL[3]=0
-
-LOOKUP LOOKUPI=2,
-       NAME=HOTTOLL,
-       LOOKUP[1]=HOT, RESULT=AM_TOLL_MI,
-       FAIL[1]=0,FAIL[2]=0,FAIL[3]=0
-
-; look up deceleration rate based on approach speed
-LOOKUP,
- INTERPOLATE=Y, LIST=Y, NAME=DECEL,
-        LOOKUP[1]=1,RESULT=2,
-R = '30 4',
-    '70 6.2'
-
-PROCESS PHASE=LINKREAD
-
-;Basics...
-  lw.distance=li.distance
-  DISTANCE=LW.DISTANCE
-  T0=li.TIME
-  LW.FFTIME=LI.TIME                                         ; USE FOR PRELOAD PURPOSES (FFTIME)
- C=LI.CAPACITY*LI.NUM_LANES*LI.UROADFACTOR/LI.CONFACAMP
-;Save AM Period Total capacity
-  CAPACITY_AMP=C
-
-;Per-KDK
-; HOT TOLL RATE/mile from lookup table
-HOT_TOLL_PMILE = HOTTOLL(1,LI.HOT)
-IF(LI.HOT>=1)
-  LW.HOTTOLL = DISTANCE*HOT_TOLL_PMILE
-ELSE
-    LW.HOTTOLL=0
-ENDIF
-LW.MYTOLL=LW.HOTTOLL+LI.CARTOLL
-LW.MYTOLL2=0.5*LW.MYTOLL
-
-;Set EXCLUDE VOLUME GROUP for PATHLOAD...
-  IF (li.FACILITY_TYPE=86,87,89 & LI.HOT=0) ADDTOGROUP=1         ;HOV 2 & 3+ Facilities (FT=88 PM Only) => Exclude DA and Truck Volume Groups  
-  IF (li.FACILITY_TYPE=82 & LI.HOT=0) ADDTOGROUP=3               ;HOV 3+ Facilities => Exclude HOV2 Volume Groups
-;Note Dummy HOT ramps are coded as HOT=-1 and their facility_type changed to 69 (transit only)
-;  IF (li.HOT=2) ADDTOGROUP=4                                     ;Dummy Entrance and Exit from HOT facility
-
-  IF (li.EECODE>0) ADDTOGROUP=2                                  ;EE PROHIBITED LINKS =>Exclude External Volume Groups
-;  IF (LI.{PATHGROUP}) ADDTOGROUP=7 ; DEFINE A SUBSET FOR PATHFILE
-
-  IF (li.HOT>=1) ADDTOGROUP=8                                    ;HOT Lane Facility
-  IF (li.FACILITY_TYPE=49,59,69) ADDTOGROUP=9                    ;TRANSIT ONLY FACILITIES =>Exclude all Highway Volume Groups
-
-;Per-KDK
-   IF (LI.HOT>=1 | li.FACILITY_TYPE=91-99) ADDTOGROUP=5       ;Any kind of toll road -- KDK
-   IF (li.FACILITY_TYPE=91-99) ADDTOGROUP=6                   ;Non-HOT toll road -- KDK
-
-; classify links based on presence/absence of tolls
-      LINKCLASS=1                                        ;no toll
-      if (li.cartoll>0)           
-       LINKCLASS=2                                       ;with toll
-
-       T0=({CTOLL}*LI.CARTOLL)*60 + LI.SVCMINUTES + LI.SVCSECONDS/60
-
-       if (iteration=0)
-        LW.ARRIVR=(V/LI.UROADFACTOR)*LI.CONFACAMP/LI.PLZALNSMAX  ; hourly volume per toll lane ie. arrival rate in vehicles per hour
-        LW.SERVT=LI.SVCMINUTES+(LI.SVCSECONDS/60)                ; Plaza lane service time in minutes per vehicle
-        LW.SERVR=(1/LW.SERVT)*60                                 ; Plaza lane service rate in vehicle per hour
-        PRINT LIST='ARRIVR= ',LW.ARRIVR
-        PRINT LIST='SERVT= ',LW.SERVT
-        PRINT LIST='SERVR= ',LW.SERVR
-        if (LW.ARRIVR>=LW.SERVR) LW.ARRIVR=0.99*LW.SERVR         ; prevent infinite or negative queue
-       endif
-
-      endif
-
-      if (li.TOLL_ACC>0)
-       LINKCLASS=3                                               ; Toll Plaza Acceleration link
-       T0= T0 + (LI.SPEED/2.5)/60
-      endif
-
-      if (li.TOLL_DEC>0)
-       LINKCLASS=4                                               ; Toll Plaza Deceleration link
-       T0 = T0 + (LI.SPEED/DECEL(1,LI.SPEED))/60
-      endif
-
-     IF (li.FACILITY_TYPE=49,59,69) LINKCLASS=5                   ;Transit non-Highway optional links
-
-
-ENDPROCESS
-
-PROCESS PHASE=ILOOP
-
-  MW[2]=MI.2.AM_HBW_DA             ;Table 2 
-  MW[3]=MI.2.AM_HBW_SR2            ;Table 3 
-  MW[4]=MI.2.AM_HBW_SR3P           ;Table 4 
-  MW[5]=MI.2.AM_HBO_DA             ;Table 5 
-  MW[6]=MI.2.AM_HBO_SR2            ;Table 6 
-  MW[7]=MI.2.AM_HBO_SR3P           ;Table 7 
-  MW[8]=MI.2.AM_NHB_DA             ;Table 8 
-  MW[9]=MI.2.AM_NHB_SR2            ;Table 9 
-  MW[10]=MI.2.AM_NHB_SR3P          ;Table 10 
-
-;                                           MW>VOL
-  MW[1]=MI.1.AM_TRK_IEII             ;Table 1 >7
-  MW[11]=MI.1.AM_TRK_EE              ;Table 11 >8
-  MW[12]=MI.1.AM_DA_EE               ;Table 12 >9
-  MW[13]=MI.1.AM_SR2_EE              ;Table 13 >10
-  MW[14]=MI.1.AM_SR3_EE              ;Table 14 >11
-  MW[15]=MI.1.AM_PortTrk             ;Table 15 >12
-
-;=====================
-;Per-KDK
-;Skim Time and Cost, assuming auto operating costs is the same for toll and free links
-; Get straight time skim for free paths (toll links excluded)
-; Get straight time skim for free paths (toll links excluded)
-PATHLOAD PATH=TIME PENI=1, EXCLUDEGROUP=5,9,MW[21]=PATHTRACE(TIME),NOACCESS=999
-; Get time and cost skims for DA, which may include tolls
-PATHLOAD PATH=TIME PENI=1, EXCLUDEGROUP=9,  MW[22]=PATHTRACE(TIME),NOACCESS=999,MW[23]=PATHTRACE(LW.MYTOLL),NOACCESS=999,
-; Get time and cost skims for SR3+, which may include non-HOT tolls (HOT is free)
-                                      MW[27]=PATHTRACE(LI.CARTOLL),NOACCESS=999,
-; Set flag for use of HOT lanes
-                                      MW[99]=PATHTRACE(LI.HOT),NOACCESS=0
-; Get time and cost skims for SR2, which may include tolls
-  MW[24]=MW[22]                  ;time- non-free
-  MW[25]=0.5*MW[23]              ;mytoll=hottoll+cartoll
-; Get time skims for SR3+
-  MW[26]=MW[22]                  ;time- non-free 
-; Get cost skims for SR3+, which may include non-HOT tolls
-  MW[27]=0.3125*MW[27] ; assume 3.2 occ
-;
-; CHOICE MODEL
-;kdk-S65:  c_o=CNTY(1,i);get county number
-;  combinations by o & d
-   loop p=1,3
-   jloop
-     if((MW[23]<=0) && (MW[21]<999)) ; if there is no toll skim, all must be free
-       SfreeDA  = 1.0  
-       SfreeSR2 = 1.0  
-       SfreeSR3 = 1.0
-     elseif(MW[21]>=999) ; if there is no free skim, all must be placed in the "toll" table
-       SfreeDA  = 0.0  
-       SfreeSR2 = 0.0  
-       SfreeSR3 = 0.0
-     else  
-;kdk-S65:      c_d=CNTY(1,j)
-       ;get coefficients
-;xx       dexi = 3*(c_o-1)+p
-;kdk-S65:       dexj = 3*(c_d-1)+p
-;xx       cti =KON(1,dexi); time coef for i
-;xx       cci =KON(2,dexi); cost coef for i
-;xx       tfki=KON(3,dexi); toll free constant for i
-;kdk-S65:       ctj =KON(1,dexj); time coef for j
-;kdk-S65:       ccj =KON(2,dexj); cost coef for j
-;kdk-S65:       tfkj=KON(3,dexj); toll free constant for j
-
-       ctp =KON(1,p); time coef for purpose p
-       ccp =KON(2,p); cost coef for purpose p
-       tfkp=KON(3,p); toll free constant for purpose p
-
-;xx
-;xx
-;xx       if(dexi=dexj) ; both ends in the same county
-;xx          ct=cti
-;xx          cc=cci
-;xx         tfk=tfki
-;xx       else          ; average 2 counties because true Home zone in O-D format is unknown
-;xx          ct =0.5*(cti+ctj)
-;xx          cc =0.5*(cci+ccj)
-;xx          tfk=0.5*(tfki+tfkj)
-;xx       endif
-;xx
-;xx
-; SET HOT LANES USE BIAS - 
-       if(mw[99]>0) 
-          hbias=KON(3,5); HOT bias stored in 5th record
-       else
-          hbias=0.0
-       endif
-; OVERRIDE EVERYTHING FOR TEST OF USING CONSTANTS FROM THE *DESTINATION* ZONE ****************
-;     rationale - most origins are the non-home end in the PM peak
-;kdk-S65:          ct=ctj
-;kdk-S65:          cc=ccj
-;kdk-S65:         tfk=tfkj + hbias
-          ct=ctp
-          cc=ccp
-          tfk=tfkp + hbias
-; ***************************************************************************************
-       UfreeDA = ct*MW[21] + tfk
-       UfreeSR2= UfreeDA;     ct*MW[21] + tfk
-       UfreeSR3= UfreeDA;     ct*MW[21] + tfk
-       UtollDA = ct*MW[22] + cc*MW[23]
-       UtollSR2= ct*MW[24] + cc*MW[25]
-       UtollSR3= ct*MW[26] + cc*MW[27]
-
-       SfreeDA = 1.0/(1.0+exp(UtollDA-UfreeDA)); binary logit form
-       ;StollDA = 1.0 - SfreeDA
-       SfreeSR2= 1.0/(1.0+exp(UtollSR2-UfreeSR2))
-       ;StollSR2= 1.0 - SfreeSR2
-       SfreeSR3= 1.0/(1.0+exp(UtollSR3-UfreeSR3))
-       ;StollSR3= 1.0 - SfreeSR3
-; for test ****************************************************************************
-;       if(mw[99]>0) 
-;            SfreeDA =0
-;            SfreeSR2=0
-;            SfreeSR3=0
-;       endif
-; for test ****************************************************************************
-     endif 
- 
-       dex = 3*(p-1)+2
-       k3=3*(p-1)+31
-       k4=k3+10; 2*(p-1)+41
-       mw[k3] = mw[dex]*SfreeDA  ; free DA
-       mw[k4] = mw[dex] - mw[k3] ; toll DA
-
-       dex2 = dex+1; 3*(p-1)+3
-       k5=k3+1;      3*(p-1)+32
-       k6=k5+10;     2*(p-1)+42
-       mw[k5] = mw[dex2]*SfreeSR2 ; free SR2
-       mw[k6] = mw[dex2] - mw[k5] ; toll SR2
-
-       dex3 = dex+2; 3*(p-1)+3
-       k7=k5+1;      3*(p-1)+33
-       k8=k7+10;     2*(p-1)+42
-       mw[k7] = mw[dex3]*SfreeSR3 ; free SR3+
-       mw[k8] = mw[dex3] - mw[k7] ; toll SR3+
-
-       if(MW[23]<> 0);tabluate free trips when there is a choice - some toll on the path
-          kf3=k3+70
-          mw[kf3]=mw[k3]; choice free DA
-
-          kf5=kf3+1
-          mw[kf5]=mw[k5]; choice free SR2
-
-          kf7=kf5+1
-          mw[kf7]=mw[k7]; choice free SR3+
-       endif
-
-;EETRIPS Block- Using HBO shares for EE trips...
-       if(p=2) ; use HBO shares
-          mw[51]=mw[12]*SfreeDA  ; EE DA free
-          mw[52]=mw[12]-mw[51]   ; EE DA toll
-
-          mw[53]=mw[13]*SfreeSR2  ; EE SR2 free
-          mw[54]=mw[13]-mw[53]   ; EE SR2 toll
-
-          mw[55]=mw[14]*SfreeSR3  ; EE SR3 free
-          mw[56]=mw[14]-mw[55]   ; EE SR3 toll
-       endif
-;EETRIPS Block
-
-   endjloop
-   endloop
- 
-   MW[61] = mw[31] +mw[34] + mw[37] ;drive alone free
-   MW[62] = mw[32] +mw[35] + mw[38] ;SR2 free
-   MW[63] = mw[33] +mw[36] + mw[39] ;SR3+free
-   MW[64] = mw[41] +mw[44] + mw[47] ;drive alone toll
-   MW[65] = mw[42] +mw[45] + mw[48] ;SR2 toll
-   MW[66] = mw[43] +mw[46] + mw[49] ;SR3+toll
- 
-;kdk-S65: MW[01] = MW[01]/[PCE-TRK]        ;truck vehicles
-
-;=====================
-;SKS- The Select Link Volume sets exceed the maximimum limitation of 20. So assignment with select link was turned off here...
-;Per CV documentation, Volume set index range is 1-20; there may be up to 20 volume sets in a single application of Highway. 
-
- ;FREE LINKS - toll links probibited
-  PATHLOAD PATH=TIME, VOL[1]=MW[61], PENI=1, EXCLUDEGROUP=1,5,9  ;Without HOV (DA-Free)
-  PATHLOAD PATH=TIME, VOL[2]=MW[62], PENI=1, EXCLUDEGROUP=3,5,9  ;With HOV2 (SR2-Free)
- ;ALL links -toll allowed
-  PATHLOAD PATH=TIME, VOL[3]=MW[64], PENI=1, EXCLUDEGROUP=1,9    ;Without HOV (DA-Toll)
-  PATHLOAD PATH=TIME, VOL[4]=MW[65], PENI=1, EXCLUDEGROUP=3,9    ;With HOV2  (SR2-Toll)
- ;SR3+ free
-  PATHLOAD PATH=TIME, VOL[5]=MW[63], PENI=1, EXCLUDEGROUP=6,9    ;With HOV3+ (SR3-Free)
- ;SR3+ toll
-  PATHLOAD PATH=TIME, VOL[6]=MW[66], PENI=1, EXCLUDEGROUP=9      ;With HOV3+ (SR3-Toll)
-
- ;Trucks
-  PATHLOAD PATH=COST, PENI=1, VOL[7]=MW[1],   EXCLUDEGROUP=1,3,8,9    ;IE&II- TRK(7<1) - Not on HOV/HOT  
-  PATHLOAD PATH=COST, PENI=1, VOL[12]=MW[15], EXCLUDEGROUP=1,2,3,8,9  ;JaxportTrk(12<15) -Not on HOV/HOT
-
- ;EE Trips
-  if(i>{ZONESI})
-   PATHLOAD PATH=COST, PENI=1, VOL[8]=MW[11],EXCLUDEGROUP=1,2,3,8,9, excludej=1-{ZONESI} ;EE- TRK(8<11)-Not on HOV/HOT
-   PATHLOAD PATH=TIME, PENI=1, VOL[9]=MW[51],  EXCLUDEGROUP=1,2,5,9, excludej=1-{ZONESI} ;EE-DA-Free(9<51)
-   PATHLOAD PATH=TIME, PENI=1, VOL[13]=MW[52], EXCLUDEGROUP=1,2,9,   excludej=1-{ZONESI} ;EE-DA-Toll(13<52)
-   PATHLOAD PATH=TIME, PENI=1, VOL[10]=MW[53], EXCLUDEGROUP=2,3,5,9, excludej=1-{ZONESI} ;EE-SR2-Free(10<53)
-   PATHLOAD PATH=TIME, PENI=1, VOL[14]=MW[54], EXCLUDEGROUP=2,3,9,   excludej=1-{ZONESI} ;EE-SR2-Toll(14<54)
-   PATHLOAD PATH=TIME, PENI=1, VOL[11]=MW[55], EXCLUDEGROUP=2,6,9,   excludej=1-{ZONESI} ;EE-SR3-Free(11<55)
-   PATHLOAD PATH=TIME, PENI=1, VOL[15]=MW[56], EXCLUDEGROUP=2,9,     excludej=1-{ZONESI} ;EE-SR3-Free(11<56)
-  endif
-
-ENDPROCESS
-
-
-PROCESS PHASE=ADJUST
-;Define volume to be used for V/C calculation
-FUNCTION   V=VOL[1]+VOL[2]+VOL[3]+VOL[4]+VOL[5]+VOL[6]+VOL[7]+VOL[8]+VOL[9]+VOL[10]+VOL[11]+VOL[12]+VOL[13]+VOL[14]+VOL[15]
-
-
-if (time>0) LW.CGSTSPEED=(LW.DISTANCE/TIME)*60
-
-if (li.cartoll>0)
- LW.ARRIVR=(V/LI.UROADFACTOR)*LI.CONFACAMP/LI.PLZALNSMAX  ; hourly volume per toll lane ie. arrival rate in vehicles per hour
- LW.SERVT=LI.SVCMINUTES+(LI.SVCSECONDS/60)                ; Plaza lane service time in minutes per vehicle
- LW.SERVR=(1/LW.SERVT)*60                                 ; Plaza lane service rate in vehicle per hour
- if (LW.ARRIVR>=LW.SERVR) LW.ARRIVR=0.99*LW.SERVR         ; prevent infinite or negative queue
-PRINT LIST='ARRIVR= ',LW.ARRIVR
-PRINT LIST='SERVT= ',LW.SERVT
-PRINT LIST='SERVR= ',LW.SERVR
-PRINT LIST='TOLLTIME= ',TIME
-endif
-if (lw.servr-lw.arrivr=0.0) lw.servr=lw.servr+0.01
-
-;Update Time and Cost for PATHLOAD
-;---TIME is TIME plus regular toll time and toll equivalent time
-;---COST is Time plus HOT toll time equivalent
-;Capture HOT toll time equivalent
-
-; Dynamic HOTTOLL removed - now a fixed rate per mile in linkread
-;IF(LI.HOT=1)
-;  LW.VCVAL=V/C ; V/C CALCULATION
-;  MINHOTTOLL=0.12          ; Minimum HOT lane toll 12 cents per mile
-;  MAXHOTTOLL=0.25          ; Maximum HOT lane toll 25 cents per mile
-;  LW.HOTTOLL = MINHOTTOLL+(MAXHOTTOLL-MINHOTTOLL)/(1+EXP(6-9*LW.VCVAL))    ;LOGIT EQN APPLIED
-;ELSE
-;    LW.HOTTOLL=0
-;ENDIF
-
-;KDK replace LI.TIME with T0 for toll choice
-;Define EACH LINKCLASS TC and COST Functions
-; Link Class 1 - Non Regular Toll (it may be a HOT link)
- FUNCTION TC[1]   = T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT)
- FUNCTION COST[1] = T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT)+LI.DISTANCE*(LW.HOTTOLL)*60*{CTOLL}
-
-;Link Class 2 - Regular Tollplaza Link (Never HOT link)
- ;FUNCTION   TC[2]=MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) + {CTOLL}*LI.CARTOLL*60        ; congested time for toll links
- FUNCTION   TC[2]=T0; MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) ; don't include toll in toll choice time; congested time for toll links
-;Ommit service time from toll choice: 
- FUNCTION COST[2]=MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) + {CTOLL}*LI.CARTOLL*60        ; congested time for toll links
-
-; Link Class 3 - Regular Toll Accln Link (Never HOT link)
- FUNCTION   TC[3]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) ;Omit accel from toll choice: + (LW.CGSTSPEED/2.5)/60; congested time toll acceleration links
- FUNCTION COST[3]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) + (LW.CGSTSPEED/2.5)/60; congested time toll acceleration links
-
-; Link Class 4 - Regular Toll Decln Link (Never HOT link)
- FUNCTION   TC[4]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) ;Omit deccel from toll choice: + (LW.CGSTSPEED/DECEL(1,LW.CGSTSPEED))/60; congested time toll deceleration links
- FUNCTION COST[4]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) + (LW.CGSTSPEED/DECEL(1,LW.CGSTSPEED))/60; congested time toll deceleration links
- 
-; Link Class 5 - Transit Optional Link 
- FUNCTION   TC[5]=T0                                                            ;congested time transit-only optional links
- FUNCTION COST[5]=T0                                                            ;congested time transit-only optional links
-
- 
-if (li.cartoll>0) print list="Iter:",iteration(2.0)," TOLLFM Summary, A=",A(6.0)," B=",B(6.0)," PLAZAID=",li.TOLL(3.0)," NAME=",li.PLAZADESC(24)," MAX LNS=",li.PLZALNSMAX," GCOST=",TIME(6.2),
-        printo=1
-
-
-ENDPROCESS
-
-; Converge phase is new for Cube 4.0.
-PHASE=CONVERGE
-  IF (ITERATION < 6) BREAK; Do not even test for Iterations 2-5
-  IF (GAP[ITERATION]<GAPCUTOFF & GAP[ITERATION-1]<GAPCUTOFF & GAP[ITERATION-2]<GAPCUTOFF)
-;  IF (RGAP[ITERATION]<RGAPCUTOFF & RGAP[ITERATION-1]<RGAPCUTOFF & RGAP[ITERATION-2]<RGAPCUTOFF)
-     BALANCE = 1
-  ENDIF
-
-ENDPROCESS
-
-
-ENDRUN
-
-
-; Script for program HIGHWAY in file "C:\NERPM43\APPLICATIONS\HTHWY00B.S"
-; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=HIGHWAY PRNFILE="{SCENARIO_DIR}\output\HTHWY00B.PRN" MSG='Mid_Day Period Hwy Assignment'
-FILEI NETI = "{SCENARIO_DIR}\output\UNLOADED.NET"
-FILEI MATI[2] = "{SCENARIO_DIR}\Output\HWYTTBP_MD_A10.MAT"
-FILEI MATI[1] = "{SCENARIO_DIR}\Output\HWYTTAB_MD_A10.MAT"
-DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
-;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
-
-FILEI LOOKUPI[2] = "{CATALOG_DIR}\parameters\HOT_TOLL.dbf"
-FILEI LOOKUPI[1] = "{CATALOG_DIR}\parameters\TCHOICE_MD.dbf"
-
-FILEI TURNPENI = "{SCENARIO_DIR}\input\tcards_{Year}{alt}.pen"
-FILEO TURNVOLO[1] = "{SCENARIO_DIR}\output\TURNS_MD.BIN"
-FILEO PRINTO[1] = "{SCENARIO_DIR}\output\MDPeriod_TollReport.PRN"
-FILEO NETO = "{SCENARIO_DIR}\output\FINAL_ASGN_MD.NET"
-
-PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS={iter} RAAD=0.00000 AAD=0.000000 RMSE=0.000000 GAP=0.00025; RELATIVEGAP=0.001
-;PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS={iter} GAP=0.0005 RAAD=0.00000 AAD=0.000000 RMSE=0.000000 ;
-;PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS=7 GAP=0.0005 RAAD=0.00000 AAD=0.000000 RMSE=0.000000 ;
-
-;TURNS N=1-999999
-TURNS N=39782,40555,40265,40258,40241,40568
-
-;Per-KDK
-LOOKUP LOOKUPI=1,
-       NAME=KON,
-       LOOKUP[1]=REC, RESULT=CT,
-       LOOKUP[2]=REC, RESULT=CC,
-       LOOKUP[3]=REC, RESULT=TFK,
-       FAIL[1]=0,FAIL[2]=0,FAIL[3]=0
-
-LOOKUP LOOKUPI=2,
-       NAME=HOTTOLL,
-       LOOKUP[1]=HOT, RESULT=MD_TOLL_MI,
-       FAIL[1]=0,FAIL[2]=0,FAIL[3]=0
-
-; look up deceleration rate based on approach speed
-LOOKUP,
- INTERPOLATE=Y, LIST=Y, NAME=DECEL,
-        LOOKUP[1]=1,RESULT=2,
-R = '30 4',
-    '70 6.2'
-
-PROCESS PHASE=LINKREAD
-
-;Basics...
-  lw.distance=li.distance
-  DISTANCE=LW.DISTANCE
-  T0=li.TIME
-  LW.FFTIME=LI.TIME                                         ; USE FOR PRELOAD PURPOSES (FFTIME)
-  C=LI.CAPACITY*LI.NUM_LANES*LI.UROADFACTOR/LI.CONFACMDP
-;Save Mid-Day Period Total capacity
-  CAPACITY_MDP=C
-
-;Per-KDK
-; HOT TOLL RATE/mile from lookup table
-HOT_TOLL_PMILE = HOTTOLL(1,LI.HOT)
-IF(LI.HOT>=1)
-  LW.HOTTOLL = DISTANCE*HOT_TOLL_PMILE
-ELSE
-    LW.HOTTOLL=0
-ENDIF
-LW.MYTOLL=LW.HOTTOLL+LI.CARTOLL
-LW.MYTOLL2=0.5*LW.MYTOLL
-
-;Set EXCLUDE VOLUME GROUP for PATHLOAD...
-  IF (li.FACILITY_TYPE=89 & LI.HOT=0) ADDTOGROUP=1               ;HOV 2 & 3+ Facilities (FT=89 All Day) => Exclude DA and Truck Volume Groups  
-  IF (li.FACILITY_TYPE=82 & LI.HOT=0) ADDTOGROUP=3               ;HOV 3+ Facilities => Exclude HOV2 Volume Groups
-;Note Dummy HOT ramps are coded as HOT=-1 and their facility_type changed to 69 (transit only)
-;  IF (li.HOT=2) ADDTOGROUP=4                                     ;Dummy Entrance and Exit from HOT facility
-
-  IF (li.EECODE>0) ADDTOGROUP=2                                  ;EE PROHIBITED LINKS =>Exclude External Volume Groups
-;  IF (LI.{PATHGROUP}) ADDTOGROUP=7 ; DEFINE A SUBSET FOR PATHFILE
-
-  IF (li.HOT>=1) ADDTOGROUP=8                                     ;HOT Lane Facility
-  IF (li.FACILITY_TYPE=49,59,69) ADDTOGROUP=9                    ;TRANSIT ONLY FACILITIES =>Exclude all Highway Volume Groups
-
-;Per-KDK
-   IF (LI.HOT>=1 | li.FACILITY_TYPE=91-99) ADDTOGROUP=5       ;Any kind of toll road -- KDK
-   IF (li.FACILITY_TYPE=91-99) ADDTOGROUP=6                   ;Non-HOT toll road -- KDK
-
-; classify links based on presence/absence of tolls
-      LINKCLASS=1                                        ;no toll
-      if (li.cartoll>0)           
-       LINKCLASS=2                                       ;with toll
-
-       T0=({CTOLL}*LI.CARTOLL)*60 + LI.SVCMINUTES + LI.SVCSECONDS/60
-
-       if (iteration=0)
-        LW.ARRIVR=(V/LI.UROADFACTOR)*LI.CONFACMDP/LI.PLZALNSMAX  ; hourly volume per toll lane ie. arrival rate in vehicles per hour
-        LW.SERVT=LI.SVCMINUTES+(LI.SVCSECONDS/60)                ; Plaza lane service time in minutes per vehicle
-        LW.SERVR=(1/LW.SERVT)*60                                 ; Plaza lane service rate in vehicle per hour
-        PRINT LIST='ARRIVR= ',LW.ARRIVR
-        PRINT LIST='SERVT= ',LW.SERVT
-        PRINT LIST='SERVR= ',LW.SERVR
-        if (LW.ARRIVR>=LW.SERVR) LW.ARRIVR=0.99*LW.SERVR         ; prevent infinite or negative queue
-       endif
-
-      endif
-
-      if (li.TOLL_ACC>0)
-       LINKCLASS=3                                               ; Toll Plaza Acceleration link
-       T0= T0 + (LI.SPEED/2.5)/60
-      endif
-
-      if (li.TOLL_DEC>0)
-       LINKCLASS=4                                               ; Toll Plaza Deceleration link
-       T0 = T0 + (LI.SPEED/DECEL(1,LI.SPEED))/60
-      endif
-
-     IF (li.FACILITY_TYPE=49,59,69) LINKCLASS=5                   ;Transit non-Highway optional links
-
-
-ENDPROCESS
-
-PROCESS PHASE=ILOOP
-
-  MW[2]=MI.2.MD_HBW_DA             ;Table 2 
-  MW[3]=MI.2.MD_HBW_SR2            ;Table 3 
-  MW[4]=MI.2.MD_HBW_SR3P           ;Table 4 
-  MW[5]=MI.2.MD_HBO_DA             ;Table 5 
-  MW[6]=MI.2.MD_HBO_SR2            ;Table 6 
-  MW[7]=MI.2.MD_HBO_SR3P           ;Table 7 
-  MW[8]=MI.2.MD_NHB_DA             ;Table 8 
-  MW[9]=MI.2.MD_NHB_SR2            ;Table 9 
-  MW[10]=MI.2.MD_NHB_SR3P          ;Table 10 
-
-;                                           MW>VOL
-  MW[1]=MI.1.MD_TRK_IEII             ;Table 1 >7
-  MW[11]=MI.1.MD_TRK_EE              ;Table 11 >8
-  MW[12]=MI.1.MD_DA_EE               ;Table 12 >9
-  MW[13]=MI.1.MD_SR2_EE              ;Table 13 >10
-  MW[14]=MI.1.MD_SR3_EE              ;Table 14 >11
-  MW[15]=MI.1.MD_PortTrk             ;Table 15 >12
-
-;=====================
-;Per-KDK
-;Skim Time and Cost, assuming auto operating costs is the same for toll and free links
-; Get straight time skim for free paths (toll links excluded)
-; Get straight time skim for free paths (toll links excluded)
-PATHLOAD PATH=TIME PENI=1, EXCLUDEGROUP=5,9,MW[21]=PATHTRACE(TIME),NOACCESS=999
-; Get time and cost skims for DA, which may include tolls
-PATHLOAD PATH=TIME PENI=1, EXCLUDEGROUP=9,  MW[22]=PATHTRACE(TIME),NOACCESS=999,MW[23]=PATHTRACE(LW.MYTOLL),NOACCESS=999,
-; Get time and cost skims for SR3+, which may include non-HOT tolls (HOT is free)
-                                      MW[27]=PATHTRACE(LI.CARTOLL),NOACCESS=999,
-; Set flag for use of HOT lanes
-                                      MW[99]=PATHTRACE(LI.HOT),NOACCESS=0
-; Get time and cost skims for SR2, which may include tolls
-  MW[24]=MW[22]                  ;time- non-free
-  MW[25]=0.5*MW[23]              ;mytoll=hottoll+cartoll
-; Get time skims for SR3+
-  MW[26]=MW[22]                  ;time- non-free 
-; Get cost skims for SR3+, which may include non-HOT tolls
-  MW[27]=0.3125*MW[27] ; assume 3.2 occ
-;
-; CHOICE MODEL
-;kdk-S65:  c_o=CNTY(1,i);get county number
-;  combinations by o & d
-   loop p=1,3
-   jloop
-     if((MW[23]<=0) && (MW[21]<999)) ; if there is no toll skim, all must be free
-       SfreeDA  = 1.0  
-       SfreeSR2 = 1.0  
-       SfreeSR3 = 1.0
-     elseif(MW[21]>=999) ; if there is no free skim, all must be placed in the "toll" table
-       SfreeDA  = 0.0  
-       SfreeSR2 = 0.0  
-       SfreeSR3 = 0.0
-     else  
-;kdk-S65:      c_d=CNTY(1,j)
-       ;get coefficients
-;xx       dexi = 3*(c_o-1)+p
-;kdk-S65:       dexj = 3*(c_d-1)+p
-;xx       cti =KON(1,dexi); time coef for i
-;xx       cci =KON(2,dexi); cost coef for i
-;xx       tfki=KON(3,dexi); toll free constant for i
-;kdk-S65:       ctj =KON(1,dexj); time coef for j
-;kdk-S65:       ccj =KON(2,dexj); cost coef for j
-;kdk-S65:       tfkj=KON(3,dexj); toll free constant for j
-
-       ctp =KON(1,p); time coef for purpose p
-       ccp =KON(2,p); cost coef for purpose p
-       tfkp=KON(3,p); toll free constant for purpose p
-
-;xx
-;xx
-;xx       if(dexi=dexj) ; both ends in the same county
-;xx          ct=cti
-;xx          cc=cci
-;xx         tfk=tfki
-;xx       else          ; average 2 counties because true Home zone in O-D format is unknown
-;xx          ct =0.5*(cti+ctj)
-;xx          cc =0.5*(cci+ccj)
-;xx          tfk=0.5*(tfki+tfkj)
-;xx       endif
-;xx
-;xx
-; SET HOT LANES USE BIAS - 
-       if(mw[99]>0) 
-          hbias=KON(3,5); HOT bias stored in 5th record
-       else
-          hbias=0.0
-       endif
-; OVERRIDE EVERYTHING FOR TEST OF USING CONSTANTS FROM THE *DESTINATION* ZONE ****************
-;     rationale - most origins are the non-home end in the PM peak
-;kdk-S65:          ct=ctj
-;kdk-S65:          cc=ccj
-;kdk-S65:         tfk=tfkj + hbias
-          ct=ctp
-          cc=ccp
-          tfk=tfkp + hbias
-; ***************************************************************************************
-       UfreeDA = ct*MW[21] + tfk
-       UfreeSR2= UfreeDA;     ct*MW[21] + tfk
-       UfreeSR3= UfreeDA;     ct*MW[21] + tfk
-       UtollDA = ct*MW[22] + cc*MW[23]
-       UtollSR2= ct*MW[24] + cc*MW[25]
-       UtollSR3= ct*MW[26] + cc*MW[27]
-
-       SfreeDA = 1.0/(1.0+exp(UtollDA-UfreeDA)); binary logit form
-       ;StollDA = 1.0 - SfreeDA
-       SfreeSR2= 1.0/(1.0+exp(UtollSR2-UfreeSR2))
-       ;StollSR2= 1.0 - SfreeSR2
-       SfreeSR3= 1.0/(1.0+exp(UtollSR3-UfreeSR3))
-       ;StollSR3= 1.0 - SfreeSR3
-; for test ****************************************************************************
-;       if(mw[99]>0) 
-;            SfreeDA =0
-;            SfreeSR2=0
-;            SfreeSR3=0
-;       endif
-; for test ****************************************************************************
-     endif 
- 
-       dex = 3*(p-1)+2
-       k3=3*(p-1)+31
-       k4=k3+10; 2*(p-1)+41
-       mw[k3] = mw[dex]*SfreeDA  ; free DA
-       mw[k4] = mw[dex] - mw[k3] ; toll DA
-
-       dex2 = dex+1; 3*(p-1)+3
-       k5=k3+1;      3*(p-1)+32
-       k6=k5+10;     2*(p-1)+42
-       mw[k5] = mw[dex2]*SfreeSR2 ; free SR2
-       mw[k6] = mw[dex2] - mw[k5] ; toll SR2
-
-       dex3 = dex+2; 3*(p-1)+3
-       k7=k5+1;      3*(p-1)+33
-       k8=k7+10;     2*(p-1)+42
-       mw[k7] = mw[dex3]*SfreeSR3 ; free SR3+
-       mw[k8] = mw[dex3] - mw[k7] ; toll SR3+
-
-       if(MW[23]<> 0);tabluate free trips when there is a choice - some toll on the path
-          kf3=k3+70
-          mw[kf3]=mw[k3]; choice free DA
-
-          kf5=kf3+1
-          mw[kf5]=mw[k5]; choice free SR2
-
-          kf7=kf5+1
-          mw[kf7]=mw[k7]; choice free SR3+
-       endif
-
-;EETRIPS Block- Using HBO shares for EE trips...
-       if(p=2) ; use HBO shares
-          mw[51]=mw[12]*SfreeDA  ; EE DA free
-          mw[52]=mw[12]-mw[51]   ; EE DA toll
-
-          mw[53]=mw[13]*SfreeSR2  ; EE SR2 free
-          mw[54]=mw[13]-mw[53]   ; EE SR2 toll
-
-          mw[55]=mw[14]*SfreeSR3  ; EE SR3 free
-          mw[56]=mw[14]-mw[55]   ; EE SR3 toll
-       endif
-;EETRIPS Block
-
-   endjloop
-   endloop
- 
-   MW[61] = mw[31] +mw[34] + mw[37] ;drive alone free
-   MW[62] = mw[32] +mw[35] + mw[38] ;SR2 free
-   MW[63] = mw[33] +mw[36] + mw[39] ;SR3+free
-   MW[64] = mw[41] +mw[44] + mw[47] ;drive alone toll
-   MW[65] = mw[42] +mw[45] + mw[48] ;SR2 toll
-   MW[66] = mw[43] +mw[46] + mw[49] ;SR3+toll
- 
-;kdk-S65: MW[01] = MW[01]/[PCE-TRK]        ;truck vehicles
-
-;=====================
-;SKS- The Select Link Volume sets exceed the maximimum limitation of 20. So assignment with select link was turned off here...
-;Per CV documentation, Volume set index range is 1-20; there may be up to 20 volume sets in a single application of Highway. 
-
- ;FREE LINKS - toll links probibited
-  PATHLOAD PATH=TIME, VOL[1]=MW[61], PENI=1, EXCLUDEGROUP=1,5,9  ;Without HOV (DA-Free)
-  PATHLOAD PATH=TIME, VOL[2]=MW[62], PENI=1, EXCLUDEGROUP=3,5,9  ;With HOV2 (SR2-Free)
- ;ALL links -toll allowed
-  PATHLOAD PATH=TIME, VOL[3]=MW[64], PENI=1, EXCLUDEGROUP=1,9    ;Without HOV (DA-Toll)
-  PATHLOAD PATH=TIME, VOL[4]=MW[65], PENI=1, EXCLUDEGROUP=3,9    ;With HOV2  (SR2-Toll)
- ;SR3+ free
-  PATHLOAD PATH=TIME, VOL[5]=MW[63], PENI=1, EXCLUDEGROUP=6,9    ;With HOV3+ (SR3-Free)
- ;SR3+ toll
-  PATHLOAD PATH=TIME, VOL[6]=MW[66], PENI=1, EXCLUDEGROUP=9      ;With HOV3+ (SR3-Toll)
-
- ;Trucks
-  PATHLOAD PATH=COST, PENI=1, VOL[7]=MW[1],   EXCLUDEGROUP=1,3,8,9    ;IE&II- TRK(7<1) - Not on HOV/HOT  
-  PATHLOAD PATH=COST, PENI=1, VOL[12]=MW[15], EXCLUDEGROUP=1,2,3,8,9  ;JaxportTrk(12<15) -Not on HOV/HOT
-
- ;EE Trips
-  if(i>{ZONESI})
-   PATHLOAD PATH=COST, PENI=1, VOL[8]=MW[11],EXCLUDEGROUP=1,2,3,8,9, excludej=1-{ZONESI} ;EE- TRK(8<11)-Not on HOV/HOT
-   PATHLOAD PATH=TIME, PENI=1, VOL[9]=MW[51],  EXCLUDEGROUP=1,2,5,9, excludej=1-{ZONESI} ;EE-DA-Free(9<51)
-   PATHLOAD PATH=TIME, PENI=1, VOL[13]=MW[52], EXCLUDEGROUP=1,2,9,   excludej=1-{ZONESI} ;EE-DA-Toll(13<52)
-   PATHLOAD PATH=TIME, PENI=1, VOL[10]=MW[53], EXCLUDEGROUP=2,3,5,9, excludej=1-{ZONESI} ;EE-SR2-Free(10<53)
-   PATHLOAD PATH=TIME, PENI=1, VOL[14]=MW[54], EXCLUDEGROUP=2,3,9,   excludej=1-{ZONESI} ;EE-SR2-Toll(14<54)
-   PATHLOAD PATH=TIME, PENI=1, VOL[11]=MW[55], EXCLUDEGROUP=2,6,9,   excludej=1-{ZONESI} ;EE-SR3-Free(11<55)
-   PATHLOAD PATH=TIME, PENI=1, VOL[15]=MW[56], EXCLUDEGROUP=2,9,     excludej=1-{ZONESI} ;EE-SR3-Free(11<56)
-  endif
-
-ENDPROCESS
-
-
-PROCESS PHASE=ADJUST
-;Define volume to be used for V/C calculation
-FUNCTION   V=VOL[1]+VOL[2]+VOL[3]+VOL[4]+VOL[5]+VOL[6]+VOL[7]+VOL[8]+VOL[9]+VOL[10]+VOL[11]+VOL[12]+VOL[13]+VOL[14]+VOL[15]
-
-if (time>0) LW.CGSTSPEED=(LW.DISTANCE/TIME)*60
-
-if (li.cartoll>0)
- LW.ARRIVR=(V/LI.UROADFACTOR)*LI.CONFACMDP/LI.PLZALNSMAX  ; hourly volume per toll lane ie. arrival rate in vehicles per hour
- LW.SERVT=LI.SVCMINUTES+(LI.SVCSECONDS/60)                ; Plaza lane service time in minutes per vehicle
- LW.SERVR=(1/LW.SERVT)*60                                 ; Plaza lane service rate in vehicle per hour
- if (LW.ARRIVR>=LW.SERVR) LW.ARRIVR=0.99*LW.SERVR         ; prevent infinite or negative queue
-PRINT LIST='ARRIVR= ',LW.ARRIVR
-PRINT LIST='SERVT= ',LW.SERVT
-PRINT LIST='SERVR= ',LW.SERVR
-PRINT LIST='TOLLTIME= ',TIME
-endif
-if (lw.servr-lw.arrivr=0.0) lw.servr=lw.servr+0.01
-
-;Update Time and Cost for PATHLOAD
-;---TIME is TIME plus regular toll time and toll equivalent time
-;---COST is Time plus HOT toll time equivalent
-;Capture HOT toll time equivalent
-
-; Dynamic HOTTOLL removed - now a fixed rate per mile in linkread
-;IF(LI.HOT=1)
-;  LW.VCVAL=V/C ; V/C CALCULATION
-;  MINHOTTOLL=0.12          ; Minimum HOT lane toll 12 cents per mile
-;  MAXHOTTOLL=0.25          ; Maximum HOT lane toll 25 cents per mile
-;  LW.HOTTOLL = MINHOTTOLL+(MAXHOTTOLL-MINHOTTOLL)/(1+EXP(6-9*LW.VCVAL))    ;LOGIT EQN APPLIED
-;ELSE
-;    LW.HOTTOLL=0
-;ENDIF
-
-;KDK replace LI.TIME with T0 for toll choice
-;Define EACH LINKCLASS TC and COST Functions
-; Link Class 1 - Non Regular Toll (it may be a HOT link)
- FUNCTION TC[1]   = T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT)
- FUNCTION COST[1] = T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT)+LI.DISTANCE*(LW.HOTTOLL)*60*{CTOLL}
-
-;Link Class 2 - Regular Tollplaza Link (Never HOT link)
- ;FUNCTION   TC[2]=MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) + {CTOLL}*LI.CARTOLL*60        ; congested time for toll links
- FUNCTION   TC[2]=T0; MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) ; don't include toll in toll choice time; congested time for toll links
-;Ommit service time from toll choice: 
- FUNCTION COST[2]=MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) + {CTOLL}*LI.CARTOLL*60        ; congested time for toll links
-
-; Link Class 3 - Regular Toll Accln Link (Never HOT link)
- FUNCTION   TC[3]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) ;Omit accel from toll choice: + (LW.CGSTSPEED/2.5)/60; congested time toll acceleration links
- FUNCTION COST[3]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) + (LW.CGSTSPEED/2.5)/60; congested time toll acceleration links
-
-; Link Class 4 - Regular Toll Decln Link (Never HOT link)
- FUNCTION   TC[4]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) ;Omit deccel from toll choice: + (LW.CGSTSPEED/DECEL(1,LW.CGSTSPEED))/60; congested time toll deceleration links
- FUNCTION COST[4]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) + (LW.CGSTSPEED/DECEL(1,LW.CGSTSPEED))/60; congested time toll deceleration links
- 
-; Link Class 5 - Transit Optional Link 
- FUNCTION   TC[5]=T0                                                            ;congested time transit-only optional links
- FUNCTION COST[5]=T0                                                            ;congested time transit-only optional links
-
- 
-if (li.cartoll>0) print list="Iter:",iteration(2.0)," TOLLFM Summary, A=",A(6.0)," B=",B(6.0)," PLAZAID=",li.TOLL(3.0)," NAME=",li.PLAZADESC(24)," MAX LNS=",li.PLZALNSMAX," GCOST=",TIME(6.2),
-        printo=1
-
-
-ENDPROCESS
-
-; Converge phase is new for Cube 4.0.
-PHASE=CONVERGE
-  IF (ITERATION < 6) BREAK; Do not even test for Iterations 2-5
-  IF (GAP[ITERATION]<GAPCUTOFF & GAP[ITERATION-1]<GAPCUTOFF & GAP[ITERATION-2]<GAPCUTOFF)
-;  IF (RGAP[ITERATION]<RGAPCUTOFF & RGAP[ITERATION-1]<RGAPCUTOFF & RGAP[ITERATION-2]<RGAPCUTOFF)
-     BALANCE = 1
-  ENDIF
-
-ENDPROCESS
-
-
-ENDRUN
-
-
 ; Script for program HIGHWAY in file "C:\NERPM43\APPLICATIONS\HTHWY00C.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=HIGHWAY PRNFILE="{SCENARIO_DIR}\output\HTHWY00C.PRN" MSG='PM Period Hwy Assignment'
 FILEI NETI = "{SCENARIO_DIR}\output\UNLOADED.NET"
-FILEI MATI[2] = "C:\NERPM43\Base2005\INT2010\Output\HWYTTBP_PM_A10.MAT"
-FILEI MATI[1] = "C:\NERPM43\Base2005\INT2010\Output\HWYTTAB_PM.MAT"
+FILEI MATI[2] = "{SCENARIO_DIR}\Output\HWYTTBP_PM_{alt}{Year}.MAT"
+FILEI MATI[1] = "{SCENARIO_DIR}\Output\HWYTTAB_PM_{alt}{Year}.MAT"
 DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
 ;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
 
@@ -15071,8 +14345,8 @@ ENDRUN
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=HIGHWAY PRNFILE="{SCENARIO_DIR}\output\HTHWY00D.PRN" MSG='Night Period Hwy Assignment'
 FILEI NETI = "{SCENARIO_DIR}\output\UNLOADED.NET"
-FILEI MATI[2] = "C:\NERPM43\Base2005\INT2010\Output\HWYTTBP_NT_A10.MAT"
-FILEI MATI[1] = "C:\NERPM43\Base2005\INT2010\Output\HWYTTAB_NT_A10.MAT"
+FILEI MATI[2] = "{SCENARIO_DIR}\Output\HWYTTBP_NT_{alt}{Year}.MAT"
+FILEI MATI[1] = "{SCENARIO_DIR}\Output\HWYTTAB_NT_{alt}{Year}.MAT"
 DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
 ;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
 
@@ -15397,6 +14671,807 @@ if (time>0) LW.CGSTSPEED=(LW.DISTANCE/TIME)*60
 
 if (li.cartoll>0)
  LW.ARRIVR=(V/LI.UROADFACTOR)*LI.CONFACNTP/LI.PLZALNSMAX  ; hourly volume per toll lane ie. arrival rate in vehicles per hour
+ LW.SERVT=LI.SVCMINUTES+(LI.SVCSECONDS/60)                ; Plaza lane service time in minutes per vehicle
+ LW.SERVR=(1/LW.SERVT)*60                                 ; Plaza lane service rate in vehicle per hour
+ if (LW.ARRIVR>=LW.SERVR) LW.ARRIVR=0.99*LW.SERVR         ; prevent infinite or negative queue
+PRINT LIST='ARRIVR= ',LW.ARRIVR
+PRINT LIST='SERVT= ',LW.SERVT
+PRINT LIST='SERVR= ',LW.SERVR
+PRINT LIST='TOLLTIME= ',TIME
+endif
+if (lw.servr-lw.arrivr=0.0) lw.servr=lw.servr+0.01
+
+;Update Time and Cost for PATHLOAD
+;---TIME is TIME plus regular toll time and toll equivalent time
+;---COST is Time plus HOT toll time equivalent
+;Capture HOT toll time equivalent
+
+; Dynamic HOTTOLL removed - now a fixed rate per mile in linkread
+;IF(LI.HOT=1)
+;  LW.VCVAL=V/C ; V/C CALCULATION
+;  MINHOTTOLL=0.12          ; Minimum HOT lane toll 12 cents per mile
+;  MAXHOTTOLL=0.25          ; Maximum HOT lane toll 25 cents per mile
+;  LW.HOTTOLL = MINHOTTOLL+(MAXHOTTOLL-MINHOTTOLL)/(1+EXP(6-9*LW.VCVAL))    ;LOGIT EQN APPLIED
+;ELSE
+;    LW.HOTTOLL=0
+;ENDIF
+
+;KDK replace LI.TIME with T0 for toll choice
+;Define EACH LINKCLASS TC and COST Functions
+; Link Class 1 - Non Regular Toll (it may be a HOT link)
+ FUNCTION TC[1]   = T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT)
+ FUNCTION COST[1] = T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT)+LI.DISTANCE*(LW.HOTTOLL)*60*{CTOLL}
+
+;Link Class 2 - Regular Tollplaza Link (Never HOT link)
+ ;FUNCTION   TC[2]=MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) + {CTOLL}*LI.CARTOLL*60        ; congested time for toll links
+ FUNCTION   TC[2]=T0; MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) ; don't include toll in toll choice time; congested time for toll links
+;Ommit service time from toll choice: 
+ FUNCTION COST[2]=MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) + {CTOLL}*LI.CARTOLL*60        ; congested time for toll links
+
+; Link Class 3 - Regular Toll Accln Link (Never HOT link)
+ FUNCTION   TC[3]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) ;Omit accel from toll choice: + (LW.CGSTSPEED/2.5)/60; congested time toll acceleration links
+ FUNCTION COST[3]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) + (LW.CGSTSPEED/2.5)/60; congested time toll acceleration links
+
+; Link Class 4 - Regular Toll Decln Link (Never HOT link)
+ FUNCTION   TC[4]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) ;Omit deccel from toll choice: + (LW.CGSTSPEED/DECEL(1,LW.CGSTSPEED))/60; congested time toll deceleration links
+ FUNCTION COST[4]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) + (LW.CGSTSPEED/DECEL(1,LW.CGSTSPEED))/60; congested time toll deceleration links
+ 
+; Link Class 5 - Transit Optional Link 
+ FUNCTION   TC[5]=T0                                                            ;congested time transit-only optional links
+ FUNCTION COST[5]=T0                                                            ;congested time transit-only optional links
+
+ 
+if (li.cartoll>0) print list="Iter:",iteration(2.0)," TOLLFM Summary, A=",A(6.0)," B=",B(6.0)," PLAZAID=",li.TOLL(3.0)," NAME=",li.PLAZADESC(24)," MAX LNS=",li.PLZALNSMAX," GCOST=",TIME(6.2),
+        printo=1
+
+
+ENDPROCESS
+
+; Converge phase is new for Cube 4.0.
+PHASE=CONVERGE
+  IF (ITERATION < 6) BREAK; Do not even test for Iterations 2-5
+  IF (GAP[ITERATION]<GAPCUTOFF & GAP[ITERATION-1]<GAPCUTOFF & GAP[ITERATION-2]<GAPCUTOFF)
+;  IF (RGAP[ITERATION]<RGAPCUTOFF & RGAP[ITERATION-1]<RGAPCUTOFF & RGAP[ITERATION-2]<RGAPCUTOFF)
+     BALANCE = 1
+  ENDIF
+
+ENDPROCESS
+
+
+ENDRUN
+
+
+; Script for program HIGHWAY in file "C:\NERPM43\APPLICATIONS\HTHWY00B.S"
+; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+RUN PGM=HIGHWAY PRNFILE="{SCENARIO_DIR}\output\HTHWY00B.PRN" MSG='Mid_Day Period Hwy Assignment'
+FILEI NETI = "{SCENARIO_DIR}\output\UNLOADED.NET"
+FILEI MATI[2] = "{SCENARIO_DIR}\Output\HWYTTBP_MD_{alt}{Year}.MAT"
+FILEI MATI[1] = "{SCENARIO_DIR}\Output\HWYTTAB_MD_{alt}{Year}.MAT"
+DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
+;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
+
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\parameters\HOT_TOLL.dbf"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\parameters\TCHOICE_MD.dbf"
+
+FILEI TURNPENI = "{SCENARIO_DIR}\input\tcards_{Year}{alt}.pen"
+FILEO TURNVOLO[1] = "{SCENARIO_DIR}\output\TURNS_MD.BIN"
+FILEO PRINTO[1] = "{SCENARIO_DIR}\output\MDPeriod_TollReport.PRN"
+FILEO NETO = "{SCENARIO_DIR}\output\FINAL_ASGN_MD.NET"
+
+PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS={iter} RAAD=0.00000 AAD=0.000000 RMSE=0.000000 GAP=0.00025; RELATIVEGAP=0.001
+;PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS={iter} GAP=0.0005 RAAD=0.00000 AAD=0.000000 RMSE=0.000000 ;
+;PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS=7 GAP=0.0005 RAAD=0.00000 AAD=0.000000 RMSE=0.000000 ;
+
+;TURNS N=1-999999
+TURNS N=39782,40555,40265,40258,40241,40568
+
+;Per-KDK
+LOOKUP LOOKUPI=1,
+       NAME=KON,
+       LOOKUP[1]=REC, RESULT=CT,
+       LOOKUP[2]=REC, RESULT=CC,
+       LOOKUP[3]=REC, RESULT=TFK,
+       FAIL[1]=0,FAIL[2]=0,FAIL[3]=0
+
+LOOKUP LOOKUPI=2,
+       NAME=HOTTOLL,
+       LOOKUP[1]=HOT, RESULT=MD_TOLL_MI,
+       FAIL[1]=0,FAIL[2]=0,FAIL[3]=0
+
+; look up deceleration rate based on approach speed
+LOOKUP,
+ INTERPOLATE=Y, LIST=Y, NAME=DECEL,
+        LOOKUP[1]=1,RESULT=2,
+R = '30 4',
+    '70 6.2'
+
+PROCESS PHASE=LINKREAD
+
+;Basics...
+  lw.distance=li.distance
+  DISTANCE=LW.DISTANCE
+  T0=li.TIME
+  LW.FFTIME=LI.TIME                                         ; USE FOR PRELOAD PURPOSES (FFTIME)
+  C=LI.CAPACITY*LI.NUM_LANES*LI.UROADFACTOR/LI.CONFACMDP
+;Save Mid-Day Period Total capacity
+  CAPACITY_MDP=C
+
+;Per-KDK
+; HOT TOLL RATE/mile from lookup table
+HOT_TOLL_PMILE = HOTTOLL(1,LI.HOT)
+IF(LI.HOT>=1)
+  LW.HOTTOLL = DISTANCE*HOT_TOLL_PMILE
+ELSE
+    LW.HOTTOLL=0
+ENDIF
+LW.MYTOLL=LW.HOTTOLL+LI.CARTOLL
+LW.MYTOLL2=0.5*LW.MYTOLL
+
+;Set EXCLUDE VOLUME GROUP for PATHLOAD...
+  IF (li.FACILITY_TYPE=89 & LI.HOT=0) ADDTOGROUP=1               ;HOV 2 & 3+ Facilities (FT=89 All Day) => Exclude DA and Truck Volume Groups  
+  IF (li.FACILITY_TYPE=82 & LI.HOT=0) ADDTOGROUP=3               ;HOV 3+ Facilities => Exclude HOV2 Volume Groups
+;Note Dummy HOT ramps are coded as HOT=-1 and their facility_type changed to 69 (transit only)
+;  IF (li.HOT=2) ADDTOGROUP=4                                     ;Dummy Entrance and Exit from HOT facility
+
+  IF (li.EECODE>0) ADDTOGROUP=2                                  ;EE PROHIBITED LINKS =>Exclude External Volume Groups
+;  IF (LI.{PATHGROUP}) ADDTOGROUP=7 ; DEFINE A SUBSET FOR PATHFILE
+
+  IF (li.HOT>=1) ADDTOGROUP=8                                     ;HOT Lane Facility
+  IF (li.FACILITY_TYPE=49,59,69) ADDTOGROUP=9                    ;TRANSIT ONLY FACILITIES =>Exclude all Highway Volume Groups
+
+;Per-KDK
+   IF (LI.HOT>=1 | li.FACILITY_TYPE=91-99) ADDTOGROUP=5       ;Any kind of toll road -- KDK
+   IF (li.FACILITY_TYPE=91-99) ADDTOGROUP=6                   ;Non-HOT toll road -- KDK
+
+; classify links based on presence/absence of tolls
+      LINKCLASS=1                                        ;no toll
+      if (li.cartoll>0)           
+       LINKCLASS=2                                       ;with toll
+
+       T0=({CTOLL}*LI.CARTOLL)*60 + LI.SVCMINUTES + LI.SVCSECONDS/60
+
+       if (iteration=0)
+        LW.ARRIVR=(V/LI.UROADFACTOR)*LI.CONFACMDP/LI.PLZALNSMAX  ; hourly volume per toll lane ie. arrival rate in vehicles per hour
+        LW.SERVT=LI.SVCMINUTES+(LI.SVCSECONDS/60)                ; Plaza lane service time in minutes per vehicle
+        LW.SERVR=(1/LW.SERVT)*60                                 ; Plaza lane service rate in vehicle per hour
+        PRINT LIST='ARRIVR= ',LW.ARRIVR
+        PRINT LIST='SERVT= ',LW.SERVT
+        PRINT LIST='SERVR= ',LW.SERVR
+        if (LW.ARRIVR>=LW.SERVR) LW.ARRIVR=0.99*LW.SERVR         ; prevent infinite or negative queue
+       endif
+
+      endif
+
+      if (li.TOLL_ACC>0)
+       LINKCLASS=3                                               ; Toll Plaza Acceleration link
+       T0= T0 + (LI.SPEED/2.5)/60
+      endif
+
+      if (li.TOLL_DEC>0)
+       LINKCLASS=4                                               ; Toll Plaza Deceleration link
+       T0 = T0 + (LI.SPEED/DECEL(1,LI.SPEED))/60
+      endif
+
+     IF (li.FACILITY_TYPE=49,59,69) LINKCLASS=5                   ;Transit non-Highway optional links
+
+
+ENDPROCESS
+
+PROCESS PHASE=ILOOP
+
+  MW[2]=MI.2.MD_HBW_DA             ;Table 2 
+  MW[3]=MI.2.MD_HBW_SR2            ;Table 3 
+  MW[4]=MI.2.MD_HBW_SR3P           ;Table 4 
+  MW[5]=MI.2.MD_HBO_DA             ;Table 5 
+  MW[6]=MI.2.MD_HBO_SR2            ;Table 6 
+  MW[7]=MI.2.MD_HBO_SR3P           ;Table 7 
+  MW[8]=MI.2.MD_NHB_DA             ;Table 8 
+  MW[9]=MI.2.MD_NHB_SR2            ;Table 9 
+  MW[10]=MI.2.MD_NHB_SR3P          ;Table 10 
+
+;                                           MW>VOL
+  MW[1]=MI.1.MD_TRK_IEII             ;Table 1 >7
+  MW[11]=MI.1.MD_TRK_EE              ;Table 11 >8
+  MW[12]=MI.1.MD_DA_EE               ;Table 12 >9
+  MW[13]=MI.1.MD_SR2_EE              ;Table 13 >10
+  MW[14]=MI.1.MD_SR3_EE              ;Table 14 >11
+  MW[15]=MI.1.MD_PortTrk             ;Table 15 >12
+
+;=====================
+;Per-KDK
+;Skim Time and Cost, assuming auto operating costs is the same for toll and free links
+; Get straight time skim for free paths (toll links excluded)
+; Get straight time skim for free paths (toll links excluded)
+PATHLOAD PATH=TIME PENI=1, EXCLUDEGROUP=5,9,MW[21]=PATHTRACE(TIME),NOACCESS=999
+; Get time and cost skims for DA, which may include tolls
+PATHLOAD PATH=TIME PENI=1, EXCLUDEGROUP=9,  MW[22]=PATHTRACE(TIME),NOACCESS=999,MW[23]=PATHTRACE(LW.MYTOLL),NOACCESS=999,
+; Get time and cost skims for SR3+, which may include non-HOT tolls (HOT is free)
+                                      MW[27]=PATHTRACE(LI.CARTOLL),NOACCESS=999,
+; Set flag for use of HOT lanes
+                                      MW[99]=PATHTRACE(LI.HOT),NOACCESS=0
+; Get time and cost skims for SR2, which may include tolls
+  MW[24]=MW[22]                  ;time- non-free
+  MW[25]=0.5*MW[23]              ;mytoll=hottoll+cartoll
+; Get time skims for SR3+
+  MW[26]=MW[22]                  ;time- non-free 
+; Get cost skims for SR3+, which may include non-HOT tolls
+  MW[27]=0.3125*MW[27] ; assume 3.2 occ
+;
+; CHOICE MODEL
+;kdk-S65:  c_o=CNTY(1,i);get county number
+;  combinations by o & d
+   loop p=1,3
+   jloop
+     if((MW[23]<=0) && (MW[21]<999)) ; if there is no toll skim, all must be free
+       SfreeDA  = 1.0  
+       SfreeSR2 = 1.0  
+       SfreeSR3 = 1.0
+     elseif(MW[21]>=999) ; if there is no free skim, all must be placed in the "toll" table
+       SfreeDA  = 0.0  
+       SfreeSR2 = 0.0  
+       SfreeSR3 = 0.0
+     else  
+;kdk-S65:      c_d=CNTY(1,j)
+       ;get coefficients
+;xx       dexi = 3*(c_o-1)+p
+;kdk-S65:       dexj = 3*(c_d-1)+p
+;xx       cti =KON(1,dexi); time coef for i
+;xx       cci =KON(2,dexi); cost coef for i
+;xx       tfki=KON(3,dexi); toll free constant for i
+;kdk-S65:       ctj =KON(1,dexj); time coef for j
+;kdk-S65:       ccj =KON(2,dexj); cost coef for j
+;kdk-S65:       tfkj=KON(3,dexj); toll free constant for j
+
+       ctp =KON(1,p); time coef for purpose p
+       ccp =KON(2,p); cost coef for purpose p
+       tfkp=KON(3,p); toll free constant for purpose p
+
+;xx
+;xx
+;xx       if(dexi=dexj) ; both ends in the same county
+;xx          ct=cti
+;xx          cc=cci
+;xx         tfk=tfki
+;xx       else          ; average 2 counties because true Home zone in O-D format is unknown
+;xx          ct =0.5*(cti+ctj)
+;xx          cc =0.5*(cci+ccj)
+;xx          tfk=0.5*(tfki+tfkj)
+;xx       endif
+;xx
+;xx
+; SET HOT LANES USE BIAS - 
+       if(mw[99]>0) 
+          hbias=KON(3,5); HOT bias stored in 5th record
+       else
+          hbias=0.0
+       endif
+; OVERRIDE EVERYTHING FOR TEST OF USING CONSTANTS FROM THE *DESTINATION* ZONE ****************
+;     rationale - most origins are the non-home end in the PM peak
+;kdk-S65:          ct=ctj
+;kdk-S65:          cc=ccj
+;kdk-S65:         tfk=tfkj + hbias
+          ct=ctp
+          cc=ccp
+          tfk=tfkp + hbias
+; ***************************************************************************************
+       UfreeDA = ct*MW[21] + tfk
+       UfreeSR2= UfreeDA;     ct*MW[21] + tfk
+       UfreeSR3= UfreeDA;     ct*MW[21] + tfk
+       UtollDA = ct*MW[22] + cc*MW[23]
+       UtollSR2= ct*MW[24] + cc*MW[25]
+       UtollSR3= ct*MW[26] + cc*MW[27]
+
+       SfreeDA = 1.0/(1.0+exp(UtollDA-UfreeDA)); binary logit form
+       ;StollDA = 1.0 - SfreeDA
+       SfreeSR2= 1.0/(1.0+exp(UtollSR2-UfreeSR2))
+       ;StollSR2= 1.0 - SfreeSR2
+       SfreeSR3= 1.0/(1.0+exp(UtollSR3-UfreeSR3))
+       ;StollSR3= 1.0 - SfreeSR3
+; for test ****************************************************************************
+;       if(mw[99]>0) 
+;            SfreeDA =0
+;            SfreeSR2=0
+;            SfreeSR3=0
+;       endif
+; for test ****************************************************************************
+     endif 
+ 
+       dex = 3*(p-1)+2
+       k3=3*(p-1)+31
+       k4=k3+10; 2*(p-1)+41
+       mw[k3] = mw[dex]*SfreeDA  ; free DA
+       mw[k4] = mw[dex] - mw[k3] ; toll DA
+
+       dex2 = dex+1; 3*(p-1)+3
+       k5=k3+1;      3*(p-1)+32
+       k6=k5+10;     2*(p-1)+42
+       mw[k5] = mw[dex2]*SfreeSR2 ; free SR2
+       mw[k6] = mw[dex2] - mw[k5] ; toll SR2
+
+       dex3 = dex+2; 3*(p-1)+3
+       k7=k5+1;      3*(p-1)+33
+       k8=k7+10;     2*(p-1)+42
+       mw[k7] = mw[dex3]*SfreeSR3 ; free SR3+
+       mw[k8] = mw[dex3] - mw[k7] ; toll SR3+
+
+       if(MW[23]<> 0);tabluate free trips when there is a choice - some toll on the path
+          kf3=k3+70
+          mw[kf3]=mw[k3]; choice free DA
+
+          kf5=kf3+1
+          mw[kf5]=mw[k5]; choice free SR2
+
+          kf7=kf5+1
+          mw[kf7]=mw[k7]; choice free SR3+
+       endif
+
+;EETRIPS Block- Using HBO shares for EE trips...
+       if(p=2) ; use HBO shares
+          mw[51]=mw[12]*SfreeDA  ; EE DA free
+          mw[52]=mw[12]-mw[51]   ; EE DA toll
+
+          mw[53]=mw[13]*SfreeSR2  ; EE SR2 free
+          mw[54]=mw[13]-mw[53]   ; EE SR2 toll
+
+          mw[55]=mw[14]*SfreeSR3  ; EE SR3 free
+          mw[56]=mw[14]-mw[55]   ; EE SR3 toll
+       endif
+;EETRIPS Block
+
+   endjloop
+   endloop
+ 
+   MW[61] = mw[31] +mw[34] + mw[37] ;drive alone free
+   MW[62] = mw[32] +mw[35] + mw[38] ;SR2 free
+   MW[63] = mw[33] +mw[36] + mw[39] ;SR3+free
+   MW[64] = mw[41] +mw[44] + mw[47] ;drive alone toll
+   MW[65] = mw[42] +mw[45] + mw[48] ;SR2 toll
+   MW[66] = mw[43] +mw[46] + mw[49] ;SR3+toll
+ 
+;kdk-S65: MW[01] = MW[01]/[PCE-TRK]        ;truck vehicles
+
+;=====================
+;SKS- The Select Link Volume sets exceed the maximimum limitation of 20. So assignment with select link was turned off here...
+;Per CV documentation, Volume set index range is 1-20; there may be up to 20 volume sets in a single application of Highway. 
+
+ ;FREE LINKS - toll links probibited
+  PATHLOAD PATH=TIME, VOL[1]=MW[61], PENI=1, EXCLUDEGROUP=1,5,9  ;Without HOV (DA-Free)
+  PATHLOAD PATH=TIME, VOL[2]=MW[62], PENI=1, EXCLUDEGROUP=3,5,9  ;With HOV2 (SR2-Free)
+ ;ALL links -toll allowed
+  PATHLOAD PATH=TIME, VOL[3]=MW[64], PENI=1, EXCLUDEGROUP=1,9    ;Without HOV (DA-Toll)
+  PATHLOAD PATH=TIME, VOL[4]=MW[65], PENI=1, EXCLUDEGROUP=3,9    ;With HOV2  (SR2-Toll)
+ ;SR3+ free
+  PATHLOAD PATH=TIME, VOL[5]=MW[63], PENI=1, EXCLUDEGROUP=6,9    ;With HOV3+ (SR3-Free)
+ ;SR3+ toll
+  PATHLOAD PATH=TIME, VOL[6]=MW[66], PENI=1, EXCLUDEGROUP=9      ;With HOV3+ (SR3-Toll)
+
+ ;Trucks
+  PATHLOAD PATH=COST, PENI=1, VOL[7]=MW[1],   EXCLUDEGROUP=1,3,8,9    ;IE&II- TRK(7<1) - Not on HOV/HOT  
+  PATHLOAD PATH=COST, PENI=1, VOL[12]=MW[15], EXCLUDEGROUP=1,2,3,8,9  ;JaxportTrk(12<15) -Not on HOV/HOT
+
+ ;EE Trips
+  if(i>{ZONESI})
+   PATHLOAD PATH=COST, PENI=1, VOL[8]=MW[11],EXCLUDEGROUP=1,2,3,8,9, excludej=1-{ZONESI} ;EE- TRK(8<11)-Not on HOV/HOT
+   PATHLOAD PATH=TIME, PENI=1, VOL[9]=MW[51],  EXCLUDEGROUP=1,2,5,9, excludej=1-{ZONESI} ;EE-DA-Free(9<51)
+   PATHLOAD PATH=TIME, PENI=1, VOL[13]=MW[52], EXCLUDEGROUP=1,2,9,   excludej=1-{ZONESI} ;EE-DA-Toll(13<52)
+   PATHLOAD PATH=TIME, PENI=1, VOL[10]=MW[53], EXCLUDEGROUP=2,3,5,9, excludej=1-{ZONESI} ;EE-SR2-Free(10<53)
+   PATHLOAD PATH=TIME, PENI=1, VOL[14]=MW[54], EXCLUDEGROUP=2,3,9,   excludej=1-{ZONESI} ;EE-SR2-Toll(14<54)
+   PATHLOAD PATH=TIME, PENI=1, VOL[11]=MW[55], EXCLUDEGROUP=2,6,9,   excludej=1-{ZONESI} ;EE-SR3-Free(11<55)
+   PATHLOAD PATH=TIME, PENI=1, VOL[15]=MW[56], EXCLUDEGROUP=2,9,     excludej=1-{ZONESI} ;EE-SR3-Free(11<56)
+  endif
+
+ENDPROCESS
+
+
+PROCESS PHASE=ADJUST
+;Define volume to be used for V/C calculation
+FUNCTION   V=VOL[1]+VOL[2]+VOL[3]+VOL[4]+VOL[5]+VOL[6]+VOL[7]+VOL[8]+VOL[9]+VOL[10]+VOL[11]+VOL[12]+VOL[13]+VOL[14]+VOL[15]
+
+if (time>0) LW.CGSTSPEED=(LW.DISTANCE/TIME)*60
+
+if (li.cartoll>0)
+ LW.ARRIVR=(V/LI.UROADFACTOR)*LI.CONFACMDP/LI.PLZALNSMAX  ; hourly volume per toll lane ie. arrival rate in vehicles per hour
+ LW.SERVT=LI.SVCMINUTES+(LI.SVCSECONDS/60)                ; Plaza lane service time in minutes per vehicle
+ LW.SERVR=(1/LW.SERVT)*60                                 ; Plaza lane service rate in vehicle per hour
+ if (LW.ARRIVR>=LW.SERVR) LW.ARRIVR=0.99*LW.SERVR         ; prevent infinite or negative queue
+PRINT LIST='ARRIVR= ',LW.ARRIVR
+PRINT LIST='SERVT= ',LW.SERVT
+PRINT LIST='SERVR= ',LW.SERVR
+PRINT LIST='TOLLTIME= ',TIME
+endif
+if (lw.servr-lw.arrivr=0.0) lw.servr=lw.servr+0.01
+
+;Update Time and Cost for PATHLOAD
+;---TIME is TIME plus regular toll time and toll equivalent time
+;---COST is Time plus HOT toll time equivalent
+;Capture HOT toll time equivalent
+
+; Dynamic HOTTOLL removed - now a fixed rate per mile in linkread
+;IF(LI.HOT=1)
+;  LW.VCVAL=V/C ; V/C CALCULATION
+;  MINHOTTOLL=0.12          ; Minimum HOT lane toll 12 cents per mile
+;  MAXHOTTOLL=0.25          ; Maximum HOT lane toll 25 cents per mile
+;  LW.HOTTOLL = MINHOTTOLL+(MAXHOTTOLL-MINHOTTOLL)/(1+EXP(6-9*LW.VCVAL))    ;LOGIT EQN APPLIED
+;ELSE
+;    LW.HOTTOLL=0
+;ENDIF
+
+;KDK replace LI.TIME with T0 for toll choice
+;Define EACH LINKCLASS TC and COST Functions
+; Link Class 1 - Non Regular Toll (it may be a HOT link)
+ FUNCTION TC[1]   = T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT)
+ FUNCTION COST[1] = T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT)+LI.DISTANCE*(LW.HOTTOLL)*60*{CTOLL}
+
+;Link Class 2 - Regular Tollplaza Link (Never HOT link)
+ ;FUNCTION   TC[2]=MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) + {CTOLL}*LI.CARTOLL*60        ; congested time for toll links
+ FUNCTION   TC[2]=T0; MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) ; don't include toll in toll choice time; congested time for toll links
+;Ommit service time from toll choice: 
+ FUNCTION COST[2]=MIN(5,(1/(2.0*(LW.SERVR-LW.ARRIVR)))*60) + {CTOLL}*LI.CARTOLL*60        ; congested time for toll links
+
+; Link Class 3 - Regular Toll Accln Link (Never HOT link)
+ FUNCTION   TC[3]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) ;Omit accel from toll choice: + (LW.CGSTSPEED/2.5)/60; congested time toll acceleration links
+ FUNCTION COST[3]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) + (LW.CGSTSPEED/2.5)/60; congested time toll acceleration links
+
+; Link Class 4 - Regular Toll Decln Link (Never HOT link)
+ FUNCTION   TC[4]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) ;Omit deccel from toll choice: + (LW.CGSTSPEED/DECEL(1,LW.CGSTSPEED))/60; congested time toll deceleration links
+ FUNCTION COST[4]=T0*(1+LI.BPRCOEFFICIENT*(MIN(V/C,{VCMAX}))^LI.BPREXPONENT) + (LW.CGSTSPEED/DECEL(1,LW.CGSTSPEED))/60; congested time toll deceleration links
+ 
+; Link Class 5 - Transit Optional Link 
+ FUNCTION   TC[5]=T0                                                            ;congested time transit-only optional links
+ FUNCTION COST[5]=T0                                                            ;congested time transit-only optional links
+
+ 
+if (li.cartoll>0) print list="Iter:",iteration(2.0)," TOLLFM Summary, A=",A(6.0)," B=",B(6.0)," PLAZAID=",li.TOLL(3.0)," NAME=",li.PLAZADESC(24)," MAX LNS=",li.PLZALNSMAX," GCOST=",TIME(6.2),
+        printo=1
+
+
+ENDPROCESS
+
+; Converge phase is new for Cube 4.0.
+PHASE=CONVERGE
+  IF (ITERATION < 6) BREAK; Do not even test for Iterations 2-5
+  IF (GAP[ITERATION]<GAPCUTOFF & GAP[ITERATION-1]<GAPCUTOFF & GAP[ITERATION-2]<GAPCUTOFF)
+;  IF (RGAP[ITERATION]<RGAPCUTOFF & RGAP[ITERATION-1]<RGAPCUTOFF & RGAP[ITERATION-2]<RGAPCUTOFF)
+     BALANCE = 1
+  ENDIF
+
+ENDPROCESS
+
+
+ENDRUN
+
+
+; Script for program HIGHWAY in file "C:\NERPM43\APPLICATIONS\HTHWY00A.S"
+; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+RUN PGM=HIGHWAY PRNFILE="{SCENARIO_DIR}\output\HTHWY00A.PRN" MSG='AM Period Hwy Assignment'
+FILEI MATI[2] = "{SCENARIO_DIR}\Output\HWYTTBP_AM_{alt}{Year}.MAT"
+FILEI NETI = "{SCENARIO_DIR}\output\UNLOADED.NET"
+FILEI MATI[1] = "{SCENARIO_DIR}\Output\HWYTTAB_AM_{alt}{Year}.MAT"
+DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
+;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
+
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\parameters\HOT_TOLL.dbf"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\parameters\TCHOICE_AM.dbf"
+
+FILEI TURNPENI = "{SCENARIO_DIR}\input\tcards_{Year}{alt}.pen"
+FILEO TURNVOLO[1] = "{SCENARIO_DIR}\output\TURNS_AM.BIN"
+FILEO PRINTO[1] = "{SCENARIO_DIR}\output\AMPeriod_TollReport.PRN"
+FILEO NETO = "{SCENARIO_DIR}\output\FINAL_ASGN_AM.NET"
+
+PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS={iter} RAAD=0.00000 AAD=0.000000 RMSE=0.000000 GAP=0.00025; RELATIVEGAP=0.001
+;PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS={iter} GAP=0.0005 RAAD=0.00000 AAD=0.000000 RMSE=0.000000 ;
+;PAR ZONEMSG=100 COMBINE=EQUI ENHANCE=2 MAXITERS=7 GAP=0.0005 RAAD=0.00000 AAD=0.000000 RMSE=0.000000 ;
+
+;TURNS N=1-999999
+TURNS N=39782,40555,40265,40258,40241,40568
+
+;Per-KDK
+LOOKUP LOOKUPI=1,
+       NAME=KON,
+       LOOKUP[1]=REC, RESULT=CT,
+       LOOKUP[2]=REC, RESULT=CC,
+       LOOKUP[3]=REC, RESULT=TFK,
+       FAIL[1]=0,FAIL[2]=0,FAIL[3]=0
+
+LOOKUP LOOKUPI=2,
+       NAME=HOTTOLL,
+       LOOKUP[1]=HOT, RESULT=AM_TOLL_MI,
+       FAIL[1]=0,FAIL[2]=0,FAIL[3]=0
+
+; look up deceleration rate based on approach speed
+LOOKUP,
+ INTERPOLATE=Y, LIST=Y, NAME=DECEL,
+        LOOKUP[1]=1,RESULT=2,
+R = '30 4',
+    '70 6.2'
+
+PROCESS PHASE=LINKREAD
+
+;Basics...
+  lw.distance=li.distance
+  DISTANCE=LW.DISTANCE
+  T0=li.TIME
+  LW.FFTIME=LI.TIME                                         ; USE FOR PRELOAD PURPOSES (FFTIME)
+ C=LI.CAPACITY*LI.NUM_LANES*LI.UROADFACTOR/LI.CONFACAMP
+;Save AM Period Total capacity
+  CAPACITY_AMP=C
+
+;Per-KDK
+; HOT TOLL RATE/mile from lookup table
+HOT_TOLL_PMILE = HOTTOLL(1,LI.HOT)
+IF(LI.HOT>=1)
+  LW.HOTTOLL = DISTANCE*HOT_TOLL_PMILE
+ELSE
+    LW.HOTTOLL=0
+ENDIF
+LW.MYTOLL=LW.HOTTOLL+LI.CARTOLL
+LW.MYTOLL2=0.5*LW.MYTOLL
+
+;Set EXCLUDE VOLUME GROUP for PATHLOAD...
+  IF (li.FACILITY_TYPE=86,87,89 & LI.HOT=0) ADDTOGROUP=1         ;HOV 2 & 3+ Facilities (FT=88 PM Only) => Exclude DA and Truck Volume Groups  
+  IF (li.FACILITY_TYPE=82 & LI.HOT=0) ADDTOGROUP=3               ;HOV 3+ Facilities => Exclude HOV2 Volume Groups
+;Note Dummy HOT ramps are coded as HOT=-1 and their facility_type changed to 69 (transit only)
+;  IF (li.HOT=2) ADDTOGROUP=4                                     ;Dummy Entrance and Exit from HOT facility
+
+  IF (li.EECODE>0) ADDTOGROUP=2                                  ;EE PROHIBITED LINKS =>Exclude External Volume Groups
+;  IF (LI.{PATHGROUP}) ADDTOGROUP=7 ; DEFINE A SUBSET FOR PATHFILE
+
+  IF (li.HOT>=1) ADDTOGROUP=8                                    ;HOT Lane Facility
+  IF (li.FACILITY_TYPE=49,59,69) ADDTOGROUP=9                    ;TRANSIT ONLY FACILITIES =>Exclude all Highway Volume Groups
+
+;Per-KDK
+   IF (LI.HOT>=1 | li.FACILITY_TYPE=91-99) ADDTOGROUP=5       ;Any kind of toll road -- KDK
+   IF (li.FACILITY_TYPE=91-99) ADDTOGROUP=6                   ;Non-HOT toll road -- KDK
+
+; classify links based on presence/absence of tolls
+      LINKCLASS=1                                        ;no toll
+      if (li.cartoll>0)           
+       LINKCLASS=2                                       ;with toll
+
+       T0=({CTOLL}*LI.CARTOLL)*60 + LI.SVCMINUTES + LI.SVCSECONDS/60
+
+       if (iteration=0)
+        LW.ARRIVR=(V/LI.UROADFACTOR)*LI.CONFACAMP/LI.PLZALNSMAX  ; hourly volume per toll lane ie. arrival rate in vehicles per hour
+        LW.SERVT=LI.SVCMINUTES+(LI.SVCSECONDS/60)                ; Plaza lane service time in minutes per vehicle
+        LW.SERVR=(1/LW.SERVT)*60                                 ; Plaza lane service rate in vehicle per hour
+        PRINT LIST='ARRIVR= ',LW.ARRIVR
+        PRINT LIST='SERVT= ',LW.SERVT
+        PRINT LIST='SERVR= ',LW.SERVR
+        if (LW.ARRIVR>=LW.SERVR) LW.ARRIVR=0.99*LW.SERVR         ; prevent infinite or negative queue
+       endif
+
+      endif
+
+      if (li.TOLL_ACC>0)
+       LINKCLASS=3                                               ; Toll Plaza Acceleration link
+       T0= T0 + (LI.SPEED/2.5)/60
+      endif
+
+      if (li.TOLL_DEC>0)
+       LINKCLASS=4                                               ; Toll Plaza Deceleration link
+       T0 = T0 + (LI.SPEED/DECEL(1,LI.SPEED))/60
+      endif
+
+     IF (li.FACILITY_TYPE=49,59,69) LINKCLASS=5                   ;Transit non-Highway optional links
+
+
+ENDPROCESS
+
+PROCESS PHASE=ILOOP
+
+  MW[2]=MI.2.AM_HBW_DA             ;Table 2 
+  MW[3]=MI.2.AM_HBW_SR2            ;Table 3 
+  MW[4]=MI.2.AM_HBW_SR3P           ;Table 4 
+  MW[5]=MI.2.AM_HBO_DA             ;Table 5 
+  MW[6]=MI.2.AM_HBO_SR2            ;Table 6 
+  MW[7]=MI.2.AM_HBO_SR3P           ;Table 7 
+  MW[8]=MI.2.AM_NHB_DA             ;Table 8 
+  MW[9]=MI.2.AM_NHB_SR2            ;Table 9 
+  MW[10]=MI.2.AM_NHB_SR3P          ;Table 10 
+
+;                                           MW>VOL
+  MW[1]=MI.1.AM_TRK_IEII             ;Table 1 >7
+  MW[11]=MI.1.AM_TRK_EE              ;Table 11 >8
+  MW[12]=MI.1.AM_DA_EE               ;Table 12 >9
+  MW[13]=MI.1.AM_SR2_EE              ;Table 13 >10
+  MW[14]=MI.1.AM_SR3_EE              ;Table 14 >11
+  MW[15]=MI.1.AM_PortTrk             ;Table 15 >12
+
+;=====================
+;Per-KDK
+;Skim Time and Cost, assuming auto operating costs is the same for toll and free links
+; Get straight time skim for free paths (toll links excluded)
+; Get straight time skim for free paths (toll links excluded)
+PATHLOAD PATH=TIME PENI=1, EXCLUDEGROUP=5,9,MW[21]=PATHTRACE(TIME),NOACCESS=999
+; Get time and cost skims for DA, which may include tolls
+PATHLOAD PATH=TIME PENI=1, EXCLUDEGROUP=9,  MW[22]=PATHTRACE(TIME),NOACCESS=999,MW[23]=PATHTRACE(LW.MYTOLL),NOACCESS=999,
+; Get time and cost skims for SR3+, which may include non-HOT tolls (HOT is free)
+                                      MW[27]=PATHTRACE(LI.CARTOLL),NOACCESS=999,
+; Set flag for use of HOT lanes
+                                      MW[99]=PATHTRACE(LI.HOT),NOACCESS=0
+; Get time and cost skims for SR2, which may include tolls
+  MW[24]=MW[22]                  ;time- non-free
+  MW[25]=0.5*MW[23]              ;mytoll=hottoll+cartoll
+; Get time skims for SR3+
+  MW[26]=MW[22]                  ;time- non-free 
+; Get cost skims for SR3+, which may include non-HOT tolls
+  MW[27]=0.3125*MW[27] ; assume 3.2 occ
+;
+; CHOICE MODEL
+;kdk-S65:  c_o=CNTY(1,i);get county number
+;  combinations by o & d
+   loop p=1,3
+   jloop
+     if((MW[23]<=0) && (MW[21]<999)) ; if there is no toll skim, all must be free
+       SfreeDA  = 1.0  
+       SfreeSR2 = 1.0  
+       SfreeSR3 = 1.0
+     elseif(MW[21]>=999) ; if there is no free skim, all must be placed in the "toll" table
+       SfreeDA  = 0.0  
+       SfreeSR2 = 0.0  
+       SfreeSR3 = 0.0
+     else  
+;kdk-S65:      c_d=CNTY(1,j)
+       ;get coefficients
+;xx       dexi = 3*(c_o-1)+p
+;kdk-S65:       dexj = 3*(c_d-1)+p
+;xx       cti =KON(1,dexi); time coef for i
+;xx       cci =KON(2,dexi); cost coef for i
+;xx       tfki=KON(3,dexi); toll free constant for i
+;kdk-S65:       ctj =KON(1,dexj); time coef for j
+;kdk-S65:       ccj =KON(2,dexj); cost coef for j
+;kdk-S65:       tfkj=KON(3,dexj); toll free constant for j
+
+       ctp =KON(1,p); time coef for purpose p
+       ccp =KON(2,p); cost coef for purpose p
+       tfkp=KON(3,p); toll free constant for purpose p
+
+;xx
+;xx
+;xx       if(dexi=dexj) ; both ends in the same county
+;xx          ct=cti
+;xx          cc=cci
+;xx         tfk=tfki
+;xx       else          ; average 2 counties because true Home zone in O-D format is unknown
+;xx          ct =0.5*(cti+ctj)
+;xx          cc =0.5*(cci+ccj)
+;xx          tfk=0.5*(tfki+tfkj)
+;xx       endif
+;xx
+;xx
+; SET HOT LANES USE BIAS - 
+       if(mw[99]>0) 
+          hbias=KON(3,5); HOT bias stored in 5th record
+       else
+          hbias=0.0
+       endif
+; OVERRIDE EVERYTHING FOR TEST OF USING CONSTANTS FROM THE *DESTINATION* ZONE ****************
+;     rationale - most origins are the non-home end in the PM peak
+;kdk-S65:          ct=ctj
+;kdk-S65:          cc=ccj
+;kdk-S65:         tfk=tfkj + hbias
+          ct=ctp
+          cc=ccp
+          tfk=tfkp + hbias
+; ***************************************************************************************
+       UfreeDA = ct*MW[21] + tfk
+       UfreeSR2= UfreeDA;     ct*MW[21] + tfk
+       UfreeSR3= UfreeDA;     ct*MW[21] + tfk
+       UtollDA = ct*MW[22] + cc*MW[23]
+       UtollSR2= ct*MW[24] + cc*MW[25]
+       UtollSR3= ct*MW[26] + cc*MW[27]
+
+       SfreeDA = 1.0/(1.0+exp(UtollDA-UfreeDA)); binary logit form
+       ;StollDA = 1.0 - SfreeDA
+       SfreeSR2= 1.0/(1.0+exp(UtollSR2-UfreeSR2))
+       ;StollSR2= 1.0 - SfreeSR2
+       SfreeSR3= 1.0/(1.0+exp(UtollSR3-UfreeSR3))
+       ;StollSR3= 1.0 - SfreeSR3
+; for test ****************************************************************************
+;       if(mw[99]>0) 
+;            SfreeDA =0
+;            SfreeSR2=0
+;            SfreeSR3=0
+;       endif
+; for test ****************************************************************************
+     endif 
+ 
+       dex = 3*(p-1)+2
+       k3=3*(p-1)+31
+       k4=k3+10; 2*(p-1)+41
+       mw[k3] = mw[dex]*SfreeDA  ; free DA
+       mw[k4] = mw[dex] - mw[k3] ; toll DA
+
+       dex2 = dex+1; 3*(p-1)+3
+       k5=k3+1;      3*(p-1)+32
+       k6=k5+10;     2*(p-1)+42
+       mw[k5] = mw[dex2]*SfreeSR2 ; free SR2
+       mw[k6] = mw[dex2] - mw[k5] ; toll SR2
+
+       dex3 = dex+2; 3*(p-1)+3
+       k7=k5+1;      3*(p-1)+33
+       k8=k7+10;     2*(p-1)+42
+       mw[k7] = mw[dex3]*SfreeSR3 ; free SR3+
+       mw[k8] = mw[dex3] - mw[k7] ; toll SR3+
+
+       if(MW[23]<> 0);tabluate free trips when there is a choice - some toll on the path
+          kf3=k3+70
+          mw[kf3]=mw[k3]; choice free DA
+
+          kf5=kf3+1
+          mw[kf5]=mw[k5]; choice free SR2
+
+          kf7=kf5+1
+          mw[kf7]=mw[k7]; choice free SR3+
+       endif
+
+;EETRIPS Block- Using HBO shares for EE trips...
+       if(p=2) ; use HBO shares
+          mw[51]=mw[12]*SfreeDA  ; EE DA free
+          mw[52]=mw[12]-mw[51]   ; EE DA toll
+
+          mw[53]=mw[13]*SfreeSR2  ; EE SR2 free
+          mw[54]=mw[13]-mw[53]   ; EE SR2 toll
+
+          mw[55]=mw[14]*SfreeSR3  ; EE SR3 free
+          mw[56]=mw[14]-mw[55]   ; EE SR3 toll
+       endif
+;EETRIPS Block
+
+   endjloop
+   endloop
+ 
+   MW[61] = mw[31] +mw[34] + mw[37] ;drive alone free
+   MW[62] = mw[32] +mw[35] + mw[38] ;SR2 free
+   MW[63] = mw[33] +mw[36] + mw[39] ;SR3+free
+   MW[64] = mw[41] +mw[44] + mw[47] ;drive alone toll
+   MW[65] = mw[42] +mw[45] + mw[48] ;SR2 toll
+   MW[66] = mw[43] +mw[46] + mw[49] ;SR3+toll
+ 
+;kdk-S65: MW[01] = MW[01]/[PCE-TRK]        ;truck vehicles
+
+;=====================
+;SKS- The Select Link Volume sets exceed the maximimum limitation of 20. So assignment with select link was turned off here...
+;Per CV documentation, Volume set index range is 1-20; there may be up to 20 volume sets in a single application of Highway. 
+
+ ;FREE LINKS - toll links probibited
+  PATHLOAD PATH=TIME, VOL[1]=MW[61], PENI=1, EXCLUDEGROUP=1,5,9  ;Without HOV (DA-Free)
+  PATHLOAD PATH=TIME, VOL[2]=MW[62], PENI=1, EXCLUDEGROUP=3,5,9  ;With HOV2 (SR2-Free)
+ ;ALL links -toll allowed
+  PATHLOAD PATH=TIME, VOL[3]=MW[64], PENI=1, EXCLUDEGROUP=1,9    ;Without HOV (DA-Toll)
+  PATHLOAD PATH=TIME, VOL[4]=MW[65], PENI=1, EXCLUDEGROUP=3,9    ;With HOV2  (SR2-Toll)
+ ;SR3+ free
+  PATHLOAD PATH=TIME, VOL[5]=MW[63], PENI=1, EXCLUDEGROUP=6,9    ;With HOV3+ (SR3-Free)
+ ;SR3+ toll
+  PATHLOAD PATH=TIME, VOL[6]=MW[66], PENI=1, EXCLUDEGROUP=9      ;With HOV3+ (SR3-Toll)
+
+ ;Trucks
+  PATHLOAD PATH=COST, PENI=1, VOL[7]=MW[1],   EXCLUDEGROUP=1,3,8,9    ;IE&II- TRK(7<1) - Not on HOV/HOT  
+  PATHLOAD PATH=COST, PENI=1, VOL[12]=MW[15], EXCLUDEGROUP=1,2,3,8,9  ;JaxportTrk(12<15) -Not on HOV/HOT
+
+ ;EE Trips
+  if(i>{ZONESI})
+   PATHLOAD PATH=COST, PENI=1, VOL[8]=MW[11],EXCLUDEGROUP=1,2,3,8,9, excludej=1-{ZONESI} ;EE- TRK(8<11)-Not on HOV/HOT
+   PATHLOAD PATH=TIME, PENI=1, VOL[9]=MW[51],  EXCLUDEGROUP=1,2,5,9, excludej=1-{ZONESI} ;EE-DA-Free(9<51)
+   PATHLOAD PATH=TIME, PENI=1, VOL[13]=MW[52], EXCLUDEGROUP=1,2,9,   excludej=1-{ZONESI} ;EE-DA-Toll(13<52)
+   PATHLOAD PATH=TIME, PENI=1, VOL[10]=MW[53], EXCLUDEGROUP=2,3,5,9, excludej=1-{ZONESI} ;EE-SR2-Free(10<53)
+   PATHLOAD PATH=TIME, PENI=1, VOL[14]=MW[54], EXCLUDEGROUP=2,3,9,   excludej=1-{ZONESI} ;EE-SR2-Toll(14<54)
+   PATHLOAD PATH=TIME, PENI=1, VOL[11]=MW[55], EXCLUDEGROUP=2,6,9,   excludej=1-{ZONESI} ;EE-SR3-Free(11<55)
+   PATHLOAD PATH=TIME, PENI=1, VOL[15]=MW[56], EXCLUDEGROUP=2,9,     excludej=1-{ZONESI} ;EE-SR3-Free(11<56)
+  endif
+
+ENDPROCESS
+
+
+PROCESS PHASE=ADJUST
+;Define volume to be used for V/C calculation
+FUNCTION   V=VOL[1]+VOL[2]+VOL[3]+VOL[4]+VOL[5]+VOL[6]+VOL[7]+VOL[8]+VOL[9]+VOL[10]+VOL[11]+VOL[12]+VOL[13]+VOL[14]+VOL[15]
+
+
+if (time>0) LW.CGSTSPEED=(LW.DISTANCE/TIME)*60
+
+if (li.cartoll>0)
+ LW.ARRIVR=(V/LI.UROADFACTOR)*LI.CONFACAMP/LI.PLZALNSMAX  ; hourly volume per toll lane ie. arrival rate in vehicles per hour
  LW.SERVT=LI.SVCMINUTES+(LI.SVCSECONDS/60)                ; Plaza lane service time in minutes per vehicle
  LW.SERVR=(1/LW.SERVT)*60                                 ; Plaza lane service rate in vehicle per hour
  if (LW.ARRIVR>=LW.SERVR) LW.ARRIVR=0.99*LW.SERVR         ; prevent infinite or negative queue
@@ -15852,8 +15927,8 @@ endif           ;Time of Day (4 periods) Highway Model
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 
-
-if({AllDay_HwyMdl}=1)   ;All Day (24-Hour) Highway Model
+; Modified to run at all times
+if({AllDay_HwyMdl}=1 || {AllDay_HwyMdl}=0)   ;All Day (24-Hour) Highway Model
 
 ; End of PILOT Script
 
@@ -15905,7 +15980,7 @@ FILEO PRINTO[1] = "{SCENARIO_DIR}\output\RMSE-24H.PRN"
 ; =========================================================
 PHASE=LINKMERGE
 
-_ReportTitle= ' NERPM50-24 Hour (All Counties) RMSE and Other Volume/Count Evaluation Summary ==================================='
+_ReportTitle= ' NERPM43-24 Hour (All Counties) RMSE and Other Volume/Count Evaluation Summary ==================================='
 
 
 
@@ -15928,10 +16003,11 @@ CCODE       =1
 DIRCODE     =1
 ;
    LOCATION=LI.1.COUNTY
-   CGTIME=LI.1.AD_CGTIME_{Year}{alt}
-
-   TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
-
+   ; CGTIME=LI.1.AD_CGTIME_{Year}{alt}
+   CGTIME=LI.1.AL_CGTIME_{Year}{alt}
+   ;TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
+   TOTAL_VOL=LI.1.AL_VL_TOT_{Year}{alt}
+   
    ft=LI.1.FACILITY_TYPE
    FACILITY=LI.1.FACILITY_TYPE
    at=LI.1.AREA_TYPE
@@ -16536,8 +16612,8 @@ CCODE       =1
 DIRCODE     =1
 ;
    LOCATION=LI.1.COUNTY
-   CGTIME=LI.1.AD_CGTIME_{Year}{alt}
-   TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
+   CGTIME=LI.1.AL_CGTIME_{Year}{alt}
+   TOTAL_VOL=LI.1.AL_VL_TOT_{Year}{alt}
    ft=LI.1.FACILITY_TYPE
    FACILITY=LI.1.FACILITY_TYPE
    at=LI.1.AREA_TYPE
@@ -17136,8 +17212,8 @@ CCODE       =1
 DIRCODE     =1
 ;
    LOCATION=LI.1.COUNTY
-   CGTIME=LI.1.AD_CGTIME_{Year}{alt}
-   TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
+   CGTIME=LI.1.AL_CGTIME_{Year}{alt}
+   TOTAL_VOL=LI.1.AL_VL_TOT_{Year}{alt}
    ft=LI.1.FACILITY_TYPE
    FACILITY=LI.1.FACILITY_TYPE
    at=LI.1.AREA_TYPE
@@ -17734,8 +17810,8 @@ CCODE       =1
 DIRCODE     =1
 ;
    LOCATION=LI.1.COUNTY
-   CGTIME=LI.1.AD_CGTIME_{Year}{alt}
-   TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
+   CGTIME=LI.1.AL_CGTIME_{Year}{alt}
+   TOTAL_VOL=LI.1.AL_VL_TOT_{Year}{alt}
    ft=LI.1.FACILITY_TYPE
    FACILITY=LI.1.FACILITY_TYPE
    at=LI.1.AREA_TYPE
@@ -18333,8 +18409,8 @@ CCODE       =1
 DIRCODE     =1
 ;
    LOCATION=LI.1.COUNTY
-   CGTIME=LI.1.AD_CGTIME_{Year}{alt}
-   TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
+   CGTIME=LI.1.AL_CGTIME_{Year}{alt}
+   TOTAL_VOL=LI.1.AL_VL_TOT_{Year}{alt}
    ft=LI.1.FACILITY_TYPE
    FACILITY=LI.1.FACILITY_TYPE
    at=LI.1.AREA_TYPE
@@ -18929,8 +19005,8 @@ CCODE       =1
 DIRCODE     =1
 ;
    LOCATION=LI.1.COUNTY
-   CGTIME=LI.1.AD_CGTIME_{Year}{alt}
-   TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
+   CGTIME=LI.1.AL_CGTIME_{Year}{alt}
+   TOTAL_VOL=LI.1.AL_VL_TOT_{Year}{alt}
    ft=LI.1.FACILITY_TYPE
    FACILITY=LI.1.FACILITY_TYPE
    at=LI.1.AREA_TYPE
@@ -19525,8 +19601,8 @@ CCODE       =1
 DIRCODE     =1
 ;
    LOCATION=LI.1.COUNTY
-   CGTIME=LI.1.AD_CGTIME_{Year}{alt}
-   TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
+   CGTIME=LI.1.AL_CGTIME_{Year}{alt}
+   TOTAL_VOL=LI.1.AL_VL_TOT_{Year}{alt}
    ft=LI.1.FACILITY_TYPE
    FACILITY=LI.1.FACILITY_TYPE
    at=LI.1.AREA_TYPE

@@ -13,7 +13,7 @@ FILEO PRINTO[1] = "{SCENARIO_DIR}\output\RMSE-24H.PRN"
 ; =========================================================
 PHASE=LINKMERGE
 
-_ReportTitle= ' NERPM50-24 Hour (All Counties) RMSE and Other Volume/Count Evaluation Summary ==================================='
+_ReportTitle= ' NERPM43-24 Hour (All Counties) RMSE and Other Volume/Count Evaluation Summary ==================================='
 
 
 
@@ -36,10 +36,11 @@ CCODE       =1
 DIRCODE     =1
 ;
    LOCATION=LI.1.COUNTY
-   CGTIME=LI.1.AD_CGTIME_{Year}{alt}
-
-   TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
-
+   ; CGTIME=LI.1.AD_CGTIME_{Year}{alt}
+   CGTIME=LI.1.AL_CGTIME_{Year}{alt}
+   ;TOTAL_VOL=LI.1.AD_VL_TOT_{Year}{alt}
+   TOTAL_VOL=LI.1.AL_VL_TOT_{Year}{alt}
+   
    ft=LI.1.FACILITY_TYPE
    FACILITY=LI.1.FACILITY_TYPE
    at=LI.1.AREA_TYPE

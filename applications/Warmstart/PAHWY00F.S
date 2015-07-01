@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=HIGHWAY PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\WARMSTART\PAHWY00A3.PRN" MSG='Develops Preload Skims'
+RUN PGM=HIGHWAY PRNFILE="C:\NERPM43\APPLICATIONS\WARMSTART\PAHWY00A3.PRN" MSG='Develops Preload Skims'
 DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
 ;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
 

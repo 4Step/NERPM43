@@ -10,7 +10,7 @@ FILEI LOOKUPI[6] = "{Scenario_Dir}\Input\TRIPGEN\OBO_ARates.csv"
 ; header #1 Purpose, #2 PurposeNo, #3 Retail Trade, #4 Arts, Entertainment, and Recreation, #5 Accommodation and Food Services, #6 Educational Services, #7	Health Care and Social Assistance, #8	enrlsc - enrollment pk-12, #9	enrluniv - university, #10 TotalHH
 
 FILEI LOOKUPI[7] = "{Scenario_Dir}\Input\TRIPGEN\school_enroll.dbf"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_10A.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\OUTPUT\TG_REPORT.TXT"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\TRIPGEN_DEBUG.TXT"
 

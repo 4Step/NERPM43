@@ -3,7 +3,7 @@ RUN PGM=MATRIX PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGMAT00K.PRN" MSG='Auto Avail
 FILEI LOOKUPI[3] = "{SCENARIO_DIR}\Input\TRIPGEN\nftpo_incomebytaz2.dbf"
 FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\COEFF_AUTOOWN.csv"
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\OUTPUT\HHClass.DBF"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_10A.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
 FILEI ZDATI[5] = "{Scenario_Dir}\OUTPUT\WalkTranAcc.dbf"
 FILEI ZDATI[3] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv",
     Z=#1,TotHhlds=#2,TotEmp=#3,FloatHhld=#4,FloatEmp=#5,MixedDen=#6,CentX=#7,CentY=#8

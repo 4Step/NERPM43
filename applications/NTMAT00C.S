@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=MATRIX PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\NTMAT00A.PRN" MSG='Prepares MVFACTORS.{YEAR}{ALT} for Lookup Function'
+RUN PGM=MATRIX PRNFILE="C:\NERPM43\APPLICATIONS\NTMAT00A.PRN" MSG='Prepares MVFACTORS.{YEAR}{ALT} for Lookup Function'
 FILEO PRINTO[1] = "{Scenario_Dir}\output\MVFACTORS.CSV"
 FILEI RECI = "{Scenario_Dir}\input\MVFACTORS.{YEAR}{ALT}"
 ;var=n,6-7,UF,18-24,CF,35-41,BPRLOS,53-59,BPREXP,71-77

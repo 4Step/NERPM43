@@ -1,7 +1,7 @@
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 
-*Cluster NERPM 1-16 Start Exit
+*Cluster NERPM 1-12 Start Exit
 
 ; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Start Exit
 ; End of PILOT Script
@@ -302,7 +302,7 @@ FILEO MATO[8] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_XCHOICE_{Alt}{year}.M
             
         ; Zone and station data
 FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
-FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_A10.DBF"
+FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
@@ -789,7 +789,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
               JLOOP
                  ; Transit not available if no line-haul in-vehicle time on the transit path
                  ; Drive to skyway 
-                 IF (MW[24] == 0)  MW[404+20*(_m-1)]=-9999.99
+                 IF (MW[245] == 0)  MW[404+20*(_m-1)]=-9999.99
                  
                  ; Walk to skyway
                  IF (MW[24] == 0)  MW[405+20*(_m-1)]=-9999.99
@@ -1282,19 +1282,19 @@ FILEO MATO[1] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MC1.MAT",
             NAME=DA,SR2,SR3,DRVSKY,WALKSKY,WALKLOC,WALKEXP,WALKBRT,WALKCOM,PNREXP,PNRBRT,PNRCOM,KNRLOC,KNREXP,KNRBRT,KNRCOM,WALK,BIKE,PNRLOC
       
        ; Logsums by auto sufficiency (averaged across all access markets)
-FILEO MATO[2] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_A10.MAT",
+FILEO MATO[2] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_{alt}{Year}.MAT",
        MO=571,DEC=1*D,NAME=LSUM_M1 
        
         ; Exp(AutoUtility) for user benefits
 FILEO MATO[3] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_expautoutil.mat",
         MO=561,DEC=1*D,NAME=EXPA_M1 
        
-FILEO MATO[4] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_XCHOICE_A10.MAT",
+FILEO MATO[4] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_XCHOICE_{alt}{Year}.MAT",
        MO=528,DEC=1*D,NAME=LSUM_M1
             
         ; Zone and station data
 FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
-FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_A10.DBF"
+FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
@@ -1781,7 +1781,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
               JLOOP
                  ; Transit not available if no line-haul in-vehicle time on the transit path
                  ; Drive to skyway 
-                 IF (MW[24] == 0)  MW[404+20*(_m-1)]=-9999.99
+                 IF (MW[245] == 0)  MW[404+20*(_m-1)]=-9999.99
                  
                  ; Walk to skyway
                  IF (MW[24] == 0)  MW[405+20*(_m-1)]=-9999.99
@@ -2170,8 +2170,15 @@ ENDLOOP
 
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+ Wait4Files Files=NERPM1.script.end, NERPM2.script.end, NERPM3.script.end,
+   NERPM4.script.end, NERPM5.script.end, NERPM6.script.end,                                 
+   NERPM7.script.end, NERPM8.script.end, NERPM9.script.end,                                 
+   NERPM10.script.end, NERPM11.script.end, NERPM12.script.end,                              
+   NERPM13.script.end, NERPM14.script.end, NERPM15.script.end,                              
+   NERPM16.script.end,                                                
+printfiles=MERGE, checkReturnCode=T   
+*Cluster NERPM 1-12 Close Exit
 
-*Cluster NERPM 1-16 Close Exit
-
-; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Close Exit; End of PILOT Script
+; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Close Exit
+; End of PILOT Script
 

@@ -1,9 +1,9 @@
  
-NETWORK (v.05/01/2013 [6.1.0])  Tue Sep 30 11:36:17 2014
+NETWORK (v.08/05/2014 [6.1.1])  Fri Mar 20 12:19:13 2015
 
-FILEI LINKI[1] = "C:\NERPM43\Base2010\output\PreAssignLOADED_HEVAL.NET"
-FILEO PRINTO[2] = "C:\NERPM43\Base2010\output\PreAssignPROFILE_NERPM4.TXT"
-FILEO LINKO = "C:\NERPM43\Base2010\output\PreAssignLinksCnt0.DBF",
+FILEI LINKI[1] = "C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET"
+FILEO PRINTO[2] = "C:\NERPM43\Base2010\CF2040\output\PreAssignPROFILE_NERPM4.TXT"
+FILEO LINKO = "C:\NERPM43\Base2010\CF2040\output\PreAssignLinksCnt0.DBF",
    FORMAT=DBF,include=A,B,DISTANCE,ONE,ATYPE2,FTYPE2,
       LANES,TIME,PK2HRCAP,COUNT,SCRN,ZONE,USECODE,LOCATION,
       LANDUSE,CCODE,CGTIME,TOTAL_VOL,TOLL,TWOWAY
@@ -50,7 +50,7 @@ DIRCODE     =1
      _distmile=li.1.distance
      _lanemiles=lns*distance
      _orgspd=_distmile/_orgtimehr
-     _links=1Page 537  (VOYAGER NETWORK) 
+     _links=1Page 499  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
@@ -82,7 +82,7 @@ Parsons Brinckerhoff
 ;sks-Revised to 0.50 assuming more congestion in future years:  confacpk=0.582    ; using peak hour factor from HH survey - jeff
   confacpk=0.50
 
-   TWOWAY=li.1.TWOWAY_10A
+   TWOWAY=li.1.TWOWAY_40C
 
 
    PK2HRCAP=li.1.CAPACITY*LNS/CONFACPK    ; Pre-assignment  2-hour AMpeak capacity
@@ -106,7 +106,7 @@ CROSSTAB  VAR= _LANEMILES, form=14.2c, VAR= _CAPLNMILES, form=14.2c,
 
 ;sks - for computing original Speed the network by FTG and ATG
 CROSSTAB  VAR=_distmile form=14.2c, VAR=_orgtimehr form=14.2c, VAR=_orgspd form=14.2c,VAR=_links form=14.2c,
-    row=FTG, range=1-9-1,1-9,Page 538  (VOYAGER NETWORK) 
+    row=FTG, range=1-9-1,1-9,Page 500  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
     col=ATG, range=1-5-1,1-5,
@@ -162,7 +162,7 @@ if ('YES' = 'YES')     ;Preassign HEVAL always in Analysis mode since no peak co
            "\n&VALIDATE      Sets HEVAL to run in validate mode if (YES)",
            "\nNO",
            "\n&GLTITLE       Specifies title for HEVAL runs using geographic location",
-           "\n",'Enhanced Validation Run',"- PreAssignment HEVAL in Alalysis Mode",                                                                       ;GTITLE,Page 539  (VOYAGER NETWORK) 
+           "\n",'Enhanced Validation Run',"- PreAssignment HEVAL in Alalysis Mode",                                                                       ;GTITLE,Page 501  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
            "\n&ASCII         Generates ASCII file (HRLDXY.ASC) with 1-way vol and cap",
@@ -178,18 +178,18 @@ ENDPHASE
 
 
 
-NETWORK Stack Size = 6450 bytes.
+NETWORK Stack Size = 6470 bytes.
 ................................................................................
 
 
 
 
-C:\NERPM43\Base2010\output\PreAssignLOADED_HEVAL.NET   (VOYAGER):
+C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET   (VOYAGER):
 
-NET PGM=NETWORK (v.05/01/2013 [6.1.0]) DATE=Tue Sep 30 11:36:16 2014
+NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Fri Mar 20 12:19:12 2015
 ID= 
-PAR Zones=2578 Nodes=91488 Links=58311 NodeRecs=29193 
-NVR 76    N    TIMESUSED    X    Y    TSNAME=051    STATZONE
+PAR Zones=2578 Nodes=91504 Links=59126 NodeRecs=29842 
+NVR 97    N    TIMESUSED    X    Y    TSNAME=051    STATZONE
     TSSTATION_05A    TAZNEW    COUNTY    SPGEN    TSRANGE_05A
     TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
     FAREZONE_05A    TSSTATION_16A    TSRANGE_16A    TSPARKSPACE_16A
@@ -205,22 +205,27 @@ NVR 76    N    TIMESUSED    X    Y    TSNAME=051    STATZONE
     TSCOSTMD_18A    TSSTATION_40N    TSRANGE_40N    TSPARKSPACE_40N
     TSCOSTAM_40N    TSCOSTMD_40N    TSTYPE_40N    FAREZONE_40N    TSSTATION_40A
     TSRANGE_40A    TSPARKSPACE_40A    TSCOSTAM_40A    TSCOSTMD_40A
-    TSTYPE_40A    FAREZONE_40A    _TOLL_ACC    _TOLL_DEC
+    TSTYPE_40A    FAREZONE_40A    TSSTATION_40C    TSRANGE_40C
+    TSPARKSPACE_40C    TSCOSTAM_40C    TSCOSTMD_40C    TSTYPE_40C
+    FAREZONE_40C    TSSTATION_30A    TSRANGE_30A    TSPARKSPACE_30A
+    TSCOSTAM_30A    TSCOSTMD_30A    TSTYPE_30A    FAREZONE_30A    TSSTATION_40M
+    TSRANGE_40M    TSPARKSPACE_40M    TSCOSTAM_40M    TSCOSTMD_40M
+    TSTYPE_40M    FAREZONE_40M    _TOLL_ACC    _TOLL_DEC
 LVR 114    A    B    TOLL    TOLLTYPE    PLAZADESC=001    PLZALNSMIN
     PLZALNSMAX    CARTOLL    SVCMINUTES    SVCSECONDS    DECELCODE    ACCELCODE
-    EXACTCHGLNS    AVILANES    PCTTRUCKS    DISTANCE    NAME=032
+    EXACTCHGLNS    AVILANES    PCTTRUCKS    AADT10    DISTANCE    NAME=032
     ALT_NAME=027    COFIPS    COUNTY    DISTRICT    SCREENLINE    PSCF_YR00=004
     CNT_SRC_YR00=014    CONSTR_00A    ROADDIR=002    TMODE    TTIME    EECODE
     TOLLID    IDLINK=011    TCARD    TC    TV    VC    TBSDIST    TBSTIME
     TFGDIST    TFGTIME    TFGMODE    STN_ID    AADT_YR05    CNTYR    YRADJUST
-    COUNT_YR05    PSCF_YR05    MOCF_YR05    COUNTDESC=051    SELSPDADJ    HOT
-    TWOWAY_10A    AADT10    LEVEL    STN_ID_YR00    COUNT_YR00    DISTANCEFT
-    FACILITY_TYPE    AREA_TYPE    NUM_LANES    UROADFACTOR    CONFAC
-    BPRCOEFFICIENT    BPREXPONENT    CAPACITY    SPEED    TIME    TIME2
-    WALKTIME    PNRTERMTIME    KNRTERMTIME    CNTSRC_YR05    COUNT    LINKCNT
-    CONFACAMP    CONFACMDP    CONFACPMP    CONFACNTP    TOLL_ACC    TOLL_DECPage 540  (VOYAGER NETWORK) 
+    COUNT_YR05    PSCF_YR05    MOCF_YR05    COUNTDESC=051    SELSPDADJ    HOTPage 502  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
+    LEVEL    TWOWAY_40C    COUNT    STN_ID_YR00    COUNT_YR00    DISTANCEFT
+    FACILITY_TYPE    AREA_TYPE    NUM_LANES    UROADFACTOR    CONFAC
+    BPRCOEFFICIENT    BPREXPONENT    CAPACITY    SPEED    TIME    TIME2
+    WALKTIME    PNRTERMTIME    KNRTERMTIME    CNTSRC_YR05    LINKCNT
+    CONFACAMP    CONFACMDP    CONFACPMP    CONFACNTP    TOLL_ACC    TOLL_DEC
     V_1    TIME_1    VC_1    CSPD_1    VDT_1    VHT_1    V1_1    V2_1    V3_1
     V4_1    V5_1    V6_1    V7_1    V8_1    V9_1    V10_1    V11_1    V12_1
     V13_1    V14_1    VT_1    V1T_1    V2T_1    V3T_1    V4T_1    V5T_1
@@ -230,22 +235,22 @@ Parsons Brinckerhoff
 
 
 Begin PROCESS PHASE NODEMERGE
-      29,193 records merged from NODEI[1]: C:\NERPM43\Base2010\output\PreAssignLOADED_HEVAL.NET
-      29,193 data base records.Page 541  (VOYAGER NETWORK) 
+      29,842 records merged from NODEI[1]: C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET
+      29,842 data base records.Page 503  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
 Variable          Obs<>0              Total           Ave           Min           Max           RMS  
 --------          ------              -----           ---           ---           ---           ---  
-N                 29,193                 --            --          1        91,488               --
-TIMESUSED         29,193         118,504             4.06          1           170             4.86
-X                 29,193  13,073,285,521.8     447,822.61    190,006.11    588,266.75    451,444.1 
-Y                 29,193  62,681,209,759.07  2,147,131.5   1,826,931.76  2,356,088.57  2,148,793.34
-TSNAME               202                                   (0       )  (San Pabl)
-STATZONE             203         198,429           977.48         11         2,493         1,176.07
+N                 29,842                 --            --          1        91,504               --
+TIMESUSED         29,842         120,642             4.04          1           170             4.84
+X                 29,842  13,364,496,307.68    447,841.84    190,006.11    588,266.75    451,425.58
+Y                 29,842  64,074,371,221.9   2,147,120.54  1,826,931.76  2,356,088.57  2,148,763.91
+TSNAME               238                                   (0       )  (Tanglewo)
+STATZONE             239         234,725           982.11         11         2,493         1,190.08
 TSSTATION_05A         26             412            15.85          1            30            18.29
-TAZNEW               258             258             1             1             1             1   
-COUNTY            27,247          65,432             2.4           1             6             2.6 
+TAZNEW               261             261             1             1             1             1   
+COUNTY            27,680          66,424             2.4           1             6             2.59
 SPGEN                  9              20             2.22          1             3             2.31
 TSRANGE_05A           29              87             3             3             3             3   
 TSPARKSPACE_05A       30           4,045           134.83          1         1,900           393.71
@@ -282,32 +287,51 @@ TSPARKSPACE_10A       46           5,932           128.96          1         1,9
 TSCOSTAM_10A           4             714           178.5         138           258           184.54
 TSCOSTMD_10A           4             714           178.5         138           258           184.54
 TSTYPE_10A            44             151             3.43          1             6             4.13
-SUB_TYPE           2,592           2,592             1             1             1             1   
-OLD_NODE          29,071   1,166,821,080        40,136.94          1        91,159        46,734.98
-TSTYPE_18A            45             154             3.42          1             6             4.1 
+SUB_TYPE           2,595           2,595             1             1             1             1   
+OLD_NODE          29,511   1,185,134,029        40,159.06          1        91,159        46,721.38
+TSTYPE_18A            57             190             3.33          1             6             3.9 
 TSSTATION_18A         80           3,910            48.88          1           113            61.47
-TSRANGE_18A           47             156             3.32          3            10             3.51
-TSPARKSPACE_18A       46           5,932           128.96          1         1,900           323.5 Page 542  (VOYAGER NETWORK) 
+TSRANGE_18A           59             216             3.66          3            10             3.86
+TSPARKSPACE_18A       46           5,932           128.96          1         1,900           323.5 Page 504  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 TSCOSTAM_18A           4             714           178.5         138           258           184.54
 TSCOSTMD_18A           4             714           178.5         138           258           184.54
 TSSTATION_40N         80           3,910            48.88          1           113            61.47
-TSRANGE_40N           82             505             6.16          3            10             7.01
-TSPARKSPACE_40N       78           8,845           113.4           1         1,900           260.64
+TSRANGE_40N          108             690             6.39          3            10             7.14
+TSPARKSPACE_40N       90          10,695           118.83          1         1,900           250.14
 TSCOSTAM_40N           4             714           178.5         138           258           184.54
 TSCOSTMD_40N           4             714           178.5         138           258           184.54
-TSTYPE_40N            80             240             3             1             6             3.62
+TSTYPE_40N           105             289             2.75          1             6             3.34
 TSSTATION_40A         80           3,910            48.88          1           113            61.47
-TSRANGE_40A           47             156             3.32          3            10             3.51
+TSRANGE_40A           59             216             3.66          3            10             3.86
 TSPARKSPACE_40A       46           5,932           128.96          1         1,900           323.5 
 TSCOSTAM_40A           4             714           178.5         138           258           184.54
 TSCOSTMD_40A           4             714           178.5         138           258           184.54
-TSTYPE_40A            45             154             3.42          1             6             4.1 
+TSTYPE_40A            57             190             3.33          1             6             3.9 
+TSSTATION_40C         80           3,910            48.88          1           113            61.47
+TSRANGE_40C          106             680             6.42          3            10             7.18
+TSPARKSPACE_40C       90          10,695           118.83          1         1,900           250.14
+TSCOSTAM_40C           4             714           178.5         138           258           184.54
+TSCOSTMD_40C           4             714           178.5         138           258           184.54
+TSTYPE_40C           103             283             2.75          1             6             3.34
+TSSTATION_30A         80           3,910            48.88          1           113            61.47
+TSRANGE_30A          106             680             6.42          3            10             7.18
+TSPARKSPACE_30A       90          10,695           118.83          1         1,900           250.14
+TSCOSTAM_30A           4             714           178.5         138           258           184.54
+TSCOSTMD_30A           4             714           178.5         138           258           184.54
+TSTYPE_30A           103             283             2.75          1             6             3.34
+TSSTATION_40M         80           3,910            48.88          1           113            61.47
+TSRANGE_40M          108             690             6.39          3            10             7.14
+TSPARKSPACE_40M       90          10,695           118.83          1         1,900           250.14
+TSCOSTAM_40M           4             714           178.5         138           258           184.54
+TSCOSTMD_40M           4             714           178.5         138           258           184.54
+TSTYPE_40M           105             289             2.75          1             6             3.34
 
       Obs = 0:  FAREZONE_05A  FAREZONE_16A  FAREZONE_35T  FAREZONE_25T
       Obs = 0:  FAREZONE_15A  FAREZONE_10A  FAREZONE_18A  FAREZONE_40N
-      Obs = 0:  FAREZONE_40A  _TOLL_ACC  _TOLL_DEC
+      Obs = 0:  FAREZONE_40A  FAREZONE_40C  FAREZONE_30A  FAREZONE_40M
+      Obs = 0:  _TOLL_ACC  _TOLL_DEC
 
 _Variables with values:
 
@@ -317,131 +341,132 @@ End   PROCESS PHASE NODEMERGE
 
 
 Begin PROCESS PHASE LINKMERGE
-      58,311 records merged from NETI[1]: C:\NERPM43\Base2010\output\PreAssignLOADED_HEVAL.NET
-      58,277 data base records.Page 543  (VOYAGER NETWORK) 
+      59,126 records merged from NETI[1]: C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET
+      59,092 data base records.Page 505  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
-Variable         Obs<>0             Total         Ave       Min         Max         RMS  
---------         ------             -----         ---       ---         ---         ---  
-A                58,277                --          --      1      91,488             --
-B                58,277                --          --      1      91,488             --
-PLZALNSMAX           10             12           1.2       1           2           1.26
-CARTOLL              10              5.8         0.58      0.3         0.8         0.61
-SVCSECONDS           10              0           0         0           0           0   
-DISTANCE         58,277         10,743.95        0.18      0           6.71        0.38
-NAME             45,879                                (103RD ST)  (pope Rd )
-ALT_NAME         16,246                                (104TH ST)  (on ramp )
-COFIPS           58,255      2,560,935          43.96      3         109          53.45
-COUNTY           58,271        142,781           2.45      1           6           2.68
-DISTRICT         58,255        798,746          13.71      1          45          16.17
-SCREENLINE       58,221      5,722,979          98.3       1          99          98.58
-PSCF_YR00        46,013                                (1.02    )  (1.2     )
-CNT_SRC_YR00      2,033                                (0       )  (St. John)
-CONSTR_00A            2             92          46        46          46          46   
-ROADDIR          58,263                                (EB      )  (WB      )
-EECODE              471            471           1         1           1           1   
-TOLLID               10            175          17.5      13          22          17.73
-IDLINK           54,913                                (0       )  (9992-990)
-TCARD                93          1,105          11.88      1          23          13.64
-STN_ID            2,886  1,255,456,167     435,016         1     790,280     559,416.36
-AADT_YR05         2,842     39,805,548      14,006.17     60      88,250      18,794.16
-CNTYR             2,880      5,771,377       2,003.95    237       2,205       2,004.5 
-YRADJUST          2,888          2,887.03        1         0.82        1.13        1   
-COUNT_YR05        2,842     30,369,307.85   10,685.89     29.69   91,927.09   16,018.89
-PSCF_YR05        58,277         60,790.84        1.04      1           1.11        1.04
-MOCF_YR05        58,252         55,848.95        0.96      0.9         1           0.96
-COUNTDESC         2,885                                (0       )  (old Midd)
-SELSPDADJ           104            135           1.3      -7.5         5           3.53
-HOT                  14             20           1.43      1           2           1.51
-TWOWAY_10A       48,246         48,246           1         1           1           1   
-AADT10            1,657     19,985,791      12,061.43     70      69,500      16,936.12
-LEVEL             1,070          2,645           2.47      1           4           2.53
-COUNT_YR00        2,010     20,675,735      10,286.44     65      78,538      15,368.47
-DISTANCEFT       58,277     56,728,538         973.43      2      35,409       2,022.84
-FACILITY_TYPE    58,277      2,366,553          40.61     11          79          42.39
-AREA_TYPE        58,273      1,890,663          32.44     11         311          33.92
-NUM_LANES        58,277         76,888           1.32      1           6           1.44
-UROADFACTOR      58,277         58,277           1         1           1           1   
-CONFAC           58,277          6,086.32        0.1       0.1         0.11        0.1 
-BPRCOEFFICIENT   58,277         25,187.13        0.43      0.1         0.53        0.46
-BPREXPONENT      58,277        205,326.55        3.52      2.5         6.75        3.64
-CAPACITY         58,277    141,084,188       2,420.92    345      10,000       4,212.16
-SPEED            58,277      2,237,679.14       38.4      15          71.5        39.8 
-TIME             58,277         21,226.08        0.36      0.01       16.09        0.86
-TIME2            58,277         21,226.08        0.36      0.01       16.09        0.86
-WALKTIME         58,277        257,856.72        4.42      0.01      160.95        9.19
-LINKCNT          58,277         58,277           1         1           1           1   
-CONFACAMP        58,277         25,525.33        0.44      0.44        0.44        0.44
-CONFACMDP        58,277         10,763.76        0.18      0.18        0.18        0.18
-CONFACPMP        58,277         20,898.13        0.36      0.36        0.36        0.36Page 544  (VOYAGER NETWORK) 
+Variable         Obs<>0             Total         Ave     Min         Max         RMS  
+--------         ------             -----         ---     ---         ---         ---  
+A                59,092                --          --    1      91,504             --
+B                59,092                --          --    1      91,504             --
+AADT10            1,654     19,974,891      12,076.72   70      69,500      16,950.04
+DISTANCE         59,092         11,148.4         0.19    0           6.71        0.39
+NAME             46,228                                (103RD ST)  (pope Rd )
+ALT_NAME         16,246                                (104TH ST)  (ZAPH ST )
+COFIPS           59,066      2,598,748          44       3         109          53.49
+COUNTY           59,089        144,724           2.45    1           6           2.68
+DISTRICT         59,089        809,554          13.7     1          35          16.15
+SCREENLINE       59,032      5,802,770          98.3     1          99          98.58
+PSCF_YR00        46,815                                (1.02    )  (1.2     )
+CNT_SRC_YR00      2,044                                (0       )  (St. John)
+CONSTR_00A            2             92          46      46          46          46   
+ROADDIR          59,070                                (0       )  (WB      )
+EECODE              481            481           1       1           1           1   
+TOLLID               22            253          11.5     1          22          13.13
+IDLINK           55,720                                (0       )  (9992-990)
+TCARD               109          1,169          10.72    1          23          12.74
+STN_ID            2,901  1,261,944,031     435,003.11    1     790,280     559,404.66
+AADT_YR05         2,857     40,219,420      14,077.5    60      88,250      18,870.18
+CNTYR             2,895      5,801,660       2,004.03  237       2,205       2,004.57
+YRADJUST          2,903          2,901.87        1       0.82        1.13        1   
+COUNT_YR05        2,857     30,784,687.81   10,775.18   29.69   91,927.09   16,134.22
+PSCF_YR05        59,092         61,642.96        1.04    1           1.11        1.04
+MOCF_YR05        59,059         56,620.53        0.96    0.9         1           0.96
+COUNTDESC         2,908                                (0       )  (old Midd)
+SELSPDADJ           104            135           1.3    -7.5         5           3.53
+HOT                 500            748           1.5     1           2           1.58
+LEVEL             1,077          2,659           2.47    1           4           2.52
+TWOWAY_40C       48,270         48,270           1       1           1           1   
+COUNT_YR00        2,013     20,690,556      10,278.47   65      78,538      15,358.2 
+DISTANCEFT       59,092     58,864,015         996.14    2      35,409       2,060.81
+FACILITY_TYPE    59,092      2,430,542          41.13   11          99          43.19
+AREA_TYPE        59,092      1,916,605          32.43   11         311          33.89
+NUM_LANES        59,092         80,329           1.36    1           6           1.49
+UROADFACTOR      59,092         59,092           1       1           1           1   
+CONFAC           59,092          6,164.3         0.1     0.1         0.11        0.1 
+BPRCOEFFICIENT   59,092         25,521.77        0.43    0.1         0.53        0.46
+BPREXPONENT      59,092        210,387.95        3.56    2.5         7           3.69
+CAPACITY         59,092    137,185,186       2,321.55  345      10,000       4,175.7 
+SPEED            59,092      2,327,016.15       39.38   10          75          40.79
+TIME             59,092         19,245.51        0.33    0.01       13.41        0.73
+TIME2            59,092         19,245.51        0.33    0.01       13.41        0.73
+WALKTIME         59,092        267,563.35        4.53    0.01      160.95        9.37
+LINKCNT          59,092         59,092           1       1           1           1   
+CONFACAMP        59,092         25,882.3         0.44    0.44        0.44        0.44
+CONFACMDP        59,092         10,914.29        0.18    0.18        0.18        0.18
+CONFACPMP        59,092         21,190.39        0.36    0.36        0.36        0.36
+CONFACNTP        59,092         11,658.85        0.2     0.2         0.2         0.2 
+V_1              55,483     66,663,556.11    1,201.51    0      22,701.6     2,390.13
+TIME_1           59,092         20,364.8         0.34    0.01       13.41        0.75Page 506  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
-CONFACNTP        58,277         11,498.05        0.2       0.2         0.2         0.2 
-V_1              54,115     65,227,679.91    1,205.35      0      23,115.31    2,387.56
-TIME_1           58,277         22,140.74        0.38      0.01       16.09        0.88
-VC_1             54,115         18,859.81        0.35      0           6.49        0.5 
-CSPD_1           58,277      2,076,010.15       35.62      2.5        70.44       37.02
-VDT_1            54,115      8,936,742.89      165.14      0      47,843.46      703.44
-VHT_1            54,115        271,180.48        5.01      0       2,806.16       36.64
-V1_1             54,002     40,788,752.73      755.32      0      14,236.08    1,500.28
-V2_1             54,002     13,535,157.73      250.64      0       4,164.82      485.62
-V3_1             54,083      8,663,483.22      160.19      0       3,352.32      306.91
-V4_1              5,983        470,948.13       78.71      0.02      621.3       153.02
-V5_1              5,983      1,013,024.31      169.32      0.08    1,232.8       301.71
-V6_1              5,983        686,417.12      114.73      0.04      863.44      211.29
-V7_1             19,599         69,896.67        3.57      0         174.09       12.09
-VT_1             54,612     93,094,778.23    1,704.66      0      23,115.31    2,878.85
-V1T_1            54,514     58,530,441.67    1,073.68      0      14,236.08    1,824.9 
-V2T_1            54,514     19,443,540.52      356.67      0       4,164.82      592.1 
-V3T_1            54,579     12,480,505.16      228.67      0       3,352.32      381.4 
-V4T_1             5,997        537,404.02       89.61      0.04      621.3       157.59
-V5T_1             5,997      1,211,781.89      202.06      0.15    1,232.8       322.38
-V6T_1             5,997        806,417.32      134.47      0.09      863.44      222.12
-V7T_1            20,703         84,687.71        4.09      0         197.46       13.49
-ZONE             58,277         58,277           1         1           1           1   
-USECODE          58,277         58,277           1         1           1           1   
-LANDUSE          58,277         58,277           1         1           1           1   
-CCODE            58,277         58,277           1         1           1           1   
-DIRCODE          58,277         58,277           1         1           1           1   
-LOCATION         58,271        142,781           2.45      1           6           2.68
-CGTIME           58,277         22,140.74        0.38      0.01       16.09        0.88
-TOTAL_VOL        54,115     65,227,679.91    1,205.35      0      23,115.31    2,387.56
-FT               58,277      2,366,553          40.61     11          79          42.39
-FACILITY         58,277      2,366,553          40.61     11          79          42.39
-AT               58,273      1,890,663          32.44     11         311          33.92
-LNS              58,277         76,888           1.32      1           6           1.44
-FTG              58,277        214,619           3.68      1           7           3.88
-ATG              58,273        180,116           3.09      1          31           3.24
-SL               58,221      5,722,979          98.3       1          99          98.58
-ONE              58,277         58,277           1         1           1           1   
-ATYPE2           58,273      1,890,663          32.44     11         311          33.92
-FTYPE2           58,277      2,366,553          40.61     11          79          42.39
-LANES            58,277         76,888           1.32      1           6           1.44
-CONFACPK         58,277         29,138.5         0.5       0.5         0.5         0.5 
-TWOWAY           48,246         48,246           1         1           1           1   
-PK2HRCAP         58,277    325,832,696       5,591.1   1,050      26,460       8,857.02
-SCRN             58,221      5,722,979          98.3       1          99          98.58
-CNTY             58,271        142,781           2.45      1           6           2.68
+VC_1             55,483         20,898.67        0.38    0           9.27        0.54
+CSPD_1           59,092      2,134,600.27       36.12    2.5        75          37.5 
+VDT_1            55,483     10,306,326.6       185.76    0      41,337.09      797.96
+VHT_1            55,483        302,651.38        5.45    0       2,940.37       38.8 
+V1_1             54,880     39,939,665.83      727.76    0      15,470.63    1,484.09
+V2_1             55,340     12,500,994.57      225.89    0       4,700.46      447.24
+V3_1             54,943     10,698,137.23      194.71    0       3,877.7       394.66
+V4_1              5,895        690,951.25      117.21    0.04    1,029.37      238.38
+V5_1              5,895      1,542,962.94      261.74    0.16    2,081.74      487.74
+V6_1              5,846      1,031,092.79      176.38    0.09    1,452.24      338.62
+V7_1             19,815        259,751.48       13.11    0         751.16       48.96
+VT_1             55,880     93,796,737.42    1,678.54    0      22,701.6     2,836.85
+V1T_1            55,308     56,709,521.13    1,025.34    0      15,470.63    1,778.82
+V2T_1            55,768     17,679,948.04      317.03    0       4,700.46      529.77
+V3T_1            55,337     15,143,365.23      273.66    0       3,877.7       472.88
+V4T_1             6,027        808,192.11      134.1     0.08    1,029.37      247.5 
+V5T_1             6,027      1,900,747.2       315.37    0.22    2,081.74      534.81
+V6T_1             5,978      1,246,742.64      208.56    0.14    1,452.24      362.87
+V7T_1            21,224        308,220.97       14.52    0       1,079.09       51.98
+ZONE             59,092         59,092           1       1           1           1   
+USECODE          59,092         59,092           1       1           1           1   
+LANDUSE          59,092         59,092           1       1           1           1   
+CCODE            59,092         59,092           1       1           1           1   
+DIRCODE          59,092         59,092           1       1           1           1   
+LOCATION         59,089        144,724           2.45    1           6           2.68
+CGTIME           59,092         20,364.8         0.34    0.01       13.41        0.75
+TOTAL_VOL        55,483     66,663,556.11    1,201.51    0      22,701.6     2,390.13
+FT               59,092      2,430,542          41.13   11          99          43.19
+FACILITY         59,092      2,430,542          41.13   11          99          43.19
+AT               59,092      1,916,605          32.43   11         311          33.89
+LNS              59,092         80,329           1.36    1           6           1.49
+FTG              59,092        220,798           3.74    1           9           3.96
+ATG              59,092        182,604           3.09    1          31           3.24
+SL               59,032      5,802,770          98.3     1          99          98.58
+ONE              59,092         59,092           1       1           1           1   
+ATYPE2           59,092      1,916,605          32.43   11         311          33.89
+FTYPE2           59,092      2,430,542          41.13   11          99          43.19
+LANES            59,092         80,329           1.36    1           6           1.49
+CONFACPK         59,092         29,546           0.5     0.5         0.5         0.5 
+TWOWAY           48,270         48,270           1       1           1           1   
+PK2HRCAP         59,092    320,634,140       5,426.02  920      60,000       8,793.88
+SCRN             59,032      5,802,770          98.3     1          99          98.58
+CNTY             59,089        144,724           2.45    1           6           2.68
 
-      Obs = 0:  TOLL  TOLLTYPE  PLAZADESC  PLZALNSMIN  SVCMINUTES
-      Obs = 0:  DECELCODE  ACCELCODE  EXACTCHGLNS  AVILANES  PCTTRUCKS
-      Obs = 0:  TMODE  TTIME  TC  TV  VC  TBSDIST  TBSTIME  TFGDIST
-      Obs = 0:  TFGTIME  TFGMODE  STN_ID_YR00  PNRTERMTIME  KNRTERMTIME
-      Obs = 0:  CNTSRC_YR05  COUNT  TOLL_ACC  TOLL_DEC  V8_1  V9_1  V10_1
-      Obs = 0:  V11_1  V12_1  V13_1  V14_1  V8T_1  V9T_1  V10T_1  V11T_1
-      Obs = 0:  V12T_1  V13T_1  V14T_1  COMPPage 545  (VOYAGER NETWORK) 
+      Obs = 0:  TOLL  TOLLTYPE  PLAZADESC  PLZALNSMIN  PLZALNSMAX  CARTOLL
+      Obs = 0:  SVCMINUTES  SVCSECONDS  DECELCODE  ACCELCODE  EXACTCHGLNS
+      Obs = 0:  AVILANES  PCTTRUCKS  TMODE  TTIME  TC  TV  VC  TBSDIST
+      Obs = 0:  TBSTIME  TFGDIST  TFGTIME  TFGMODE  COUNT  STN_ID_YR00
+      Obs = 0:  PNRTERMTIME  KNRTERMTIME  CNTSRC_YR05  TOLL_ACC  TOLL_DEC
+      Obs = 0:  V8_1  V9_1  V10_1  V11_1  V12_1  V13_1  V14_1  V8T_1  V9T_1
+      Obs = 0:  V10T_1  V11T_1  V12T_1  V13T_1  V14T_1  COMP
+Page 507  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
-
 _Variables with values:
 
 _ZONES               2,578      
+_CAPLNMILES          2,124.04229
+_ORGTIMEHR               0.02053
+_CGTIMEHR                0.02109
+_DISTMILE                0.86203
+_LANEMILES               1.72406
+_ORGSPD                 41.99557
 _LINKS                   1      
 
 End   PROCESS PHASE LINKMERGE
-
-M(664): Unconnected Zones:  31->
 
 
 Begin PROCESS PHASE SUMMARY
@@ -449,6 +474,12 @@ Begin PROCESS PHASE SUMMARY
 _Variables with values:
 
 _ZONES               2,578      
+_CAPLNMILES          2,124.04229
+_ORGTIMEHR               0.02053
+_CGTIMEHR                0.02109
+_DISTMILE                0.86203
+_LANEMILES               1.72406
+_ORGSPD                 41.99557
 _LINKS                   1      
 
 End   PROCESS PHASE SUMMARY
@@ -458,170 +489,196 @@ CROSSTAB ROW=FTG COL=ATG VAR=_LANEMILES
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
- 1 -  1          10.46        155.30        883.54         48.38        148.94      1,246.63
- 2 -  2          21.59        291.87      1,243.21        293.04        359.02      2,208.72
- 3 -  3          33.78        146.04        641.43          8.28        542.87      1,372.40
- 4 -  4          29.22        238.24      1,906.97        131.18      1,113.61      3,419.22
- 6 -  6          36.77          8.23             0          2.46             0         47.46
- 7 -  7           4.68         42.64        112.86         16.15          7.48        183.81
- 1 -  9         136.51        882.32      4,788.00        499.49      2,171.92      8,478.24
-
+ 1 -  1          11.59        157.13        921.93         49.22        148.94      1,288.81
+ 2 -  2          21.59        298.86      1,463.95        303.76        359.02      2,447.17
+ 3 -  3          33.78        153.44        689.95          8.77        586.47      1,472.40
+ 4 -  4          29.22        243.26      1,984.55        135.48      1,147.11      3,539.61
+ 6 -  6          36.77          7.99          6.32          2.46             0         53.54
+ 7 -  7           4.68         43.53        119.16         16.82          7.48        191.68
+ 8 -  8              0             0        391.40             0             0        391.40
+ 9 -  9              0             0        234.01             0             0        234.01
+ 1 -  9         137.64        904.20      5,811.26        516.51      2,249.02      9,618.62Page 508  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+----------------------------
 
 CROSSTAB ROW=FTG COL=ATG VAR=_CAPLNMILES
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
- 1 -  1      20,463.80    315,340.84  1,823,004.07     96,879.78    271,020.62  2,526,709.11
- 2 -  2      23,349.75    287,785.04  1,331,697.47    296,226.95    373,199.82  2,312,259.03
- 3 -  3      27,103.30    137,342.20    586,104.63      7,168.59    446,994.44  1,204,713.16
- 4 -  4      19,976.13    157,297.41  1,386,550.73     83,598.97    827,098.55  2,474,521.80
- 6 -  6      29,639.09      7,149.47             0      4,519.27             0     41,307.84
- 7 -  7       4,364.93     49,653.17    139,189.08     17,875.12      6,718.82    217,801.11
- 1 -  9     124,896.99    954,568.14  5,266,545.97    506,268.68  1,925,032.25  8,777,312.04Page 546  (VOYAGER NETWORK) 
-Parsons Brinckerhoff
-----------------------------
+--------------------------------------------------------------------------------------------
+ 1 -  1      21,461.38    288,635.58  1,684,899.69     91,183.00    261,178.57  2,347,358.21
+ 2 -  2      22,270.23    262,537.45  1,563,497.00    264,717.97    373,199.82  2,486,222.47
+ 3 -  3      22,881.15    107,078.88    595,818.85      6,737.18    523,889.02  1,256,405.08
+ 4 -  4      15,592.46    123,628.85  1,054,954.98     73,100.77    852,555.80  2,119,832.86
+ 6 -  6      31,477.79      6,955.33      5,092.77      4,519.27             0     48,045.17
+ 7 -  7       5,769.95     55,492.27    162,621.96     20,316.75      6,718.82    250,919.74
+ 8 -  8              0             0    708,429.88             0             0    708,429.88
+ 9 -  9              0             0    428,190.06             0             0    428,190.06
+ 1 -  9     119,452.95    844,328.36  6,203,505.20    460,574.95  2,017,542.02  9,645,403.48
+
 
 CROSSTAB ROW=FTG COL=ATG COMP=_CAPLNMILES/_LANEMILES
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
---------------------------------------------------------------------------------------------
- 1 -  1        1955.96       2030.54       2063.30       2002.36       1819.61       2026.84
- 2 -  2        1081.49        986.01       1071.18       1010.89       1039.50       1046.88
- 3 -  3         802.41        940.42        913.75        865.60        823.40        877.82
- 4 -  4         683.54        660.23        727.10        637.29        742.72        723.71
- 6 -  6         805.98        869.12             0       1834.00             0        870.29
- 7 -  7         932.00       1164.55       1233.33       1106.67        898.00       1184.92
- 1 -  9         914.92       1081.89       1099.95       1013.56        886.33       1035.28
+ 1 -  1        1851.79       1836.93       1827.58       1852.74       1753.53       1821.34
+ 2 -  2        1031.49        878.47       1068.00        871.48       1039.50       1015.96
+ 3 -  3         677.41        697.86        863.57        767.82        893.30        853.30
+ 4 -  4         533.54        508.22        531.58        539.58        743.22        598.89
+ 6 -  6         855.98        871.03        806.00       1834.00             0        897.34
+ 7 -  7        1232.00       1274.86       1364.72       1207.68        898.00       1309.07
+ 8 -  8              0             0       1810.00             0             0       1810.00
+ 9 -  9              0             0       1829.80             0             0       1829.80
+ 1 -  9         867.87        933.79       1067.50        891.71        897.08       1002.78
 
 
 CROSSTAB ROW=FTG COL=ATG VAR=_distmile
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
- 1 -  1           4.10         64.27        333.35         17.92         66.27        485.91
- 2 -  2          10.80        132.39        588.60        125.35        179.54      1,036.68
- 3 -  3          25.44         96.95        577.33          7.23        541.17      1,248.11
- 4 -  4          26.21        224.35      1,797.99        108.89      1,113.61      3,271.05
- 6 -  6          15.31          5.26             0          1.23             0         21.80
- 7 -  7           3.59         36.94        102.65         13.68          7.48        164.34
- 1 -  9          85.44        560.16      3,399.92        274.31      1,908.07      6,227.90
-
+ 1 -  1           4.10         64.27        338.38         18.30         66.27        491.32
+ 2 -  2          10.80        132.39        659.96        124.98        179.54      1,107.66
+ 3 -  3          25.44         98.84        551.77          7.23        541.17      1,224.45
+ 4 -  4          26.21        224.57      1,820.60        108.89      1,126.42      3,306.70
+ 6 -  6          15.31          5.02          6.32          1.23             0         27.88
+ 7 -  7           3.59         37.01        107.08         14.36          7.48        169.51
+ 8 -  8              0             0        196.59             0             0        196.59
+ 9 -  9              0             0        100.15             0             0        100.15
+ 1 -  9          85.44        562.09      3,780.87        274.98      1,920.89      6,624.27Page 509  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+----------------------------
 
 CROSSTAB ROW=FTG COL=ATG VAR=_orgtimehr
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
- 1 -  1           0.08          1.13          5.42          0.34          1.07          8.05
- 2 -  2           0.25          2.92         12.16          2.71          3.75         21.79
- 3 -  3           0.72          2.54         11.96          0.18         13.25         28.66
- 4 -  4           0.86          6.64         44.31          2.94         29.59         84.33
- 6 -  6           0.63          0.15             0          0.03             0          0.81
- 7 -  7           0.13          0.89          2.16          0.30          0.17          3.65
- 1 -  9           2.67         14.29         76.01          6.49         47.83        147.29Page 547  (VOYAGER NETWORK) 
-Parsons Brinckerhoff
-----------------------------
+--------------------------------------------------------------------------------------------
+ 1 -  1           0.08          1.07          4.69          0.28          0.99          7.11
+ 2 -  2           0.28          3.08         13.53          2.70          3.84         23.43
+ 3 -  3           1.02          2.56         12.09          0.17         11.80         27.63
+ 4 -  4           1.48          6.28         46.53          3.02         26.42         83.73
+ 6 -  6           1.34          0.16          0.18          0.03             0          1.71
+ 7 -  7           0.14          1.05          2.72          0.42          0.23          4.56
+ 8 -  8              0             0          2.82             0             0          2.82
+ 9 -  9              0             0          1.66             0             0          1.66
+ 1 -  9           4.34         14.20         84.21          6.62         43.28        152.65
+
 
 CROSSTAB ROW=FTG COL=ATG VAR=_orgspd
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
---------------------------------------------------------------------------------------------
- 1 -  1       4,745.59     38,255.68     84,532.59      6,989.02      6,262.11    140,784.98
- 2 -  2       3,215.98     96,606.30    233,988.44     67,733.82     33,941.18    435,485.72
- 3 -  3      15,460.86     58,282.83    196,370.80      4,208.35     68,122.00    342,444.84
- 4 -  4      16,280.70    115,693.20    704,350.91     52,950.97    139,193.75  1,028,469.53
- 6 -  6       9,762.31      2,993.86             0        383.96             0     13,140.13
- 7 -  7       2,635.09     18,280.54     36,433.43      6,184.11      2,627.97     66,161.14
- 1 -  9      52,100.53    330,112.41  1,255,676.17    138,450.23    250,147.01  2,026,486.34
+ 1 -  1       4,736.31     40,483.43    100,256.65      9,279.36      6,767.11    161,522.87
+ 2 -  2       3,044.63     92,314.65    242,970.97     66,863.78     33,179.20    438,373.24
+ 3 -  3      13,334.81     60,354.46    178,585.56      4,619.39     76,437.24    333,331.48
+ 4 -  4      11,553.80    121,344.35    679,214.72     51,553.57    157,843.26  1,021,509.70
+ 6 -  6       5,351.53      2,610.10        525.00        343.96             0      8,830.60
+ 7 -  7       2,466.23     15,547.87     30,237.08      4,658.07      1,997.95     54,907.20
+ 8 -  8              0             0     34,586.64             0             0     34,586.64
+ 9 -  9              0             0     12,588.33             0             0     12,588.33
+ 1 -  9      40,487.31    332,654.88  1,278,964.96    137,318.16    276,224.77  2,065,650.07
 
 
 CROSSTAB ROW=FTG COL=ATG VAR=_links
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
- 1 -  1         102.00        698.00      1,408.00        135.00        101.00      2,444.00
- 2 -  2          83.00      2,160.00      4,929.00      1,472.00        716.00      9,360.00
- 3 -  3         502.00      1,542.00      4,193.00        105.00      1,663.00      8,005.00
- 4 -  4         578.00      3,422.00     17,389.00      1,448.00      3,655.00     26,492.00
- 5 -  5         674.00      1,478.00      5,270.00        708.00      1,795.00      9,925.00
- 6 -  6         401.00         88.00             0          8.00             0        497.00
- 7 -  7         106.00        451.00        791.00        138.00         63.00      1,549.00
- 1 -  9       2,446.00      9,839.00     33,980.00      4,014.00      7,993.00     58,272.00
-
+ 1 -  1         102.00        698.00      1,427.00        150.00        101.00      2,478.00
+ 2 -  2          83.00      2,160.00      5,096.00      1,457.00        716.00      9,512.00
+ 3 -  3         502.00      1,576.00      4,037.00        105.00      1,663.00      7,883.00
+ 4 -  4         578.00      3,394.00     17,398.00      1,448.00      3,667.00     26,485.00
+ 5 -  5         674.00      1,478.00      5,278.00        708.00      1,798.00      9,936.00
+ 6 -  6         401.00         84.00         15.00          8.00             0        508.00
+ 7 -  7         106.00        452.00        797.00        142.00         63.00      1,560.00
+ 8 -  8              0             0        504.00             0             0        504.00
+ 9 -  9              0             0        225.00             0             0        225.00
+ 1 -  9       2,446.00      9,842.00     34,777.00      4,018.00      8,008.00     59,091.00Page 510  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+----------------------------
 
 CROSSTAB ROW=FTG COL=ATG COMP=_distmile/_orgtimehr
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
- 1 -  1          49.22         56.71         61.51         52.61         62.00         60.39
- 2 -  2          43.03         45.27         48.40         46.34         47.90         47.57
- 3 -  3          35.45         38.15         48.26         39.78         40.83         43.55
- 4 -  4          30.61         33.77         40.58         37.01         37.64         38.79
- 6 -  6          24.41         34.49             0         48.00             0         27.07
- 7 -  7          26.97         41.46         47.54         46.10         43.37         44.99
- 1 -  9          32.02         39.21         44.73         42.25         39.89         42.28Page 548  (VOYAGER NETWORK) 
-Parsons Brinckerhoff
-----------------------------
+--------------------------------------------------------------------------------------------
+ 1 -  1          49.02         60.24         72.14         65.56         67.00         69.11
+ 2 -  2          38.72         42.98         48.79         46.24         46.74         47.28
+ 3 -  3          25.00         38.65         45.66         43.79         45.84         44.32
+ 4 -  4          17.72         35.75         39.13         36.03         42.64         39.49
+ 6 -  6          11.41         31.54         35.00         43.00             0         16.31
+ 7 -  7          25.03         35.14         39.44         33.93         33.04         37.16
+ 8 -  8              0             0         69.82             0             0         69.82
+ 9 -  9              0             0         60.24             0             0         60.24
+ 1 -  9          19.67         39.59         44.90         41.53         44.39         43.40
+
 
 CROSSTAB ROW=FTG COL=ATG COMP=_orgspd/_links
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
---------------------------------------------------------------------------------------------
- 1 -  1          46.53         54.81         60.04         51.77         62.00         57.60
- 2 -  2          38.75         44.73         47.47         46.01         47.40         46.53
- 3 -  3          30.80         37.80         46.83         40.08         40.96         42.78
- 4 -  4          28.17         33.81         40.51         36.57         38.08         38.82
- 6 -  6          24.34         34.02             0         48.00             0         26.44
- 7 -  7          24.86         40.53         46.06         44.81         41.71         42.71
- 1 -  9          21.30         33.55         36.95         34.49         31.30         34.78
+ 1 -  1          46.43         58.00         70.26         61.86         67.00         65.18
+ 2 -  2          36.68         42.74         47.68         45.89         46.34         46.09
+ 3 -  3          26.56         38.30         44.24         43.99         45.96         42.28
+ 4 -  4          19.99         35.75         39.04         35.60         43.04         38.57
+ 6 -  6          13.35         31.07         35.00         43.00             0         17.38
+ 7 -  7          23.27         34.40         37.94         32.80         31.71         35.20
+ 8 -  8              0             0         68.62             0             0         68.62
+ 9 -  9              0             0         55.95             0             0         55.95
+ 1 -  9          16.55         33.80         36.78         34.18         34.49         34.96
 
 
 CROSSTAB ROW=FTG COL=ATG VAR=_distmile
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
- 1 -  1           4.10         64.27        333.35         17.92         66.27        485.91
- 2 -  2          10.80        132.39        588.60        125.35        179.54      1,036.68
- 3 -  3          25.44         96.95        577.33          7.23        541.17      1,248.11
- 4 -  4          26.21        224.35      1,797.99        108.89      1,113.61      3,271.05
- 6 -  6          15.31          5.26             0          1.23             0         21.80
- 7 -  7           3.59         36.94        102.65         13.68          7.48        164.34
- 1 -  9          85.44        560.16      3,399.92        274.31      1,908.07      6,227.90
-
+ 1 -  1           4.10         64.27        338.38         18.30         66.27        491.32
+ 2 -  2          10.80        132.39        659.96        124.98        179.54      1,107.66
+ 3 -  3          25.44         98.84        551.77          7.23        541.17      1,224.45
+ 4 -  4          26.21        224.57      1,820.60        108.89      1,126.42      3,306.70
+ 6 -  6          15.31          5.02          6.32          1.23             0         27.88
+ 7 -  7           3.59         37.01        107.08         14.36          7.48        169.51
+ 8 -  8              0             0        196.59             0             0        196.59
+ 9 -  9              0             0        100.15             0             0        100.15
+ 1 -  9          85.44        562.09      3,780.87        274.98      1,920.89      6,624.27Page 511  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+----------------------------
 
 CROSSTAB ROW=FTG COL=ATG VAR=_cgtimehr
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
- 1 -  1           0.13          1.48          6.59          0.36          1.08          9.63
- 2 -  2           0.27          3.56         14.31          3.69          4.21         26.04
- 3 -  3           0.77          2.92         14.06          0.19         14.26         32.20
- 4 -  4           0.90          7.03         47.44          3.17         29.68         88.21
- 6 -  6           0.66          0.15             0          0.03             0          0.84
- 7 -  7           0.21          1.14          3.65          0.41          0.17          5.59
- 1 -  9           2.94         16.28         86.05          7.84         49.41        162.52Page 549  (VOYAGER NETWORK) 
-Parsons Brinckerhoff
-----------------------------
+--------------------------------------------------------------------------------------------
+ 1 -  1           0.14          1.61          6.75          0.33          1.04          9.87
+ 2 -  2           0.31          3.90         15.73          3.85          4.50         28.29
+ 3 -  3           1.07          3.05         13.83          0.17         13.38         31.50
+ 4 -  4           1.52          6.90         50.75          3.34         26.55         89.06
+ 6 -  6           1.38          0.16          0.18          0.03             0          1.75
+ 7 -  7           0.20          1.27          3.99          0.56          0.23          6.24
+ 8 -  8              0             0          2.82             0             0          2.82
+ 9 -  9              0             0          1.76             0             0          1.76
+ 1 -  9           4.63         16.88         95.80          8.29         45.69        171.29
+
 
 CROSSTAB ROW=FTG COL=ATG COMP=_distmile/_cgtimehr
                                                                                            1
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
---------------------------------------------------------------------------------------------
- 1 -  1          31.91         43.43         50.62         50.07         61.54         50.46
- 2 -  2          40.09         37.20         41.13         33.97         42.62         39.81
- 3 -  3          33.01         33.23         41.05         38.50         37.94         38.76
- 4 -  4          29.20         31.93         37.90         34.35         37.52         37.08
- 6 -  6          23.14         34.37             0         47.39             0         25.94
- 7 -  7          17.09         32.29         28.10         33.21         42.96         29.38
- 1 -  9          29.09         34.41         39.51         34.97         38.62         38.32
+ 1 -  1          29.92         39.93         50.11         55.52         63.62         49.78
+ 2 -  2          34.76         33.94         41.96         32.43         39.93         39.15
+ 3 -  3          23.68         32.43         39.90         41.98         40.45         38.87
+ 4 -  4          17.20         32.56         35.88         32.56         42.43         37.13
+ 6 -  6          11.10         31.11         34.97         42.76             0         15.93
+ 7 -  7          17.81         29.21         26.87         25.69         32.39         27.15
+ 8 -  8              0             0         69.74             0             0         69.74
+ 9 -  9              0             0         56.97             0             0         56.97
+ 1 -  9          18.47         33.29         39.47         33.18         42.04         38.67
 
 
-Begin PROCESS PHASE NET2ASC
+Begin PROCESS PHASE NET2ASCPage 512  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+----------------------------
 
-Variables written to C:\NERPM43\Base2010\output\PreAssignLinksCnt0.DBF:
+Variables written to C:\NERPM43\Base2010\CF2040\output\PreAssignLinksCnt0.DBF:
      A                   5.0
      B                   5.0
      DISTANCE            7.5

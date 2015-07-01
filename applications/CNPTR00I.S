@@ -1,7 +1,7 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=PUBLIC TRANSPORT PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\CNPTR00E.PRN" MSG='OffPeak period connectors'
+RUN PGM=PUBLIC TRANSPORT PRNFILE="C:\NERPM43\APPLICATIONS\CNPTR00E.PRN" MSG='OffPeak period connectors'
 FILEO PRINTO[2] = "{Scenario_Dir}\output\PT_AUTOCON_PK.OUT"
-FILEO PRINTO[1] = "{Scenario_Dir}\output\NTLEG2OP_10A.PRN"
+FILEO PRINTO[1] = "{Scenario_Dir}\output\NTLEG2OP_{Year}{alt}.PRN"
 FILEI FACTORI[2] = "{SCENARIO_DIR}\output\PNRCOMRAIL.FAC"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\FHSKIMS.MAT"
 
@@ -47,7 +47,7 @@ PROCESS PHASE=DATAPREP
 
   ; 11 - Fixed-guideway to bus
   GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,INCLUDELINK=(LI.FACILITY_TYPE=59),
-            NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=1,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
+            NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=2,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
   ;11 - station to nearby stop (transfer connectors)
   READ, FILE = "{SCENARIO_DIR}\OUTPUT\STATXFER_TMP.DAT"
 
@@ -73,9 +73,13 @@ PROCESS PHASE=DATAPREP
        MAXBACKDIST=4.0,
        MAXBACKFACTOR=0.30,
        DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=5,
        
-       PREMIUMMODE=0,1,0,1,1,1,1,  
-       MODEPRIORITY=7,5,7,2,1,4,3,
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY=7,7,7,2,2,1,
+
        
        VOT=6,3,
        OVTRATIO=2,2,
@@ -94,7 +98,49 @@ PROCESS PHASE=DATAPREP
        TIMEMAT=MI.1.4,
        DISTMAT=MI.1.2,
        AUTOMATCH=T      ; T=original logic, F=Enhanced logic
+ 
+  
+   GENERATE, 
+       KNR=T,
+       PERIOD=1,
+       
+       PNRMODE=2,
+       KNRMODE=3,
+       INTERNALZONES=1-2494,
+       
+       CBDZONE=730,
+       ORIGINTERMTIME=2.0,
+       DEFDRIVETIME=20.0,
+       CHECKRELEVANCE=1,
+       CHECKBACKTRACK=1,
+       MAXBACKDIST=4.0,
+       MAXBACKFACTOR=0.30,
+       DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=5,
+       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY=7,7,7,2,2,1,
+
+       
+       VOT=6,3,
+       OVTRATIO=2,2,
+       AATRATIO=1.5,1.5,
+       AUTOCCPNR=1.2,
+       AUTOCCKNR=1.2,
+       AOC=9.5,
+       INFLTRANSITFARE=0.9487,
+       INFLAOC=1,
+       INFLPARKINGCOST=1.1976,
+       MAXCHECK = 10,
+       MAXCONN = 5,
+       
+       CONNREPORT=1,
+       GENREPORT=2,
+       TIMEMAT=MI.1.4*100,
+       DISTMAT=MI.1.2*100,
+       AUTOMATCH=F      ; T=original logic, F=Enhanced logic
 
   ENDPROCESS
-
 ENDRUN

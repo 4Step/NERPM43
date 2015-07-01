@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=NETWORK PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\NTNET00L.PRN" MSG='Process Highway Network'
+RUN PGM=NETWORK PRNFILE="C:\NERPM43\APPLICATIONS\NTNET00L.PRN" MSG='Process Highway Network'
 FILEO LINKO = "{Scenario_Dir}\output\LINK4CNT.DBF",
  FORMAT=DBF, INCLUDE=A,B,NAME
 FILEI LOOKUPI[2] = "{Scenario_Dir}\output\SPDCAP.CSV"

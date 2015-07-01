@@ -1,8 +1,8 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=HIGHWAY PRNFILE="{SCENARIO_DIR}\output\HTHWY00B.PRN" MSG='Mid_Day Period Hwy Assignment'
 FILEI NETI = "{SCENARIO_DIR}\output\UNLOADED.NET"
-FILEI MATI[2] = "{SCENARIO_DIR}\Output\HWYTTBP_MD_A10.MAT"
-FILEI MATI[1] = "{SCENARIO_DIR}\Output\HWYTTAB_MD_A10.MAT"
+FILEI MATI[2] = "{SCENARIO_DIR}\Output\HWYTTBP_MD_{alt}{Year}.MAT"
+FILEI MATI[1] = "{SCENARIO_DIR}\Output\HWYTTAB_MD_{alt}{Year}.MAT"
 DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
 ;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
 

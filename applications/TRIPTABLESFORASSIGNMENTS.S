@@ -28,7 +28,8 @@ LOOP per = 1, 2, 1
     ElseIf (pur==4)
        purposeToken = 'HBSR'
        mkt = 5        
-    Endif; End of PILOT Script
+    Endif
+; End of PILOT Script
 
 ; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\CNMAT00F.S"
 ;;<<Default Template>><<MATRIX>><<Default>>;;
@@ -89,13 +90,16 @@ FILEI MATI[3] = "{SCENARIO_DIR}\output\HBSH@todToken@_MCALL.mat"
 FILEI MATI[2] = "{SCENARIO_DIR}\output\HBO@todToken@_MCALL.mat"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\HBW@todToken@_MCALL.mat"
 
-FILEO MATO[3] = "{SCENARIO_DIR}\output\tload_@todToken@_KNR.mat",mo =20,13-16, DEC=5*D,
+FILEO MATO[3] = "{SCENARIO_DIR}\output\tload_@todToken@_KNR.mat",
+mo =20,13-16, DEC=5*D,
              NAME= KNRSKY,KNRLOC,KNREXP,KNRBRT,KNRCOM
 
-FILEO MATO[2] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_PNR.mat",  mo = 4,19,10-12, DEC=5*D,
+FILEO MATO[2] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_PNR.mat",
+  mo = 4,19,10-12, DEC=5*D,
              NAME= PNRSKY,PNRLOC,PNREXP,PNRBRT,PNRCOM
              
-FILEO MATO[1] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_Walk.mat", mo = 5-9, DEC=5*D,
+FILEO MATO[1] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_Walk.mat",
+ mo = 5-9, DEC=5*D,
              NAME= WALKSKY,WALKLOC,WALKEXP,WALKBRT,WALKCOM
              
  
@@ -144,7 +148,8 @@ ENDLOOP
 ;;<<Default Template>><<MATRIX>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX MSG='Combine HBW PK & OP'
-FILEO MATO[1] = "{SCENARIO_DIR}\output\HBW_{alt}{year}.MAT",mo = 1-12, NAME = DA, SR2, SR3P  
+FILEO MATO[1] = "{SCENARIO_DIR}\output\HBW_{alt}{year}.MAT",
+mo = 1-12, NAME = DA, SR2, SR3P  
   
 FILEI MATI[2] = "{SCENARIO_DIR}\output\HBWOP_MCALL.mat"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\HBWPK_MCALL.mat"
@@ -191,7 +196,8 @@ FILEI MATI[3] = "{SCENARIO_DIR}\output\NHBOPK_MC1.mat"
 FILEI MATI[2] = "{SCENARIO_DIR}\output\NHBWOP_MC1.mat"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\NHBWPK_MC1.mat"
 
-FILEO MATO[1] = "{SCENARIO_DIR}\output\NHB_{alt}{year}.mat", mo = 1-12, NAME = DA, SR2, SR3P  
+FILEO MATO[1] = "{SCENARIO_DIR}\output\NHB_{alt}{year}.mat",
+ mo = 1-12, NAME = DA, SR2, SR3P  
    MW[1] = Mi.1.1 + mi.2.1 + Mi.3.1 + mi.4.1
    MW[2] = Mi.1.2 + mi.2.2 + Mi.3.2 + mi.4.2   
    MW[3] = Mi.1.3 + mi.2.3 + Mi.3.3 + mi.4.3  
@@ -205,11 +211,12 @@ LOOP per = 1, 2, 1
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 
 
-    IF (per ==1)
+    IF (per =1)
      todToken = 'PK'
     Else
      todToken = 'OP'
-    EndIF; End of PILOT Script
+    EndIF
+; End of PILOT Script
 
 ; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\DRMAT00A.S"
 ;;<<Default Template>><<MATRIX>><<Default>>;;
@@ -221,7 +228,13 @@ FILEI MATI[1] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY_ZONES.MAT"
 
       MW[1] = mi.1.1 ; PNR Zone
       MW[2] = mi.2.1 ; drive-to-skyway
+      
+      ; Add header
       IF (I=1 & J =1) PRINT PRINTO=1 CSV=T LIST='I' 'J' 'P' 'Trips'
+       
+      ; Add 1.01 trips to avoid null matrix (885 is PNR Skyway zone)
+      IF (I=1 & J =1) PRINT PRINTO=1 CSV=T FORM=0 LIST= I(5), J(5), '665', '1.01'
+      
       JLOOP
         PRINT PRINTO=1 CSV=T FORM=0 LIST= I(5), J(5), MW[1](5), MW[2](8.6)
       ENDJLOOP
@@ -233,8 +246,10 @@ ENDRUN
 ;;<<Default Template>><<MATRIX>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX
-FILEO RECO[1] = "{SCENARIO_DIR}\output\temp_drive-to-skyway.DBF",FIELDS=I,J,Trips
-FILEI DBI[1] = "{SCENARIO_DIR}\output\drive-to-skyway.csv", DELIMITER=',' IZONE =1, JZONE = 2, PZONE =3, TRIPS = 4, SORT=PZONE, JZONE
+FILEO RECO[1] = "{SCENARIO_DIR}\output\temp_drive-to-skyway.DBF",
+FIELDS=I,J,Trips
+FILEI DBI[1] = "{SCENARIO_DIR}\output\drive-to-skyway.csv",
+ DELIMITER=',' IZONE =1, JZONE = 2, PZONE =3, TRIPS = 4, SORT=PZONE, JZONE
 
 ZONES=1                  
        LOOP K=2,DBI.1.NUMRECORDS
@@ -255,8 +270,10 @@ ENDRUN
 ;;<<Default Template>><<MATRIX>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX
-FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_rebuild_drive_to_skyway.MAT", MO=1, DEC= 1*d
-FILEI MATI[1] = "{SCENARIO_DIR}\output\temp_drive-to-skyway.dbf", PATTERN=I:JV, FIELDS= I,J,Trips
+FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_rebuild_drive_to_skyway.MAT",
+ MO=1, DEC= 1*d
+FILEI MATI[1] = "{SCENARIO_DIR}\output\temp_drive-to-skyway.dbf",
+ PATTERN=I:JV, FIELDS= I,J,Trips
 
       zones=2578
         mw[1] = mi.1.1
@@ -273,9 +290,11 @@ FILEI MATI[3] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_PNR.mat"
 FILEI MATI[2] = "{SCENARIO_DIR}\output\tload_@todToken@_temp_Walk.mat"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\@todToken@_rebuild_drive_to_skyway.MAT"
 
-FILEO MATO[2] = "{SCENARIO_DIR}\output\tload_@todToken@_PNR.mat",mo = 6-10, DEC=5*D,
+FILEO MATO[2] = "{SCENARIO_DIR}\output\tload_@todToken@_PNR.mat",
+mo = 6-10, DEC=5*D,
                  NAME= PNRSKY,PNRLOC,PNREXP,PNRBRT,PNRCOM
-FILEO MATO[1] = "{SCENARIO_DIR}\output\tload_@todToken@_Walk.mat",mo = 1-5, DEC=5*D,
+FILEO MATO[1] = "{SCENARIO_DIR}\output\tload_@todToken@_Walk.mat",
+mo = 1-5, DEC=5*D,
                  NAME= WALKSKY,WALKLOC,WALKEXP,WALKBRT,WALKCOM
     
 
@@ -317,19 +336,26 @@ FILLMW MW[81] = MI.5.1,2,3,4,5                    ; EE Trips (SOV,HOV,LT,HT,Tot)
 
 
 ; DRIVE ALONE
- MW[101]=(MW[1] + MW[21] + MW[41] + MW[64] + MI.1.1.T + MI.2.1.T + MI.3.1.T + MI.4.4.T )*0.5
-
+; MW[101]=(MW[1] + MW[21] + MW[41] + MW[64] + MI.1.1.T + MI.2.1.T + MI.3.1.T + MI.4.4.T )*0.5
+ 
+ ; Drive Alone - Add 20% of NHB trips (under reporting)
+ MW[101]=(MW[1] + MW[21] + (MW[41] * 1.2) + MW[64] + MI.1.1.T + MI.2.1.T + (MI.3.1.T * 1.2) + MI.4.4.T )*0.5
+ 
 ; AUTO 2
 ;===Mistake to include MW[12] instead of MW[22]==>MW[102]=(MW[2] + MW[12] + MW[42] + MW[92] + MI.1.2.T + MI.2.2.T + MI.3.2.T + MI.6.2.T)/2*0.5
- MW[102]=(MW[2] + MW[22] + MW[42] + MI.1.2.T + MI.2.2.T + MI.3.2.T )/2*0.5
-
+; MW[102]=(MW[2] + MW[22] + MW[42] + MI.1.2.T + MI.2.2.T + MI.3.2.T )/2*0.5
+ MW[102]=(MW[2] + MW[22] + (MW[42] * 1.2) + MI.1.2.T + MI.2.2.T + (MI.3.2.T * 1.2) )/2*0.5
 ; AUTO 3+ HBW
-MW[103]=(MW[3] + MI.1.3.T)/{OC3VHBW}*0.5   ; include this modifier if model is revalidated
+; MW[103]=(MW[3] + MI.1.3.T)/{OC3VHBW}*0.5   ; include this modifier if model is revalidated
+MW[103]=((MW[3] + MI.1.3.T)* 1.2)/{OC3VHBW}*0.5   ; include this modifier if model is revalidated
 ; AUTO 3+ HBO
-MW[104]=(MW[23] + MI.2.3.T)/{OC3VHBNW}*0.5  ; include this modifier if model is revalidated
+; MW[104]=(MW[23] + MI.2.3.T)/{OC3VHBNW}*0.5  ; include this modifier if model is revalidated
+MW[104]=((MW[23] + MI.2.3.T)*1.2) /{OC3VHBNW}*0.5  ; include this modifier if model is revalidated
 ; AUTO 3+ NHB
-;===Another Mistake to include MW[3] instead of MW[43] ==> MW[105]=(MW[3] + MI.3.3.T)/{OC3VNHB}*0.5   ;  include this modifier if model is revalidated
-MW[105]=(MW[43] + MI.3.3.T)/{OC3VNHB}*0.5   ;  include this modifier if model is revalidated
+;===Another Mistake to include MW[3] instead of MW[43] ==> MW[105]=(MW[3] + MI.3.3.T)/{OC3VNHB}*0.5   
+;  include this modifier if model is revalidated
+; MW[105]=(MW[43] + MI.3.3.T)/{OC3VNHB}*0.5   ;  include this modifier if model is revalidated
+MW[105]=((MW[43] + MI.3.3.T)*1.2)/{OC3VNHB} *0.5   ;  include this modifier if model is revalidated
 ; HOV IE
 MW[106]=(MW[65] + MI.4.5.T)*0.5
 ; II/IE TRK

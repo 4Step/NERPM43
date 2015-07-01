@@ -1,25 +1,8 @@
-
-RUN PGM=NETWORK 
-FILEI LINKI[1] = "{SCENARIO_DIR}\output\PRELOAD_PT.NET"
-FILEO NETO = "{SCENARIO_DIR}\output\PRELOAD_PT_temp.NET"
-
-STAZ =0
-TSTYPE=0
-MAXD= 0
-SPACE=0
-STACOST_AM=0
-STACOST_MD=0
-
-    PROCESS PHASE=LINKMERGE
-    ; Use this phase to obtain initial values from the input network (LI.varname) and compute 
-    ; link values (LW.varname) that can be used in other phases.
-     LW.STAZ = LI.STATZONE
-     LW.TSTYPE = LI.TSTYPE_{year}{alt}
-     LW.MAXD = LI.TSRANGE_{year}{alt}
-     LW.SPACE = LI.TSPARKSPACE_{year}{alt}
-     LW.STACOST_AM= LI.TSCOSTAM_{year}{alt}
-     LW.STACOST_MD = LI.TSCOSTMD_{year}{alt}
-    ENDPROCESS
+; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
+RUN PGM=NETWORK PRNFILE="{SCENARIO_DIR}\output\ACNET01B.PRN" MSG='Peak rename fields for AUOTCON'
+FILEI LINKI[1] = "{SCENARIO_DIR}\output\UNLOADED_PT.NET"
+FILEI NODEI[2] = "{SCENARIO_DIR}\OUTPUT\STATDATA_{ALT}{YEAR}.DAT",
+var=STANUM,N,STAZ,MAXD,SPACE,STACOST_AM,STACOST_MD,STAW_PNR,STAW_KNR,TSTYPE,STA_NAME(C)
+FILEO NETO = "{SCENARIO_DIR}\output\UNLOADED_PT_TEMP.NET"
 
 ENDRUN
-

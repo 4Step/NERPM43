@@ -104,6 +104,9 @@ array LM=500, HM=500, LF=500, HF=500, LA=500, HA=500, SR=500
      ENDIF
 
      IF (TFGTIME>0 & TFGMODE=23) M23TIMEPK=TFGTIME     ; skyway times
+     IF (TFGTIME>0 & TFGMODE=26) M26TIMEPK=TFGTIME     ; CR Times
+
+     
      IF (TFGTIME>0&TFGMODE=22)
       M22TIMEPK=TFGTIME     ; Premium buses coded as a local bus mode
       M24TIMEPK=TFGTIME     ; BRT times

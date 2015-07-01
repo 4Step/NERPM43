@@ -1,0 +1,45 @@
+ 
+MATRIX (v.08/05/2014 [6.1.1])  Mon Jun 29 17:25:33 2015
+
+FILEO PRINTO[1] = "C:\NERPM43\Base2010\CF2040\output\MVFACTORS.CSV"
+FILEI RECI = "C:\NERPM43\Base2010\CF2040\input\MVFACTORS.40C"
+;var=n,6-7,UF,18-24,CF,35-41,BPRLOS,53-59,BPREXP,71-77
+
+FT=SUBSTR(RECI,6,2)
+UF=SUBSTR(RECI,18,7)
+CF=SUBSTR(RECI,35,7)               ;24_Hour Confac
+BPRLOS=SUBSTR(RECI,53,7)
+BPREXP=SUBSTR(RECI,71,7)
+
+CF_AM=SUBSTR(RECI,92,7)            ;AM Peak (07:30-09:30) Period Confac
+CF_MD=SUBSTR(RECI,112,7)           ;Mid-day (09:30-15:30) Period Confac
+CF_PM=SUBSTR(RECI,132,7)           ;PM Peak (15:30-18:30) Period Confac
+CF_NT=SUBSTR(RECI,152,7)           ;Overnight (18:30-07:00) Period Confac
+
+
+
+PRINT CSV=T, LIST=FT,UF,CF,BPRLOS,BPREXP,CF_AM,CF_MD,CF_PM,CF_NT, PRINTO=1
+
+
+
+MATRIX Stack Size = 856 bytes.
+................................................................................
+
+
+M(705): 90 RECI records processed,  0 with errors.
+
+Variable Values at end of Iteration 1 I loop:
+
+    RECI  : FT = 99, UROADF = 1.0000, CONF...
+    FT    : 99
+    UF    :  1.0000
+    CF    :  0.0950
+    BPRLOS:  0.1000
+    BPREXP:   3.000
+    CF_AM :  0.4380
+    CF_MD :  0.1847
+    CF_PM :  0.3586
+    CF_NT :  0.1973
+
+MATRIX   ReturnCode = 0  Elapsed Time = 00:00:00
+################################################################################

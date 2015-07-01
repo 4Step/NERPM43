@@ -43,8 +43,8 @@ FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
 FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
-FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_MC_CONSTANTS.CSV"
-FILEI LOOKUPI[2] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_TRN_COEFFICIENTS.CSV"
+FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
+FILEI LOOKUPI[2] = "{SCENARIO_DIR}\input\@PERIOD@_TRN_COEFFICIENTS.CSV"
     
         ; Transit skim (1: Walk to Skyway)
 FILEI MATI[1] = "{SCENARIO_DIR}\output\TSKIM_@PERIOD@_SKYWAY_WALK_{Alt}{year}.MAT"

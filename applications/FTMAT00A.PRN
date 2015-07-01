@@ -1,0 +1,65 @@
+ 
+MATRIX (v.08/05/2014 [6.1.1])  Mon Jun 29 17:25:30 2015
+
+FILEI MATI[1] = "C:\NERPM43\output_SWM\base_SWM\2005_Port_trk_od_N4.mat"
+FILEI MATI[2] = "C:\NERPM43\output_SWM\EC2030_SWM\2030_Port_trk_od_N4.mat"
+FILEO MATO[1] = "C:\NERPM43\Base2010\CF2040\output\PORT_TRK_24H_40.MAT",
+ MO=11,1,2 NAME=PortTrk_N42_40,PortTrk_SWM_base,PortTrk_SWM_Future
+
+last_year=2030                  ;Statewide model's Future E+C scenario year
+base_year=2005                  ;Statewide model's Base year
+forc_year=2000+40           ;NERPN42's Scenario year
+
+YRDIFF=last_year-base_year      ;Diference of STW model's Base (2005) and Future (EC2030) years
+@YRDIFF_F@=forc_year-base_year  ;Difference of NERPM50's Scenario and Statewide model's base year
+
+
+MW[1]=mi.1.1 ; base year matrix
+MW[2]=mi.2.1 ; future year matrix
+
+IF (YRDIFF<>0)
+  MW[11]=(MW[2]-MW[1])/YRDIFF
+ENDIF
+
+MW[11]=MW[1]+@YRDIFF_F@*MW[11]
+
+
+MATRIX Stack Size = 956 bytes.
+................................................................................
+
+
+MATI[1] TPP C:\NERPM43\output_SWM\base_SWM\2005_Port_trk_od_N4.mat Opened
+MAT PGM=MATRIX (v.09/08/2010 [5.1.2 Pre])  DATE=Mon Sep 13 18:08:52 2010 
+ID=
+PAR Zones=2578 M=1
+  Base_N4_PortTrk
+
+MATI[2] TPP C:\NERPM43\output_SWM\EC2030_SWM\2030_Port_trk_od_N4.mat Opened
+MAT PGM=MATRIX (v.09/08/2010 [5.1.2 Pre])  DATE=Mon Sep 13 21:42:25 2010 
+ID=
+PAR Zones=2578 M=1
+  Futr_N4_PortTrkPage 37  (VOYAGER MATRIX) 
+Parsons Brinckerhoff
+--------------------------
+
+Totals after Iteration 1 I loop:
+
+	MI.01.001:  1,863.2
+	MI.02.001: 10,853.9
+	MW[1]    :  1,863.2
+	MW[2]    : 10,853.9
+	MW[11]   : 14,450.2
+	MO.01.001: 14,448.6
+	MO.01.002:  1,863.2
+	MO.01.003: 10,853.9
+
+Variable Values at end of Iteration 1 I loop:
+
+    LAST_YEAR : 2,030
+    BASE_YEAR : 2,005
+    FORC_YEAR : 2,040
+    YRDIFF    :    25
+    @YRDIFF_F@:    35
+
+MATRIX   ReturnCode = 0  Elapsed Time = 00:00:03
+################################################################################

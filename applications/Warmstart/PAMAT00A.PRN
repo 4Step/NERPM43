@@ -1,5 +1,5 @@
  
-MATRIX (v.05/01/2013 [6.1.0])  Wed May 27 21:49:21 2015
+MATRIX (v.08/05/2014 [6.1.1])  Mon Jun 29 17:34:46 2015
 
 FILEI MATI[3] = "C:\NERPM43\Base2010\CF2040\output\EETRIPS.MAT"
 FILEI MATI[2] = "C:\NERPM43\Base2010\CF2040\output\VTRIP1.MAT"
@@ -31,13 +31,13 @@ MATRIX Stack Size = 1594 bytes.
 
 
 MATI[3] TPP C:\NERPM43\Base2010\CF2040\output\EETRIPS.MAT Opened
-MAT PGM=MATRIX (v.05/01/2013 [6.1.0])  DATE=Wed May 27 21:44:08 2015 
+MAT PGM=MATRIX (v.08/05/2014 [6.1.1])  DATE=Mon Jun 29 17:28:55 2015 
 ID=
 PAR Zones=2578 M=5
   EESOV  EEHOV  EELIGHTTRUCK  EEHEAVYTRUCK  TOTAL
 
 MATI[2] TPP C:\NERPM43\Base2010\CF2040\output\VTRIP1.MAT Opened
-MAT PGM=DISTRIBUTION (v.05/01/2013 [6.1.0])  DATE=Wed May 27 21:44:09 2015 
+MAT PGM=DISTRIBUTION (v.08/05/2014 [6.1.1])  DATE=Mon Jun 29 17:28:56 2015 
 ID=
 PAR Zones=2578 M=7
   LTRK  MTRK  HTRK  SOIE  HOIE  LDIE  HDIE
@@ -46,7 +46,7 @@ MATI[1] TPP C:\NERPM43\Base2010\CF2040\input\warmstart\PTRIPS_MC2.MAT Opened
 MAT PGM=MATRIX (v.07/26/2012 [6.0.2])  DATE=Thu Apr 24 11:16:20 2014 
 ID=
 PAR Zones=2578 M=12
-  M1  M2  M3  M4  M5  M6  M7  M8  M9  M10  M11  M12Page 342  (VOYAGER MATRIX) 
+  M1  M2  M3  M4  M5  M6  M7  M8  M9  M10  M11  M12Page 335  (VOYAGER MATRIX) 
 Parsons Brinckerhoff
 ---------------------------
 
@@ -103,5 +103,5 @@ Totals after Iteration 1 I loop:
 	MO.01.014: 644,700.03 
 	MO.01.015:  14,005.75 
 
-MATRIX   ReturnCode = 0  Elapsed Time = 00:00:07
+MATRIX   ReturnCode = 0  Elapsed Time = 00:00:12
 ################################################################################

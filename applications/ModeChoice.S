@@ -295,7 +295,10 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                 MW[149] = 0
             ENDIF
       
-        
+            ; Drive access ratio to CR
+            MW[10] = MI.8.pnr_cr_dist / MI.12.Distance
+            MW[11] = MI.11.knr_cr_dist / MI.12.Distance
+            
         ENDJLOOP
     
         ; Person trips
@@ -522,6 +525,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                
                ; PNR to Commuter Rail
                MW[312+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]                   +                    ; Constant(s)
+                                   -3.0 * MAX((MW[10]-0.5),0)                     +                    ; Drive access ratio
                                    MW[169]                                        +                    ; CR Unincluded constants for PNR access
                                    COEFF_DRIVE    *  (MW[162]+MW[176]+MW[179])    +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[161] + MW[163] + MW[169] +MW[170]) +           ; Walk Access Time + Xfer Time
@@ -577,6 +581,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                ; KNR to Commuter Rail
                MW[316+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m]                   +                    ; Constant(s)
                                    MW[229]                                        +                    ; CR Unincluded constants for KNR access
+                                   -3.0 * MAX((MW[11]-0.5),0)                     +                    ; Drive access ratio
                                    COEFF_DRIVE    * (MW[222]+ MW[240])            +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[221] + MW[223] + MW[229] +MW[230]) +           ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[232],5)               +                    ; Short wait (< 5 mins)

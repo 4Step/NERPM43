@@ -10,6 +10,13 @@ FILEO PRINTO[2] = "{SCENARIO_DIR}\output\NTLEG2PK_{alt}{year}.NTL"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG1PK_{alt}{year}.NTL"
 FILEO PRINTO[4] = "{Scenario_Dir}\output\NTLEG11PK_{alt}{year}.NTL"
 FILEO PRINTO[5] = "{Scenario_Dir}\output\NTLEG12PK_{alt}{year}.NTL"
+FILEO PRINTO[6] = "{Scenario_Dir}\output\NTLEG4PK_{alt}{year}.NTL" ; Walk access to BRT 
+FILEO PRINTO[7] = "{Scenario_Dir}\output\NTLEG5PK_{alt}{year}.NTL" ; PNR access to BRT 
+FILEO PRINTO[8] = "{Scenario_Dir}\output\NTLEG6PK_{alt}{year}.NTL" ; KNR access to BRT 
+;FILEO PRINTO[9] = "{Scenario_Dir}\output\NTLEG7PK_{alt}{year}.NTL" ; Walk access to ComRail 
+FILEO PRINTO[9] = "{Scenario_Dir}\output\NTLEG8PK_{alt}{year}.NTL" ; PNR access to ComRail 
+FILEO PRINTO[10] = "{Scenario_Dir}\output\NTLEG9PK_{alt}{year}.NTL" ; KNR access to ComRail 
+;FILEO PRINTO[11] = "{Scenario_Dir}\output\NTLEG13PK_{alt}{year}.NTL" ; Walk egress to BRT 
 
 ; print all removed NTLEGS
 s1=strpos('NT',reci)
@@ -55,7 +62,6 @@ dist=val(substr(dist1,s22,strlen(dist1)))
 ; get the rest of the string
 s23=substr(reci,s6,strlen(reci))
 
-
 ; ############# check for error in time field #################
 if (time > 999)
  time=999
@@ -76,9 +82,44 @@ if (i==1 && _ctr==0)
   _ctr = _ctr + 1
 endif
 
-if (mode=1) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
-if (mode=2) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=2
-if (mode=3) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=3
+; Walk egress from all nodes (except BRT, CR) to centroids
+if (mode=1 & (zonei > {ZONESI} & zonei <= 80010)  & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
+
+; Walk egress from BRT stations to centroids
+if (mode=1 & zonei > 80010 & zonei <90000 & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=13 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=6
+
+; Walk egress from CR stations to centroids
+;if (mode=14 & zonei >=90000  & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," ;MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
+
+; Walk access from all centroids to transit stops (except for BRT & CR)
+if (mode=1 & zonei <= {ZONESI}  & zonej < 80010) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
+
+; PNR access from all centroids to transit stops (except for BRT & CR)
+if (mode=2 & zonei <= {ZONESI}  & zonej < 80010) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=2
+
+; KNR access from all centroids to transit stops (except for BRT & CR)
+if (mode=3 & zonei <= {ZONESI}  & zonej < 80010) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=3
+
+; separate walk, pnr, knr connectors for BRT and CR
+; Walk connectors to BRT 
+IF(mode =1 & zonei <= {ZONESI}  & zonej >= 80010 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=4 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=6
+  
+  ; PNR connectors to BRT 
+IF(mode =2 & zonei <= {ZONESI}  & zonej >= 80010 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=5 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=7
+  
+  ; KNR connectors to BRT 
+IF(mode =3 & zonei <= {ZONESI}  & zonej >= 80010 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=6 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=8
+  
+; Walk connector to CR (don't produce walk to om rail- these are maunually supplied in the inputs folder)
+;IF(mode =1 & zonei <= {ZONESI}  & zonej >= 90000)  PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=7 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=9
+  
+; PNR connector to CR 
+IF(mode =2 & zonei <= {ZONESI}  & zonej >= 90000)  PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=8 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=9
+  
+  ; KNR connector to CR 
+IF(mode =3 & zonei <= {ZONESI}  & zonej >= 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=9  COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=10
+
+; Xfer connectors
 if (mode=11) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2),PRINTO=4
 if (mode=12) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2),PRINTO=5
 

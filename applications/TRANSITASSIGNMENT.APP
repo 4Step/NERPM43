@@ -7,7 +7,7 @@ TA
 00
 
 
-Wed Jun 03 16:36:32 2015
+Fri Jun 19 10:51:31 2015
 C:\NERPM43\media\nftpologosmall.bmp
 C:\NERPM43\applications\NERPM.app
 C:\NERPM43\APPLICATIONS\TRANSITASSIGNMENT.APP
@@ -43,18 +43,18 @@ period
 0
 0
 per
-1
-1
+2
+2
 1
 -1
 2015
 6
-3
-3
-16
-18
-1
-128
+5
+19
+10
+51
+30
+422
 0
 0
 #PROGRAM1
@@ -518,18 +518,18 @@ access
 0
 0
 Access
-2
-2
+1
+3
 1
 -1
 2015
 6
-3
-3
-16
-26
-51
-961
+5
+19
+10
+22
+17
+701
 0
 0
 #PROGRAM4

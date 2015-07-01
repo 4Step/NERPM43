@@ -1,4 +1,4 @@
-LOOP per = 1, 1, 1
+LOOP per = 2, 2, 1
 
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
@@ -15,7 +15,7 @@ LOOP per = 1, 1, 1
 
 ; End of PILOT Script
 
-  LOOP Access = 2, 2, 1
+  LOOP Access = 1, 3, 1
 
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
@@ -55,7 +55,7 @@ FILEI ROUTEI[2] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_LOCAL_@ACCESS_Name@_{Alt
 FILEI ROUTEI[1] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_SKYWAY_@ACCESS_Name@_{Alt}{year}.RTE"
 
             ; OVERALL PARAMETERS OF RUN
-            PARAMETERS NOROUTEMSGS=0, NOROUTEERRS=9999999, USERCLASSES=1-5, HDWAYPERIOD=1,
+            PARAMETERS NOROUTEMSGS=0, NOROUTEERRS=9999999, USERCLASSES=1-5, HDWAYPERIOD=@per@,
                 TRIPSIJ[1]=MI.1.1,
                 TRIPSIJ[2]=MI.1.2,
                 TRIPSIJ[3]=MI.1.3,

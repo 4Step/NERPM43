@@ -5,7 +5,7 @@ RUN PGM=MATRIX PRNFILE="{SCENARIO_DIR}\output\CNMAT00B.PRN" MSG='OffPeak walk, p
 FILEI RECI = "{SCENARIO_DIR}\output\NTLEGOP_{YEAR}{ALT}.NTL"
 FILEO PRINTO[3] = "{SCENARIO_DIR}\output\NTLEG3OP_{alt}{year}.NTL"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\output\NTLEG2OP_{alt}{year}.NTL"
-FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG1OP_TEM.NTL"
+FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG1OP_{alt}{year}.NTL"
 
 FILEI LOOKUPI[3] = "{SCENARIO_DIR}\output\STATDATA_{alt}{year}.DBF"
 FILEI LOOKUPI[2] = "{CATALOG_DIR}\parameters\TRN_COEFFICIENTS.DBF"
@@ -86,32 +86,32 @@ endif
 
 
 ; Walk egress from all nodes (except BRT, CR) to centroids
-if (mode=1 & zonei >80000  & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
+if (mode=1 & (zonei > {ZONESI} & zonei <= 80010)  & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
 
 ; Walk egress from BRT stations to centroids
-if (mode=1 & zonei >=80000 & zonei <90000 & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=13 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=6
+if (mode=1 & zonei >=80010 & zonei <90000 & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=13 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=6
 
 ; Walk egress from CR stations to centroids
 ;if (mode=14 & zonei >=90000  & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," ;MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
 
 ; Walk access from all centroids to transit stops (except for BRT & CR)
-if (mode=1 & zonei <= {ZONESI}  & zonej < 80000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
+if (mode=1 & zonei <= {ZONESI}  & zonej < 80010) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
 
 ; PNR access from all centroids to transit stops (except for BRT & CR)
-if (mode=2 & zonei <= {ZONESI}  & zonej < 80000) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=2
+if (mode=2 & zonei <= {ZONESI}  & zonej < 80010) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=2
 
 ; KNR access from all centroids to transit stops (except for BRT & CR)
-if (mode=3 & zonei <= {ZONESI}  & zonej < 80000) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=3
+if (mode=3 & zonei <= {ZONESI}  & zonej < 80010) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=3
 
 ; separate walk, pnr, knr connectors for BRT and CR
 ; Walk connectors to BRT 
-IF(mode =1 & zonei <= {ZONESI}  & zonej >= 80000 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=4 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=6
+IF(mode =1 & zonei <= {ZONESI}  & zonej >= 80010 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=4 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=6
   
   ; PNR connectors to BRT 
-IF(mode =2 & zonei <= {ZONESI}  & zonej >= 80000 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=5 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=7
+IF(mode =2 & zonei <= {ZONESI}  & zonej >= 80010 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=5 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=7
   
   ; KNR connectors to BRT 
-IF(mode =3 & zonei <= {ZONESI}  & zonej >= 80000 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=6 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=8
+IF(mode =3 & zonei <= {ZONESI}  & zonej >= 80010 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=6 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=8
   
 ; Walk connector to CR (don't produce walk to om rail- these are maunually supplied in the inputs folder)
 ;IF(mode =1 & zonei <= {ZONESI}  & zonej >= 90000)  PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=7 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=9

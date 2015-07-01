@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=MATRIX PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\ETMAT00A.PRN" MSG='Generate a record file to fix freeway external stations zones'
+RUN PGM=MATRIX PRNFILE="C:\NERPM43\APPLICATIONS\ETMAT00A.PRN" MSG='Generate a record file to fix freeway external stations zones'
 FILEO RECO[1] = "{CATALOG_DIR}\output_SWM\EC2030_SWM\jaxext.dbf",
 fields=n,m
 zones=1

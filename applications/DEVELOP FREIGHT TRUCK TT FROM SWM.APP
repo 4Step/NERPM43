@@ -1,5 +1,5 @@
 &PROJFIL
-EXP2 1 0Matrix File 1  {SCENARIO_DIR}\output\PORT_TRK_24H_{Year}.MAT               
+EXP0 1 0Matrix File 1  {SCENARIO_DIR}\output\PORT_TRK_24H_{Year}.MAT               
 11
 0
 0
@@ -8,10 +8,10 @@ FT
 00
 Develop Freight Truck TT from SWM
 
-Tue Jun 09 10:57:19 2015
-C:\NERPM43_Delivered\media\nftpologosmall.bmp
-C:\NERPM43_Delivered\applications\NERPM.app
-C:\NERPM43_Delivered\APPLICATIONS\DEVELOP FREIGHT TRUCK TT FROM SWM.APP
+Thu Feb 19 08:45:37 2015
+C:\NERPM43\media\nftpologosmall.bmp
+C:\NERPM43\applications\NERPM.app
+C:\NERPM43\APPLICATIONS\DEVELOP FREIGHT TRUCK TT FROM SWM.APP
 VOYAGER
 
 
@@ -21,80 +21,6 @@ Develop Port Truck OD Table for NERPM43's Scenario Year
 &End_TextAnnotation
 English
 #PROGRAM0
-1
-1
-0
-
-C:\NERPM43_Delivered\APPLICATIONS\BASE YEAR FREIGHT TRUCK TT FROM SWD.APP
-Base Year Freight Truck TT from SWD
-
-0
-1
-0
-
-
-16744576
-488
--874
-860
--1047
-0
-0
-0
-#OUTFIL0
-Matrix File 1
-N4BasePrtTrkOD
-0
-0
-*
-{CATALOG_DIR}\output_SWM\base_SWM\2005_Port_trk_od_N4.mat
-1
-0701
-      
-999999
-873
--926
-1103
--989
-0
-#PROGRAM1
-2
-1
-0
-
-C:\NERPM43_Delivered\APPLICATIONS\FUTURE YEAR FREIGHT TRUCK TT FROM SWD.APP
-Future Year Freight Truck TT from SWD
-
-0
-1
-0
-
-
-32896
-1539
--849
-1911
--1022
-0
-0
-0
-#OUTFIL0
-Matrix File 1
-N4FutrPrtTrkOD
-0
-0
-*
-{CATALOG_DIR}\output_SWM\EC2030_SWM\2030_Port_trk_od_N4.mat
-1
-0701
-      
-999999
-1924
--901
-2154
--964
-0
-#PROGRAM2
 3
 0
 8
@@ -110,8 +36,8 @@ Interpolate Port Truck TTs derived from Statewide Model
 999999
 1257
 -1699
-1413
--1770
+1446
+-1769
 0
 0
 0
@@ -121,15 +47,15 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\APPLICATIONS\FTMAT00A.S
+C:\NERPM43\APPLICATIONS\FTMAT00A.S
 1
 MAT
 ISCR1 
 999999
-1014
--1632
-1248
--1695
+940
+-1701
+1246
+-1763
 -1
 -1
 0
@@ -139,17 +65,17 @@ Matrix File 1
 0
 0
 MAT
-{CATALOG_DIR}\output_SWM\base_SWM\2005_Port_trk_od_N4.mat
+*.MAT
 0
 MAT
 MATI1 
 999999
-1014
--1700
-1248
--1763
-0
-0
+940
+-1702
+1246
+-1764
+-1
+-1
 0
 #INFIL2
 Matrix File 2
@@ -157,17 +83,17 @@ Matrix File 2
 0
 0
 MAT
-{CATALOG_DIR}\output_SWM\EC2030_SWM\2030_Port_trk_od_N4.mat
+*.MAT
 0
 MAT
 MATI2 
 999999
-1014
--1768
-1248
--1831
-1
-0
+940
+-1735
+1246
+-1797
+-1
+-1
 0
 #INFIL3
 Matrix File 3
@@ -1237,15 +1163,15 @@ Print File
 0
 0
 PRN
-C:\NERPM43_Delivered\APPLICATIONS\FTMAT00A.PRN
+C:\NERPM43\APPLICATIONS\FTMAT00A.PRN
 0
 MAT
 OPRN  
 999999
-1426
--1666
-1656
--1729
+1462
+-1668
+1763
+-1730
 0
 #OUTFIL1
 Matrix File 1
@@ -1258,9 +1184,9 @@ MAT
 MAT
 MATO1 
 16711808
-1426
--1734
-1656
+1462
+-1735
+1763
 -1797
 1
 #OUTFIL2
@@ -1967,7 +1893,7 @@ PRINTO10
 1621
 -2777
 0
-#PROGRAM3
+#PROGRAM1
 4
 0
 1
@@ -1983,8 +1909,8 @@ If necessary, Develop Base Year JaxPort Truck TT
 16744576
 488
 -624
-676
--766
+719
+-764
 0
 0
 1
@@ -1994,7 +1920,7 @@ If necessary, Develop Base Year JaxPort Truck TT
 NERPM4Dist
 2
 0
-#PROGRAM4
+#PROGRAM2
 5
 0
 3
@@ -2010,12 +1936,12 @@ If necessary, Develop Base Year JaxPort Truck TT
 16744576
 507
 -1124
-695
--1266
+738
+-1264
 0
 0
 0
-#PROGRAM5
+#PROGRAM3
 6
 0
 4
@@ -2031,18 +1957,18 @@ If necessary, Develop Future Year JaxPort Truck TT
 32896
 1501
 -674
-1689
--816
+1732
+-814
 0
 0
 1
 7
-1
+0
 
 NERPM4Dist
 3
 0
-#PROGRAM6
+#PROGRAM4
 7
 0
 6
@@ -2058,12 +1984,12 @@ If necessary, Develop Future Year JaxPort Truck TT
 32896
 1577
 -1099
-1765
--1241
+1808
+-1239
 0
 0
 0
-#PROGRAM7
+#PROGRAM5
 8
 0
 7
@@ -2079,8 +2005,8 @@ Wait For Files for Cluster Runs
 999999
 1145
 -1374
-1301
--1445
+1334
+-1444
 0
 0
 0
@@ -2090,14 +2016,14 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\APPLICATIONS\FTPIL00A.S
+C:\NERPM43\APPLICATIONS\FTPIL00A.S
 1
 PIL
 ISCR1 
 999999
-902
--1375
-1136
+828
+-1376
+1134
 -1438
 -1
 -1

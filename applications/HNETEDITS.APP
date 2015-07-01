@@ -1,6 +1,6 @@
 &PROJFIL
 EXP0 1 1Link/Net. 1    *.net                                                       
-EXP0 1 0Network File   C:\NERPM43_Delivered\parameters\MicrocodedHnet.NET          
+EXP0 1 0Network File   C:\NERPM43\parameters\MicrocodedHnet.NET                    
 11
 0
 0
@@ -9,10 +9,10 @@ ED
 00
 Master highway network edits
 Master highway network edits
-Tue Jun 09 10:57:19 2015
+Wed Feb 18 22:47:31 2015
 
-C:\NERPM43_Delivered\applications\NERPM.app
-C:\NERPM43_Delivered\applications\HNETEDITS.APP
+C:\NERPM_AMAR\applications\NERPM.app
+C:\NERPM43\applications\HNETEDITS.APP
 VOYAGER
 
 
@@ -48,7 +48,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\EDNET00A.S
+C:\NERPM43\applications\EDNET00A.S
 1
 NET
 ISCR1 
@@ -84,7 +84,7 @@ Additional Links
 0
 0
 *
-C:\NERPM43_Delivered\parameters\ADDLINKS2000.TXT
+C:\NERPM43\parameters\ADDLINKS2000.TXT
 0
 LNK
 LINKI2
@@ -102,7 +102,7 @@ PNR Links
 0
 0
 *
-C:\NERPM43_Delivered\PARAMETERS\PNRLINKS.PRN
+C:\NERPM43\PARAMETERS\PNRLINKS.PRN
 0
 LNK
 LINKI3
@@ -444,7 +444,7 @@ Statdata_00a
 0
 0
 DAT
-C:\NERPM43_Delivered\parameters\STATDATA.00A
+C:\NERPM43\parameters\STATDATA.00A
 0
 NOD
 NODEI2
@@ -462,7 +462,7 @@ Statdata_05a
 0
 0
 DAT
-C:\NERPM43_Delivered\parameters\STATDATA.05A
+C:\NERPM43\parameters\STATDATA.05A
 0
 NOD
 NODEI3
@@ -480,7 +480,7 @@ Statdata_30a
 0
 0
 DAT
-C:\NERPM43_Delivered\parameters\STATDATA.30A
+C:\NERPM43\parameters\STATDATA.30A
 0
 NOD
 NODEI4
@@ -498,7 +498,7 @@ Skyway Nodes
 0
 0
 DAT
-C:\NERPM43_Delivered\parameters\SKYWAY_NODES.TXT
+C:\NERPM43\parameters\SKYWAY_NODES.TXT
 0
 NOD
 NODEI5
@@ -516,7 +516,7 @@ BRT Nodes
 0
 0
 DAT
-C:\NERPM43_Delivered\parameters\BRT_NODES.TXT
+C:\NERPM43\parameters\BRT_NODES.TXT
 0
 NOD
 NODEI6
@@ -534,7 +534,7 @@ PNR Nodes
 0
 0
 DAT
-C:\NERPM43_Delivered\PARAMETERS\PNRNODES.PRN
+C:\NERPM43\PARAMETERS\PNRNODES.PRN
 0
 NOD
 NODEI7
@@ -1146,7 +1146,7 @@ Print File
 0
 0
 PRN
-C:\NERPM43_Delivered\parameters\HNETEDIT.PRN
+C:\NERPM43\parameters\HNETEDIT.PRN
 0
 NET
 OPRN  
@@ -1162,7 +1162,7 @@ Microcoded Network
 0
 0
 NET
-C:\NERPM43_Delivered\parameters\MicrocodedHnet.NET
+C:\NERPM43\parameters\MicrocodedHnet.NET
 0
 NET
 NETO  

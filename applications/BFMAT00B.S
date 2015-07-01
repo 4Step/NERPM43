@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=MATRIX PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\BFMAT00B.PRN" MSG='Fix Extracted N4 TT to  fix freeway external stations zones'
+RUN PGM=MATRIX PRNFILE="C:\NERPM43\APPLICATIONS\BFMAT00B.PRN" MSG='Fix Extracted N4 TT to  fix freeway external stations zones'
 FILEO MATO[1] = "{Catalog_Dir}\output_SWM\base_SWM\nerpm4ttx.mat",
     mo=1
 FILEI MATI[1] = "{Catalog_Dir}\output_SWM\base_SWM\nerpm4tt.mat"

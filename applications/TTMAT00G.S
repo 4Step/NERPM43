@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=MATRIX PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\TTMAT00G.PRN" MSG='Create InternalTrk Period Hwy Veh TT by CLS (LT/MT/HT)/Dir'
+RUN PGM=MATRIX PRNFILE="C:\NERPM43\APPLICATIONS\TTMAT00G.PRN" MSG='Create InternalTrk Period Hwy Veh TT by CLS (LT/MT/HT)/Dir'
 FILEI MATI[1] = "{SCENARIO_DIR}\output\VTRIP1.mat"
 DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
 ;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4

@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=MATRIX PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\WARMSTART\PAMAT00A.PRN" MSG='Separate trips by purpose and auto ownership'
+RUN PGM=MATRIX PRNFILE="C:\NERPM43\APPLICATIONS\WARMSTART\PAMAT00A.PRN" MSG='Separate trips by purpose and auto ownership'
 FILEI MATI[3] = "{SCENARIO_DIR}\output\EETRIPS.MAT"
 FILEI MATI[2] = "{SCENARIO_DIR}\output\VTRIP1.MAT"
 FILEI MATI[1] = "{SCENARIO_DIR}\input\warmstart\PTRIPS_MC2.MAT"

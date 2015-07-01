@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=MATRIX PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\BFMAT00C.PRN" MSG='Process to develop JaxPort Freight Truck Od tables'
+RUN PGM=MATRIX PRNFILE="C:\NERPM43\APPLICATIONS\BFMAT00C.PRN" MSG='Process to develop JaxPort Freight Truck Od tables'
 FILEO RECO[2] = "{Catalog_Dir}\output_SWM\base_SWM\FTE_TT.DBF",
    fields=az,bz,tr
 FILEO RECO[1] = "{Catalog_Dir}\output_SWM\base_SWM\FTE.DBF",

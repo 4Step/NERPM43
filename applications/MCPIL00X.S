@@ -6,6 +6,6 @@
    NERPM13.script.end, NERPM14.script.end, NERPM15.script.end,                              
    NERPM16.script.end,                                                
 printfiles=MERGE, checkReturnCode=T   
-*Cluster NERPM 1-16 Close Exit
+*Cluster NERPM 1-12 Close Exit
 
 ; *Cluster NERPM 1-%NUMBER_OF_PROCESSORS% Close Exit

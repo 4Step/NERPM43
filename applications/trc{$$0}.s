@@ -1,66 +1,107 @@
-; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\TTMAT00A.S"
+; Script for program PUBLIC TRANSPORT in file "C:\NERPM43\applications\CNPTR00A.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=MATRIX PRNFILE="{SCENARIO_DIR}\output\TTMAT00A.PRN" MSG='Combine trip tables for 24-Hour Assignment'
-FILEI MATI[7] = "{SCENARIO_DIR}\output\PORT_TRK_24H_{Year}.MAT"
-FILEI MATI[5] = "{SCENARIO_DIR}\output\EETRIPS.MAT"
-DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-%NUMBER_OF_PROCESSORS%,MinGroupSize=20,SavePrn=F
-;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
+RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\CNPTR00A.PRN" MSG='Peak period connectors'
+FILEO PRINTO[2] = "{SCENARIO_DIR}\output\PT_AUTOCON_PK.OUT"
+FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG2PK_{Year}{alt}.PRN"
+FILEI FACTORI[2] = "{SCENARIO_DIR}\output\PNRCOMRAIL.FAC"
+FILEI MATI[1] = "{SCENARIO_DIR}\output\PRELSKIMS.MAT"
 
-FILEO MATO[1] = "{SCENARIO_DIR}\output\HWYTTAB_{alt}{year}.MAT",
-MO=121-128, NAME=DA_IEII,SR_IEII,TRK_IEII,TRK_EE,
-                 DA_EE,SR_EE,PortTrk,24H_Total, DEC=8*s
-                 
-FILEI MATI[4] = "{SCENARIO_DIR}\Output\VTRIP1.MAT"
-FILEI MATI[3] = "{SCENARIO_DIR}\output\NHB_{alt}{year}.MAT"
-FILEI MATI[2] = "{SCENARIO_DIR}\output\HBNW_{alt}{year}.MAT"
-FILEI MATI[1] = "{SCENARIO_DIR}\output\HBW_{alt}{year}.MAT"
+; Inputs for walk connectors
+FILEI NETI = "{SCENARIO_DIR}\output\PRELOAD_PT_TEMP.NET"
+FILEI LINEI[1] = "{SCENARIO_DIR}\input\TROUTE_{year}{alt}.LIN"
+FILEI SYSTEMI = "{CATALOG_DIR}\parameters\SYSTEM.PTS"
+FILEI FAREI = "{SCENARIO_DIR}\input\TFARES_{year}{alt}.FAR"
+FILEI FACTORI[1] = "{SCENARIO_DIR}\output\WalkCOMRAIL.FAC"
 
-PAR ZONEMSG=100
+; Output files
+FILEO NETO = "{SCENARIO_DIR}\output\NTLEGSPK.NET"
+FILEO LINKO[1] = "{SCENARIO_DIR}\output\NTLEGPK_{alt}{year}.DBF"
+FILEO LINEO = "{SCENARIO_DIR}\output\TROUTE_MOD.LIN"
+FILEO NTLEGO = "{SCENARIO_DIR}\output\NTLEGPK_{YEAR}{ALT}.NTL"
+FILEO REPORTO = "{SCENARIO_DIR}\output\NTLEGPK.RPT"
 
-FILLMW MW[1]  = MI.1.1,2,3,4,5,6,7,8,9,10,11,12   ; - HBW trips
-FILLMW MW[21] = MI.2.1,2,3,4,5,6,7,8,9,10,11,12   ; - HBNW trips
-FILLMW MW[41] = MI.3.1,2,3,4,5,6,7,8,9,10,11,12   ; - NHB trips
-FILLMW MW[61] = MI.4.1,2,3,4,5,6,7                ; Veh Trips (TRK - LT,MT,HT & IE - SO,HO,LD,HD)
-FILLMW MW[81] = MI.5.1,2,3,4,5                    ; EE Trips (SOV,HOV,LT,HT,Tot)
+; OVERALL PARAMETERS OF RUN
+PARAMETERS USERCLASSES=1,FARE=N, MAPSCALE=5280, HDWAYPERIOD=1,
+           NOROUTEERRS=999999, NOROUTEMSGS=999999,
+           TRANTIME=LW.TRANTIME,
+           TRANTIME[21]=LI.M21TIMEPK,
+           TRANTIME[22]=LI.M22TIMEPK,
+           TRANTIME[23]=LI.M23TIMEPK,
+           TRANTIME[24]=LI.M24TIMEPK,
+           TRANTIME[25]=LI.M25TIMEPK,
+           TRANTIME[26]=LI.M26TIMEPK
+REPORT LINES=T
 
+PROCESS PHASE=LINKREAD
+ LW.TRANTIME=LI.M21TIMEPK
+ LW.WALKTIME=LI.WALKTIME
+ LW.WALKDISTANCE=LI.DISTANCE
+ LW.DISTANCE=LI.DISTANCE
+ LW.ADJDISTANCE=LI.ADJDISTANCE
+ENDPROCESS
 
-; DRIVE ALONE
- MW[101]=(MW[1] + MW[21] + MW[41] + MW[64] + MI.1.1.T + MI.2.1.T + MI.3.1.T + MI.4.4.T )*0.5
+PROCESS PHASE=DATAPREP
 
-; AUTO 2
-;===Mistake to include MW[12] instead of MW[22]==>MW[102]=(MW[2] + MW[12] + MW[42] + MW[92] + MI.1.2.T + MI.2.2.T + MI.3.2.T + MI.6.2.T)/2*0.5
- MW[102]=(MW[2] + MW[22] + MW[42] + MI.1.2.T + MI.2.2.T + MI.3.2.T )/2*0.5
+  ; 1 - WALK ACCESS/EGRESS
+  GENERATE, COST=(LW.ADJDISTANCE),EXTRACTCOST=(LW.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,EXCLUDELINK=(LI.FACILITY_TYPE=10-19,69,70-99),
+            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-99999
+     
+  ; 11 - Fixed-guideway to bus (transfer connectors)
+  GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,INCLUDELINK=(LI.FACILITY_TYPE=59),
+            NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=2,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
+  
+            ; 11 - station to nearby stop (transfer connectors)
+  READ, FILE = "{SCENARIO_DIR}\OUTPUT\STATXFER_TMP.DAT"
 
-; AUTO 3+ HBW
-MW[103]=(MW[3] + MI.1.3.T)/{OC3VHBW}*0.5   ; include this modifier if model is revalidated
-; AUTO 3+ HBO
-MW[104]=(MW[23] + MI.2.3.T)/{OC3VHBNW}*0.5  ; include this modifier if model is revalidated
-; AUTO 3+ NHB
-;===Another Mistake to include MW[3] instead of MW[43] ==> MW[105]=(MW[3] + MI.3.3.T)/{OC3VNHB}*0.5   ;  include this modifier if model is revalidated
-MW[105]=(MW[43] + MI.3.3.T)/{OC3VNHB}*0.5   ;  include this modifier if model is revalidated
-; HOV IE
-MW[106]=(MW[65] + MI.4.5.T)*0.5
-; II/IE TRK
-MW[107]=(MW[61] + MW[62] + MW[63] + MW[66] + MW[67] + MI.4.1.T + MI.4.2.T + MI.4.3.T + MI.4.6.T + MI.4.7.T)*0.5
-; EE TRUCK
-MW[108]=(MW[83] + MW[84] + MI.5.3.T + MI.5.4.T)*0.5
-; EE SOV
-MW[109]=(MW[81] + MI.5.1.T)*0.5
-; EE HOV
-MW[110]=(MW[82] + MI.5.2.T)*0.5
+  ; 12 - CBD sidewalks
+   READ, FILE = "{SCENARIO_DIR}\OUTPUT\CBDXFER.DAT"
 
-; FINAL TABLE ORDERING FOR HIGHWAY SIDE
-MW[121]=MW[101]                                  ; DA_IEII
-MW[122]=MW[102]+MW[103]+MW[104]+MW[105]+MW[106]  ; SR_IEII
-MW[123]=MW[107]                                  ; TRK_IEII
-MW[124]=MW[108]                                  ; TRK_EE
-MW[125]=MW[109]                                  ; DA_EE
-MW[126]=MW[110]                                  ; SR_EE
-MW[127]=MI.7.1                                   ; JaxPortTrucks
+            
+ ; Add AUTOCON outputs
+ list='\nGenerate Zone Access/Egress Legs'
+    GENERATE, 
+       PNR=T,
+       KNR=T,
+       PERIOD=1,
+       
+       PNRMODE=2,
+       KNRMODE=3,
+       INTERNALZONES=1-2494,
+       
+       CBDZONE=730,
+       ORIGINTERMTIME=2.0,
+       DEFDRIVETIME=20.0,
+       CHECKRELEVANCE=1,
+       CHECKBACKTRACK=1,
+       MAXBACKDIST=4.0,
+       MAXBACKFACTOR=0.30,
+       DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=528,
+       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY =7,7,7,2,2,1,
 
-LOOP K=121,127
-  MW[128]=MW[128]+MW[K]                          ;TotVeh
-ENDLOOP
+       VOT=6,3,
+       OVTRATIO=2,2,
+       AATRATIO=1.5,1.5,
+       AUTOCCPNR=1.2,
+       AUTOCCKNR=1.2,
+       AOC=9.5,
+       INFLTRANSITFARE=0.9487,
+       INFLAOC=1,
+       INFLPARKINGCOST=1.1976,
+       MAXCHECK = 10,
+       MAXCONN = 5,
+       
+       CONNREPORT=1,
+       GENREPORT=2,
+       TIMEMAT=MI.1.4,
+       DISTMAT=MI.1.2 * 10,
+       AUTOMATCH=F     ; T=original logic, F=Enhanced logic
+
+  ENDPROCESS
 
 ENDRUN
 

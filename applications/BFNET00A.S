@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=NETWORK PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\BFNET00A.PRN" MSG='Fix N4 Extracted Subnet for double coding freeway external stations'
+RUN PGM=NETWORK PRNFILE="C:\NERPM43\APPLICATIONS\BFNET00A.PRN" MSG='Fix N4 Extracted Subnet for double coding freeway external stations'
 FILEO PRINTO[1] = "{CATALOG_DIR}\output_SWM\base_SWM\EQ.csv"
 FILEO NETO = "{Catalog_Dir}\input_SWM\base_SWM\Nerpm4 Extractx.net"
 FILEI LINKI[1] = "{Catalog_Dir}\input_SWM\base_SWM\Nerpm4 Extract.net"

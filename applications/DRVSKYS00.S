@@ -12,15 +12,18 @@ LOOP per = 1, 2, 1
     EndIF
    
     
-    ; End of PILOT Script
+    
+; End of PILOT Script
 
 ; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\TRMAT00A.S"
 ;;<<Default Template>><<MATRIX>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX PRNFILE="{SCENARIO_DIR}\output\createDriveToSkywaySkims.PRN"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\DriveToSkyway.dat"
-FILEO MATO[2] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY_ZONES.MAT",MO=11,Name= PNRZONE
-FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY.MAT",MO=1-10,Name= Toll,Distance,WtTime,WlkTime,SkyTime,Xfers,IWait,Xwait,Fare,TotalTime
+FILEO MATO[2] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY_ZONES.MAT",
+MO=11,Name= PNRZONE
+FILEO MATO[1] = "{SCENARIO_DIR}\output\@todToken@_DRV_SKYWAY.MAT",
+MO=1-10,Name= Toll,Distance,WtTime,WlkTime,SkyTime,Xfers,IWait,Xwait,Fare,TotalTime
 FILEI MATI[2] = "{SCENARIO_DIR}\output\TSKIM_@todToken@_SKYWAY_Walk_{Alt}{year}.MAT"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\@hwySkim@"
     

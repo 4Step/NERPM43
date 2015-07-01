@@ -40,7 +40,7 @@ FILEO MATO[8] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_MCLS_XCHOICE_{Alt}{year}.M
             
         ; Zone and station data
 FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
-FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_A10.DBF"
+FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"

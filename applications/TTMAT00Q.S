@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=MATRIX PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\TTMAT00Q.PRN" MSG='Sum 4 Period Tables for Check'
+RUN PGM=MATRIX PRNFILE="C:\NERPM43\APPLICATIONS\TTMAT00Q.PRN" MSG='Sum 4 Period Tables for Check'
 FILEO MATO[1] = "{SCENARIO_DIR}\output\HWYTTAB_AllPeriod_Chk_{alt}{year}.MAT",
  MO=11-20, NAME=AD_DA_IEII,AD_SR2_IEII,AD_SR3_IEII,AD_TRK_IEII,AD_TRK_EE,
                AD_DA_EE,AD_SR2_EE,AD_SR3_EE,AD_PortTrk,AD_Total, DEC=10*s

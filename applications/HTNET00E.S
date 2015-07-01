@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=NETWORK PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\HTNET00E.PRN"
+RUN PGM=NETWORK PRNFILE="C:\NERPM43\APPLICATIONS\HTNET00E.PRN"
 FILEO NETO = "{SCENARIO_DIR}\output\LOADED_CombinedPeriods.NET"
 FILEI LINKI[4] = "{SCENARIO_DIR}\output\LOADED_NT_Period.NET"
 FILEI LINKI[3] = "{SCENARIO_DIR}\output\LOADED_PM_Period.NET"

@@ -23,10 +23,10 @@ TP
 00
 Network preparation for transit connectors and path-building
 Transit Network Preparation
-Tue Jun 09 10:57:15 2015
-C:\NERPM43_Delivered\media\mpologo2small.BMP
-C:\NERPM43_Delivered\applications\TRANSIT.APP
-C:\NERPM43_Delivered\applications\TRNPREPARE.APP
+Mon Jan 12 09:26:28 2015
+C:\NERPM43\media\mpologo2small.BMP
+C:\NERPM43\applications\TRANSIT.APP
+C:\NERPM43\applications\TRNPREPARE.APP
 VOYAGER
 
 
@@ -109,7 +109,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\TPPIL00A.S
+C:\NERPM43\applications\TPPIL00A.S
 1
 PIL
 ISCR1 
@@ -326,7 +326,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\TPPIL00B.S
+C:\NERPM43\applications\TPPIL00B.S
 1
 PIL
 ISCR1 
@@ -584,7 +584,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\TPMAT00A.S
+C:\NERPM43\applications\TPMAT00A.S
 1
 MAT
 ISCR1 
@@ -2457,7 +2457,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\TPNET00A.S
+C:\NERPM43\applications\TPNET00A.S
 1
 NET
 ISCR1 
@@ -4120,7 +4120,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\TPPIL00G.S
+C:\NERPM43\applications\TPPIL00G.S
 1
 PIL
 ISCR1 
@@ -4337,7 +4337,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\TPNET00C.S
+C:\NERPM43\applications\TPNET00C.S
 1
 NET
 ISCR1 
@@ -6000,7 +6000,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\TPNET00D.S
+C:\NERPM43\applications\TPNET00D.S
 1
 NET
 ISCR1 
@@ -7663,7 +7663,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\TPPIL00H.S
+C:\NERPM43\applications\TPPIL00H.S
 1
 PIL
 ISCR1 
@@ -7880,7 +7880,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\applications\TPMAT00C.S
+C:\NERPM43\applications\TPMAT00C.S
 1
 MAT
 ISCR1 
@@ -9753,7 +9753,7 @@ Script File
 0
 0
 S
-C:\NERPM43_Delivered\APPLICATIONS\TPNET00E.S
+C:\NERPM43\APPLICATIONS\TPNET00E.S
 1
 NET
 ISCR1 

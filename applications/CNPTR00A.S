@@ -1,7 +1,7 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\CNPTR00A.PRN" MSG='Peak period connectors'
 FILEO PRINTO[2] = "{SCENARIO_DIR}\output\PT_AUTOCON_PK.OUT"
-FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG2PK_10A.PRN"
+FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG2PK_{Year}{alt}.PRN"
 FILEI FACTORI[2] = "{SCENARIO_DIR}\output\PNRCOMRAIL.FAC"
 FILEI MATI[1] = "{SCENARIO_DIR}\output\PRELSKIMS.MAT"
 
@@ -26,8 +26,8 @@ PARAMETERS USERCLASSES=1,FARE=N, MAPSCALE=5280, HDWAYPERIOD=1,
            TRANTIME[21]=LI.M21TIMEPK,
            TRANTIME[22]=LI.M22TIMEPK,
            TRANTIME[23]=LI.M23TIMEPK,
-           TRANTIME[24]=LI.M24TIMEPK
-           TRANTIME[25]=LI.M25TIMEPK
+           TRANTIME[24]=LI.M24TIMEPK,
+           TRANTIME[25]=LI.M25TIMEPK,
            TRANTIME[26]=LI.M26TIMEPK
 REPORT LINES=T
 
@@ -75,10 +75,13 @@ PROCESS PHASE=DATAPREP
        MAXBACKDIST=4.0,
        MAXBACKFACTOR=0.30,
        DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=528,
        
-       PREMIUMMODE=0,1,0,1,1,1,1,  
-       MODEPRIORITY=7,5,7,2,1,4,3,
-       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY =7,7,7,2,2,1,
+
        VOT=6,3,
        OVTRATIO=2,2,
        AATRATIO=1.5,1.5,
@@ -93,10 +96,50 @@ PROCESS PHASE=DATAPREP
        
        CONNREPORT=1,
        GENREPORT=2,
-       TIMEMAT=MI.1.4,
-       DISTMAT=MI.1.2,
-       AUTOMATCH=T      ; T=original logic, F=Enhanced logic
+       TIMEMAT=MI.1.4*100,
+       DISTMAT=MI.1.2*100,
+       AUTOMATCH=T     ; T=original logic, F=Enhanced logic
+
+     GENERATE, 
+       KNR=T,
+       PERIOD=1,
+       
+       PNRMODE=2,
+       KNRMODE=3,
+       INTERNALZONES=1-2494,
+       
+       CBDZONE=730,
+       ORIGINTERMTIME=2.0,
+       DEFDRIVETIME=20.0,
+       CHECKRELEVANCE=1,
+       CHECKBACKTRACK=1,
+       MAXBACKDIST=4.0,
+       MAXBACKFACTOR=0.30,
+       DISTANCEFACTOR=5280,
+       ;EAH testing distance
+       ;DISTANCEFACTOR=528,
+       
+       ; Trn Modes = 21,22,23,24,25,26
+       PREMIUMMODE  =0,0,0,1,1,1,  
+       MODEPRIORITY =7,7,7,2,2,1,
+
+       VOT=6,3,
+       OVTRATIO=2,2,
+       AATRATIO=1.5,1.5,
+       AUTOCCPNR=1.2,
+       AUTOCCKNR=1.2,
+       AOC=9.5,
+       INFLTRANSITFARE=0.9487,
+       INFLAOC=1,
+       INFLPARKINGCOST=1.1976,
+       MAXCHECK = 10,
+       MAXCONN = 5,
+       
+       CONNREPORT=1,
+       GENREPORT=2,
+       TIMEMAT=MI.1.4*100,
+       DISTMAT=MI.1.2*100,
+       AUTOMATCH=F     ; T=original logic, F=Enhanced logic
 
   ENDPROCESS
-
 ENDRUN

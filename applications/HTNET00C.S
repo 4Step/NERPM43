@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=NETWORK PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\HTNET00C.PRN" MSG='PM Period - Rename Loaded Netw Attributes & Minor Calc'
+RUN PGM=NETWORK PRNFILE="C:\NERPM43\APPLICATIONS\HTNET00C.PRN" MSG='PM Period - Rename Loaded Netw Attributes & Minor Calc'
 FILEI LINKI[1] = "{SCENARIO_DIR}\output\FINAL_ASGN_PM.NET"
 FILEO NETO = "{SCENARIO_DIR}\output\LOADED_PM_Period.NET",
  EXCLUDE=TIME_1 VC_1, CSPD_1 VDT_1 VHT_1,

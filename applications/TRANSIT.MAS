@@ -4,21 +4,21 @@ ZONESA                       2578
 
 ; AutoCon-Related Files
 ; Input
-StatDataFile                 C:\NERPM43\Base2010\output\STATDATA_A10.DAT
-XtraAutoFileAM               C:\NERPM43\Base2010\input\XTRAAUTO_10A.DAT
-XtraAutoFileMD               C:\NERPM43\Base2010\input\XTRAAUTO_10A.DAT
-AutoDelFileAM                C:\NERPM43\Base2010\input\AUTDELPK_10A.DAT
-AUTODELFILEMD                C:\NERPM43\Base2010\input\AUTDELOP_10A.DAT
-NodesFile                    C:\NERPM43\Base2010\output\XY_A10.DAT
-TransitLineFile              C:\NERPM43\Base2010\output\troute_modified.lin
-RHSKIMS                      C:\NERPM43\Base2010\output\RHSKIMS1.A10
-FHSKIMS                      C:\NERPM43\Base2010\output\FHSKIMS1.A10
+StatDataFile                 C:\NERPM43\Base2010\CF2040\output\STATDATA_C40.DAT
+XtraAutoFileAM               C:\NERPM43\Base2010\CF2040\input\XTRAAUTO_40C.DAT
+XtraAutoFileMD               C:\NERPM43\Base2010\CF2040\input\XTRAAUTO_40C.DAT
+AutoDelFileAM                C:\NERPM43\Base2010\CF2040\input\AUTDELPK_40C.DAT
+AUTODELFILEMD                C:\NERPM43\Base2010\CF2040\input\AUTDELOP_40C.DAT
+NodesFile                    C:\NERPM43\Base2010\CF2040\output\XY_C40.DAT
+TransitLineFile              C:\NERPM43\Base2010\CF2040\output\troute_modified.lin
+RHSKIMS                      C:\NERPM43\Base2010\CF2040\output\RHSKIMS1.C40
+FHSKIMS                      C:\NERPM43\Base2010\CF2040\output\FHSKIMS1.C40
 ; Output
-AUTOCONRPT                   C:\NERPM43\Base2010\output\AUTOCON.OUT
-PNRAUTOAM                    C:\NERPM43\Base2010\output\NTLEG2PK_A10.NTL
-PNRAUTOMD                    C:\NERPM43\Base2010\output\NTLEG2OP_A10.NTL
-KNRAUTOAM                    C:\NERPM43\Base2010\output\NTLEG2PK_KNRA10.NTL
-KNRAUTOMD                    C:\NERPM43\Base2010\output\NTLEG2OP_KNRA10.NTL
+AUTOCONRPT                   C:\NERPM43\Base2010\CF2040\output\AUTOCON.OUT
+PNRAUTOAM                    C:\NERPM43\Base2010\CF2040\output\NTLEG2PK_C40.NTL
+PNRAUTOMD                    C:\NERPM43\Base2010\CF2040\output\NTLEG2OP_C40.NTL
+KNRAUTOAM                    C:\NERPM43\Base2010\CF2040\output\NTLEG2PK_KNRC40.NTL
+KNRAUTOMD                    C:\NERPM43\Base2010\CF2040\output\NTLEG2OP_KNRC40.NTL
 ; AutoCon Parameters
 AUTOCONVERSION               2
 ZONESI                       2494
@@ -46,9 +46,9 @@ AOC                          9.5
 InflTransitFare              0.9487
 InflAOC                      1
 InflParkingCost              1.1976
-AUTODATAM                    C:\NERPM43\Base2010\output\NTLDA2PK_A10.TIM
-AUTODATMD                    C:\NERPM43\Base2010\output\NTLDA2OP_A10.TIM
-ACONLISTAM                   C:\NERPM43\Base2010\output\NTLEG2PK_A10.PRN
-ACONLISTMD                   C:\NERPM43\Base2010\output\NTLEG2OP_A10.PRN
+AUTODATAM                    C:\NERPM43\Base2010\CF2040\output\NTLDA2PK_C40.TIM
+AUTODATMD                    C:\NERPM43\Base2010\CF2040\output\NTLDA2OP_C40.TIM
+ACONLISTAM                   C:\NERPM43\Base2010\CF2040\output\NTLEG2PK_C40.PRN
+ACONLISTMD                   C:\NERPM43\Base2010\CF2040\output\NTLEG2OP_C40.PRN
 
 

@@ -1,7 +1,7 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11.PRN" MSG='Peak transit paths and skims'
+RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11_@period@_@access_NAME@.PRN" MSG='Peak transit paths and skims'
 FILEI NTLEGI[1] = "{SCENARIO_DIR}\output\NTLEG1@Period@_{alt}{year}.NTL"
-FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B.PRN"
+FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B_@period@_@access_NAME@.PRN"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\trnskim_@period@_@access_NAME@.rpt"
 
  ; OUTPUT files
@@ -132,7 +132,7 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=TIMEA(0,27)                                       ; Project mode time       
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -172,7 +172,7 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=TIMEA(0,27)                                      ; Project mode time
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
@@ -213,7 +213,8 @@ PROCESS PHASE=SKIMIJ
        MW[6]=TIMEA(0,22)                                       ; EXPRESS bus time
        MW[7]=TIMEA(0,24)+TIMEA(0,25)                           ; BRT, LRT time
        MW[8]=TIMEA(0,26)                                       ; Commuter Rail time
-       MW[9]=TIMEA(0,27)                                       ; Project mode time
+       MW[9]=0
+       ;       MW[9]=TIMEA(0,27)                                       ; Project mode time
        MW[10]=0
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers

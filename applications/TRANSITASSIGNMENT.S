@@ -15,17 +15,17 @@ LOOP per = 1, 2, 1
 
 ; End of PILOT Script
 
-  LOOP Access_Name = 1, 3, 1
+  LOOP Access = 1, 3, 1
 
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 
-        IF (ACCESS_NAME == 1)
-            ACCESS='Walk'
-        ELSEIF (ACCESS_NAME == 2)
-            ACCESS='PNR'
-        ELSEIF (ACCESS_NAME == 3)
-            ACCESS='KNR'
+        IF (ACCESS == 1)
+            ACCESS_Name='Walk'
+        ELSEIF (ACCESS == 2)
+            ACCESS_NAME='PNR'
+        ELSEIF (ACCESS == 3)
+            ACCESS_NAME='KNR'
         ENDIF
 ; End of PILOT Script
 
@@ -33,19 +33,19 @@ LOOP per = 1, 2, 1
 ;;<<Default Template>><<PUBLIC TRANSPORT>><<Default>>;;
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=PUBLIC TRANSPORT
-FILEO STOP2STOPO[1] = "{SCENARIO_DIR}\output\STATION@PERIOD@_@ACCESS@.DBF",
+FILEO STOP2STOPO[1] = "{SCENARIO_DIR}\output\STATION@PERIOD@_@ACCESS_NAME@.DBF",
  ACCUMULATE=FIRSTLAST, NODES=1-99999
-FILEO REPORTO = "{SCENARIO_DIR}\output\TLOAD@PERIOD@_@ACCESS@.RPT"
-FILEO LINKO[1] = "{SCENARIO_DIR}\output\TLINK@PERIOD@_@ACCESS@.DBF",
+FILEO REPORTO = "{SCENARIO_DIR}\output\TLOAD@PERIOD@_@ACCESS_NAME@.RPT"
+FILEO LINKO[1] = "{SCENARIO_DIR}\output\TLINK@PERIOD@_@ACCESS_NAME@.DBF",
 NTLEGS=T, ONOFFS=T
-FILEO NETO = "{SCENARIO_DIR}\output\TLOAD@PERIOD@_@ACCESS@.NET"
-FILEI NETI = "{SCENARIO_DIR}\output\Transit@PERIOD@_@Access@.NET"
-FILEI MATI[1] = "{SCENARIO_DIR}\output\tload_@period@_@ACCESS@.mat"
-FILEI ROUTEI[5] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_COMRAIL_@ACCESS@_{Alt}{year}.RTE"
-FILEI ROUTEI[4] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_BRTLRT_@ACCESS@_{Alt}{year}.RTE"
-FILEI ROUTEI[3] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_EXPRESS_@ACCESS@_{Alt}{year}.RTE"
-FILEI ROUTEI[2] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_LOCAL_@ACCESS@_{Alt}{year}.RTE"
-FILEI ROUTEI[1] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_SKYWAY_@ACCESS@_{Alt}{year}.RTE"
+FILEO NETO = "{SCENARIO_DIR}\output\TLOAD@PERIOD@_@ACCESS_NAME@.NET"
+FILEI NETI = "{SCENARIO_DIR}\output\Transit@PERIOD@_@Access_Name@.NET"
+FILEI MATI[1] = "{SCENARIO_DIR}\output\tload_@period@_@ACCESS_Name@.mat"
+FILEI ROUTEI[5] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_COMRAIL_@ACCESS_Name@_{Alt}{year}.RTE"
+FILEI ROUTEI[4] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_BRTLRT_@ACCESS_Name@_{Alt}{year}.RTE"
+FILEI ROUTEI[3] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_EXPRESS_@ACCESS_Name@_{Alt}{year}.RTE"
+FILEI ROUTEI[2] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_LOCAL_@ACCESS_Name@_{Alt}{year}.RTE"
+FILEI ROUTEI[1] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_SKYWAY_@ACCESS_Name@_{Alt}{year}.RTE"
 
             
             ; OVERALL PARAMETERS OF RUN

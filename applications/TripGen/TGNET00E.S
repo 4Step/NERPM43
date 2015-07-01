@@ -2,7 +2,7 @@
 RUN PGM=NETWORK PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGNET00A.PRN" MSG='Floating Zone Mixed Density'
 FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\MixedDensity.csv"
 FILEI LINKI[1] = "{SCENARIO_DIR}\OUTPUT\UNLOADED.NET"
-FILEI NODEI[2] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_10A.dbf",
+FILEI NODEI[2] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf",
  RENAME=Zone-N
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv"
 

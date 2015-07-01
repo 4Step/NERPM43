@@ -1,5 +1,5 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=MATRIX PRNFILE="C:\NERPM43_Delivered\APPLICATIONS\ETMAT00F.PRN" MSG='Convert Jaxport Truck OD tables in NERPM4 zones'
+RUN PGM=MATRIX PRNFILE="C:\NERPM43\APPLICATIONS\ETMAT00F.PRN" MSG='Convert Jaxport Truck OD tables in NERPM4 zones'
 FILEI MATI[1] = "{CATALOG_DIR}\output_SWM\EC2030_SWM\Port_trk_od.mat"
 FILEI ZDATI[1] = "{CATALOG_DIR}\input_SWM\EC2030_SWM\N4EXTRACT_EQ.DBF",
    z=SWTAZ_EX

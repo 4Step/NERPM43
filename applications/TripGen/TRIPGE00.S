@@ -651,7 +651,7 @@ ENDRUN
 RUN PGM=NETWORK PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGNET00A.PRN" MSG='Floating Zone Mixed Density'
 FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\MixedDensity.csv"
 FILEI LINKI[1] = "{SCENARIO_DIR}\OUTPUT\UNLOADED.NET"
-FILEI NODEI[2] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_10A.dbf",
+FILEI NODEI[2] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf",
  RENAME=Zone-N
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv"
 
@@ -863,7 +863,7 @@ RUN PGM=MATRIX PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGMAT00K.PRN" MSG='Auto Avail
 FILEI LOOKUPI[3] = "{SCENARIO_DIR}\Input\TRIPGEN\nftpo_incomebytaz2.dbf"
 FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\COEFF_AUTOOWN.csv"
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\OUTPUT\HHClass.DBF"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_10A.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
 FILEI ZDATI[5] = "{Scenario_Dir}\OUTPUT\WalkTranAcc.dbf"
 FILEI ZDATI[3] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv",
     Z=#1,TotHhlds=#2,TotEmp=#3,FloatHhld=#4,FloatEmp=#5,MixedDen=#6,CentX=#7,CentY=#8
@@ -1245,7 +1245,7 @@ FILEI LOOKUPI[6] = "{Scenario_Dir}\Input\TRIPGEN\OBO_ARates.csv"
 ; header #1 Purpose, #2 PurposeNo, #3 Retail Trade, #4 Arts, Entertainment, and Recreation, #5 Accommodation and Food Services, #6 Educational Services, #7	Health Care and Social Assistance, #8	enrlsc - enrollment pk-12, #9	enrluniv - university, #10 TotalHH
 
 FILEI LOOKUPI[7] = "{Scenario_Dir}\Input\TRIPGEN\school_enroll.dbf"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_10A.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\OUTPUT\TG_REPORT.TXT"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\TRIPGEN_DEBUG.TXT"
 
@@ -1257,10 +1257,10 @@ FILEO RECO[1] = "{SCENARIO_DIR}\OUTPUT\PANDA_{ALT}{Year}.DBF",
     HBOP1(10.3), HBOP2(10.3), HBOP3(10.3), HBOP4(10.3), HBOP5(10.3), 
     HBSCP1(10.3), HBSCP2(10.3), HBSCP3(10.3), HBSCP4(10.3),
     HBCUP1(10.3), HBCUP2(10.3), HBCUP3(10.3), HBCUP4(10.3),  
-  NHBWP(10.3), NHBP(10.3), 
+  NHBWP(10.3), NHBOP(10.3), 
     HBWA1(10.3), HBWA2(10.3), HBWA3(10.3), HBWA4(10.3), HBWA5(10.3), 
   HBSHA(10.3), HBSRA(10.3), HBOA(10.3),  HBSCA(10.3), HBCUA(10.3),  
-    NHBWA(10.3), NHBA(10.3)
+    NHBWA(10.3), NHBOA(10.3)
  
 PAR ZONES={zonesa}, ZONEMSG=100
 
@@ -1397,14 +1397,14 @@ NHBWA[6] = ENRLSCA(1,6)
 NHBWA[7] = ENRLUNIVA(1,6)
 NHBWA[8] = TOTALHHA(1,6)
 
-NHBA[1] = RETAILA(1,7)
-NHBA[2] = ARTSA(1,7)
-NHBA[3] = ACCOMA(1,7)
-NHBA[4] = EDUA(1,7)
-NHBA[5] = HEALTHA(1,7)
-NHBA[6] = ENRLSCA(1,7)
-NHBA[7] = ENRLUNIVA(1,7)
-NHBA[8] = TOTALHHA(1,7)
+NHBOA[1] = RETAILA(1,7)
+NHBOA[2] = ARTSA(1,7)
+NHBOA[3] = ACCOMA(1,7)
+NHBOA[4] = EDUA(1,7)
+NHBOA[5] = HEALTHA(1,7)
+NHBOA[6] = ENRLSCA(1,7)
+NHBOA[7] = ENRLUNIVA(1,7)
+NHBOA[8] = TOTALHHA(1,7)
 
 ; Read in household classification
 
@@ -1420,8 +1420,8 @@ LOOKUP LOOKUPI=7, NAME=SCHOOL_ENROLL, LOOKUP[1]=TAZ, RESULT=SCHOOL,
 ; Define arrays
 
 ARRAY TYPE=D HHLDS=ZONES
-ARRAY TYPE=D HBWP_SPM=ZONES, HBSHP_SPM=ZONES, HBSRP_SPM=ZONES, HBOP_SPM=ZONES, NHBP_SPM=ZONES
-ARRAY TYPE=D HBWA_SPM=ZONES, HBSHA=ZONES, HBSRA=ZONES, HBSCA=ZONES, HBCUA=ZONES, HBOA=ZONES, NHBA=ZONES,NHBWA=ZONES
+ARRAY TYPE=D HBWP_SPM=ZONES, HBSHP_SPM=ZONES, HBSRP_SPM=ZONES, HBOP_SPM=ZONES, NHBOP_SPM=ZONES
+ARRAY TYPE=D HBWA_SPM=ZONES, HBSHA=ZONES, HBSRA=ZONES, HBSCA=ZONES, HBCUA=ZONES, HBOA=ZONES, NHBOA=ZONES,NHBWA=ZONES
 ARRAY TYPE=D HBWTRIPS=ZONES,4,4,4
 ARRAY TYPE=D HBSHTRIPS=ZONES,4,4,4
 ARRAY TYPE=D HBSRTRIPS=ZONES,4,4,4
@@ -1432,7 +1432,7 @@ ARRAY TYPE=D HBSHPRODS=ZONES,5
 ARRAY TYPE=D HBSRPRODS=ZONES,5
 ARRAY TYPE=D HBOPRODS=ZONES,5
 ARRAY TYPE=D NHBWPRODS=ZONES
-ARRAY TYPE=D NHBPRODS=ZONES
+ARRAY TYPE=D NHBOPRODS=ZONES
 ARRAY TYPE=D HBSCPRODS=ZONES,4
 ARRAY TYPE=D HBCUPRODS=ZONES,4
 
@@ -1441,7 +1441,7 @@ ARRAY TYPE=D HBSHATTS=ZONES
 ARRAY TYPE=D HBSRATTS=ZONES
 ARRAY TYPE=D HBOATTS=ZONES
 ARRAY TYPE=D NHBWATTS=ZONES
-ARRAY TYPE=D NHBATTS=ZONES
+ARRAY TYPE=D NHBOATTS=ZONES
 ARRAY TYPE=D HBSCATTS=ZONES
 ARRAY TYPE=D HBCUATTS=ZONES
 
@@ -1512,7 +1512,7 @@ IF (I == ZONES)   ;  Start calculations at end of MATRIX implicit IZONE loop
      HBOTRIPS[ZN][_ii][_aa][_ss]  = HBOTRIPS[ZN][_ii][_aa][_ss]  + NonWork_PRates(3,IAP) * HHS
 
      NHBWPRODS[ZN]                = NHBWPRODS[ZN] + Work_PRates(2,IAW) * HHS
-     NHBPRODS[ZN]                 = NHBPRODS[ZN] + NonWork_PRates(4,IAP) * HHS
+     NHBOPRODS[ZN]                = NHBOPRODS[ZN] + NonWork_PRates(4,IAP) * HHS
 
      HBSCPRODS[ZN][_ss] = HBSCPRODS[ZN][_ss] + NonWork_PRates(6,IAP) * HHS
      HBCUPRODS[ZN][_ss] = HBCUPRODS[ZN][_ss] + NonWork_PRates(5,IAP) * HHS
@@ -1577,7 +1577,7 @@ IF (I == ZONES)   ;  Start calculations at end of MATRIX implicit IZONE loop
      IF(_mm == 1) 
      PRINT LIST = "    ",_mm(2), "    ", HBWPRODS[ZN][_mm](10.4), HBSHPRODS[ZN][_mm](10.4), HBSRPRODS[ZN][_mm](10.4),
                           HBOPRODS[ZN][_mm](10.4), HBSCPRODS[ZN][_mm](10.4), HBCUPRODS[ZN][_mm](10.4),
-                          NHBWPRODS[ZN](10.4), NHBPRODS[ZN](10.4), PRINTO=1
+                          NHBWPRODS[ZN](10.4), NHBOPRODS[ZN](10.4), PRINTO=1
      ELSEIF(_mm < 4)
      PRINT LIST = "    ",_mm(2), "    ", HBWPRODS[ZN][_mm](10.4), HBSHPRODS[ZN][_mm](10.4), HBSRPRODS[ZN][_mm](10.4),
                           HBOPRODS[ZN][_mm](10.4), HBSCPRODS[ZN][_mm](10.4), HBCUPRODS[ZN][_mm](10.4),
@@ -1611,7 +1611,7 @@ IF (I == ZONES)   ;  Start calculations at end of MATRIX implicit IZONE loop
           HBCUATTS[ZN] = HBCUATTS[ZN]+ TAZ_Emp(17,ZN)* HBCUA[1]+ TAZ_Emp(4,ZN)* HBCUA[2] + TAZ_Emp(1,ZN)* HBCUA[3]+ TAZ_Emp(6,ZN)* HBCUA[4]+ TAZ_Emp(8,ZN)* HBCUA[5]+ School_Enroll(1,ZN)* HBCUA[6]+ School_Enroll(2,ZN)* HBCUA[7] + HHLDS[ZN]* HBCUA[8]
           HBSCATTS[ZN] = HBSCATTS[ZN]+ TAZ_Emp(17,ZN)* HBSCA[1]+ TAZ_Emp(4,ZN)* HBSCA[2] + TAZ_Emp(1,ZN)* HBSCA[3]+ TAZ_Emp(6,ZN)* HBSCA[4]+ TAZ_Emp(8,ZN)* HBSCA[5] + School_Enroll(1,ZN)* HBSCA[6]+ School_Enroll(2,ZN)* HBSCA[7] + HHLDS[ZN]* HBSCA[8]
           NHBWATTS[ZN] = NHBWATTS[ZN]+ TAZ_Emp(17,ZN)* NHBWA[1]+ TAZ_Emp(4,ZN)* NHBWA[2] + TAZ_Emp(1,ZN)* NHBWA[3]+ TAZ_Emp(6,ZN)* NHBWA[4]+ TAZ_Emp(8,ZN)* NHBWA[5] + School_Enroll(1,ZN)* NHBWA[6]+ School_Enroll(2,ZN)* NHBWA[7] + HHLDS[ZN]* NHBWA[8] 
-          NHBATTS[ZN] = NHBATTS[ZN] + TAZ_Emp(17,ZN)* NHBA[1]+ TAZ_Emp(4,ZN)* NHBA[2] + TAZ_Emp(1,ZN)* NHBA[3]+ TAZ_Emp(6,ZN)* NHBA[4]+ TAZ_Emp(8,ZN)* NHBA[5]+ School_Enroll(1,ZN)* NHBA[6]+ School_Enroll(2,ZN)* NHBA[7] + HHLDS[ZN]* NHBA[8]
+          NHBOATTS[ZN] = NHBOATTS[ZN] + TAZ_Emp(17,ZN)* NHBOA[1]+ TAZ_Emp(4,ZN)* NHBOA[2] + TAZ_Emp(1,ZN)* NHBOA[3]+ TAZ_Emp(6,ZN)* NHBOA[4]+ TAZ_Emp(8,ZN)* NHBOA[5]+ School_Enroll(1,ZN)* NHBOA[6]+ School_Enroll(2,ZN)* NHBOA[7] + HHLDS[ZN]* NHBOA[8]
 
 
         
@@ -1637,14 +1637,14 @@ IF (I == ZONES)   ;  Start calculations at end of MATRIX implicit IZONE loop
      
      IF(_mm == 1)
      TOTNHBWP  = TOTNHBWP  + NHBWPRODS[ZN]
-     TOTNHBP   = TOTNHBP   + NHBPRODS[ZN]
+     TOTNHBOP   = TOTNHBOP   + NHBOPRODS[ZN]
      TOTHBSHA  = TOTHBSHA  + HBSHATTS[ZN]
      TOTHBSRA  = TOTHBSRA  + HBSRATTS[ZN]
      TOTHBOA   = TOTHBOA   + HBOATTS[ZN]
      TOTHBSCA  = TOTHBSCA  + HBSCATTS[ZN]
      TOTHBCUA  = TOTHBCUA  + HBCUATTS[ZN]
      TOTNHBWA  = TOTNHBWA  + NHBWATTS[ZN]
-     TOTNHBA   = TOTNHBA   + NHBATTS[ZN]
+     TOTNHBOA  = TOTNHBOA  + NHBOATTS[ZN]
 
      ENDIF
      
@@ -1657,11 +1657,11 @@ IF (I == ZONES)   ;  Start calculations at end of MATRIX implicit IZONE loop
     
   PRINT LIST = "TRIP GENERATION REPORT", PRINTO=2
   PRINT LIST = "\n\nREGIONAL TRIP PRODUCTION TOTALS PRIOR TO BALANCING", PRINTO=2
-  PRINT LIST = "\n\n HHLD MKT     HBWP     HBSHP     HBSRP      HBOP     HBSCP     HBCUP     NHBWP     NHBP", PRINTO=2
+  PRINT LIST = "\n\n HHLD MKT     HBWP     HBSHP     HBSRP      HBOP     HBSCP     HBCUP     NHBWP     NHBOP", PRINTO=2
   LOOP _mm = 1, 5
     IF(_mm == 1)
   PRINT LIST = "    ", _mm(1), "   ", TOTHBWP[_mm](10.0), TOTHBSHP[_mm](10.0), TOTHBSRP[_mm](10.0), TOTHBOP[_mm](10.0), TOTHBSCP[_mm](10.0), 
-                    TOTHBCUP[_mm](10.0), TOTNHBWP(10.0), TOTNHBP(10.0), PRINTO=2
+                    TOTHBCUP[_mm](10.0), TOTNHBWP(10.0), TOTNHBOP(10.0), PRINTO=2
     ELSEIF(_mm < 4)
   PRINT LIST = "    ", _mm(1), "   ", TOTHBWP[_mm](10.0), TOTHBSHP[_mm](10.0), TOTHBSRP[_mm](10.0), TOTHBOP[_mm](10.0), TOTHBSCP[_mm](10.0), 
                     TOTHBCUP[_mm](10.0), PRINTO=2
@@ -1671,11 +1671,11 @@ IF (I == ZONES)   ;  Start calculations at end of MATRIX implicit IZONE loop
   ENDLOOP
 
   PRINT LIST = "\n\nREGIONAL TRIP ATTRACTION TOTALS PRIOR TO BALANCING", PRINTO=2
-  PRINT LIST = "\n\n HHLD MKT     HBWA     HBSHA     HBSRA      HBOA     HBSCA     HBCUA     NHBWA     NHBA", PRINTO=2
+  PRINT LIST = "\n\n HHLD MKT     HBWA     HBSHA     HBSRA      HBOA     HBSCA     HBCUA     NHBWA     NHBOA", PRINTO=2
   LOOP _mm = 1, 5
     IF(_mm == 1)
   PRINT LIST = "    ", _mm(1), "   ", TOTHBWA[_mm](10.0), TOTHBSHA(10.0), TOTHBSRA(10.0), TOTHBOA(10.0), TOTHBSCA(10.0), 
-                    TOTHBCUA(10.0), TOTNHBWA(10.0), TOTNHBA(10.0), PRINTO=2
+                    TOTHBCUA(10.0), TOTNHBWA(10.0), TOTNHBOA(10.0), PRINTO=2
   ELSE
   PRINT LIST = "    ", _mm(1), "   ", TOTHBWA[_mm](10.0), PRINTO=2
   ENDIF
@@ -1764,7 +1764,7 @@ IF (I == ZONES)   ;  Start calculations at end of MATRIX implicit IZONE loop
   RO.HBCUP3 = HBCUPRODS[ZN][3]
   RO.HBCUP4 = HBCUPRODS[ZN][4]
   RO.NHBWP  = NHBWPRODS[ZN]
-  RO.NHBP   = NHBPRODS[ZN]
+  RO.NHBOP  = NHBOPRODS[ZN]
   RO.HBWA1  = HBWATTS[ZN][1]
   RO.HBWA2  = HBWATTS[ZN][2]
   RO.HBWA3  = HBWATTS[ZN][3]
@@ -1776,18 +1776,18 @@ IF (I == ZONES)   ;  Start calculations at end of MATRIX implicit IZONE loop
   RO.HBSCA  = HBSCATTS[ZN]
   RO.HBCUA  = HBCUATTS[ZN]
   RO.NHBWA  = NHBWATTS[ZN]
-  RO.NHBA  = NHBATTS[ZN]
+  RO.NHBOA  = NHBOATTS[ZN]
   WRITE RECO=1
  ENDLOOP         ; end ZN loop
 
   ; REPORT PRODUCTIONS AND ATTRACTIONS AFTER TRIP BALANCING
     
   PRINT LIST = "\n\n\nREGIONAL TRIP PRODUCTION TOTALS AFTER BALANCING", PRINTO=2
-  PRINT LIST = "\n\n HHLD MKT     HBWP     HBSHP     HBSRP      HBOP     HBSCP     HBCUP     NHBWP     NHBP", PRINTO=2
+  PRINT LIST = "\n\n HHLD MKT     HBWP     HBSHP     HBSRP      HBOP     HBSCP     HBCUP     NHBWP     NHBOP", PRINTO=2
   LOOP _mm = 1, 5
     IF(_mm == 1)
   PRINT LIST = "    ", _mm(1), "   ", TOTHBWP[_mm](10.0), TOTHBSHP[_mm](10.0), TOTHBSRP[_mm](10.0), TOTHBOP[_mm](10.0), TOTHBSCP[_mm](10.0), 
-                    TOTHBCUP[_mm](10.0), TOTNHBWP(10.0), TOTNHBP(10.0), PRINTO=2
+                    TOTHBCUP[_mm](10.0), TOTNHBWP(10.0), TOTNHBOP(10.0), PRINTO=2
     ELSEIF(_mm < 5)
   PRINT LIST = "    ", _mm(1), "   ", TOTHBWP[_mm](10.0), TOTHBSHP[_mm](10.0), TOTHBSRP[_mm](10.0), TOTHBOP[_mm](10.0), TOTHBSCP[_mm](10.0), TOTHBCUP[_mm](10.0), PRINTO=2
   ELSE
@@ -1796,11 +1796,11 @@ IF (I == ZONES)   ;  Start calculations at end of MATRIX implicit IZONE loop
   ENDLOOP
 
   PRINT LIST = "\n\nREGIONAL TRIP ATTRACTION TOTALS AFTER BALANCING", PRINTO=2
-  PRINT LIST = "\n\n HHLD MKT     HBWA     HBSHA     HBSRA      HBOA     HBSCA     HBCUA     NHBWA     NHBA", PRINTO=2
+  PRINT LIST = "\n\n HHLD MKT     HBWA     HBSHA     HBSRA      HBOA     HBSCA     HBCUA     NHBWA     NHBOA", PRINTO=2
   LOOP _mm = 1, 5
     IF(_mm == 1)
   PRINT LIST = "    ", _mm(1), "   ", TOTHBWA[_mm](10.0), TOTHBSHA(10.0), TOTHBSRA(10.0), TOTHBOA(10.0), TOTHBSCA(10.0), 
-                    TOTHBCUA(10.0), TOTNHBWA(10.0), TOTNHBA(10.0), PRINTO=2
+                    TOTHBCUA(10.0), TOTNHBWA(10.0), TOTNHBOA(10.0), PRINTO=2
   ELSE
   PRINT LIST = "    ", _mm(1), "   ", TOTHBWA[_mm](10.0), PRINTO=2
   ENDIF

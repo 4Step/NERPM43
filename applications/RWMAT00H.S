@@ -3,6 +3,7 @@ RUN PGM=MATRIX PRNFILE="{SCENARIO_DIR}\output\RWMAT00C.PRN" MSG='Revise Peak Wal
 FILEO PRINTO[3] = "{SCENARIO_DIR}\output\NTLEG1PK_DEL.NTL"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\output\PCWPK_TEM.DAT"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG1PK_{alt}{year}.NTL"
+
 FILEI RECI = "{SCENARIO_DIR}\OUTPUT\NTLEG1PK_TEM.NTL"
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\pcwalk_{year}{alt}.dat"
 FILEI LOOKUPI[2] = "{SCENARIO_DIR}\output\PKZONECONN_TEM.DBF"
@@ -95,22 +96,25 @@ if (_ctr>0)
  ;Rules 3,5: No changes to walk access connectors & PCW
  if (rule=3,5)
    PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s25,PRINTO=1
-   if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA} && new_zone=1)   
     PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
     tempzone=zonei
    endif
  endif
+
 
  ;Rules 2,4,7: Delete walk access connectors and reset PCW =0
  if(rule=2,4,7)
    pkprod=0
    pkattr=0
    PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,PRINTO=3
+   ;PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,;PRINTO=1
    if (zonei<{ZONESA} && new_zone=1)
     PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
     tempzone=zonei
    endif
  endif
+
 
  ;Rule 6: No changes to PCW, adjust walk access connector dist & times
  if (rule=6)
@@ -121,7 +125,7 @@ if (_ctr>0)
    time=(time-time_delta)
   endif
    PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s25,PRINTO=1
-  if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA} && new_zone=1)
     PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
    tempzone=zonei
   endif

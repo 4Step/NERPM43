@@ -3088,9 +3088,9 @@ ENDPROCESS
 
 PROCESS PHASE=DATAPREP
 
-  ; 1 - WALK ACCESS/EGRESS
+  ; 1 - WALK ACCESS/EGRESS (exclude CR Stations from TO Nodes, these are manually built)
   GENERATE, COST=(LW.ADJDISTANCE),EXTRACTCOST=(LW.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,EXCLUDELINK=(LI.FACILITY_TYPE=10-19,69,70-99),
-            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-99999
+            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-89999
      
   ; 11 - Fixed-guideway to bus (transfer connectors)
   GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,INCLUDELINK=(LI.FACILITY_TYPE=59),
@@ -3146,8 +3146,6 @@ PROCESS PHASE=DATAPREP
        TIMEMAT=MI.1.4*100,
        DISTMAT=MI.1.2*100,
        AUTOMATCH=T     ; T=original logic, F=Enhanced logic
-
-  ENDPROCESS
 
      GENERATE, 
        KNR=T,
@@ -3238,9 +3236,9 @@ ENDPROCESS
 
 PROCESS PHASE=DATAPREP
 
-  ; 1 - WALK ACCESS/EGRESS
+  ; 1 - WALK ACCESS/EGRESS (exclude CR Stations from TO Nodes, these are manually built)
   GENERATE, COST=(LW.ADJDISTANCE),EXTRACTCOST=(LW.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,EXCLUDELINK=(LI.FACILITY_TYPE=10-19,69,70-99),
-            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-99999
+            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-89999
 
   ; 11 - Fixed-guideway to bus
   GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,INCLUDELINK=(LI.FACILITY_TYPE=59),
@@ -3292,12 +3290,10 @@ PROCESS PHASE=DATAPREP
        
        CONNREPORT=1,
        GENREPORT=2,
-       TIMEMAT=MI.1.4,
-       DISTMAT=MI.1.2,
+       TIMEMAT=MI.1.4 * 100,
+       DISTMAT=MI.1.2 * 100,
        AUTOMATCH=T      ; T=original logic, F=Enhanced logic
-
-  ENDPROCESS
-  
+ 
   
    GENERATE, 
        KNR=T,
@@ -4363,6 +4359,7 @@ FILEI NTLEGI[2] = "{SCENARIO_DIR}\output\NTLEG2@Period@_{alt}{year}.NTL"
 FILEI NTLEGI[3] = "{SCENARIO_DIR}\output\NTLEG3@Period@_{alt}{year}.NTL"
 FILEI NTLEGI[4] = "{SCENARIO_DIR}\output\NTLEG11@Period@_{alt}{year}.NTL"
 FILEI NTLEGI[5] = "{SCENARIO_DIR}\output\NTLEG12@Period@_{alt}{year}.NTL"
+FILEI NTLEGI[6] = "{SCENARIO_DIR}\input\CR_Manual_Walk_Connectors.NTL"
 FILEI NETI = "{SCENARIO_DIR}\output\@HWYNET@_Temp.NET"
 
 zonemsg=50
@@ -4398,6 +4395,8 @@ PROCESS PHASE=DATAPREP
      GENERATE READNTLEGI=4
     ; 12- Generate transfer links
      GENERATE READNTLEGI=5
+    ; 1- Generate CR WALK links
+     GENERATE READNTLEGI=6     
 ENDPROCESS
 
 PROCESS PHASE=SKIMIJ
@@ -4757,7 +4756,7 @@ FILEO PRINTO[2] = "{SCENARIO_DIR}\OUTPUT\HHCONVERGENCE.PRN"
 
 
 ;Household Seed Lookup
-FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\HHSeed.csv"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\HHSeed.csv"
 FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\nftpo_incomebytaz2.dbf"
 FILEI LOOKUPI[3] = "{Scenario_Dir}\Input\TRIPGEN\jacksonville_hhsize_marginals.dbf"
 FILEI LOOKUPI[4] = "{Scenario_Dir}\Input\TRIPGEN\jacksonville_hhworkers_marginals.dbf"
@@ -5398,10 +5397,9 @@ ENDRUN
 RUN PGM=NETWORK PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGNET00A.PRN" MSG='Floating Zone Mixed Density'
 FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\MixedDensity.csv"
 FILEI LINKI[1] = "{SCENARIO_DIR}\OUTPUT\UNLOADED.NET"
-FILEI NODEI[2] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf",
- RENAME=Zone-N
+FILEI NODEI[2] = "{Scenario_Dir}\Input\ZDATA_{year}{alt}.dbf",
+ RENAME=TAZ-N
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv"
-
 
 LOOKUP, NAME=MDM, LOOKUP[1]=1, RESULT=2, INTERPOLATE=N, LIST=Y, LOOKUPI=1
 
@@ -5608,9 +5606,9 @@ ENDRUN
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGMAT00K.PRN" MSG='Auto Availability Model'
 FILEI LOOKUPI[3] = "{SCENARIO_DIR}\Input\TRIPGEN\nftpo_incomebytaz2.dbf"
-FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\COEFF_AUTOOWN.csv"
+FILEI LOOKUPI[2] = "{CATALOG_Dir}\Parameters\COEFF_AUTOOWN.csv"
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\OUTPUT\HHClass.DBF"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\ZDATA_{year}{alt}.dbf", RENAME =TAZ-ZONE
 FILEI ZDATI[5] = "{Scenario_Dir}\OUTPUT\WalkTranAcc.dbf"
 FILEI ZDATI[3] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv",
     Z=#1,TotHhlds=#2,TotEmp=#3,FloatHhld=#4,FloatEmp=#5,MixedDen=#6,CentX=#7,CentY=#8
@@ -5801,7 +5799,8 @@ IF(I == 1)
 PAR ZONES={ZONESI} zonemsg=100
 
 ; TAZ 
-ZN=ZI.1.ZONE
+;ZN=ZI.1.ZONE
+ZN=ZI.1.TAZ
 
 ; County
 
@@ -5982,17 +5981,17 @@ ENDRUN
 ; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\TRIPGEN\TGMAT00N.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGMAT00N.PRN" MSG='New TMU Trip Generation'
-FILEI LOOKUPI[4] = "{Scenario_Dir}\INPUT\TripGEN\HBW_ARates.csv"
+FILEI LOOKUPI[4] = "{CATALOG_DIR}\PARAMETERS\HBW_ARates.csv"
 FILEI LOOKUPI[3] = "{Scenario_Dir}\Input\TRIPGEN\jaxemp_taz_level.dbf"
-FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\Work_Prates.csv"
-FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\NonWork_PRates.csv"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\Work_Prates.csv"
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\PARAMETERS\NonWork_PRates.csv"
 ; header "IAP_CLASS	IAP	INCOME	AUTO	PERSON	HBSH_PRATE	HBSR_PRATE	HBO_PRATE	NHB_PRATE	HBCU_PRATE	HBSC_PRATE"
 FILEI LOOKUPI[5] = "{SCENARIO_DIR}\OUTPUT\AUTOOWN_MODEL.DBF"
-FILEI LOOKUPI[6] = "{Scenario_Dir}\Input\TRIPGEN\OBO_ARates.csv"
+FILEI LOOKUPI[6] = "{CATALOG_DIR}\PARAMETERS\OBO_ARates.csv"
 ; header #1 Purpose, #2 PurposeNo, #3 Retail Trade, #4 Arts, Entertainment, and Recreation, #5 Accommodation and Food Services, #6 Educational Services, #7	Health Care and Social Assistance, #8	enrlsc - enrollment pk-12, #9	enrluniv - university, #10 TotalHH
 
 FILEI LOOKUPI[7] = "{Scenario_Dir}\Input\TRIPGEN\school_enroll.dbf"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\ZDATA_{year}{alt}.dbf"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\OUTPUT\TG_REPORT.TXT"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\TRIPGEN_DEBUG.TXT"
 
@@ -7201,8 +7200,8 @@ FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
 FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
-FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
-FILEI LOOKUPI[2] = "{SCENARIO_DIR}\input\@PERIOD@_TRN_COEFFICIENTS.CSV"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_MC_CONSTANTS.CSV"
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_TRN_COEFFICIENTS.CSV"
     
         ; Transit skim (1: Walk to Skyway)
 FILEI MATI[1] = "{SCENARIO_DIR}\output\TSKIM_@PERIOD@_SKYWAY_WALK_{Alt}{year}.MAT"
@@ -8193,8 +8192,8 @@ FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
 FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
-FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
-FILEI LOOKUPI[2] = "{SCENARIO_DIR}\input\@PERIOD@_TRN_COEFFICIENTS.CSV"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_MC_CONSTANTS.CSV"
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_TRN_COEFFICIENTS.CSV"
     
         ; Transit skim (1: Walk to Skyway)
 FILEI MATI[1] = "{SCENARIO_DIR}\output\TSKIM_@PERIOD@_SKYWAY_WALK_{Alt}{year}.MAT"
@@ -9973,8 +9972,8 @@ FILEI ZDATI[1] = "{SCENARIO_DIR}\INPUT\ZDATA_{YEAR}{ALT}.DBF"
 FILEI ZDATI[2] = "{SCENARIO_DIR}\OUTPUT\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
-FILEI LOOKUPI[1] = "{SCENARIO_DIR}\INPUT\@PERIOD@_MC_CONSTANTS.CSV"
-FILEI LOOKUPI[2] = "{SCENARIO_DIR}\INPUT\@PERIOD@_TRN_COEFFICIENTS.CSV"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_MC_CONSTANTS.CSV"
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_TRN_COEFFICIENTS.CSV"
     
         ; Transit skim (1: Walk to Skyway)
 FILEI MATI[1] = "{SCENARIO_DIR}\OUTPUT\TSKIM_@PERIOD@_SKYWAY_WALK_{ALT}{YEAR}.MAT"
@@ -10027,7 +10026,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
     
         ; Declare arrays to hold alternative specific constants
         ARRAY PARK=2578
-        ARRAY TYPE=F K_AUT=5, K_SR=5, K_SR3=5, K_TRN=5, K_TDRV=5, K_TKNR=5, K_NMOT=5, K_BIKE=5, K_TDRVE=5
+        ARRAY TYPE=F K_AUT=5, K_SR=5, K_SR3=5, K_TRN=5, K_TDRV=5, K_TKNR=5, K_NMOT=5, K_BIKE=5, K_TDRVE=5, K_Prem_TDRV = 5, K_Prem_TKNR = 5
         ARRAY TYPE=C30 MARKET_NAME=5
     
         ; Read alternative specific Constants
@@ -10058,6 +10057,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
             K_NMOT[_m] = CONSTANTS(1,(_m-1)*10+7)            ; non-motorized (walk & bike)
             K_BIKE[_m] = CONSTANTS(1,(_m-1)*10+8)            ; bike
             K_TDRVE[_m] = CONSTANTS(1,(_m-1)*10+9)           ; pnr to express
+            K_Prem_TDRV[_m] = CONSTANTS(1,60 + _m)           ; drive to premium mode (61 - 65)
+            K_Prem_TKNR[_m] = CONSTANTS(1,65 + _m)           ; knr to premium mode (66 - 70)         
           ENDLOOP
     
           ; MARKETS=@MARKETS@
@@ -10072,9 +10073,11 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
           K_EXP = CONSTANTS(1,52)                  ; express bus
           K_BRT = CONSTANTS(1,53)                  ; brt
           K_URL = CONSTANTS(1,54)                  ; urban rail
-          K_CRL = CONSTANTS(1,55)                  ; commuter rail
-          K_INFDA = CONSTANTS(1,56)                ; informal KNR-to-Localbus
-          
+          K_CRL = CONSTANTS(1,55)                  ; commuter rail only
+          K_INFDA = CONSTANTS(1,56)                ; informal KNR-to-Localbus 
+          K_BRT_LB = CONSTANTS(1,57)               ; BRT + Local bus constant
+          K_CRL_LB = CONSTANTS(1,58)               ; CR + Local bus constant 
+           
           ; Define array to hold cost coefficients
           ARRAY TYPE=F COEFF_COST=5
           COEFF_COST[1]  = COEFF(1,5)
@@ -10124,25 +10127,105 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
     
         ; Transit (PNR) skims
         FILLMW MW[121]=MI.6.1(15)                  ; pnr to exp bus
-        FILLMW MW[141]=MI.7.1(15)                  ; pnr to brt lrt
+        FILLMW MW[141]=MI.7.1(15)                  ; pnr to brt lrt 
         FILLMW MW[161]=MI.8.1(15)                  ; pnr to com rail
     
         ; Transit (KNR) skims
         FILLMW MW[181]=MI.9.1(15)                  ; knr to exp bus
         FILLMW MW[201]=MI.10.1(15)                 ; knr to brt lrt
         FILLMW MW[221]=MI.11.1(15)                 ; knr to com rail
-    
+        
         ; Walk and Bike
         ; distance portion that is 1 mile or less
         MW[12] = MIN(MW[2],1)
     
         ; Distance portion that is longer than 1 mile
         JLOOP
-          IF (MW[2][J] > 1)
-              MW[13] = MW[2][J] - 1
-          ELSE
-              MW[13] = 0
-          ENDIF
+            IF (MW[2][J] > 1)
+                MW[13] = MW[2][J] - 1
+            ELSE
+                MW[13] = 0
+            ENDIF
+
+            ; CR unicluded attributes Walk
+            IF(MW[108] >0) 
+              ; if other modes ivtt exists
+              IF((MW[105] + MW[106] +MW[107]) = 0)
+                MW[109] = K_CRL
+              ENDIF
+              IF ((MW[105] + MW[106] +MW[107]) > 0)
+                MW[109] = K_CRL_LB
+              ENDIF
+            ELSE
+                MW[109] = 0
+            ENDIF       
+              
+            ; CR unicluded attributes PNR
+            IF(MW[168] >0) 
+              ; if other modes ivtt exists
+              IF((MW[165] + MW[166] +MW[167]) = 0)
+                MW[169] = K_CRL
+              ENDIF
+              IF ((MW[165] + MW[166] +MW[167]) > 0)
+                MW[169] = K_CRL_LB
+              ENDIF
+            ELSE
+                MW[169] = 0
+            ENDIF
+            
+            ; CR unicluded attributes KNR
+            IF(MW[228] >0) 
+              ; if other modes ivtt exists
+              IF((MW[225] + MW[226] +MW[227]) = 0)
+                MW[229] = K_CRL
+              ENDIF
+              IF ((MW[225] + MW[226] +MW[227]) > 0)
+                MW[229] = K_CRL_LB
+              ENDIF
+            ELSE
+                MW[229] = 0
+            ENDIF
+            
+            ; BRT unicluded attributes Walk
+            IF(MW[88] >0) 
+              ; if other modes ivtt exists
+              IF((MW[85] + MW[86] +MW[87]) = 0)
+                MW[89] = K_CRL
+              ENDIF
+              IF ((MW[85] + MW[86] +MW[87]) > 0)
+                MW[89] = K_CRL_LB
+              ENDIF
+            ELSE
+                MW[89] = 0
+            ENDIF 
+            
+            ; BRT unicluded attributes KNR
+            IF(MW[208] >0) 
+              ; if other modes ivtt exists
+              IF((MW[205] + MW[206] +MW[207]) = 0)
+                MW[209] = K_BRT
+              ENDIF
+              IF ((MW[205] + MW[206] +MW[207]) > 0)
+                MW[209] = K_BRT_LB
+              ENDIF
+            ELSE
+                MW[209] = 0
+            ENDIF
+            
+            ; BRT/LRT unicluded attributes PNR
+            IF(MW[148] >0) 
+              ; if other modes ivtt exists
+              IF((MW[145] + MW[146] +MW[147]) = 0)
+                MW[149] = K_BRT
+              ENDIF
+              IF ((MW[145] + MW[146] +MW[147]) > 0)
+                MW[149] = K_BRT_LB
+              ENDIF
+            ELSE
+                MW[149] = 0
+            ENDIF
+      
+        
         ENDJLOOP
     
         ; Person trips
@@ -10299,7 +10382,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[407+20*(_m-1)] = MW[307+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
     
                ; Walk to BRT-LRT
-               MW[308+20*(_m-1)] = (K_TRN[_m] + K_BRT                           +                      ; Constant(s)
+               MW[308+20*(_m-1)] = (K_TRN[_m]                                   +                      ; Constant(s)
+                                    MW[89]                                      +                      ; BRT Unincluded constants for walk access
                                     COEFF_DRIVE    *  MW[82]                    +                      ; Drive Access Time (zero for walk but to keep the code consistent)
                                     COEFF_WALK     * (MW[81] + MW[83])          +                      ; Walk Access Time + Xfer Time
                                     COEFF_SWAIT    *  MIN(MW[92],5)             +                      ; Short wait (< 5 mins)
@@ -10312,7 +10396,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[408+20*(_m-1)] = MW[308+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; Walk to Commuter Rail
-               MW[309+20*(_m-1)] = (K_TRN[_m] + K_CRL                            +                     ; Constant(s)
+               MW[309+20*(_m-1)] = (K_TRN[_m]                                    +                     ; Constant(s)
+                                    MW[109]                                      +                     ; CR Unincluded constants for walk access
                                     COEFF_DRIVE    *  MW[102]                    +                     ; Drive Access Time (zero for walk but to keep the code consistent)
                                     COEFF_WALK     * (MW[101] + MW[103])         +                     ; Walk Access Time + Xfer Time
                                     COEFF_SWAIT    *  MIN(MW[112],5)             +                     ; Short wait (< 5 mins)
@@ -10339,7 +10424,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                
         
                ; PNR to Express Bus
-               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRVE[_m] + K_EXP                +                    ; Constant(s)
+               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRVE[_m] + K_EXP               +                    ; Constant(s)
                                    COEFF_DRIVE    *  MW[122]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[121] + MW[123])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[132],5)               +                    ; Short wait (< 5 mins)
@@ -10352,7 +10437,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[410+20*(_m-1)] = MW[310+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; PNR to BRT-LRT Bus
-               MW[311+20*(_m-1)] = (K_TRN[_m] + K_TDRV[_m] + K_BRT                +                    ; Constant(s)
+               MW[311+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]                   +                    ; Constant(s)
+                                   MW[149]                                        +                    ; BRT Unincluded constants for PNR access
                                    COEFF_DRIVE    *  MW[142]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[141] + MW[143])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[152],5)               +                    ; Short wait (< 5 mins)
@@ -10365,7 +10451,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[411+20*(_m-1)] = MW[311+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; PNR to Commuter Rail
-               MW[312+20*(_m-1)] = (K_TRN[_m] + K_TDRV[_m] + K_CRL                +                    ; Constant(s)
+               MW[312+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]                   +                    ; Constant(s)
+                                   MW[169]                                        +                    ; CR Unincluded constants for PNR access
                                    COEFF_DRIVE    *  MW[162]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[161] + MW[163])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[172],5)               +                    ; Short wait (< 5 mins)
@@ -10404,7 +10491,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[414+20*(_m-1)] = MW[314+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; KNR to BRT-LRT Bus
-               MW[315+20*(_m-1)] = (K_TRN[_m] + K_TKNR[_m] + K_BRT                +                    ; Constant(s)
+               MW[315+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m]                   +                    ; Constant(s)
+                                   MW[209]                                        +                    ; BRT Unincluded constants for KNR access
                                    COEFF_DRIVE    *  MW[202]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[201] + MW[203])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[212],5)               +                    ; Short wait (< 5 mins)
@@ -10417,7 +10505,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[415+20*(_m-1)] = MW[315+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; KNR to Commuter Rail
-               MW[316+20*(_m-1)] = (K_TRN[_m] + K_TKNR[_m] + K_CRL                +                    ; Constant(s)
+               MW[316+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m]                   +                    ; Constant(s)
+                                   MW[229]                                        +                    ; CR Unincluded constants for KNR access
                                    COEFF_DRIVE    *  MW[222]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[221] + MW[223])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[232],5)               +                    ; Short wait (< 5 mins)
@@ -10968,8 +11057,8 @@ FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
 FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
-FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
-FILEI LOOKUPI[2] = "{SCENARIO_DIR}\input\@PERIOD@_TRN_COEFFICIENTS.CSV"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_MC_CONSTANTS.CSV"
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_TRN_COEFFICIENTS.CSV"
     
         ; Transit skim (1: Walk to Skyway)
 FILEI MATI[1] = "{SCENARIO_DIR}\output\TSKIM_@PERIOD@_SKYWAY_WALK_{Alt}{year}.MAT"
@@ -11021,7 +11110,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
     
         ; Declare arrays to hold alternative specific constants
         ARRAY PARK=2578
-        ARRAY TYPE=F K_AUT=5, K_SR=5, K_SR3=5, K_TRN=5, K_TDRV=5, K_TKNR=5, K_NMOT=5, K_BIKE=5, K_TDRVE=5
+        ARRAY TYPE=F K_AUT=5, K_SR=5, K_SR3=5, K_TRN=5, K_TDRV=5, K_TKNR=5, K_NMOT=5, K_BIKE=5, K_TDRVE=5, K_Prem_TDRV = 5, K_Prem_TKNR = 5
         ARRAY TYPE=C30 MARKET_NAME=5
     
         ; Read alternative specific Constants
@@ -11052,6 +11141,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
             K_NMOT[_m] = CONSTANTS(1,(_m-1)*10+7)            ; non-motorized (walk & bike)
             K_BIKE[_m] = CONSTANTS(1,(_m-1)*10+8)            ; bike
             K_TDRVE[_m] = CONSTANTS(1,(_m-1)*10+9)           ; pnr to express
+            K_Prem_TDRV[_m] = CONSTANTS(1,60 + _m)           ; drive to premium mode (61 - 65)
+            K_Prem_TKNR[_m] = CONSTANTS(1,65 + _m)           ; knr to premium mode (66 - 70)                 
           ENDLOOP
     
           ; MARKETS=@MARKETS@
@@ -11068,6 +11159,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
           K_URL = CONSTANTS(1,54)                  ; urban rail
           K_CRL = CONSTANTS(1,55)                  ; commuter rail
           K_INFDA = CONSTANTS(1,56)                ; informal KNR-to-Localbus
+          K_BRT_LB = CONSTANTS(1,57)               ; BRT + Local bus constant
+          K_CRL_LB = CONSTANTS(1,58)               ; CR + Local bus constant  
           
           ; Define array to hold cost coefficients
           ARRAY TYPE=F COEFF_COST=5
@@ -11130,15 +11223,94 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
         ; distance portion that is 1 mile or less
         MW[12] = MIN(MW[2],1)
     
-        ; Distance portion that is longer than 1 mile
-        JLOOP
-          IF (MW[2][J] > 1)
-              MW[13] = MW[2][J] - 1
-          ELSE
-              MW[13] = 0
-          ENDIF
+       JLOOP
+            ; Distance portion that is longer than 1 mile
+            IF (MW[2][J] > 1)
+                MW[13] = MW[2][J] - 1
+            ELSE
+                MW[13] = 0
+            ENDIF
+
+            ; CR unicluded attributes Walk
+            IF(MW[108] >0) 
+              ; if other modes ivtt exists
+              IF((MW[105] + MW[106] +MW[107]) = 0)
+                MW[109] = K_CRL
+              ENDIF
+              IF ((MW[105] + MW[106] +MW[107]) > 0)
+                MW[109] = K_CRL_LB
+              ENDIF
+            ELSE
+                MW[109] = 0
+            ENDIF       
+              
+            ; CR unicluded attributes PNR
+            IF(MW[168] >0) 
+              ; if other modes ivtt exists
+              IF((MW[165] + MW[166] +MW[167]) = 0)
+                MW[169] = K_CRL
+              ENDIF
+              IF ((MW[165] + MW[166] +MW[167]) > 0)
+                MW[169] = K_CRL_LB
+              ENDIF
+            ELSE
+                MW[169] = 0
+            ENDIF
+            
+            ; CR unicluded attributes KNR
+            IF(MW[228] >0) 
+              ; if other modes ivtt exists
+              IF((MW[225] + MW[226] +MW[227]) = 0)
+                MW[229] = K_CRL
+              ENDIF
+              IF ((MW[225] + MW[226] +MW[227]) > 0)
+                MW[229] = K_CRL_LB
+              ENDIF
+            ELSE
+                MW[229] = 0
+            ENDIF
+            
+            ; BRT unicluded attributes Walk
+            IF(MW[88] >0) 
+              ; if other modes ivtt exists
+              IF((MW[85] + MW[86] +MW[87]) = 0)
+                MW[89] = K_CRL
+              ENDIF
+              IF ((MW[85] + MW[86] +MW[87]) > 0)
+                MW[89] = K_CRL_LB
+              ENDIF
+            ELSE
+                MW[89] = 0
+            ENDIF 
+            
+            ; BRT unicluded attributes KNR
+            IF(MW[208] >0) 
+              ; if other modes ivtt exists
+              IF((MW[205] + MW[206] +MW[207]) = 0)
+                MW[209] = K_BRT
+              ENDIF
+              IF ((MW[205] + MW[206] +MW[207]) > 0)
+                MW[209] = K_BRT_LB
+              ENDIF
+            ELSE
+                MW[209] = 0
+            ENDIF
+            
+            ; BRT/LRT unicluded attributes PNR
+            IF(MW[148] >0) 
+              ; if other modes ivtt exists
+              IF((MW[145] + MW[146] +MW[147]) = 0)
+                MW[149] = K_BRT
+              ENDIF
+              IF ((MW[145] + MW[146] +MW[147]) > 0)
+                MW[149] = K_BRT_LB
+              ENDIF
+            ELSE
+                MW[149] = 0
+            ENDIF
+      
         ENDJLOOP
-    
+       
         ; Person trips
         MW[251] = MI.14.6   ; Total Person Trips
     
@@ -11293,7 +11465,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[407+20*(_m-1)] = MW[307+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
     
                ; Walk to BRT-LRT
-               MW[308+20*(_m-1)] = (K_TRN[_m] + K_BRT                           +                      ; Constant(s)
+               MW[308+20*(_m-1)] = (K_TRN[_m]                                   +                      ; Constant(s)
+                                    MW[89]                                      +                      ; BRT Unincluded constants for walk access
                                     COEFF_DRIVE    *  MW[82]                    +                      ; Drive Access Time (zero for walk but to keep the code consistent)
                                     COEFF_WALK     * (MW[81] + MW[83])          +                      ; Walk Access Time + Xfer Time
                                     COEFF_SWAIT    *  MIN(MW[92],5)             +                      ; Short wait (< 5 mins)
@@ -11306,7 +11479,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[408+20*(_m-1)] = MW[308+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; Walk to Commuter Rail
-               MW[309+20*(_m-1)] = (K_TRN[_m] + K_CRL                            +                     ; Constant(s)
+               MW[309+20*(_m-1)] = (K_TRN[_m]                                    +                     ; Constant(s)
+                                    MW[109]                                      +                     ; CR Unincluded constants for walk access
                                     COEFF_DRIVE    *  MW[102]                    +                     ; Drive Access Time (zero for walk but to keep the code consistent)
                                     COEFF_WALK     * (MW[101] + MW[103])         +                     ; Walk Access Time + Xfer Time
                                     COEFF_SWAIT    *  MIN(MW[112],5)             +                     ; Short wait (< 5 mins)
@@ -11333,7 +11507,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                
         
                ; PNR to Express Bus
-               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRVE[_m] + K_EXP                +                    ; Constant(s)
+               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRVE[_m] + K_EXP               +                    ; Constant(s)
                                    COEFF_DRIVE    *  MW[122]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[121] + MW[123])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[132],5)               +                    ; Short wait (< 5 mins)
@@ -11346,7 +11520,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[410+20*(_m-1)] = MW[310+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; PNR to BRT-LRT Bus
-               MW[311+20*(_m-1)] = (K_TRN[_m] + K_TDRV[_m] + K_BRT                +                    ; Constant(s)
+               MW[311+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]                   +                    ; Constant(s)
+                                   MW[149]                                        +                    ; BRT Unincluded constants for PNR access
                                    COEFF_DRIVE    *  MW[142]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[141] + MW[143])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[152],5)               +                    ; Short wait (< 5 mins)
@@ -11359,7 +11534,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[411+20*(_m-1)] = MW[311+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; PNR to Commuter Rail
-               MW[312+20*(_m-1)] = (K_TRN[_m] + K_TDRV[_m] + K_CRL                +                    ; Constant(s)
+               MW[312+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]                   +                    ; Constant(s)
+                                   MW[169]                                        +                    ; CR Unincluded constants for PNR access
                                    COEFF_DRIVE    *  MW[162]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[161] + MW[163])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[172],5)               +                    ; Short wait (< 5 mins)
@@ -11398,7 +11574,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[414+20*(_m-1)] = MW[314+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; KNR to BRT-LRT Bus
-               MW[315+20*(_m-1)] = (K_TRN[_m] + K_TKNR[_m] + K_BRT                +                    ; Constant(s)
+               MW[315+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m]                   +                    ; Constant(s)
+                                   MW[209]                                        +                    ; BRT Unincluded constants for KNR access
                                    COEFF_DRIVE    *  MW[202]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[201] + MW[203])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[212],5)               +                    ; Short wait (< 5 mins)
@@ -11411,7 +11588,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[415+20*(_m-1)] = MW[315+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; KNR to Commuter Rail
-               MW[316+20*(_m-1)] = (K_TRN[_m] + K_TKNR[_m] + K_CRL                +                    ; Constant(s)
+               MW[316+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m]                   +                    ; Constant(s)
+                                   MW[229]                                        +                    ; CR Unincluded constants for KNR access
                                    COEFF_DRIVE    *  MW[222]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[221] + MW[223])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[232],5)               +                    ; Short wait (< 5 mins)

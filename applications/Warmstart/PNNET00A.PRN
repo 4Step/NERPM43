@@ -1,5 +1,5 @@
  
-NETWORK (v.08/05/2014 [6.1.1])  Fri Mar 20 12:19:12 2015
+NETWORK (v.05/01/2013 [6.1.0])  Wed May 27 23:00:30 2015
 
 FILEI LINKI[1] = "C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET"
 FILEO NETO = "C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET"
@@ -36,9 +36,9 @@ NETWORK Stack Size = 332 bytes.
 
 C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET   (VOYAGER):
 
-NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Fri Mar 20 12:16:29 2015
+NET PGM=NETWORK (v.05/01/2013 [6.1.0]) DATE=Wed May 27 22:58:01 2015
 ID= 
-PAR Zones=2578 Nodes=91504 Links=60321 NodeRecs=29842 
+PAR Zones=2578 Nodes=91504 Links=60323 NodeRecs=29842 
 NVR 97    N    TIMESUSED    X    Y    TSNAME=051    STATZONE
     TSSTATION_05A    TAZNEW    COUNTY    SPGEN    TSRANGE_05A
     TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
@@ -93,7 +93,7 @@ Parsons Brinckerhoff
 Variable          Obs<>0              Total           Ave           Min           Max           RMS  
 --------          ------              -----           ---           ---           ---           ---  
 N                 29,842                 --            --          1        91,504               --
-TIMESUSED         29,842         120,642             4.04          1           170             4.84
+TIMESUSED         29,842         120,646             4.04          1           170             4.84
 X                 29,842  13,364,496,307.68    447,841.84    190,006.11    588,266.75    451,425.58
 Y                 29,842  64,074,371,221.9   2,147,120.54  1,826,931.76  2,356,088.57  2,148,763.91
 TSNAME               238                                   (0       )  (Tanglewo)
@@ -154,11 +154,11 @@ TSCOSTAM_40N           4             714           178.5         138           2
 TSCOSTMD_40N           4             714           178.5         138           258           184.54
 TSTYPE_40N           105             289             2.75          1             6             3.34
 TSSTATION_40A         80           3,910            48.88          1           113            61.47
-TSRANGE_40A           59             216             3.66          3            10             3.86
-TSPARKSPACE_40A       46           5,932           128.96          1         1,900           323.5 
+TSRANGE_40A           62             246             3.97          3            10             4.36
+TSPARKSPACE_40A       49           6,432           131.27          1         1,900           316.19
 TSCOSTAM_40A           4             714           178.5         138           258           184.54
 TSCOSTMD_40A           4             714           178.5         138           258           184.54
-TSTYPE_40A            57             190             3.33          1             6             3.9 
+TSTYPE_40A            60             193             3.22          1             6             3.81
 TSSTATION_40C         80           3,910            48.88          1           113            61.47
 TSRANGE_40C          106             680             6.42          3            10             7.18
 TSPARKSPACE_40C       90          10,695           118.83          1         1,900           250.14
@@ -191,7 +191,7 @@ End   PROCESS PHASE NODEMERGE
 
 
 Begin PROCESS PHASE LINKMERGE
-      60,321 records merged from NETI[1]: C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET
+      60,323 records merged from NETI[1]: C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET
       59,126 data base records.Page 496  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
@@ -297,7 +297,7 @@ End   PROCESS PHASE SUMMARY
 
 FILEO NETO=C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET
 
-NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Fri Mar 20 12:19:12 2015
+NET PGM=NETWORK (v.05/01/2013 [6.1.0]) DATE=Wed May 27 23:00:30 2015
 ID= 
 PAR Zones=2578 Nodes=91504 Links=59126 NodeRecs=29842 
 NVR 97    N    TIMESUSED    X    Y    TSNAME=051    STATZONE

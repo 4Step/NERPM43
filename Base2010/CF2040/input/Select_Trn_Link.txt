@@ -1,0 +1,12 @@
+PHASE=SKIMIJ
+
+ MW[11]=SELECTLINK(MODE=26)                ; All CR trips
+ MW[12]=SELECTLINK(MODE=26 & MODE=1 & MODE != 21 & MODE != 22 & MODE !=24 & MODE!= 23)       ; CR trips with walk access (xfer)
+ MW[13]=SELECTLINK(MODE=26 & MODE=1,2 & MODE != 21 & MODE != 22 & MODE !=24 & MODE!= 23)       ; CR trips with PNR access (xfer)
+ MW[14]=SELECTLINK(MODE=26 & MODE=1,3 & MODE != 21 & MODE != 22 & MODE !=24 & MODE!= 23)       ; CR trips with KNR access (xfer)
+ MW[15]=SELECTLINK(MODE=26 & MODE=21)      ; CR trips with local bus (xfer)
+ MW[16]=SELECTLINK(MODE=26 & MODE=22)      ; CR trips with express bus (xfer)
+ MW[17]=SELECTLINK(MODE=26 & MODE=23)      ; CR trips with skyway(xfer)
+ MW[18]=SELECTLINK(MODE=26 & MODE=24)      ; CR trips with BRT (xfer)
+   
+ENDPHASE

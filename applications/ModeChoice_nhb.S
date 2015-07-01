@@ -26,9 +26,9 @@ FILEI ZDATI[1] = "{SCENARIO_DIR}\input\ZDATA_{Year}{alt}.DBF"
 FILEI ZDATI[2] = "{SCENARIO_DIR}\output\STATDATA_{alt}{Year}.DBF"
     
         ; Modechoice coefficients and alternative specific constants
-FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\@PERIOD@_MC_CONSTANTS.CSV"
-FILEI LOOKUPI[2] = "{SCENARIO_DIR}\input\@PERIOD@_TRN_COEFFICIENTS.CSV"
-    
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_MC_CONSTANTS.CSV"
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\PARAMETERS\@PERIOD@_TRN_COEFFICIENTS.CSV"
+
         ; Transit skim (1: Walk to Skyway)
 FILEI MATI[1] = "{SCENARIO_DIR}\output\TSKIM_@PERIOD@_SKYWAY_WALK_{Alt}{year}.MAT"
     
@@ -111,7 +111,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
             K_BIKE[_m] = CONSTANTS(1,(_m-1)*10+8)            ; bike
             K_TDRVE[_m] = CONSTANTS(1,(_m-1)*10+9)           ; pnr to express
             K_Prem_TDRV[_m] = CONSTANTS(1,60 + _m)           ; drive to premium mode (61 - 65)
-            K_Prem_TKNR[_m] = CONSTANTS(1,65 + _m)           ; knr to premium mode (66 - 70)                 
+            K_Prem_TKNR[_m] = CONSTANTS(1,65 + _m)           ; knr to premium mode (66 - 70)
           ENDLOOP
     
           ; MARKETS=@MARKETS@
@@ -129,8 +129,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
           K_CRL = CONSTANTS(1,55)                  ; commuter rail
           K_INFDA = CONSTANTS(1,56)                ; informal KNR-to-Localbus
           K_BRT_LB = CONSTANTS(1,57)               ; BRT + Local bus constant
-          K_CRL_LB = CONSTANTS(1,58)               ; CR + Local bus constant  
-          
+          K_CRL_LB = CONSTANTS(1,58)               ; CR + Local bus constant 
+                    
           ; Define array to hold cost coefficients
           ARRAY TYPE=F COEFF_COST=5
           COEFF_COST[1]  = COEFF(1,5)
@@ -192,8 +192,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
         ; distance portion that is 1 mile or less
         MW[12] = MIN(MW[2],1)
     
-       JLOOP
-            ; Distance portion that is longer than 1 mile
+        ; Distance portion that is longer than 1 mile
+        JLOOP
             IF (MW[2][J] > 1)
                 MW[13] = MW[2][J] - 1
             ELSE
@@ -276,10 +276,10 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
               ENDIF
             ELSE
                 MW[149] = 0
-            ENDIF
-      
+            ENDIF       
         ENDJLOOP
-       
+
+    
         ; Person trips
         MW[251] = MI.14.6   ; Total Person Trips
     
@@ -476,7 +476,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                
         
                ; PNR to Express Bus
-               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRVE[_m] + K_EXP               +                    ; Constant(s)
+               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRVE[_m] + K_EXP                +                    ; Constant(s)
                                    COEFF_DRIVE    *  MW[122]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[121] + MW[123])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[132],5)               +                    ; Short wait (< 5 mins)
@@ -583,6 +583,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[418+20*(_m-1)] = MW[318+20*(_m-1)] / NC_1 /NC_2                                      ; Scaled Utility
 
             ENDLOOP
+    
     
             ;***************************    MODE AVAILABILITY CHECKS    ************************************
             ;  Drive alone and PNR to transit not available to zero car households

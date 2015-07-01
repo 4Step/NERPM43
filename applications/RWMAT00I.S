@@ -95,7 +95,7 @@ if (_ctr>0)
  ;Rules 3,5: No changes to walk access connectors & PCW
  if (rule=3,5)
   PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s25,PRINTO=1
-  if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA} && new_zone=1) 
     PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
     tempzone=zonei
   endif
@@ -106,7 +106,8 @@ if (_ctr>0)
   opprod=0
   opattr=0
   PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,PRINTO=3
-  if (zonei<{ZONESA} && new_zone=1)
+  ;PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,PRINTO=1
+   if (zonei<{ZONESA} && new_zone=1)
    PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
    tempzone=zonei
   endif
@@ -121,7 +122,7 @@ if (_ctr>0)
    time=(time-time_delta)
   endif
   PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s25,PRINTO=1
-  if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA} && new_zone=1)
    PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
    tempzone=zonei
   endif

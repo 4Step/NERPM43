@@ -64,15 +64,19 @@ ENDPROCESS
 
 PROCESS PHASE=DATAPREP
 
-  ; 1 - WALK ACCESS/EGRESS
+  ; 1 - WALK ACCESS/EGRESS (exclude CR Stations from TO Nodes, these are manually built)
   GENERATE, COST=(LW.ADJDISTANCE),EXTRACTCOST=(LW.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,EXCLUDELINK=(LI.FACILITY_TYPE=10-19,69,70-99),
-            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-99999
+            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-89999
      
   ; 11 - Fixed-guideway to bus (transfer connectors)
   GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,INCLUDELINK=(LI.FACILITY_TYPE=59),
             NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=2,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
-  
-            ; 11 - station to nearby stop (transfer connectors)
+ 
+    ; 11 - Fixed-guideway to commuter rail (transfer connectors) 3 miles of network distance but in reality there will be connectors to all CR stations.
+  GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200 * 3,LIST=N,EXCLUDELINK=(LI.FACILITY_TYPE=10-19,69,70-99),
+  NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=3,ONEWAY=F,FROMNODE= 90000-99999,TONODE={NODEMIN}-89999
+              
+  ; 11 - station to nearby stop (transfer connectors)
   READ, FILE = "{SCENARIO_DIR}\OUTPUT\STATXFER_TMP.DAT"
 
   ; 12 - CBD sidewalks
@@ -212,14 +216,19 @@ ENDPROCESS
 
 PROCESS PHASE=DATAPREP
 
-  ; 1 - WALK ACCESS/EGRESS
+  ; 1 - WALK ACCESS/EGRESS (exclude CR Stations from TO Nodes, these are manually built)
   GENERATE, COST=(LW.ADJDISTANCE),EXTRACTCOST=(LW.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,EXCLUDELINK=(LI.FACILITY_TYPE=10-19,69,70-99),
-            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-99999
+            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-89999
 
   ; 11 - Fixed-guideway to bus
   GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,INCLUDELINK=(LI.FACILITY_TYPE=59),
             NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=2,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
-  ;11 - station to nearby stop (transfer connectors)
+
+  ; 11 - Fixed-guideway to commuter rail (transfer connectors)
+  GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*3,LIST=N,EXCLUDELINK=(LI.FACILITY_TYPE=10-19,69,70-99),
+            NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=3,ONEWAY=F,FROMNODE= 90000-99999,TONODE={NODEMIN}-89999
+            
+            ;11 - station to nearby stop (transfer connectors)
   READ, FILE = "{SCENARIO_DIR}\OUTPUT\STATXFER_TMP.DAT"
 
   ; 12 - CBD sidewalks
@@ -266,8 +275,8 @@ PROCESS PHASE=DATAPREP
        
        CONNREPORT=1,
        GENREPORT=2,
-       TIMEMAT=MI.1.4,
-       DISTMAT=MI.1.2,
+       TIMEMAT=MI.1.4 * 100,
+       DISTMAT=MI.1.2 * 100,
        AUTOMATCH=T      ; T=original logic, F=Enhanced logic
  
   
@@ -593,6 +602,7 @@ RUN PGM=MATRIX PRNFILE="{SCENARIO_DIR}\output\RWMAT00C.PRN" MSG='Revise Peak Wal
 FILEO PRINTO[3] = "{SCENARIO_DIR}\output\NTLEG1PK_DEL.NTL"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\output\PCWPK_TEM.DAT"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG1PK_{alt}{year}.NTL"
+
 FILEI RECI = "{SCENARIO_DIR}\OUTPUT\NTLEG1PK_TEM.NTL"
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\input\pcwalk_{year}{alt}.dat"
 FILEI LOOKUPI[2] = "{SCENARIO_DIR}\output\PKZONECONN_TEM.DBF"
@@ -685,22 +695,27 @@ if (_ctr>0)
  ;Rules 3,5: No changes to walk access connectors & PCW
  if (rule=3,5)
    PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s25,PRINTO=1
-   if (zonei<{ZONESA} && new_zone=1)
+  ; if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA})   
     PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
     tempzone=zonei
    endif
  endif
 
+
  ;Rules 2,4,7: Delete walk access connectors and reset PCW =0
  if(rule=2,4,7)
    pkprod=0
    pkattr=0
-   PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,PRINTO=3
-   if (zonei<{ZONESA} && new_zone=1)
+   ;PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,PRINTO=3
+   PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,PRINTO=1
+  ; if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA}) 
     PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
     tempzone=zonei
    endif
  endif
+
 
  ;Rule 6: No changes to PCW, adjust walk access connector dist & times
  if (rule=6)
@@ -711,7 +726,8 @@ if (_ctr>0)
    time=(time-time_delta)
   endif
    PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s25,PRINTO=1
-  if (zonei<{ZONESA} && new_zone=1)
+  ; if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA}) 
     PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
    tempzone=zonei
   endif
@@ -922,7 +938,8 @@ if (_ctr>0)
  ;Rules 3,5: No changes to walk access connectors & PCW
  if (rule=3,5)
   PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s25,PRINTO=1
-  if (zonei<{ZONESA} && new_zone=1)
+  ; if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA}) 
     PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
     tempzone=zonei
   endif
@@ -932,8 +949,10 @@ if (_ctr>0)
  if(rule=2,4,7)
   opprod=0
   opattr=0
-  PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,PRINTO=3
-  if (zonei<{ZONESA} && new_zone=1)
+  ;PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,PRINTO=3
+  PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s23,PRINTO=1
+  ; if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA}) 
    PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
    tempzone=zonei
   endif
@@ -948,7 +967,8 @@ if (_ctr>0)
    time=(time-time_delta)
   endif
   PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(5.2)," DIST=",dist(5.2)," ",s25,PRINTO=1
-  if (zonei<{ZONESA} && new_zone=1)
+  ; if (zonei<{ZONESA} && new_zone=1)
+   if (zonei<{ZONESA}) 
    PRINT LIST= zone(5.0),pkprod(5.0),pkattr(5.0),opprod(5.0),opattr(5.0),rule(3.0), PRINTO=2
    tempzone=zonei
   endif

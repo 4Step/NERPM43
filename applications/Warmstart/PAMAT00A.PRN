@@ -1,5 +1,5 @@
  
-MATRIX (v.08/05/2014 [6.1.1])  Fri Mar 20 11:00:35 2015
+MATRIX (v.05/01/2013 [6.1.0])  Wed May 27 21:49:21 2015
 
 FILEI MATI[3] = "C:\NERPM43\Base2010\CF2040\output\EETRIPS.MAT"
 FILEI MATI[2] = "C:\NERPM43\Base2010\CF2040\output\VTRIP1.MAT"
@@ -31,13 +31,13 @@ MATRIX Stack Size = 1594 bytes.
 
 
 MATI[3] TPP C:\NERPM43\Base2010\CF2040\output\EETRIPS.MAT Opened
-MAT PGM=MATRIX (v.08/05/2014 [6.1.1])  DATE=Fri Mar 20 10:54:39 2015 
+MAT PGM=MATRIX (v.05/01/2013 [6.1.0])  DATE=Wed May 27 21:44:08 2015 
 ID=
 PAR Zones=2578 M=5
   EESOV  EEHOV  EELIGHTTRUCK  EEHEAVYTRUCK  TOTAL
 
 MATI[2] TPP C:\NERPM43\Base2010\CF2040\output\VTRIP1.MAT Opened
-MAT PGM=DISTRIBUTION (v.08/05/2014 [6.1.1])  DATE=Fri Mar 20 10:54:40 2015 
+MAT PGM=DISTRIBUTION (v.05/01/2013 [6.1.0])  DATE=Wed May 27 21:44:09 2015 
 ID=
 PAR Zones=2578 M=7
   LTRK  MTRK  HTRK  SOIE  HOIE  LDIE  HDIE
@@ -103,5 +103,5 @@ Totals after Iteration 1 I loop:
 	MO.01.014: 644,700.03 
 	MO.01.015:  14,005.75 
 
-MATRIX   ReturnCode = 0  Elapsed Time = 00:00:22
+MATRIX   ReturnCode = 0  Elapsed Time = 00:00:07
 ################################################################################

@@ -1,9 +1,9 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGMAT00K.PRN" MSG='Auto Availability Model'
 FILEI LOOKUPI[3] = "{SCENARIO_DIR}\Input\TRIPGEN\nftpo_incomebytaz2.dbf"
-FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\COEFF_AUTOOWN.csv"
+FILEI LOOKUPI[2] = "{CATALOG_Dir}\Parameters\COEFF_AUTOOWN.csv"
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\OUTPUT\HHClass.DBF"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\ZDATA_{year}{alt}.dbf", RENAME =TAZ-ZONE
 FILEI ZDATI[5] = "{Scenario_Dir}\OUTPUT\WalkTranAcc.dbf"
 FILEI ZDATI[3] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv",
     Z=#1,TotHhlds=#2,TotEmp=#3,FloatHhld=#4,FloatEmp=#5,MixedDen=#6,CentX=#7,CentY=#8
@@ -194,7 +194,8 @@ IF(I == 1)
 PAR ZONES={ZONESI} zonemsg=100
 
 ; TAZ 
-ZN=ZI.1.ZONE
+;ZN=ZI.1.ZONE
+ZN=ZI.1.TAZ
 
 ; County
 

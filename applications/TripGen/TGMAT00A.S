@@ -9,7 +9,7 @@ FILEO PRINTO[2] = "{SCENARIO_DIR}\OUTPUT\HHCONVERGENCE.PRN"
 
 
 ;Household Seed Lookup
-FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\HHSeed.csv"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\HHSeed.csv"
 FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\nftpo_incomebytaz2.dbf"
 FILEI LOOKUPI[3] = "{Scenario_Dir}\Input\TRIPGEN\jacksonville_hhsize_marginals.dbf"
 FILEI LOOKUPI[4] = "{Scenario_Dir}\Input\TRIPGEN\jacksonville_hhworkers_marginals.dbf"

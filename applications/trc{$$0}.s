@@ -1,107 +1,131 @@
-; Script for program PUBLIC TRANSPORT in file "C:\NERPM43\applications\CNPTR00A.S"
+; Script for program MATRIX in file "C:\NERPM43\applications\CNMAT00B.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\CNPTR00A.PRN" MSG='Peak period connectors'
-FILEO PRINTO[2] = "{SCENARIO_DIR}\output\PT_AUTOCON_PK.OUT"
-FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG2PK_{Year}{alt}.PRN"
-FILEI FACTORI[2] = "{SCENARIO_DIR}\output\PNRCOMRAIL.FAC"
-FILEI MATI[1] = "{SCENARIO_DIR}\output\PRELSKIMS.MAT"
+RUN PGM=MATRIX PRNFILE="{SCENARIO_DIR}\output\CNMAT00B.PRN" MSG='OffPeak walk, pnr, knr connectors'
 
-; Inputs for walk connectors
-FILEI NETI = "{SCENARIO_DIR}\output\PRELOAD_PT_TEMP.NET"
-FILEI LINEI[1] = "{SCENARIO_DIR}\input\TROUTE_{year}{alt}.LIN"
-FILEI SYSTEMI = "{CATALOG_DIR}\parameters\SYSTEM.PTS"
-FILEI FAREI = "{SCENARIO_DIR}\input\TFARES_{year}{alt}.FAR"
-FILEI FACTORI[1] = "{SCENARIO_DIR}\output\WalkCOMRAIL.FAC"
+FILEI RECI = "{SCENARIO_DIR}\output\NTLEGOP_{YEAR}{ALT}.NTL"
+FILEO PRINTO[3] = "{SCENARIO_DIR}\output\NTLEG3OP_{alt}{year}.NTL"
+FILEO PRINTO[2] = "{SCENARIO_DIR}\output\NTLEG2OP_{alt}{year}.NTL"
+FILEO PRINTO[1] = "{SCENARIO_DIR}\output\NTLEG1OP_{alt}{year}.NTL"
 
-; Output files
-FILEO NETO = "{SCENARIO_DIR}\output\NTLEGSPK.NET"
-FILEO LINKO[1] = "{SCENARIO_DIR}\output\NTLEGPK_{alt}{year}.DBF"
-FILEO LINEO = "{SCENARIO_DIR}\output\TROUTE_MOD.LIN"
-FILEO NTLEGO = "{SCENARIO_DIR}\output\NTLEGPK_{YEAR}{ALT}.NTL"
-FILEO REPORTO = "{SCENARIO_DIR}\output\NTLEGPK.RPT"
+FILEI LOOKUPI[3] = "{SCENARIO_DIR}\output\STATDATA_{alt}{year}.DBF"
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\parameters\TRN_COEFFICIENTS.DBF"
+FILEI LOOKUPI[1] = "{SCENARIO_DIR}\output\NODES.CSV"
+FILEO PRINTO[5] = "{Scenario_Dir}\output\NTLEG12OP_{alt}{year}.NTL"
+FILEO PRINTO[4] = "{Scenario_Dir}\output\NTLEG11OP_{alt}{year}.NTL"
 
-; OVERALL PARAMETERS OF RUN
-PARAMETERS USERCLASSES=1,FARE=N, MAPSCALE=5280, HDWAYPERIOD=1,
-           NOROUTEERRS=999999, NOROUTEMSGS=999999,
-           TRANTIME=LW.TRANTIME,
-           TRANTIME[21]=LI.M21TIMEPK,
-           TRANTIME[22]=LI.M22TIMEPK,
-           TRANTIME[23]=LI.M23TIMEPK,
-           TRANTIME[24]=LI.M24TIMEPK,
-           TRANTIME[25]=LI.M25TIMEPK,
-           TRANTIME[26]=LI.M26TIMEPK
-REPORT LINES=T
+FILEO PRINTO[6] = "{Scenario_Dir}\output\NTLEG4OP_{alt}{year}.NTL" ; Walk access to BRT 
+FILEO PRINTO[7] = "{Scenario_Dir}\output\NTLEG5OP_{alt}{year}.NTL" ; PNR access to BRT 
+FILEO PRINTO[8] = "{Scenario_Dir}\output\NTLEG6OP_{alt}{year}.NTL" ; KNR access to BRT 
+;FILEO PRINTO[9] = "{Scenario_Dir}\output\NTLEG7PK_{alt}{year}.NTL" ; Walk access to ComRail 
+FILEO PRINTO[9] = "{Scenario_Dir}\output\NTLEG8OP_{alt}{year}.NTL" ; PNR access to ComRail 
+FILEO PRINTO[10] = "{Scenario_Dir}\output\NTLEG9OP_{alt}{year}.NTL" ; KNR access to ComRail 
+;FILEO PRINTO[11] = "{Scenario_Dir}\output\NTLEG13OP_{alt}{year}.NTL" ; Walk egress to BRT 
 
-PROCESS PHASE=LINKREAD
- LW.TRANTIME=LI.M21TIMEPK
- LW.WALKTIME=LI.WALKTIME
- LW.WALKDISTANCE=LI.DISTANCE
- LW.DISTANCE=LI.DISTANCE
- LW.ADJDISTANCE=LI.ADJDISTANCE
-ENDPROCESS
+s1=strpos('NT',reci)
+s2=strpos('LEG',reci)
+s3=strpos('MODE',reci)
+s4=strpos('COST',reci)
+s5=strpos('DIST',reci)
+s6=strpos('ONEWAY',reci)
+s7=strpos('XN',reci)
 
-PROCESS PHASE=DATAPREP
+; get the origin and destination zone
+s8=(s3-s2)
+leg1=substr(reci,s2,s8)
+s9=strpos('=',leg1)
+s10=strpos('-',leg1)
+s11=(s9+1)
+s12=(s10-1)
+s13=(s10+1)
+zonei=val(substr(leg1,s11,s12))
+zonej=val(substr(leg1,s13,strlen(leg1)))
 
-  ; 1 - WALK ACCESS/EGRESS
-  GENERATE, COST=(LW.ADJDISTANCE),EXTRACTCOST=(LW.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,EXCLUDELINK=(LI.FACILITY_TYPE=10-19,69,70-99),
-            NTLEGMODE=1,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,ONEWAY=F,FROMNODE=1-{ZONESI},TONODE={NODEMIN}-99999
-     
-  ; 11 - Fixed-guideway to bus (transfer connectors)
-  GENERATE, COST=(LW.DISTANCE),EXTRACTCOST=(LI.WALKTIME),MAXCOST=200*{WALKACCESSDIST},LIST=N,INCLUDELINK=(LI.FACILITY_TYPE=59),
-            NTLEGMODE=11,MAXNTLEGS=200*{MAXWLKACCLNKS},DIRECTION=3,DIRECTLINK=2,ONEWAY=F,FROMNODE={NODEMIN}-99999,TONODE={NODEMIN}-99999
+; get the mode number
+s14=(s4-s3)
+mode1=substr(reci,s3,s14)
+s15=strpos('=',mode1)
+s16=(s15+1)
+mode=val(substr(mode1,s16,strlen(mode1)))
+
+; get the time on the connector (cost field in the NT leg file)
+s17=(s5-s4)
+time1=substr(reci,s4,s17)
+s18=strpos('=',time1)
+s19=(s18+1)
+time=val(substr(time1,s19,strlen(time1)))
+
+; get the distance
+s20=(s6-s5)
+dist1=substr(reci,s5,s20)
+s21=strpos('=',dist1)
+s22=(s21+1)
+dist=val(substr(dist1,s22,strlen(dist1)))
+
+; get the rest of the string
+s23=substr(reci,s6,strlen(reci))
+
+; ############# check for error in time field #################
+if (time > 999)
+ time=999
+ print list='*****Error in the time field, Time exceeds 999 min *****', zonei(5.0),'-',zonej(5.0),mode(3.0)
+endif
+;##############################################################
+
+; LOOKUP for coefficient file
+LOOKUP, NAME=COEFF, LOOKUP[1]=1, RESULT=2,FAIL=0,0,0,LIST=Y,INTERPOLATE=N,LOOKUPI=2
+ovtfactor =COEFF(1,3)/COEFF(1,1)     ; out-of-vehicle time factor (OVT time and Wait factor)
+valtime   =0.6*COEFF(1,1)/COEFF(1,4)  ; value of time (in $/hr)
+aatfactor =COEFF(1,5)/COEFF(1,1)     ; drive access to transit time factor
+
+if (i==1 && _ctr==0)
+  PRINT LIST=";;<<PT>>;;", PRINTO=1
+  PRINT LIST=";;<<PT>>;;", PRINTO=2
+  PRINT LIST=";;<<PT>>;;", PRINTO=3
+  _ctr = _ctr + 1
+endif
+
+
+; Walk egress from all nodes (except BRT, CR) to centroids
+if (mode=1 & (zonei > {ZONESI} & zonei <= 80010)  & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
+
+; Walk egress from BRT stations to centroids
+if (mode=1 & zonei >=80010 & zonei <90000 & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=13 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=6
+
+; Walk egress from CR stations to centroids
+;if (mode=14 & zonei >=90000  & zonej <= {ZONESI}) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," ;MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
+
+; Walk access from all centroids to transit stops (except for BRT & CR)
+if (mode=1 & zonei <= {ZONESI}  & zonej < 80010) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=",mode," COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=1
+
+; PNR access from all centroids to transit stops (except for BRT & CR)
+if (mode=2 & zonei <= {ZONESI}  & zonej < 80010) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=2
+
+; KNR access from all centroids to transit stops (except for BRT & CR)
+if (mode=3 & zonei <= {ZONESI}  & zonej < 80010) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2)," ONEWAY=T",PRINTO=3
+
+; separate walk, pnr, knr connectors for BRT and CR
+; Walk connectors to BRT 
+IF(mode =1 & zonei <= {ZONESI}  & zonej >= 80010 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=4 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=6
   
-            ; 11 - station to nearby stop (transfer connectors)
-  READ, FILE = "{SCENARIO_DIR}\OUTPUT\STATXFER_TMP.DAT"
+  ; PNR connectors to BRT 
+IF(mode =2 & zonei <= {ZONESI}  & zonej >= 80010 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=5 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=7
+  
+  ; KNR connectors to BRT 
+IF(mode =3 & zonei <= {ZONESI}  & zonej >= 80010 & zoneJ < 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=6 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=8
+  
+; Walk connector to CR (don't produce walk to om rail- these are maunually supplied in the inputs folder)
+;IF(mode =1 & zonei <= {ZONESI}  & zonej >= 90000)  PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=7 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=9
+  
+; PNR connector to CR 
+IF(mode =2 & zonei <= {ZONESI}  & zonej >= 90000)  PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=8 COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=9
+  
+  ; KNR connector to CR 
+IF(mode =3 & zonei <= {ZONESI}  & zonej >= 90000) PRINT FORM=L, LIST="NT LEG=",zonei,"-",zonej," MODE=9  COST=",time(6.2L)," DIST=",dist(6.2L)," ",s23,PRINTO=10
 
-  ; 12 - CBD sidewalks
-   READ, FILE = "{SCENARIO_DIR}\OUTPUT\CBDXFER.DAT"
+; Xfer connectors
+if (mode=11) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2),PRINTO=4
+if (mode=12) PRINT LIST="NT LEG=",zonei(5.0),"-",zonej(5.0)," MODE=",mode(2.0)," COST=",time(6.2)," DIST=",dist(5.2),PRINTO=5
 
-            
- ; Add AUTOCON outputs
- list='\nGenerate Zone Access/Egress Legs'
-    GENERATE, 
-       PNR=T,
-       KNR=T,
-       PERIOD=1,
-       
-       PNRMODE=2,
-       KNRMODE=3,
-       INTERNALZONES=1-2494,
-       
-       CBDZONE=730,
-       ORIGINTERMTIME=2.0,
-       DEFDRIVETIME=20.0,
-       CHECKRELEVANCE=1,
-       CHECKBACKTRACK=1,
-       MAXBACKDIST=4.0,
-       MAXBACKFACTOR=0.30,
-       DISTANCEFACTOR=5280,
-       ;EAH testing distance
-       ;DISTANCEFACTOR=528,
-       
-       ; Trn Modes = 21,22,23,24,25,26
-       PREMIUMMODE  =0,0,0,1,1,1,  
-       MODEPRIORITY =7,7,7,2,2,1,
-
-       VOT=6,3,
-       OVTRATIO=2,2,
-       AATRATIO=1.5,1.5,
-       AUTOCCPNR=1.2,
-       AUTOCCKNR=1.2,
-       AOC=9.5,
-       INFLTRANSITFARE=0.9487,
-       INFLAOC=1,
-       INFLPARKINGCOST=1.1976,
-       MAXCHECK = 10,
-       MAXCONN = 5,
-       
-       CONNREPORT=1,
-       GENREPORT=2,
-       TIMEMAT=MI.1.4,
-       DISTMAT=MI.1.2 * 10,
-       AUTOMATCH=F     ; T=original logic, F=Enhanced logic
-
-  ENDPROCESS
 
 ENDRUN
 

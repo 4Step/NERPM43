@@ -10,7 +10,7 @@ FILEO PRINTO[2] = "{SCENARIO_DIR}\OUTPUT\HHCONVERGENCE.PRN"
 
 
 ;Household Seed Lookup
-FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\HHSeed.csv"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\HHSeed.csv"
 FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\nftpo_incomebytaz2.dbf"
 FILEI LOOKUPI[3] = "{Scenario_Dir}\Input\TRIPGEN\jacksonville_hhsize_marginals.dbf"
 FILEI LOOKUPI[4] = "{Scenario_Dir}\Input\TRIPGEN\jacksonville_hhworkers_marginals.dbf"
@@ -651,10 +651,9 @@ ENDRUN
 RUN PGM=NETWORK PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGNET00A.PRN" MSG='Floating Zone Mixed Density'
 FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\MixedDensity.csv"
 FILEI LINKI[1] = "{SCENARIO_DIR}\OUTPUT\UNLOADED.NET"
-FILEI NODEI[2] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf",
- RENAME=Zone-N
+FILEI NODEI[2] = "{Scenario_Dir}\Input\ZDATA_{year}{alt}.dbf",
+ RENAME=TAZ-N
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv"
-
 
 LOOKUP, NAME=MDM, LOOKUP[1]=1, RESULT=2, INTERPOLATE=N, LIST=Y, LOOKUPI=1
 
@@ -861,9 +860,9 @@ ENDRUN
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGMAT00K.PRN" MSG='Auto Availability Model'
 FILEI LOOKUPI[3] = "{SCENARIO_DIR}\Input\TRIPGEN\nftpo_incomebytaz2.dbf"
-FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\COEFF_AUTOOWN.csv"
+FILEI LOOKUPI[2] = "{CATALOG_Dir}\Parameters\COEFF_AUTOOWN.csv"
 FILEI LOOKUPI[1] = "{SCENARIO_DIR}\OUTPUT\HHClass.DBF"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\ZDATA_{year}{alt}.dbf", RENAME =TAZ-ZONE
 FILEI ZDATI[5] = "{Scenario_Dir}\OUTPUT\WalkTranAcc.dbf"
 FILEI ZDATI[3] = "{SCENARIO_DIR}\OUTPUT\Float_ZnData.csv",
     Z=#1,TotHhlds=#2,TotEmp=#3,FloatHhld=#4,FloatEmp=#5,MixedDen=#6,CentX=#7,CentY=#8
@@ -1054,7 +1053,8 @@ IF(I == 1)
 PAR ZONES={ZONESI} zonemsg=100
 
 ; TAZ 
-ZN=ZI.1.ZONE
+;ZN=ZI.1.ZONE
+ZN=ZI.1.TAZ
 
 ; County
 
@@ -1235,17 +1235,17 @@ ENDRUN
 ; Script for program MATRIX in file "C:\NERPM43\APPLICATIONS\TRIPGEN\TGMAT00N.S"
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
 RUN PGM=MATRIX PRNFILE="{CATALOG_DIR}\APPLICATIONS\TGMAT00N.PRN" MSG='New TMU Trip Generation'
-FILEI LOOKUPI[4] = "{Scenario_Dir}\INPUT\TripGEN\HBW_ARates.csv"
+FILEI LOOKUPI[4] = "{CATALOG_DIR}\PARAMETERS\HBW_ARates.csv"
 FILEI LOOKUPI[3] = "{Scenario_Dir}\Input\TRIPGEN\jaxemp_taz_level.dbf"
-FILEI LOOKUPI[1] = "{Scenario_Dir}\Input\TRIPGEN\Work_Prates.csv"
-FILEI LOOKUPI[2] = "{Scenario_Dir}\Input\TRIPGEN\NonWork_PRates.csv"
+FILEI LOOKUPI[1] = "{CATALOG_DIR}\PARAMETERS\Work_Prates.csv"
+FILEI LOOKUPI[2] = "{CATALOG_DIR}\PARAMETERS\NonWork_PRates.csv"
 ; header "IAP_CLASS	IAP	INCOME	AUTO	PERSON	HBSH_PRATE	HBSR_PRATE	HBO_PRATE	NHB_PRATE	HBCU_PRATE	HBSC_PRATE"
 FILEI LOOKUPI[5] = "{SCENARIO_DIR}\OUTPUT\AUTOOWN_MODEL.DBF"
-FILEI LOOKUPI[6] = "{Scenario_Dir}\Input\TRIPGEN\OBO_ARates.csv"
+FILEI LOOKUPI[6] = "{CATALOG_DIR}\PARAMETERS\OBO_ARates.csv"
 ; header #1 Purpose, #2 PurposeNo, #3 Retail Trade, #4 Arts, Entertainment, and Recreation, #5 Accommodation and Food Services, #6 Educational Services, #7	Health Care and Social Assistance, #8	enrlsc - enrollment pk-12, #9	enrluniv - university, #10 TotalHH
 
 FILEI LOOKUPI[7] = "{Scenario_Dir}\Input\TRIPGEN\school_enroll.dbf"
-FILEI ZDATI[1] = "{Scenario_Dir}\Input\TRIPGEN\ZDATA_{year}{alt}.dbf"
+FILEI ZDATI[1] = "{Scenario_Dir}\Input\ZDATA_{year}{alt}.dbf"
 FILEO PRINTO[2] = "{SCENARIO_DIR}\OUTPUT\TG_REPORT.TXT"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\OUTPUT\TRIPGEN_DEBUG.TXT"
 

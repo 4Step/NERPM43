@@ -1,5 +1,5 @@
  
-NETWORK (v.08/05/2014 [6.1.1])  Fri Mar 20 12:19:13 2015
+NETWORK (v.08/05/2014 [6.1.1])  Mon Jun 29 18:53:15 2015
 
 FILEI LINKI[1] = "C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET"
 FILEO PRINTO[2] = "C:\NERPM43\Base2010\CF2040\output\PreAssignPROFILE_NERPM4.TXT"
@@ -50,7 +50,7 @@ DIRCODE     =1
      _distmile=li.1.distance
      _lanemiles=lns*distance
      _orgspd=_distmile/_orgtimehr
-     _links=1Page 499  (VOYAGER NETWORK) 
+     _links=1Page 492  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
@@ -106,7 +106,7 @@ CROSSTAB  VAR= _LANEMILES, form=14.2c, VAR= _CAPLNMILES, form=14.2c,
 
 ;sks - for computing original Speed the network by FTG and ATG
 CROSSTAB  VAR=_distmile form=14.2c, VAR=_orgtimehr form=14.2c, VAR=_orgspd form=14.2c,VAR=_links form=14.2c,
-    row=FTG, range=1-9-1,1-9,Page 500  (VOYAGER NETWORK) 
+    row=FTG, range=1-9-1,1-9,Page 493  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
     col=ATG, range=1-5-1,1-5,
@@ -162,7 +162,7 @@ if ('YES' = 'YES')     ;Preassign HEVAL always in Analysis mode since no peak co
            "\n&VALIDATE      Sets HEVAL to run in validate mode if (YES)",
            "\nNO",
            "\n&GLTITLE       Specifies title for HEVAL runs using geographic location",
-           "\n",'Enhanced Validation Run',"- PreAssignment HEVAL in Alalysis Mode",                                                                       ;GTITLE,Page 501  (VOYAGER NETWORK) 
+           "\n",'Enhanced Validation Run',"- PreAssignment HEVAL in Alalysis Mode",                                                                       ;GTITLE,Page 494  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
            "\n&ASCII         Generates ASCII file (HRLDXY.ASC) with 1-way vol and cap",
@@ -186,31 +186,20 @@ NETWORK Stack Size = 6470 bytes.
 
 C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET   (VOYAGER):
 
-NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Fri Mar 20 12:19:12 2015
+NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Mon Jun 29 18:53:15 2015
 ID= 
-PAR Zones=2578 Nodes=91504 Links=59126 NodeRecs=29842 
-NVR 97    N    TIMESUSED    X    Y    TSNAME=051    STATZONE
+PAR Zones=2578 Nodes=91504 Links=59128 NodeRecs=29847 
+NVR 48    N    TIMESUSED    X    Y    TSNAME=051    STATZONE
     TSSTATION_05A    TAZNEW    COUNTY    SPGEN    TSRANGE_05A
     TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
-    FAREZONE_05A    TSSTATION_16A    TSRANGE_16A    TSPARKSPACE_16A
-    TSCOSTAM_16A    TSCOSTMD_16A    TSTYPE_16A    FAREZONE_16A    TSTYPE_35T
-    TSSTATION_35T    TSRANGE_35T    TSPARKSPACE_35T    TSCOSTAM_35T
-    TSCOSTMD_35T    FAREZONE_35T    TSTYPE_25T    TSSTATION_25T    TSRANGE_25T
-    TSPARKSPACE_25T    TSCOSTAM_25T    TSCOSTMD_25T    FAREZONE_25T
-    TSSTATION_15A    TSRANGE_15A    TSPARKSPACE_15A    TSCOSTAM_15A
-    TSCOSTMD_15A    TSTYPE_15A    FAREZONE_15A    TSSTATION_10A    TSRANGE_10A
-    TSPARKSPACE_10A    TSCOSTAM_10A    TSCOSTMD_10A    TSTYPE_10A
-    FAREZONE_10A    SUB_TYPE    OLD_NODE    TSTYPE_18A    TSSTATION_18A
-    TSRANGE_18A    TSPARKSPACE_18A    TSCOSTAM_18A    FAREZONE_18A
-    TSCOSTMD_18A    TSSTATION_40N    TSRANGE_40N    TSPARKSPACE_40N
-    TSCOSTAM_40N    TSCOSTMD_40N    TSTYPE_40N    FAREZONE_40N    TSSTATION_40A
-    TSRANGE_40A    TSPARKSPACE_40A    TSCOSTAM_40A    TSCOSTMD_40A
-    TSTYPE_40A    FAREZONE_40A    TSSTATION_40C    TSRANGE_40C
-    TSPARKSPACE_40C    TSCOSTAM_40C    TSCOSTMD_40C    TSTYPE_40C
-    FAREZONE_40C    TSSTATION_30A    TSRANGE_30A    TSPARKSPACE_30A
-    TSCOSTAM_30A    TSCOSTMD_30A    TSTYPE_30A    FAREZONE_30A    TSSTATION_40M
-    TSRANGE_40M    TSPARKSPACE_40M    TSCOSTAM_40M    TSCOSTMD_40M
-    TSTYPE_40M    FAREZONE_40M    _TOLL_ACC    _TOLL_DEC
+    FAREZONE_05A    TSSTATION_10A    TSRANGE_10A    TSPARKSPACE_10A
+    TSCOSTAM_10A    TSCOSTMD_10A    TSTYPE_10A    FAREZONE_10A    SUB_TYPE
+    OLD_NODE    TSTYPE_18A    TSSTATION_18A    TSRANGE_18A    TSPARKSPACE_18A
+    TSCOSTAM_18A    FAREZONE_18A    TSCOSTMD_18A    TSSTATION_40C
+    TSRANGE_40C    TSPARKSPACE_40C    TSCOSTAM_40C    TSCOSTMD_40C
+    TSTYPE_40C    FAREZONE_40C    TSCOSTAM_40P    TSCOSTMD_40P
+    TSPARKSPACE_40P    TSRANGE_40P    TSSTATION_40P    TSTYPE_40P
+    FAREZONE_40P    _TOLL_ACC    _TOLL_DEC
 LVR 114    A    B    TOLL    TOLLTYPE    PLAZADESC=001    PLZALNSMIN
     PLZALNSMAX    CARTOLL    SVCMINUTES    SVCSECONDS    DECELCODE    ACCELCODE
     EXACTCHGLNS    AVILANES    PCTTRUCKS    AADT10    DISTANCE    NAME=032
@@ -218,9 +207,7 @@ LVR 114    A    B    TOLL    TOLLTYPE    PLAZADESC=001    PLZALNSMIN
     CNT_SRC_YR00=014    CONSTR_00A    ROADDIR=002    TMODE    TTIME    EECODE
     TOLLID    IDLINK=011    TCARD    TC    TV    VC    TBSDIST    TBSTIME
     TFGDIST    TFGTIME    TFGMODE    STN_ID    AADT_YR05    CNTYR    YRADJUST
-    COUNT_YR05    PSCF_YR05    MOCF_YR05    COUNTDESC=051    SELSPDADJ    HOTPage 502  (VOYAGER NETWORK) 
-Parsons Brinckerhoff
-----------------------------
+    COUNT_YR05    PSCF_YR05    MOCF_YR05    COUNTDESC=051    SELSPDADJ    HOT
     LEVEL    TWOWAY_40C    COUNT    STN_ID_YR00    COUNT_YR00    DISTANCEFT
     FACILITY_TYPE    AREA_TYPE    NUM_LANES    UROADFACTOR    CONFAC
     BPRCOEFFICIENT    BPREXPONENT    CAPACITY    SPEED    TIME    TIME2
@@ -231,22 +218,22 @@ Parsons Brinckerhoff
     V13_1    V14_1    VT_1    V1T_1    V2T_1    V3T_1    V4T_1    V5T_1
     V6T_1    V7T_1    V8T_1    V9T_1    V10T_1    V11T_1    V12T_1    V13T_1
     V14T_1
-
-
-
-Begin PROCESS PHASE NODEMERGE
-      29,842 records merged from NODEI[1]: C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET
-      29,842 data base records.Page 503  (VOYAGER NETWORK) 
+Page 495  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
+
+Begin PROCESS PHASE NODEMERGE
+      29,847 records merged from NODEI[1]: C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET
+      29,847 data base records.
+
 Variable          Obs<>0              Total           Ave           Min           Max           RMS  
 --------          ------              -----           ---           ---           ---           ---  
-N                 29,842                 --            --          1        91,504               --
-TIMESUSED         29,842         120,642             4.04          1           170             4.84
-X                 29,842  13,364,496,307.68    447,841.84    190,006.11    588,266.75    451,425.58
-Y                 29,842  64,074,371,221.9   2,147,120.54  1,826,931.76  2,356,088.57  2,148,763.91
-TSNAME               238                                   (0       )  (Tanglewo)
+N                 29,847                 --            --          1        91,504               --
+TIMESUSED         29,847         120,670             4.04          1           170             4.84
+X                 29,847  13,366,788,994.35    447,843.64    190,006.11    588,266.75    451,426.78
+Y                 29,847  64,085,176,375.48  2,147,122.87  1,826,931.76  2,356,088.57  2,148,765.98
+TSNAME               242                                   (0       )  (Walmart )
 STATZONE             239         234,725           982.11         11         2,493         1,190.08
 TSSTATION_05A         26             412            15.85          1            30            18.29
 TAZNEW               261             261             1             1             1             1   
@@ -257,30 +244,6 @@ TSPARKSPACE_05A       30           4,045           134.83          1         1,9
 TSCOSTAM_05A           4             714           178.5         138           258           184.54
 TSCOSTMD_05A           4             714           178.5         138           258           184.54
 TSTYPE_05A            27             118             4.37          1             6             4.81
-TSSTATION_16A         80           3,910            48.88          1           113            61.47
-TSRANGE_16A           46             161             3.5           3            10             3.91
-TSPARKSPACE_16A       46           5,932           128.96          1         1,900           323.5 
-TSCOSTAM_16A           4             714           178.5         138           258           184.54
-TSCOSTMD_16A           4             714           178.5         138           258           184.54
-TSTYPE_16A            44             151             3.43          1             6             4.13
-TSTYPE_35T            44             151             3.43          1             6             4.13
-TSSTATION_35T         80           3,910            48.88          1           113            61.47
-TSRANGE_35T           46             161             3.5           3            10             3.91
-TSPARKSPACE_35T       46           5,932           128.96          1         1,900           323.5 
-TSCOSTAM_35T           4             714           178.5         138           258           184.54
-TSCOSTMD_35T           4             714           178.5         138           258           184.54
-TSTYPE_25T            44             151             3.43          1             6             4.13
-TSSTATION_25T         80           3,910            48.88          1           113            61.47
-TSRANGE_25T           46             161             3.5           3            10             3.91
-TSPARKSPACE_25T       46           5,932           128.96          1         1,900           323.5 
-TSCOSTAM_25T           4             714           178.5         138           258           184.54
-TSCOSTMD_25T           4             714           178.5         138           258           184.54
-TSSTATION_15A         80           3,910            48.88          1           113            61.47
-TSRANGE_15A           46             161             3.5           3            10             3.91
-TSPARKSPACE_15A       46           5,932           128.96          1         1,900           323.5 
-TSCOSTAM_15A           4             714           178.5         138           258           184.54
-TSCOSTMD_15A           4             714           178.5         138           258           184.54
-TSTYPE_15A            44             151             3.43          1             6             4.13
 TSSTATION_10A         80           3,910            48.88          1           113            61.47
 TSRANGE_10A           46             151             3.28          3            10             3.47
 TSPARKSPACE_10A       46           5,932           128.96          1         1,900           323.5 
@@ -292,47 +255,27 @@ OLD_NODE          29,511   1,185,134,029        40,159.06          1        91,1
 TSTYPE_18A            57             190             3.33          1             6             3.9 
 TSSTATION_18A         80           3,910            48.88          1           113            61.47
 TSRANGE_18A           59             216             3.66          3            10             3.86
-TSPARKSPACE_18A       46           5,932           128.96          1         1,900           323.5 Page 504  (VOYAGER NETWORK) 
-Parsons Brinckerhoff
-----------------------------
+TSPARKSPACE_18A       46           5,932           128.96          1         1,900           323.5 
 TSCOSTAM_18A           4             714           178.5         138           258           184.54
 TSCOSTMD_18A           4             714           178.5         138           258           184.54
-TSSTATION_40N         80           3,910            48.88          1           113            61.47
-TSRANGE_40N          108             690             6.39          3            10             7.14
-TSPARKSPACE_40N       90          10,695           118.83          1         1,900           250.14
-TSCOSTAM_40N           4             714           178.5         138           258           184.54
-TSCOSTMD_40N           4             714           178.5         138           258           184.54
-TSTYPE_40N           105             289             2.75          1             6             3.34
-TSSTATION_40A         80           3,910            48.88          1           113            61.47
-TSRANGE_40A           59             216             3.66          3            10             3.86
-TSPARKSPACE_40A       46           5,932           128.96          1         1,900           323.5 
-TSCOSTAM_40A           4             714           178.5         138           258           184.54
-TSCOSTMD_40A           4             714           178.5         138           258           184.54
-TSTYPE_40A            57             190             3.33          1             6             3.9 
 TSSTATION_40C         80           3,910            48.88          1           113            61.47
 TSRANGE_40C          106             680             6.42          3            10             7.18
 TSPARKSPACE_40C       90          10,695           118.83          1         1,900           250.14
 TSCOSTAM_40C           4             714           178.5         138           258           184.54
 TSCOSTMD_40C           4             714           178.5         138           258           184.54
-TSTYPE_40C           103             283             2.75          1             6             3.34
-TSSTATION_30A         80           3,910            48.88          1           113            61.47
-TSRANGE_30A          106             680             6.42          3            10             7.18
-TSPARKSPACE_30A       90          10,695           118.83          1         1,900           250.14
-TSCOSTAM_30A           4             714           178.5         138           258           184.54
-TSCOSTMD_30A           4             714           178.5         138           258           184.54
-TSTYPE_30A           103             283             2.75          1             6             3.34
-TSSTATION_40M         80           3,910            48.88          1           113            61.47
-TSRANGE_40M          108             690             6.39          3            10             7.14
-TSPARKSPACE_40M       90          10,695           118.83          1         1,900           250.14
-TSCOSTAM_40M           4             714           178.5         138           258           184.54
-TSCOSTMD_40M           4             714           178.5         138           258           184.54
-TSTYPE_40M           105             289             2.75          1             6             3.34
+TSTYPE_40C           104             284             2.73          1             6             3.33
+TSCOSTAM_40P           4             714           178.5         138           258           184.54
+TSCOSTMD_40P           4             714           178.5         138           258           184.54
+TSPARKSPACE_40P       90          10,695           118.83          1         1,900           250.14
+TSRANGE_40P          106             680             6.42          3            10             7.18
+TSSTATION_40P         80           3,910            48.88          1           113            61.47
+TSTYPE_40P           104             284             2.73          1             6             3.33
 
-      Obs = 0:  FAREZONE_05A  FAREZONE_16A  FAREZONE_35T  FAREZONE_25T
-      Obs = 0:  FAREZONE_15A  FAREZONE_10A  FAREZONE_18A  FAREZONE_40N
-      Obs = 0:  FAREZONE_40A  FAREZONE_40C  FAREZONE_30A  FAREZONE_40M
-      Obs = 0:  _TOLL_ACC  _TOLL_DEC
-
+      Obs = 0:  FAREZONE_05A  FAREZONE_10A  FAREZONE_18A  FAREZONE_40C
+      Obs = 0:  FAREZONE_40P  _TOLL_ACC  _TOLL_DEC
+Page 496  (VOYAGER NETWORK) 
+Parsons Brinckerhoff
+----------------------------
 _Variables with values:
 
 _ZONES               2,578      
@@ -341,109 +284,109 @@ End   PROCESS PHASE NODEMERGE
 
 
 Begin PROCESS PHASE LINKMERGE
-      59,126 records merged from NETI[1]: C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET
-      59,092 data base records.Page 505  (VOYAGER NETWORK) 
+      59,128 records merged from NETI[1]: C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET
+      59,094 data base records.Page 497  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
 Variable         Obs<>0             Total         Ave     Min         Max         RMS  
 --------         ------             -----         ---     ---         ---         ---  
-A                59,092                --          --    1      91,504             --
-B                59,092                --          --    1      91,504             --
+A                59,094                --          --    1      91,504             --
+B                59,094                --          --    1      91,504             --
 AADT10            1,654     19,974,891      12,076.72   70      69,500      16,950.04
-DISTANCE         59,092         11,148.4         0.19    0           6.71        0.39
-NAME             46,228                                (103RD ST)  (pope Rd )
-ALT_NAME         16,246                                (104TH ST)  (ZAPH ST )
-COFIPS           59,066      2,598,748          44       3         109          53.49
-COUNTY           59,089        144,724           2.45    1           6           2.68
-DISTRICT         59,089        809,554          13.7     1          35          16.15
-SCREENLINE       59,032      5,802,770          98.3     1          99          98.58
-PSCF_YR00        46,815                                (1.02    )  (1.2     )
+DISTANCE         59,094         11,148.4         0.19    0           6.71        0.39
+NAME             46,230                                (103RD ST)  (pope Rd )
+ALT_NAME         16,248                                (104TH ST)  (ZAPH ST )
+COFIPS           59,068      2,598,810          44       3         109          53.49
+COUNTY           59,091        144,728           2.45    1           6           2.68
+DISTRICT         59,091        809,574          13.7     1          35          16.15
+SCREENLINE       59,034      5,802,968          98.3     1          99          98.58
+PSCF_YR00        46,817                                (1.02    )  (1.2     )
 CNT_SRC_YR00      2,044                                (0       )  (St. John)
 CONSTR_00A            2             92          46      46          46          46   
-ROADDIR          59,070                                (0       )  (WB      )
+ROADDIR          59,072                                (0       )  (WB      )
 EECODE              481            481           1       1           1           1   
 TOLLID               22            253          11.5     1          22          13.13
-IDLINK           55,720                                (0       )  (9992-990)
+IDLINK           55,722                                (0       )  (9992-990)
 TCARD               109          1,169          10.72    1          23          12.74
 STN_ID            2,901  1,261,944,031     435,003.11    1     790,280     559,404.66
 AADT_YR05         2,857     40,219,420      14,077.5    60      88,250      18,870.18
 CNTYR             2,895      5,801,660       2,004.03  237       2,205       2,004.57
 YRADJUST          2,903          2,901.87        1       0.82        1.13        1   
 COUNT_YR05        2,857     30,784,687.81   10,775.18   29.69   91,927.09   16,134.22
-PSCF_YR05        59,092         61,642.96        1.04    1           1.11        1.04
-MOCF_YR05        59,059         56,620.53        0.96    0.9         1           0.96
+PSCF_YR05        59,094         61,645.05        1.04    1           1.11        1.04
+MOCF_YR05        59,061         56,622.45        0.96    0.9         1           0.96
 COUNTDESC         2,908                                (0       )  (old Midd)
 SELSPDADJ           104            135           1.3    -7.5         5           3.53
 HOT                 500            748           1.5     1           2           1.58
 LEVEL             1,077          2,659           2.47    1           4           2.52
-TWOWAY_40C       48,270         48,270           1       1           1           1   
+TWOWAY_40C       48,272         48,272           1       1           1           1   
 COUNT_YR00        2,013     20,690,556      10,278.47   65      78,538      15,358.2 
-DISTANCEFT       59,092     58,864,015         996.14    2      35,409       2,060.81
-FACILITY_TYPE    59,092      2,430,542          41.13   11          99          43.19
-AREA_TYPE        59,092      1,916,605          32.43   11         311          33.89
-NUM_LANES        59,092         80,329           1.36    1           6           1.49
-UROADFACTOR      59,092         59,092           1       1           1           1   
-CONFAC           59,092          6,164.3         0.1     0.1         0.11        0.1 
-BPRCOEFFICIENT   59,092         25,521.77        0.43    0.1         0.53        0.46
-BPREXPONENT      59,092        210,387.95        3.56    2.5         7           3.69
-CAPACITY         59,092    137,185,186       2,321.55  345      10,000       4,175.7 
-SPEED            59,092      2,327,016.15       39.38   10          75          40.79
-TIME             59,092         19,245.51        0.33    0.01       13.41        0.73
-TIME2            59,092         19,245.51        0.33    0.01       13.41        0.73
-WALKTIME         59,092        267,563.35        4.53    0.01      160.95        9.37
-LINKCNT          59,092         59,092           1       1           1           1   
-CONFACAMP        59,092         25,882.3         0.44    0.44        0.44        0.44
-CONFACMDP        59,092         10,914.29        0.18    0.18        0.18        0.18
-CONFACPMP        59,092         21,190.39        0.36    0.36        0.36        0.36
-CONFACNTP        59,092         11,658.85        0.2     0.2         0.2         0.2 
-V_1              55,483     66,663,556.11    1,201.51    0      22,701.6     2,390.13
-TIME_1           59,092         20,364.8         0.34    0.01       13.41        0.75Page 506  (VOYAGER NETWORK) 
+DISTANCEFT       59,094     58,864,015         996.11    2      35,409       2,060.77
+FACILITY_TYPE    59,094      2,430,590          41.13   11          99          43.19
+AREA_TYPE        59,094      1,916,651          32.43   11         311          33.89
+NUM_LANES        59,094         80,335           1.36    1           6           1.49
+UROADFACTOR      59,094         59,094           1       1           1           1   
+CONFAC           59,094          6,164.51        0.1     0.1         0.11        0.1 
+BPRCOEFFICIENT   59,094         25,522.75        0.43    0.1         0.53        0.46
+BPREXPONENT      59,094        210,396.65        3.56    2.5         7           3.69
+CAPACITY         59,094    137,186,826       2,321.5   345      10,000       4,175.64
+SPEED            59,094      2,327,106.15       39.38   10          75          40.79
+TIME             59,094         19,245.51        0.33    0.01       13.41        0.73
+TIME2            59,094         19,245.51        0.33    0.01       13.41        0.73
+WALKTIME         59,094        267,563.35        4.53    0.01      160.95        9.37
+LINKCNT          59,094         59,094           1       1           1           1   
+CONFACAMP        59,094         25,883.17        0.44    0.44        0.44        0.44
+CONFACMDP        59,094         10,914.66        0.18    0.18        0.18        0.18
+CONFACPMP        59,094         21,191.11        0.36    0.36        0.36        0.36
+CONFACNTP        59,094         11,659.25        0.2     0.2         0.2         0.2 
+V_1              55,485     66,668,460.79    1,201.56    0      22,701.6     2,390.13
+TIME_1           59,094         20,364.8         0.34    0.01       13.41        0.75Page 498  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
-VC_1             55,483         20,898.67        0.38    0           9.27        0.54
-CSPD_1           59,092      2,134,600.27       36.12    2.5        75          37.5 
-VDT_1            55,483     10,306,326.6       185.76    0      41,337.09      797.96
-VHT_1            55,483        302,651.38        5.45    0       2,940.37       38.8 
-V1_1             54,880     39,939,665.83      727.76    0      15,470.63    1,484.09
-V2_1             55,340     12,500,994.57      225.89    0       4,700.46      447.24
-V3_1             54,943     10,698,137.23      194.71    0       3,877.7       394.66
+VC_1             55,485         20,899.66        0.38    0           9.27        0.54
+CSPD_1           59,094      2,134,687.99       36.12    2.5        75          37.5 
+VDT_1            55,485     10,306,326.6       185.75    0      41,337.09      797.95
+VHT_1            55,485        302,651.38        5.45    0       2,940.37       38.8 
+V1_1             54,882     39,942,913.99      727.8     0      15,470.63    1,484.09
+V2_1             55,342     12,501,950.83      225.9     0       4,700.46      447.24
+V3_1             54,945     10,698,834.64      194.72    0       3,877.7       394.66
 V4_1              5,895        690,951.25      117.21    0.04    1,029.37      238.38
 V5_1              5,895      1,542,962.94      261.74    0.16    2,081.74      487.74
 V6_1              5,846      1,031,092.79      176.38    0.09    1,452.24      338.62
-V7_1             19,815        259,751.48       13.11    0         751.16       48.96
-VT_1             55,880     93,796,737.42    1,678.54    0      22,701.6     2,836.85
-V1T_1            55,308     56,709,521.13    1,025.34    0      15,470.63    1,778.82
-V2T_1            55,768     17,679,948.04      317.03    0       4,700.46      529.77
-V3T_1            55,337     15,143,365.23      273.66    0       3,877.7       472.88
+V7_1             19,817        259,754.35       13.11    0         751.16       48.96
+VT_1             55,882     93,806,546.79    1,678.65    0      22,701.6     2,836.95
+V1T_1            55,310     56,716,017.45    1,025.42    0      15,470.63    1,778.89
+V2T_1            55,770     17,681,860.55      317.05    0       4,700.46      529.8 
+V3T_1            55,339     15,144,760.04      273.67    0       3,877.7       472.89
 V4T_1             6,027        808,192.11      134.1     0.08    1,029.37      247.5 
 V5T_1             6,027      1,900,747.2       315.37    0.22    2,081.74      534.81
 V6T_1             5,978      1,246,742.64      208.56    0.14    1,452.24      362.87
-V7T_1            21,224        308,220.97       14.52    0       1,079.09       51.98
-ZONE             59,092         59,092           1       1           1           1   
-USECODE          59,092         59,092           1       1           1           1   
-LANDUSE          59,092         59,092           1       1           1           1   
-CCODE            59,092         59,092           1       1           1           1   
-DIRCODE          59,092         59,092           1       1           1           1   
-LOCATION         59,089        144,724           2.45    1           6           2.68
-CGTIME           59,092         20,364.8         0.34    0.01       13.41        0.75
-TOTAL_VOL        55,483     66,663,556.11    1,201.51    0      22,701.6     2,390.13
-FT               59,092      2,430,542          41.13   11          99          43.19
-FACILITY         59,092      2,430,542          41.13   11          99          43.19
-AT               59,092      1,916,605          32.43   11         311          33.89
-LNS              59,092         80,329           1.36    1           6           1.49
-FTG              59,092        220,798           3.74    1           9           3.96
-ATG              59,092        182,604           3.09    1          31           3.24
-SL               59,032      5,802,770          98.3     1          99          98.58
-ONE              59,092         59,092           1       1           1           1   
-ATYPE2           59,092      1,916,605          32.43   11         311          33.89
-FTYPE2           59,092      2,430,542          41.13   11          99          43.19
-LANES            59,092         80,329           1.36    1           6           1.49
-CONFACPK         59,092         29,546           0.5     0.5         0.5         0.5 
-TWOWAY           48,270         48,270           1       1           1           1   
-PK2HRCAP         59,092    320,634,140       5,426.02  920      60,000       8,793.88
-SCRN             59,032      5,802,770          98.3     1          99          98.58
-CNTY             59,089        144,724           2.45    1           6           2.68
+V7T_1            21,226        308,226.7        14.52    0       1,079.09       51.98
+ZONE             59,094         59,094           1       1           1           1   
+USECODE          59,094         59,094           1       1           1           1   
+LANDUSE          59,094         59,094           1       1           1           1   
+CCODE            59,094         59,094           1       1           1           1   
+DIRCODE          59,094         59,094           1       1           1           1   
+LOCATION         59,091        144,728           2.45    1           6           2.68
+CGTIME           59,094         20,364.8         0.34    0.01       13.41        0.75
+TOTAL_VOL        55,485     66,668,460.79    1,201.56    0      22,701.6     2,390.13
+FT               59,094      2,430,590          41.13   11          99          43.19
+FACILITY         59,094      2,430,590          41.13   11          99          43.19
+AT               59,094      1,916,651          32.43   11         311          33.89
+LNS              59,094         80,335           1.36    1           6           1.49
+FTG              59,094        220,802           3.74    1           9           3.96
+ATG              59,094        182,608           3.09    1          31           3.24
+SL               59,034      5,802,968          98.3     1          99          98.58
+ONE              59,094         59,094           1       1           1           1   
+ATYPE2           59,094      1,916,651          32.43   11         311          33.89
+FTYPE2           59,094      2,430,590          41.13   11          99          43.19
+LANES            59,094         80,335           1.36    1           6           1.49
+CONFACPK         59,094         29,547           0.5     0.5         0.5         0.5 
+TWOWAY           48,272         48,272           1       1           1           1   
+PK2HRCAP         59,094    320,643,980       5,426     920      60,000       8,793.78
+SCRN             59,034      5,802,968          98.3     1          99          98.58
+CNTY             59,091        144,728           2.45    1           6           2.68
 
       Obs = 0:  TOLL  TOLLTYPE  PLAZADESC  PLZALNSMIN  PLZALNSMAX  CARTOLL
       Obs = 0:  SVCMINUTES  SVCSECONDS  DECELCODE  ACCELCODE  EXACTCHGLNS
@@ -452,7 +395,7 @@ CNTY             59,089        144,724           2.45    1           6          
       Obs = 0:  PNRTERMTIME  KNRTERMTIME  CNTSRC_YR05  TOLL_ACC  TOLL_DEC
       Obs = 0:  V8_1  V9_1  V10_1  V11_1  V12_1  V13_1  V14_1  V8T_1  V9T_1
       Obs = 0:  V10T_1  V11T_1  V12T_1  V13T_1  V14T_1  COMP
-Page 507  (VOYAGER NETWORK) 
+Page 499  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 _Variables with values:
@@ -497,7 +440,7 @@ CROSSTAB ROW=FTG COL=ATG VAR=_LANEMILES
  7 -  7           4.68         43.53        119.16         16.82          7.48        191.68
  8 -  8              0             0        391.40             0             0        391.40
  9 -  9              0             0        234.01             0             0        234.01
- 1 -  9         137.64        904.20      5,811.26        516.51      2,249.02      9,618.62Page 508  (VOYAGER NETWORK) 
+ 1 -  9         137.64        904.20      5,811.26        516.51      2,249.02      9,618.62Page 500  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
@@ -544,7 +487,7 @@ CROSSTAB ROW=FTG COL=ATG VAR=_distmile
  7 -  7           3.59         37.01        107.08         14.36          7.48        169.51
  8 -  8              0             0        196.59             0             0        196.59
  9 -  9              0             0        100.15             0             0        100.15
- 1 -  9          85.44        562.09      3,780.87        274.98      1,920.89      6,624.27Page 509  (VOYAGER NETWORK) 
+ 1 -  9          85.44        562.09      3,780.87        274.98      1,920.89      6,624.27Page 501  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
@@ -569,14 +512,14 @@ CROSSTAB ROW=FTG COL=ATG VAR=_orgspd
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
  1 -  1       4,736.31     40,483.43    100,256.65      9,279.36      6,767.11    161,522.87
- 2 -  2       3,044.63     92,314.65    242,970.97     66,863.78     33,179.20    438,373.24
+ 2 -  2       3,044.63     92,404.46    242,970.97     66,863.78     33,179.20    438,463.05
  3 -  3      13,334.81     60,354.46    178,585.56      4,619.39     76,437.24    333,331.48
  4 -  4      11,553.80    121,344.35    679,214.72     51,553.57    157,843.26  1,021,509.70
  6 -  6       5,351.53      2,610.10        525.00        343.96             0      8,830.60
  7 -  7       2,466.23     15,547.87     30,237.08      4,658.07      1,997.95     54,907.20
  8 -  8              0             0     34,586.64             0             0     34,586.64
  9 -  9              0             0     12,588.33             0             0     12,588.33
- 1 -  9      40,487.31    332,654.88  1,278,964.96    137,318.16    276,224.77  2,065,650.07
+ 1 -  9      40,487.31    332,744.68  1,278,964.96    137,318.16    276,224.77  2,065,739.87
 
 
 CROSSTAB ROW=FTG COL=ATG VAR=_links
@@ -584,7 +527,7 @@ CROSSTAB ROW=FTG COL=ATG VAR=_links
                      1             2             3             4             5             5
 -------- ------------- ------------- ------------- ------------- ------------- -------------
  1 -  1         102.00        698.00      1,427.00        150.00        101.00      2,478.00
- 2 -  2          83.00      2,160.00      5,096.00      1,457.00        716.00      9,512.00
+ 2 -  2          83.00      2,162.00      5,096.00      1,457.00        716.00      9,514.00
  3 -  3         502.00      1,576.00      4,037.00        105.00      1,663.00      7,883.00
  4 -  4         578.00      3,394.00     17,398.00      1,448.00      3,667.00     26,485.00
  5 -  5         674.00      1,478.00      5,278.00        708.00      1,798.00      9,936.00
@@ -592,7 +535,7 @@ CROSSTAB ROW=FTG COL=ATG VAR=_links
  7 -  7         106.00        452.00        797.00        142.00         63.00      1,560.00
  8 -  8              0             0        504.00             0             0        504.00
  9 -  9              0             0        225.00             0             0        225.00
- 1 -  9       2,446.00      9,842.00     34,777.00      4,018.00      8,008.00     59,091.00Page 510  (VOYAGER NETWORK) 
+ 1 -  9       2,446.00      9,844.00     34,777.00      4,018.00      8,008.00     59,093.00Page 502  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
@@ -639,7 +582,7 @@ CROSSTAB ROW=FTG COL=ATG VAR=_distmile
  7 -  7           3.59         37.01        107.08         14.36          7.48        169.51
  8 -  8              0             0        196.59             0             0        196.59
  9 -  9              0             0        100.15             0             0        100.15
- 1 -  9          85.44        562.09      3,780.87        274.98      1,920.89      6,624.27Page 511  (VOYAGER NETWORK) 
+ 1 -  9          85.44        562.09      3,780.87        274.98      1,920.89      6,624.27Page 503  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
@@ -674,7 +617,7 @@ CROSSTAB ROW=FTG COL=ATG COMP=_distmile/_cgtimehr
  1 -  9          18.47         33.29         39.47         33.18         42.04         38.67
 
 
-Begin PROCESS PHASE NET2ASCPage 512  (VOYAGER NETWORK) 
+Begin PROCESS PHASE NET2ASCPage 504  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
@@ -702,5 +645,5 @@ Variables written to C:\NERPM43\Base2010\CF2040\output\PreAssignLinksCnt0.DBF:
  
 End   PROCESS PHASE NET2ASC
 
-NETWORK  ReturnCode = 0  Elapsed Time = 00:00:06
+NETWORK  ReturnCode = 0  Elapsed Time = 00:00:07
 ################################################################################

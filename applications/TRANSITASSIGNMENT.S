@@ -1,4 +1,4 @@
-LOOP per = 2, 2, 1
+LOOP per = 1, 2, 1
 
 ; PILOT Script
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.

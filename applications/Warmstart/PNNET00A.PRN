@@ -1,5 +1,5 @@
  
-NETWORK (v.08/05/2014 [6.1.1])  Mon Jun 29 18:53:15 2015
+NETWORK (v.08/05/2014 [6.1.1])  Mon Jul 06 16:19:16 2015
 
 FILEI LINKI[1] = "C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET"
 FILEO NETO = "C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET"
@@ -36,9 +36,9 @@ NETWORK Stack Size = 332 bytes.
 
 C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET   (VOYAGER):
 
-NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Mon Jun 29 18:50:32 2015
+NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Mon Jul 06 16:16:32 2015
 ID= 
-PAR Zones=2578 Nodes=91504 Links=60335 NodeRecs=29847 
+PAR Zones=2578 Nodes=91504 Links=60333 NodeRecs=29846 
 NVR 48    N    TIMESUSED    X    Y    TSNAME=051    STATZONE
     TSSTATION_05A    TAZNEW    COUNTY    SPGEN    TSRANGE_05A
     TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
@@ -74,18 +74,18 @@ Parsons Brinckerhoff
 
 
 Begin PROCESS PHASE NODEMERGE
-      29,847 records merged from NODEI[1]: C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET
-      29,847 data base records.Page 487  (VOYAGER NETWORK) 
+      29,846 records merged from NODEI[1]: C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET
+      29,846 data base records.Page 487  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
 
 Variable          Obs<>0              Total           Ave           Min           Max           RMS  
 --------          ------              -----           ---           ---           ---           ---  
-N                 29,847                 --            --          1        91,504               --
-TIMESUSED         29,847         120,670             4.04          1           170             4.84
-X                 29,847  13,366,788,994.35    447,843.64    190,006.11    588,266.75    451,426.78
-Y                 29,847  64,085,176,375.48  2,147,122.87  1,826,931.76  2,356,088.57  2,148,765.98
-TSNAME               242                                   (0       )  (Walmart )
+N                 29,846                 --            --          1        91,504               --
+TIMESUSED         29,846         120,666             4.04          1           170             4.84
+X                 29,846  13,366,327,960.46    447,843.19    190,006.11    588,266.75    451,426.46
+Y                 29,846  64,083,018,977.46  2,147,122.53  1,826,931.76  2,356,088.57  2,148,765.69
+TSNAME               241                                   (0       )  (Walmart )
 STATZONE             239         234,725           982.11         11         2,493         1,190.08
 TSSTATION_05A         26             412            15.85          1            30            18.29
 TAZNEW               261             261             1             1             1             1   
@@ -115,13 +115,13 @@ TSRANGE_40C          106             680             6.42          3            
 TSPARKSPACE_40C       90          10,695           118.83          1         1,900           250.14
 TSCOSTAM_40C           4             714           178.5         138           258           184.54
 TSCOSTMD_40C           4             714           178.5         138           258           184.54
-TSTYPE_40C           104             284             2.73          1             6             3.33
+TSTYPE_40C           103             283             2.75          1             6             3.34
 TSCOSTAM_40P           4             714           178.5         138           258           184.54
 TSCOSTMD_40P           4             714           178.5         138           258           184.54
 TSPARKSPACE_40P       90          10,695           118.83          1         1,900           250.14
 TSRANGE_40P          106             680             6.42          3            10             7.18
 TSSTATION_40P         80           3,910            48.88          1           113            61.47
-TSTYPE_40P           104             284             2.73          1             6             3.33
+TSTYPE_40P           103             283             2.75          1             6             3.34
 
       Obs = 0:  FAREZONE_05A  FAREZONE_10A  FAREZONE_18A  FAREZONE_40C
       Obs = 0:  FAREZONE_40P  _TOLL_ACC  _TOLL_DEC
@@ -136,7 +136,7 @@ Parsons Brinckerhoff
 
 
 Begin PROCESS PHASE LINKMERGE
-      60,335 records merged from NETI[1]: C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET
+      60,333 records merged from NETI[1]: C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET
       59,128 data base records.Page 489  (VOYAGER NETWORK) 
 Parsons Brinckerhoff
 ----------------------------
@@ -242,9 +242,9 @@ End   PROCESS PHASE SUMMARY
 
 FILEO NETO=C:\NERPM43\Base2010\CF2040\output\PreAssignLOADED_HEVAL.NET
 
-NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Mon Jun 29 18:53:15 2015
+NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Mon Jul 06 16:19:16 2015
 ID= 
-PAR Zones=2578 Nodes=91504 Links=59128 NodeRecs=29847 
+PAR Zones=2578 Nodes=91504 Links=59128 NodeRecs=29846 
 NVR 48    N    TIMESUSED    X    Y    TSNAME=051    STATZONE
     TSSTATION_05A    TAZNEW    COUNTY    SPGEN    TSRANGE_05A
     TSPARKSPACE_05A    TSCOSTAM_05A    TSCOSTMD_05A    TSTYPE_05A
@@ -278,5 +278,5 @@ LVR 114    A    B    TOLL    TOLLTYPE    PLAZADESC=001    PLZALNSMIN
     V14T_1
 
 
-NETWORK  ReturnCode = 0  Elapsed Time = 00:00:00
+NETWORK  ReturnCode = 0  Elapsed Time = 00:00:01
 ################################################################################

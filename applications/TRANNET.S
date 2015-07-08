@@ -53,7 +53,8 @@ MO=1-20,DEC=20*2 , NAME = WalkTime,DriveTime,XferTime,SkywayTime,LocalTime,ExpTi
 FILEO MATO[4] = "{SCENARIO_DIR}\output\TSKIM_@PERIOD@_BRTLRT_@ACCESS_NAME@_{alt}{year}.MAT",
 MO=1-20,DEC=20*2 , NAME = WalkTime,DriveTime,XferTime,SkywayTime,LocalTime,ExpTime,BRTTime,CRailTime,BRT_Wlk_EgTime,CR_Wlk_EgTime,NumXfers,InitWait,XferWait,Fare,WlkTime_BRT,PNRTime_BRT,KNRTime_BRT,WalkTime_CR,PNRTime_CR,KNRTime_CR 
 FILEO MATO[5] = "{SCENARIO_DIR}\output\TSKIM_@PERIOD@_COMRAIL_@ACCESS_NAME@_{alt}{year}.MAT",
-MO=1-20,DEC=20*2 , NAME = WalkTime,DriveTime,XferTime,SkywayTime,LocalTime,ExpTime,BRTTime,CRailTime,BRT_Wlk_EgTime,CR_Wlk_EgTime,NumXfers,InitWait,XferWait,Fare,WlkTime_BRT,PNRTime_BRT,KNRTime_BRT,WalkTime_CR,PNRTime_CR,KNRTime_CR 
+		MO=1-23,DEC=23*2 , NAME = WalkTime,DriveTime,XferTime,SkywayTime,LocalTime,ExpTime,BRTTime,CRailTime,BRT_Wlk_EgTime,CR_Wlk_EgTime,NumXfers,InitWait,XferWait,Fare,WlkTime_BRT,PNRTime_BRT,KNRTime_BRT,WalkTime_CR,PNRTime_CR,KNRTime_CR,
+		                          pnr_cr_dist, knr_cr_dist, walk_cr_dist
 
 FILEO ROUTEO[1] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_SKYWAY_@ACCESS_NAME@_{Alt}{year}.RTE",
   REPORTI={REPI}, REPORTJ={REPJ},TRACEI={REPI}, TRACEJ={REPJ} ;,I={REPI},J={REPJ}
@@ -372,6 +373,9 @@ PROCESS PHASE=SKIMIJ
        MW[18]=TIMEA(0,7)                                       ; Walk Time to CR
        MW[19]=TIMEA(0,8)                                       ; PNR Time to CR
        MW[20]=TIMEA(0,9)                                       ; KNR Time to CR  
+       MW[21]=DIST(0,8)                                        ; PNR to CR Distance
+		   MW[22]=DIST(0,9)                                        ; KNR to CR Distance
+		   MW[23]=DIST(0,7)                                       ; Walk to CR distance
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
        ELSE

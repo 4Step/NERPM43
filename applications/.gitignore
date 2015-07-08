@@ -1,0 +1,12 @@
+# Ignore model generated files
+#######################################
+*.0[0-9]*
+*.PRN
+*.log
+*.script.*
+*.script.command
+*.script.cmdstart
+*.BAK
+*.PRJ
+*.VAR
+*/.*.PRN

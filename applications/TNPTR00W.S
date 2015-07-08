@@ -1,7 +1,7 @@
 ; Do not change filenames or add or remove FILEI/FILEO statements using an editor. Use Cube/Application Manager.
-RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11_@period@_@access_NAME@.PRN" MSG='Peak transit paths and skims'
+RUN PGM=PUBLIC TRANSPORT PRNFILE="{SCENARIO_DIR}\output\TNPTR00A11.PRN" MSG='Peak transit paths and skims'
 FILEI NETI = "{SCENARIO_DIR}\output\@HWYNET@_Temp.NET"
-FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B_@period@_@access_NAME@.PRN"
+FILEO REPORTO = "{SCENARIO_DIR}\output\TNPTR00B.PRN"
 FILEO PRINTO[1] = "{SCENARIO_DIR}\output\trnskim_@period@_@access_NAME@.rpt"
 
  ; OUTPUT files
@@ -17,7 +17,8 @@ MO=1-20,DEC=20*2 , NAME = WalkTime,DriveTime,XferTime,SkywayTime,LocalTime,ExpTi
 FILEO MATO[4] = "{SCENARIO_DIR}\output\TSKIM_@PERIOD@_BRTLRT_@ACCESS_NAME@_{alt}{year}.MAT",
 MO=1-20,DEC=20*2 , NAME = WalkTime,DriveTime,XferTime,SkywayTime,LocalTime,ExpTime,BRTTime,CRailTime,BRT_Wlk_EgTime,CR_Wlk_EgTime,NumXfers,InitWait,XferWait,Fare,WlkTime_BRT,PNRTime_BRT,KNRTime_BRT,WalkTime_CR,PNRTime_CR,KNRTime_CR 
 FILEO MATO[5] = "{SCENARIO_DIR}\output\TSKIM_@PERIOD@_COMRAIL_@ACCESS_NAME@_{alt}{year}.MAT",
-MO=1-20,DEC=20*2 , NAME = WalkTime,DriveTime,XferTime,SkywayTime,LocalTime,ExpTime,BRTTime,CRailTime,BRT_Wlk_EgTime,CR_Wlk_EgTime,NumXfers,InitWait,XferWait,Fare,WlkTime_BRT,PNRTime_BRT,KNRTime_BRT,WalkTime_CR,PNRTime_CR,KNRTime_CR 
+		MO=1-23,DEC=23*2 , NAME = WalkTime,DriveTime,XferTime,SkywayTime,LocalTime,ExpTime,BRTTime,CRailTime,BRT_Wlk_EgTime,CR_Wlk_EgTime,NumXfers,InitWait,XferWait,Fare,WlkTime_BRT,PNRTime_BRT,KNRTime_BRT,WalkTime_CR,PNRTime_CR,KNRTime_CR,
+		                          pnr_cr_dist, knr_cr_dist, walk_cr_dist
 
 FILEO ROUTEO[1] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_SKYWAY_@ACCESS_NAME@_{Alt}{year}.RTE",
   REPORTI={REPI}, REPORTJ={REPJ},TRACEI={REPI}, TRACEJ={REPJ} ;,I={REPI},J={REPJ}
@@ -34,11 +35,11 @@ FILEO ROUTEO[5] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_COMRAIL_@ACCESS_NAME@_{A
 FILEI FAREI = "{SCENARIO_DIR}\input\TFARES_{year}{alt}.FAR"
 FILEI SYSTEMI = "{CATALOG_DIR}\parameters\SYSTEM.PTS"
 FILEI LINEI[1] = "{SCENARIO_DIR}\input\TROUTE_{year}{alt}.LIN"
-FILEI FACTORI[1] = "{SCENARIO_DIR}\output\@ACCESS_NAME@SKYWAY.FAC"
-FILEI FACTORI[2] = "{SCENARIO_DIR}\output\@ACCESS_NAME@LOCAL.FAC"
-FILEI FACTORI[3] = "{SCENARIO_DIR}\output\@ACCESS_NAME@EXPRESS.FAC"
-FILEI FACTORI[4] = "{SCENARIO_DIR}\output\@ACCESS_NAME@BRTLRT.FAC"
-FILEI FACTORI[5] = "{SCENARIO_DIR}\output\@ACCESS_NAME@COMRAIL.FAC"
+FILEI FACTORI[1] = "{SCENARIO_DIR}\input\@ACCESS_NAME@SKYWAY.FAC"
+FILEI FACTORI[2] = "{SCENARIO_DIR}\input\@ACCESS_NAME@LOCAL.FAC"
+FILEI FACTORI[3] = "{SCENARIO_DIR}\input\@ACCESS_NAME@EXPRESS.FAC"
+FILEI FACTORI[4] = "{SCENARIO_DIR}\input\@ACCESS_NAME@BRTLRT.FAC"
+FILEI FACTORI[5] = "{SCENARIO_DIR}\input\@ACCESS_NAME@COMRAIL.FAC"
 
 ; Trn walk,pnr, knr connectors
 FILEI NTLEGI[1] = "{SCENARIO_DIR}\output\NTLEG1@Period@_{alt}{year}.NTL"
@@ -50,8 +51,8 @@ FILEI NTLEGI[10] = "{SCENARIO_DIR}\output\NTLEG11@Period@_{alt}{year}.NTL"
 FILEI NTLEGI[11] = "{SCENARIO_DIR}\output\NTLEG12@Period@_{alt}{year}.NTL"
 
 ; BRT walk, pnr, knr connectors
-FILEI NTLEGI[4] = "{SCENARIO_DIR}\output\NTLEG4@Period@_{alt}{year}.NTL"
-FILEI NTLEGI[5] = "{SCENARIO_DIR}\output\NTLEG5@Period@_{alt}{year}.NTL"
+FILEI NTLEGI[4] = "{SCENARIO_DIR}\output\NTLEG11@Period@_{alt}{year}.NTL"
+FILEI NTLEGI[5] = "{SCENARIO_DIR}\output\NTLEG12@Period@_{alt}{year}.NTL"
 FILEI NTLEGI[6] = "{SCENARIO_DIR}\output\NTLEG6@Period@_{alt}{year}.NTL"
 
 ; Com Rail walk, pnr,knr connectors
@@ -336,6 +337,9 @@ PROCESS PHASE=SKIMIJ
        MW[18]=TIMEA(0,7)                                       ; Walk Time to CR
        MW[19]=TIMEA(0,8)                                       ; PNR Time to CR
        MW[20]=TIMEA(0,9)                                       ; KNR Time to CR  
+       MW[21]=DIST(0,8)                                        ; PNR to CR Distance
+		   MW[22]=DIST(0,9)                                        ; KNR to CR Distance
+		   MW[23]=DIST(0,7)                                       ; Walk to CR distance
        IF (BRDINGS(0,TMODES) > 0)
         MW[11]=BRDINGS(0,TMODES)-1                             ; Number of transfers
        ELSE

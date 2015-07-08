@@ -1,5 +1,5 @@
  
-HIGHWAY (v.08/05/2014 [6.1.1])  Mon Jun 29 18:50:32 2015
+HIGHWAY (v.08/05/2014 [6.1.1])  Mon Jul 06 16:16:33 2015
 
 DISTRIBUTEINTRASTEP PROCESSID='NERPM4Dist', PROCESSLIST=1-24,MinGroupSize=20,SavePrn=F
 ;DistributeINTRASTEP ProcessID='NERPM4Dist', ProcessList=1-4
@@ -86,9 +86,9 @@ HIGHWAY Stack Size = 3164 bytes.
 
 
 NETI C:\NERPM43\Base2010\CF2040\output\PKPreLoad.NET Opened
-NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Mon Jun 29 18:50:32 2015
+NET PGM=NETWORK (v.08/05/2014 [6.1.1]) DATE=Mon Jul 06 16:16:32 2015
 ID= 
-PAR Zones=2578 Nodes=91504 Links=60335 NodeRecs=29847 
+PAR Zones=2578 Nodes=91504 Links=60333 NodeRecs=29846 
 NVR:   N  TIMESUSED  X  Y  TSNAME=051  STATZONE  TSSTATION_05A  TAZNEW
   COUNTY  SPGEN  TSRANGE_05A  TSPARKSPACE_05A  TSCOSTAM_05A  TSCOSTMD_05A
   TSTYPE_05A  FAREZONE_05A  TSSTATION_10A  TSRANGE_10A  TSPARKSPACE_10A
@@ -5272,8 +5272,8 @@ Parsons Brinckerhoff
    2576.00     52.00
    2577.00     52.00
    2578.00     52.00
-M(727):  60335 links for which default value for LinkClass was provided.
-M(727):  60335 links for which default value for T1 was provided.
+M(727):  60333 links for which default value for LinkClass was provided.
+M(727):  60333 links for which default value for T1 was provided.
 
 C:\NERPM43\Base2010\CF2040\output\PRELSKIMS.MAT Opened
 

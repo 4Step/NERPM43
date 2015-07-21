@@ -62,7 +62,7 @@ FILEI ROUTEI[1] = "{SCENARIO_DIR}\output\TPATH_@PERIOD@_SKYWAY_@ACCESS_Name@_{Al
                 TRIPSIJ[4]=MI.1.4,
                 TRIPSIJ[5]=MI.1.5
             REPORT LINES=T, LINEVOLS=T, STOPSONLY = T
-
+/*
 PHASE=SKIMIJ
   MW[1]=SELECTLINK(LINE="CR SE-Rail_I95 SB", "CR SE-Rail_I95 NB")
   MW[2]=SELECTLINK(LINE="CR SE-Rail_I95 SB", "CR SE-Rail_I95 NB", "CR N-Rail NB", "CR N-Rail SB", "CR SW-Rail SB", "CR SW-Rail NB")
@@ -76,7 +76,8 @@ PHASE=SKIMIJ
   MW[9]=SELECTLINK(MODE=26 && MODE=24)      ; CR trips with BRT (xfer)
    
 ENDPHASE
-            
+  */
+  
 ENDRUN
 
 

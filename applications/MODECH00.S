@@ -358,7 +358,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
     
         ; Declare arrays to hold alternative specific constants
         ARRAY PARK=2578
-        ARRAY TYPE=F K_AUT=5, K_SR=5, K_SR3=5, K_TRN=5, K_TDRV=5, K_TKNR=5, K_NMOT=5, K_BIKE=5, K_TDRVE=5, K_Prem_TDRV = 5, K_Prem_TKNR = 5
+        ARRAY TYPE=F K_AUT=5, K_SR=5, K_SR3=5, K_TRN=5, K_TDRV=5, K_TKNR=5, K_NMOT=5, K_BIKE=5, K_TDRVE=5, K_Prem_TDRV = 5, K_Prem_TKNR = 5, K_TRN_CR = 5, K_TRN_BRT = 5, K_BRT_TDRV = 5, K_BRT_TKNR = 5 
         ARRAY TYPE=C30 MARKET_NAME=5
     
         ; Read alternative specific Constants
@@ -390,7 +390,12 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
             K_BIKE[_m] = CONSTANTS(1,(_m-1)*10+8)            ; bike
             K_TDRVE[_m] = CONSTANTS(1,(_m-1)*10+9)           ; pnr to express
             K_Prem_TDRV[_m] = CONSTANTS(1,60 + _m)           ; drive to premium mode (61 - 65)
-            K_Prem_TKNR[_m] = CONSTANTS(1,65 + _m)           ; knr to premium mode (66 - 70)         
+            K_Prem_TKNR[_m] = CONSTANTS(1,65 + _m)           ; knr to premium mode (66 - 70)    
+            K_TRN_CR[_m] = CONSTANTS(1,70 + _m)              ; addtl trn to premium mode (71 - 75) 
+            K_BRT_TDRV[_m] = CONSTANTS(1,75 + _m)            ; drive to BRT mode (75 - 80)
+            K_BRT_TKNR[_m] = CONSTANTS(1,80 + _m)            ; knr to premium mode (81 - 85)    
+            K_TRN_BRT[_m] = CONSTANTS(1,85 + _m)             ; addtl trn to premium mode (86 - 90)             
+            
           ENDLOOP
     
           ; MARKETS=@MARKETS@
@@ -470,7 +475,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
         ; Walk and Bike
         ; distance portion that is 1 mile or less
         MW[12] = MIN(MW[2],1)
-    
+          
         ; Distance portion that is longer than 1 mile
         JLOOP
             IF (MW[2][J] > 1)
@@ -483,86 +488,86 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
             IF(MW[108] >0) 
               ; if other modes ivtt exists
               IF((MW[105] + MW[106] +MW[107]) = 0)
-                MW[109] = K_CRL
+                MW[14] = K_CRL
               ENDIF
               IF ((MW[105] + MW[106] +MW[107]) > 0)
-                MW[109] = K_CRL_LB
+                MW[14] = K_CRL_LB
               ENDIF
             ELSE
-                MW[109] = 0
+                MW[14] = 0
             ENDIF       
               
             ; CR unicluded attributes PNR
             IF(MW[168] >0) 
               ; if other modes ivtt exists
               IF((MW[165] + MW[166] +MW[167]) = 0)
-                MW[169] = K_CRL
+                MW[15] = K_CRL
               ENDIF
               IF ((MW[165] + MW[166] +MW[167]) > 0)
-                MW[169] = K_CRL_LB
+                MW[15] = K_CRL_LB
               ENDIF
             ELSE
-                MW[169] = 0
+                MW[15] = 0
             ENDIF
             
             ; CR unicluded attributes KNR
             IF(MW[228] >0) 
               ; if other modes ivtt exists
               IF((MW[225] + MW[226] +MW[227]) = 0)
-                MW[229] = K_CRL
+                MW[16] = K_CRL
               ENDIF
               IF ((MW[225] + MW[226] +MW[227]) > 0)
-                MW[229] = K_CRL_LB
+                MW[16] = K_CRL_LB
               ENDIF
             ELSE
-                MW[229] = 0
+                MW[16] = 0
             ENDIF
             
             ; BRT unicluded attributes Walk
             IF(MW[88] >0) 
               ; if other modes ivtt exists
               IF((MW[85] + MW[86] +MW[87]) = 0)
-                MW[89] = K_CRL
+                MW[17] = K_CRL
               ENDIF
               IF ((MW[85] + MW[86] +MW[87]) > 0)
-                MW[89] = K_CRL_LB
+                MW[17] = K_CRL_LB
               ENDIF
             ELSE
-                MW[89] = 0
+                MW[17] = 0
             ENDIF 
-            
-            ; BRT unicluded attributes KNR
-            IF(MW[208] >0) 
-              ; if other modes ivtt exists
-              IF((MW[205] + MW[206] +MW[207]) = 0)
-                MW[209] = K_BRT
-              ENDIF
-              IF ((MW[205] + MW[206] +MW[207]) > 0)
-                MW[209] = K_BRT_LB
-              ENDIF
-            ELSE
-                MW[209] = 0
-            ENDIF
             
             ; BRT/LRT unicluded attributes PNR
             IF(MW[148] >0) 
               ; if other modes ivtt exists
               IF((MW[145] + MW[146] +MW[147]) = 0)
-                MW[149] = K_BRT
+                MW[18] = K_BRT
               ENDIF
               IF ((MW[145] + MW[146] +MW[147]) > 0)
-                MW[149] = K_BRT_LB
+                MW[18] = K_BRT_LB
               ENDIF
             ELSE
-                MW[149] = 0
+                MW[18] = 0
+            ENDIF   
+                     
+            ; BRT unicluded attributes KNR
+            IF(MW[208] >0) 
+              ; if other modes ivtt exists
+              IF((MW[205] + MW[206] +MW[207]) = 0)
+                MW[19] = K_BRT
+              ENDIF
+              IF ((MW[205] + MW[206] +MW[207]) > 0)
+                MW[19] = K_BRT_LB
+              ENDIF
+            ELSE
+                MW[19] = 0
             ENDIF
-      
+            
             ; Drive access ratio to CR
             MW[10] = MI.8.pnr_cr_dist / MI.12.Distance
             MW[11] = MI.11.knr_cr_dist / MI.12.Distance
             
         ENDJLOOP
-    
+        
         ; Person trips
         MW[251] = MI.14.6   ; Total Person Trips
     
@@ -632,7 +637,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
         
             ;**********************  ADD HOUSEHOLD MARKET SPECIFIC TERMS **********************************
             LOOP _m=1,@MARKETS@
-    
+               
                ; Drive alone
                MW[301+20*(_m-1)] = (COEFF_TERML    * (ZI.1.TERMTIME[I] + ZI.1.TERMTIME[J]) +           ; Terminal time
                                     COEFF_IVTT     * MW[4]             +                               ; IVTT
@@ -717,8 +722,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[407+20*(_m-1)] = MW[307+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
     
                ; Walk to BRT-LRT
-               MW[308+20*(_m-1)] = (K_TRN[_m]                                   +                      ; Constant(s)
-                                    MW[89]                                      +                      ; BRT Unincluded constants for walk access
+               MW[308+20*(_m-1)] = (K_TRN[_m] + K_TRN_BRT[_m]                   +                      ; Constant(s)
+                                    MW[17]                                      +                     ; BRT Unincluded constants for walk access
                                     COEFF_DRIVE    *  (MW[82]+MW[96])           +                      ; Drive Access Time (zero for walk but to keep the code consistent)
                                     COEFF_WALK     * (MW[81] + MW[83] + MW[89] +MW[95])          +     ; Walk Access Time + Xfer Time
                                     COEFF_SWAIT    *  MIN(MW[92],5)             +                      ; Short wait (< 5 mins)
@@ -731,14 +736,14 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[408+20*(_m-1)] = MW[308+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; Walk to Commuter Rail
-               MW[309+20*(_m-1)] = (K_TRN[_m]                                    +                     ; Constant(s)
-                                    MW[109]                                      +                     ; CR Unincluded constants for walk access
+               MW[309+20*(_m-1)] = (K_TRN[_m] + K_TRN_CR[_m]                     +                     ; Constant(s)
+                                    MW[14]                                      +                     ; CR Unincluded constants for walk access
                                     COEFF_DRIVE    *  (MW[102]+MW[119])          +                     ; Drive Access Time (zero for walk but to keep the code consistent)
-                                    COEFF_WALK     * (MW[101] + MW[103]+MW[109]+MW[110]+MW[118])+      ; Walk Access Time + Xfer Time
+                                    COEFF_WALK     *  (MW[101] + MW[103]+MW[109]+MW[110]+MW[118])+     ; Walk Access Time + Xfer Time
                                     COEFF_SWAIT    *  MIN(MW[112],5)             +                     ; Short wait (< 5 mins)
                                     COEFF_LWAIT    * (MW[112] - MIN(MW[92],5))   +                     ; Long wait (> 5 mins)
                                     COEFF_XWAIT    *  MW[113]                    +                     ; Xfer Wait
-                                    COEFF_IVTT     * (MW[104] + MW[105] + MW[106]+ MW[107]+MW[108])+   ; IVTT (skyway + local + express + BRT + CRL time)
+                                    COEFF_IVTT     *  (MW[104] + MW[105] + MW[106]+ MW[107]+MW[108])+  ; IVTT (skyway + local + express + BRT + CRL time)
                                     COEFF_COST[_m] *  MW[114]                    +                     ; Transit Fare
                                     COEFF_NXFER    *  MW[111]                    +                     ; Num Xfers Dummy
                                     COEFF_CBD      *  ZI.1.CBD_DUMMY[J] )                              ; CBD dummy
@@ -759,7 +764,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                
         
                ; PNR to Express Bus
-               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRVE[_m] + K_EXP               +                    ; Constant(s)
+               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRV[_m] + K_EXP               +                    ; Constant(s)
                                    COEFF_DRIVE    *  MW[122]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[121] + MW[123])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[132],5)               +                    ; Short wait (< 5 mins)
@@ -772,8 +777,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[410+20*(_m-1)] = MW[310+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; PNR to BRT-LRT Bus
-               MW[311+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]                   +                    ; Constant(s)
-                                   MW[149]                                        +                    ; BRT Unincluded constants for PNR access
+               MW[311+20*(_m-1)] = (K_TRN[_m] + K_BRT_TDRV[_m]  + K_TRN_BRT[_m]  +                    ; Constant(s)
+                                   MW[18]                                        +                    ; BRT Unincluded constants for PNR access
                                    COEFF_DRIVE    *  (MW[142]+MW[156])            +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[141] + MW[143] +MW[149]+MW[155])  +            ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[152],5)               +                    ; Short wait (< 5 mins)
@@ -786,9 +791,9 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[411+20*(_m-1)] = MW[311+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; PNR to Commuter Rail
-               MW[312+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]                   +                    ; Constant(s)
+               MW[312+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]  + K_TRN_CR[_m]   +                    ; Constant(s)
                                    -3.0 * MAX((MW[10]-0.5),0)                     +                    ; Drive access ratio
-                                   MW[169]                                        +                    ; CR Unincluded constants for PNR access
+                                   MW[15]                                        +                    ; CR Unincluded constants for PNR access
                                    COEFF_DRIVE    *  (MW[162]+MW[176]+MW[179])    +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[161] + MW[163] + MW[169] +MW[170]) +           ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[172],5)               +                    ; Short wait (< 5 mins)
@@ -827,8 +832,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[414+20*(_m-1)] = MW[314+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; KNR to BRT-LRT Bus
-               MW[315+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m]                   +                    ; Constant(s)
-                                   MW[209]                                        +                    ; BRT Unincluded constants for KNR access
+               MW[315+20*(_m-1)] = (K_TRN[_m] + K_BRT_TKNR[_m]  + K_TRN_BRT[_m]   +                    ; Constant(s)
+                                   MW[19]                                        +                    ; BRT Unincluded constants for KNR access
                                    COEFF_DRIVE    * (MW[202]+MW[217])             +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[201] + MW[203] +MW[209]+ MW[215])  +           ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[212],5)               +                    ; Short wait (< 5 mins)
@@ -841,8 +846,8 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                MW[415+20*(_m-1)] = MW[315+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; KNR to Commuter Rail
-               MW[316+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m]                   +                    ; Constant(s)
-                                   MW[229]                                        +                    ; CR Unincluded constants for KNR access
+               MW[316+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m] + K_TRN_CR[_m]    +                    ; Constant(s)
+                                   MW[16]                                        +                    ; CR Unincluded constants for KNR access
                                    -3.0 * MAX((MW[11]-0.5),0)                     +                    ; Drive access ratio
                                    COEFF_DRIVE    * (MW[222]+ MW[240])            +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[221] + MW[223] + MW[229] +MW[230]) +           ; Walk Access Time + Xfer Time
@@ -866,7 +871,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
                                    COEFF_BIKE1  * MW[12]                          +                    ; Bike time if less than 1 mile
                                    COEFF_BIKE2  * MW[13])                                              ; Bike time if more than 1 mile
                MW[418+20*(_m-1)] = MW[318+20*(_m-1)] / NC_1 /NC_2                                      ; Scaled Utility
-
+              
             ENDLOOP
     
             ;***************************    MODE AVAILABILITY CHECKS    ************************************
@@ -924,26 +929,7 @@ FILEI MATI[14] = "{SCENARIO_DIR}\OUTPUT\@PURP@@PERIOD@_PERTRIPS_{ALT}{YEAR}.MAT"
     
                  ; KNR to Commuter rail
                  IF (MW[228] == 0) MW[416+20*(_m-1)]=-9999.99
-                 
-                 /*
-                 ; If walk access distance less than minimum, no walk access to transit
-                 ;IF (MW[2] < 0.6)
-                 ;   MW[405+20*(_m-1)]=-9999.99
-                 ;   MW[406+20*(_m-1)]=-9999.99
-                 ;   MW[407+20*(_m-1)]=-9999.99
-                 ;   MW[408+20*(_m-1)]=-9999.99
-                 ;   MW[409+20*(_m-1)]=-9999.99
-                 ;ENDIF
-                 ;
-                 ;; If drive access distance less than minimum, no drive access to transit
-                 ;IF (MW[2] < 1.2)
-                 ;   MW[410+20*(_m-1)]=-9999.99
-                 ;   MW[411+20*(_m-1)]=-9999.99
-                 ;   MW[412+20*(_m-1)]=-9999.99
-                 ;   MW[419+20*(_m-1)]=-9999.99
-                 ;ENDIF
-                 */
-                 
+                                  
                  ; Walk to transit not available for the MD or NT access markets;
                  IF(ACC==2 || ACC==3)
                     MW[405+20*(_m-1)]=-9999.99
@@ -1447,7 +1433,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
     
         ; Declare arrays to hold alternative specific constants
         ARRAY PARK=2578
-        ARRAY TYPE=F K_AUT=5, K_SR=5, K_SR3=5, K_TRN=5, K_TDRV=5, K_TKNR=5, K_NMOT=5, K_BIKE=5, K_TDRVE=5, K_Prem_TDRV = 5, K_Prem_TKNR = 5
+        ARRAY TYPE=F K_AUT=5, K_SR=5, K_SR3=5, K_TRN=5, K_TDRV=5, K_TKNR=5, K_NMOT=5, K_BIKE=5, K_TDRVE=5, K_Prem_TDRV = 5, K_Prem_TKNR = 5, K_TRN_CR = 5, K_TRN_BRT = 5, K_BRT_TDRV = 5, K_BRT_TKNR = 5 
         ARRAY TYPE=C30 MARKET_NAME=5
     
         ; Read alternative specific Constants
@@ -1479,7 +1465,11 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
             K_BIKE[_m] = CONSTANTS(1,(_m-1)*10+8)            ; bike
             K_TDRVE[_m] = CONSTANTS(1,(_m-1)*10+9)           ; pnr to express
             K_Prem_TDRV[_m] = CONSTANTS(1,60 + _m)           ; drive to premium mode (61 - 65)
-            K_Prem_TKNR[_m] = CONSTANTS(1,65 + _m)           ; knr to premium mode (66 - 70)                 
+            K_Prem_TKNR[_m] = CONSTANTS(1,65 + _m)           ; knr to premium mode (66 - 70)    
+            K_TRN_CR[_m] = CONSTANTS(1,70 + _m)              ; addtl trn to premium mode (71 - 75) 
+            K_BRT_TDRV[_m] = CONSTANTS(1,75 + _m)            ; drive to BRT mode (75 - 80)
+            K_BRT_TKNR[_m] = CONSTANTS(1,80 + _m)            ; knr to premium mode (81 - 85)    
+            K_TRN_BRT[_m] = CONSTANTS(1,85 + _m)             ; addtl trn to premium mode (86 - 90)  
           ENDLOOP
     
           ; MARKETS=@MARKETS@
@@ -1560,97 +1550,99 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
         ; distance portion that is 1 mile or less
         MW[12] = MIN(MW[2],1)
     
-       JLOOP
-            ; Distance portion that is longer than 1 mile
+        ; Distance portion that is longer than 1 mile
+        JLOOP
             IF (MW[2][J] > 1)
                 MW[13] = MW[2][J] - 1
             ELSE
                 MW[13] = 0
             ENDIF
 
-            ; CR unicluded attributes Walk
+             ; CR unicluded attributes Walk
             IF(MW[108] >0) 
               ; if other modes ivtt exists
               IF((MW[105] + MW[106] +MW[107]) = 0)
-                MW[109] = K_CRL
+                MW[14] = K_CRL
               ENDIF
               IF ((MW[105] + MW[106] +MW[107]) > 0)
-                MW[109] = K_CRL_LB
+                MW[14] = K_CRL_LB
               ENDIF
             ELSE
-                MW[109] = 0
+                MW[14] = 0
             ENDIF       
               
             ; CR unicluded attributes PNR
             IF(MW[168] >0) 
               ; if other modes ivtt exists
               IF((MW[165] + MW[166] +MW[167]) = 0)
-                MW[169] = K_CRL
+                MW[15] = K_CRL
               ENDIF
               IF ((MW[165] + MW[166] +MW[167]) > 0)
-                MW[169] = K_CRL_LB
+                MW[15] = K_CRL_LB
               ENDIF
             ELSE
-                MW[169] = 0
+                MW[15] = 0
             ENDIF
             
             ; CR unicluded attributes KNR
             IF(MW[228] >0) 
               ; if other modes ivtt exists
               IF((MW[225] + MW[226] +MW[227]) = 0)
-                MW[229] = K_CRL
+                MW[16] = K_CRL
               ENDIF
               IF ((MW[225] + MW[226] +MW[227]) > 0)
-                MW[229] = K_CRL_LB
+                MW[16] = K_CRL_LB
               ENDIF
             ELSE
-                MW[229] = 0
+                MW[16] = 0
             ENDIF
             
             ; BRT unicluded attributes Walk
             IF(MW[88] >0) 
               ; if other modes ivtt exists
               IF((MW[85] + MW[86] +MW[87]) = 0)
-                MW[89] = K_CRL
+                MW[17] = K_CRL
               ENDIF
               IF ((MW[85] + MW[86] +MW[87]) > 0)
-                MW[89] = K_CRL_LB
+                MW[17] = K_CRL_LB
               ENDIF
             ELSE
-                MW[89] = 0
+                MW[17] = 0
             ENDIF 
-            
-            ; BRT unicluded attributes KNR
-            IF(MW[208] >0) 
-              ; if other modes ivtt exists
-              IF((MW[205] + MW[206] +MW[207]) = 0)
-                MW[209] = K_BRT
-              ENDIF
-              IF ((MW[205] + MW[206] +MW[207]) > 0)
-                MW[209] = K_BRT_LB
-              ENDIF
-            ELSE
-                MW[209] = 0
-            ENDIF
             
             ; BRT/LRT unicluded attributes PNR
             IF(MW[148] >0) 
               ; if other modes ivtt exists
               IF((MW[145] + MW[146] +MW[147]) = 0)
-                MW[149] = K_BRT
+                MW[18] = K_BRT
               ENDIF
               IF ((MW[145] + MW[146] +MW[147]) > 0)
-                MW[149] = K_BRT_LB
+                MW[18] = K_BRT_LB
               ENDIF
             ELSE
-                MW[149] = 0
+                MW[18] = 0
+            ENDIF   
+                     
+            ; BRT unicluded attributes KNR
+            IF(MW[208] >0) 
+              ; if other modes ivtt exists
+              IF((MW[205] + MW[206] +MW[207]) = 0)
+                MW[19] = K_BRT
+              ENDIF
+              IF ((MW[205] + MW[206] +MW[207]) > 0)
+                MW[19] = K_BRT_LB
+              ENDIF
+            ELSE
+                MW[19] = 0
             ENDIF
             
+                  
             ; Drive access ratio to CR
             MW[10] = MI.8.pnr_cr_dist / MI.12.Distance
             MW[11] = MI.11.knr_cr_dist / MI.12.Distance
+            
         ENDJLOOP
-       
+               
         ; Person trips
         MW[251] = MI.14.6   ; Total Person Trips
     
@@ -1663,14 +1655,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
          ; ENDIF
         ENDIF
         
-        ; ************************** PROCESS PERSON TRIPS INTO MARKETS ************************************
-        ; Divide person trip table into different markets
-        ;  MW[252]=MW[251] * ZI.1.PERCAUTO0[I]                        ; Zero car HHs
-        ;  MW[253]=MW[251] * ZI.1.PERCAUTO1[I]                        ; Auto Insufficient Low Income HHs
-        ;  MW[254]=MW[251] * ZI.1.PERCAUTO3[I]                        ; Auto Insufficient High Income HHs
-        ;  MW[255]=MW[251] * ZI.1.PERCAUTO4[I]                        ; Auto Sufficient Low Income HHs
-        ;  MW[256]=(MW[251] - MW[252] - MW[253] - MW[254] - MW[255])  ; Auto Sufficient High Income HHs
-        
+        ; ************************** PROCESS PERSON TRIPS INTO MARKETS ************************************       
         MW[252]= MI.14.1    ; Zero car HHs                     
         MW[253]= MI.14.2    ; Auto Insufficient Low Income HHs 
         MW[254]= MI.14.3    ; Auto Insufficient High Income HHs
@@ -1720,7 +1705,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
         
             ;**********************  ADD HOUSEHOLD MARKET SPECIFIC TERMS **********************************
             LOOP _m=1,@MARKETS@
-              ; Drive alone
+              
+               ; Drive alone
                MW[301+20*(_m-1)] = (COEFF_TERML    * (ZI.1.TERMTIME[I] + ZI.1.TERMTIME[J]) +           ; Terminal time
                                     COEFF_IVTT     * MW[4]             +                               ; IVTT
                                     COEFF_CBD      * ZI.1.CBD_DUMMY[J] +                               ; CBD dummy
@@ -1804,8 +1790,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[407+20*(_m-1)] = MW[307+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
     
                ; Walk to BRT-LRT
-               MW[308+20*(_m-1)] = (K_TRN[_m]                                   +                      ; Constant(s)
-                                    MW[89]                                      +                      ; BRT Unincluded constants for walk access
+               MW[308+20*(_m-1)] = (K_TRN[_m] + K_TRN_BRT[_m]                   +                      ; Constant(s)
+                                    MW[17]                                      +                     ; BRT Unincluded constants for walk access
                                     COEFF_DRIVE    *  (MW[82]+MW[96])           +                      ; Drive Access Time (zero for walk but to keep the code consistent)
                                     COEFF_WALK     * (MW[81] + MW[83] + MW[89] +MW[95])          +     ; Walk Access Time + Xfer Time
                                     COEFF_SWAIT    *  MIN(MW[92],5)             +                      ; Short wait (< 5 mins)
@@ -1818,14 +1804,14 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[408+20*(_m-1)] = MW[308+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; Walk to Commuter Rail
-               MW[309+20*(_m-1)] = (K_TRN[_m]                                    +                     ; Constant(s)
-                                    MW[109]                                      +                     ; CR Unincluded constants for walk access
+               MW[309+20*(_m-1)] = (K_TRN[_m] + K_TRN_CR[_m]                     +                     ; Constant(s)
+                                    MW[14]                                      +                     ; CR Unincluded constants for walk access
                                     COEFF_DRIVE    *  (MW[102]+MW[119])          +                     ; Drive Access Time (zero for walk but to keep the code consistent)
-                                    COEFF_WALK     * (MW[101] + MW[103]+MW[109]+MW[110]+MW[118])+      ; Walk Access Time + Xfer Time
+                                    COEFF_WALK     *  (MW[101] + MW[103]+MW[109]+MW[110]+MW[118])+     ; Walk Access Time + Xfer Time
                                     COEFF_SWAIT    *  MIN(MW[112],5)             +                     ; Short wait (< 5 mins)
                                     COEFF_LWAIT    * (MW[112] - MIN(MW[92],5))   +                     ; Long wait (> 5 mins)
                                     COEFF_XWAIT    *  MW[113]                    +                     ; Xfer Wait
-                                    COEFF_IVTT     * (MW[104] + MW[105] + MW[106]+ MW[107]+MW[108])+   ; IVTT (skyway + local + express + BRT + CRL time)
+                                    COEFF_IVTT     *  (MW[104] + MW[105] + MW[106]+ MW[107]+MW[108])+  ; IVTT (skyway + local + express + BRT + CRL time)
                                     COEFF_COST[_m] *  MW[114]                    +                     ; Transit Fare
                                     COEFF_NXFER    *  MW[111]                    +                     ; Num Xfers Dummy
                                     COEFF_CBD      *  ZI.1.CBD_DUMMY[J] )                              ; CBD dummy
@@ -1846,7 +1832,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                
         
                ; PNR to Express Bus
-               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRVE[_m] + K_EXP               +                    ; Constant(s)
+               MW[310+20*(_m-1)] = (K_TRN[_m] + K_TDRV[_m] + K_EXP               +                    ; Constant(s)
                                    COEFF_DRIVE    *  MW[122]                      +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[121] + MW[123])           +                    ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[132],5)               +                    ; Short wait (< 5 mins)
@@ -1859,8 +1845,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[410+20*(_m-1)] = MW[310+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; PNR to BRT-LRT Bus
-               MW[311+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]                   +                    ; Constant(s)
-                                   MW[149]                                        +                    ; BRT Unincluded constants for PNR access
+               MW[311+20*(_m-1)] = (K_TRN[_m] + K_BRT_TDRV[_m]  + K_TRN_BRT[_m]  +                    ; Constant(s)
+                                   MW[18]                                        +                    ; BRT Unincluded constants for PNR access
                                    COEFF_DRIVE    *  (MW[142]+MW[156])            +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[141] + MW[143] +MW[149]+MW[155])  +            ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[152],5)               +                    ; Short wait (< 5 mins)
@@ -1873,9 +1859,9 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[411+20*(_m-1)] = MW[311+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; PNR to Commuter Rail
-               MW[312+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]                   +                    ; Constant(s)
+               MW[312+20*(_m-1)] = (K_TRN[_m] + K_Prem_TDRV[_m]  + K_TRN_CR[_m]   +                    ; Constant(s)
                                    -3.0 * MAX((MW[10]-0.5),0)                     +                    ; Drive access ratio
-                                   MW[169]                                        +                    ; CR Unincluded constants for PNR access
+                                   MW[15]                                        +                    ; CR Unincluded constants for PNR access
                                    COEFF_DRIVE    *  (MW[162]+MW[176]+MW[179])    +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[161] + MW[163] + MW[169] +MW[170]) +           ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[172],5)               +                    ; Short wait (< 5 mins)
@@ -1914,8 +1900,8 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[414+20*(_m-1)] = MW[314+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; KNR to BRT-LRT Bus
-               MW[315+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m]                   +                    ; Constant(s)
-                                   MW[209]                                        +                    ; BRT Unincluded constants for KNR access
+               MW[315+20*(_m-1)] = (K_TRN[_m] + K_BRT_TKNR[_m]  + K_TRN_BRT[_m]   +                    ; Constant(s)
+                                   MW[19]                                        +                    ; BRT Unincluded constants for KNR access
                                    COEFF_DRIVE    * (MW[202]+MW[217])             +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[201] + MW[203] +MW[209]+ MW[215])  +           ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[212],5)               +                    ; Short wait (< 5 mins)
@@ -1928,9 +1914,9 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                MW[415+20*(_m-1)] = MW[315+20*(_m-1)] /NC_1 /NC_2 /NC_3                                 ; Scaled Utility
                
                ; KNR to Commuter Rail
-               MW[316+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m]                   +                    ; Constant(s)
+               MW[316+20*(_m-1)] = (K_TRN[_m] + K_Prem_TKNR[_m] + K_TRN_CR[_m]    +                    ; Constant(s)
+                                   MW[16]                                        +                    ; CR Unincluded constants for KNR access
                                    -3.0 * MAX((MW[11]-0.5),0)                     +                    ; Drive access ratio
-                                   MW[229]                                        +                    ; CR Unincluded constants for KNR access
                                    COEFF_DRIVE    * (MW[222]+ MW[240])            +                    ; Drive Access Time 
                                    COEFF_WALK     * (MW[221] + MW[223] + MW[229] +MW[230]) +           ; Walk Access Time + Xfer Time
                                    COEFF_SWAIT    *  MIN(MW[232],5)               +                    ; Short wait (< 5 mins)
@@ -1953,7 +1939,7 @@ FILEI MATI[13] = "{SCENARIO_DIR}\output\@PERIOD@_DRV_SKYWAY.MAT"
                                    COEFF_BIKE1  * MW[12]                          +                    ; Bike time if less than 1 mile
                                    COEFF_BIKE2  * MW[13])                                              ; Bike time if more than 1 mile
                MW[418+20*(_m-1)] = MW[318+20*(_m-1)] / NC_1 /NC_2                                      ; Scaled Utility
-
+              
             ENDLOOP
     
             ;***************************    MODE AVAILABILITY CHECKS    ************************************

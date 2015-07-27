@@ -15,7 +15,13 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+<<<<<<< HEAD
 
 *.CAT -text
 *.NET -text 
 *.APP -text
+=======
+*.APP -text
+*.CAT -text
+*.NET -text
+>>>>>>> release/3.2.5
